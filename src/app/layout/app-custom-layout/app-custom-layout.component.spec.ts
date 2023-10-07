@@ -8,7 +8,7 @@ describe('AppCustomLayoutComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AppCustomLayoutComponent]
+      declarations: [AppCustomLayoutComponent],
     });
     fixture = TestBed.createComponent(AppCustomLayoutComponent);
     component = fixture.componentInstance;
