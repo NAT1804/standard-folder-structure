@@ -8,26 +8,18 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "npx ng lint standard-folder-structure",
+    "lint": "ng lint",
+    "lint:fix": "prettier --write src && ng lint --fix",
     "e2e": "ng e2e",
     "build:prod": "ng build --configuration production --vendor-chunk",
     "format:write": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss} --write",
-    "format:test": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss} --list-different"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "format:test": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss} --list-different",
+    "prepare": "husky install"
   },
   "lint-staged": {
-    "{src,e2e,cypress}/**/*.{ts,json,md,scss}": [
+    "src/**/*.{js,ts,html,css,scss}": [
       "prettier --write",
-      "git add"
+      "eslint --max-warnings=0"
     ]
   },
   "private": true,
@@ -63,13 +55,9 @@
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
-    "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jsdoc": "^46.8.2",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
