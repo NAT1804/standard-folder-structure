@@ -1,5 +1,5 @@
-<div>
-  <div>Standard Folder Structure</div>
-</div>
-
-<router-outlet></router-outlet>
+<app-side-nav (toggleSidenav)="onToggleSidenav($event)"></app-side-nav>
+<app-custom-layout
+  [collapsed]="isSidenavCollapsed"
+  [screenWidth]="screenWidth"
+></app-custom-layout>
