@@ -72,7 +72,7 @@
     .sidenav-nav-link {
       display: flex;
       align-items: center;
-      height: 3rem;
+      min-height: 3rem;
       color: #f3f3f3;
       text-decoration: none;
       border-radius: 0.625rem;
@@ -105,4 +105,8 @@
   .sidenav-link-text {
     color: #000;
   }
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
