@@ -8,6 +8,13 @@ import {
 } from '@angular/core';
 import { navData } from './nav-data';
 import { BehaviorSubject, Observable, distinctUntilChanged } from 'rxjs';
+import {
+  style,
+  transition,
+  trigger,
+  animate,
+  keyframes,
+} from '@angular/animations';
 
 interface SidenavToggle {
   screenWidth: number;
@@ -18,6 +25,29 @@ interface SidenavToggle {
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1000ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('150ms', style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('rotate', [
+      transition(':enter', [
+        animate(
+          '1000ms',
+          keyframes([
+            style({ transform: 'rotate(0deg)', offset: '0' }),
+            style({ transform: 'rotate(1turn)', offset: '1' }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class SideNavComponent implements OnInit, AfterViewInit {
   @Output() toggleSidenav: EventEmitter<SidenavToggle> = new EventEmitter();
@@ -25,15 +55,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   public _onResize$: Observable<number | undefined> = new Observable<
     number | undefined
   >(undefined);
+  public screenWidth = 0;
+  public collapsed = true;
+  public navData = navData;
 
   constructor() {
     this._onResize = new BehaviorSubject<number | undefined>(undefined);
     this._onResize$ = this._onResize.asObservable();
   }
-
-  screenWidth = 0;
-  collapsed = true;
-  navData = navData;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {

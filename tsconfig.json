@@ -30,6 +30,7 @@
       "@env": ["src/environments/environment"],
       "@modules/*": ["src/app/modules/*"],
       "@data/*": ["src/app/data/*"],
+      "@layout/*": ["src/app/layout/*"],
       "@tests/*": ["src/app/tests/*"]
     }
   },

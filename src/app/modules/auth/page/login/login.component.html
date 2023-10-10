@@ -1,0 +1,45 @@
+<div >
+  Username: admin
+  <br/>
+  Password: 123456
+</div>
+
+<fieldset [disabled]="isLoading">
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <div class="form-group">
+      <label class="d-block">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          formControlName="username"
+        />
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="d-block">
+        <input
+          type="password"
+          name="password"
+          autocomplete="on"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </label>
+    </div>
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary btn-block btn-raised"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        <span [hidden]="isLoading">Submit</span>
+      </button>
+    </div>
+    <a [routerLink]="['/auth/register']">
+      Don't have an account? Sign up here!
+    </a>
+  </form>
+</fieldset>
