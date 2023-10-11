@@ -2,13 +2,39 @@
   <div class="logo-container">
     <button class="logo" (click)="toggleCollapse()">A</button>
     <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
-    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+    <button
+      class="btn-close"
+      @rotate
+      *ngIf="collapsed"
+      (click)="closeSidenav()"
+    >
       <i class="fal fa-times close-icon"></i>
     </button>
   </div>
+
   <ul class="sidenav-nav">
     <li class="sidenav-nav-item" *ngFor="let data of navData">
       <a
+        href=""
+        class="sidenav-nav-link"
+        *ngIf="data.children && data.children.length > 0"
+        (click)="handleClick($event, data)"
+      >
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+          {{ data.label }}
+        </span>
+        <i
+          *ngIf="data.children && collapsed"
+          class="menu-collapsed-icon"
+          [ngClass]="
+            !data.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'
+          "
+        ></i>
+      </a>
+
+      <a
+        *ngIf="!data.children || (data.children && data.children.length === 0)"
         href=""
         class="sidenav-nav-link"
         [routerLink]="[data.routerLink]"
@@ -20,6 +46,13 @@
           {{ data.label }}
         </span>
       </a>
+      <div *ngIf="collapsed && data.children && data.children.length > 0">
+        <app-subnav
+          [data]="data"
+          [collapsed]="collapsed"
+          [expanded]="data.expanded"
+        ></app-subnav>
+      </div>
     </li>
   </ul>
 </div>

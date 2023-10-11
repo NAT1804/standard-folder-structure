@@ -1,0 +1,56 @@
+<ul
+  *ngIf="collapsed && data.children && data.children.length > 0"
+  class="sublevel-nav"
+  [@submenu]="
+    expanded
+      ? {
+          value: 'visible',
+          params: {
+            transitionParams: '400ms cubic-bezier(0.86, 0, 0.07, 1)',
+            height: '*'
+          }
+        }
+      : {
+          value: 'hidden',
+          params: {
+            transitionParams: '400ms cubic-bezier(0.86, 0, 0.07, 1)',
+            height: '0'
+          }
+        }
+  "
+>
+  <li *ngFor="let item of data.children" class="sublevel-nav-item">
+    <a
+      href=""
+      class="sublevel-nav-link"
+      *ngIf="item.children && item.children.length > 0"
+      (click)="handleClick($event, item)"
+    >
+      <i class="sublevel-link-icon fa fa-circle"></i>
+      <span class="sublevel-link-text" *ngIf="collapsed">{{ item.label }}</span>
+      <i
+        *ngIf="item.children && collapsed"
+        class="menu-collapsed-icon"
+        [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'"
+      ></i>
+    </a>
+    <a
+      href=""
+      class="sublevel-nav-link"
+      *ngIf="!item.children || (item.children && item.children.length === 0)"
+      [routerLink]="[item.routerLink]"
+      routerLinkActive="active-sublevel"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <i class="sublevel-link-icon fa fa-circle"></i>
+      <span class="sublevel-link-text" *ngIf="collapsed">{{ item.label }}</span>
+    </a>
+    <div *ngIf="item.children && item.children.length > 0">
+      <app-subnav
+        [collapsed]="collapsed"
+        [multiple]="multiple"
+        [expanded]="item.expanded"
+      ></app-subnav>
+    </div>
+  </li>
+</ul>

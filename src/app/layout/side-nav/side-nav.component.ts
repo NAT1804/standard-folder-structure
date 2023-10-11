@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { navData } from './nav-data';
 import { BehaviorSubject, Observable, distinctUntilChanged } from 'rxjs';
 import {
   style,
@@ -15,6 +14,9 @@ import {
   animate,
   keyframes,
 } from '@angular/animations';
+
+import { navData } from '@core/constants/nav-data';
+import { INavData } from '@app/data/interfaces/nav-data.interface';
 
 interface SidenavToggle {
   screenWidth: number;
@@ -58,6 +60,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   public screenWidth = 0;
   public collapsed = true;
   public navData = navData;
+  public multiple = false;
 
   constructor() {
     this._onResize = new BehaviorSubject<number | undefined>(undefined);
@@ -106,5 +109,17 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   private emitOnResize() {
     this.screenWidth = window.innerWidth;
     this._onResize.next(this.screenWidth - 768 <= 0 ? -1 : 1);
+  }
+
+  handleClick(event: Event, selectedItem: INavData): void {
+    event.preventDefault();
+    if (!this.multiple) {
+      for (const item of this.navData) {
+        if (selectedItem !== item && item.expanded) {
+          item.expanded = true;
+        }
+      }
+    }
+    selectedItem.expanded = !selectedItem.expanded;
   }
 }

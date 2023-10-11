@@ -1,0 +1,33 @@
+.sublevel-nav {
+  list-style: none;
+  margin-left: 10px;
+
+
+  .sublevel-nav-item {
+    .sublevel-nav-link {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      color: #898989;
+      text-decoration: none;
+      border-radius: 0.625rem;
+      transition: all .3s ease;
+
+      .sublevel-link-icon {
+        font-size: 4px;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+
+      .sublevel-link-text {
+        margin-left: 0.8rem;
+      }
+
+      &:hover {
+        color: #f3f3f3;
+      }
+    }
+  }
+}
