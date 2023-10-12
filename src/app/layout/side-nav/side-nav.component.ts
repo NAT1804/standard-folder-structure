@@ -15,29 +15,20 @@ import {
   keyframes,
 } from '@angular/animations';
 
-import { navData } from '@core/constants/nav-data';
-import { INavData } from '@app/data/interfaces/nav-data.interface';
-
-interface SidenavToggle {
-  screenWidth: number;
-  collapsed: boolean;
-}
+import { navData } from '@app/core/constants/nav/nav-data';
+import {
+  INavData,
+  SideNavToggle,
+} from '@app/data/interfaces/nav-data.interface';
+import { fadeInOut } from '@app/core/constants/nav/nav-animation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1000ms', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate('150ms', style({ opacity: 0 })),
-      ]),
-    ]),
+    fadeInOut,
     trigger('rotate', [
       transition(':enter', [
         animate(
@@ -52,7 +43,7 @@ interface SidenavToggle {
   ],
 })
 export class SideNavComponent implements OnInit, AfterViewInit {
-  @Output() toggleSidenav: EventEmitter<SidenavToggle> = new EventEmitter();
+  @Output() toggleSidenav: EventEmitter<SideNavToggle> = new EventEmitter();
   public _onResize: BehaviorSubject<number | undefined>;
   public _onResize$: Observable<number | undefined> = new Observable<
     number | undefined
@@ -62,7 +53,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   public navData = navData;
   public multiple = false;
 
-  constructor() {
+  constructor(public router: Router) {
     this._onResize = new BehaviorSubject<number | undefined>(undefined);
     this._onResize$ = this._onResize.asObservable();
   }
@@ -116,10 +107,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     if (!this.multiple) {
       for (const item of this.navData) {
         if (selectedItem !== item && item.expanded) {
-          item.expanded = true;
+          item.expanded = false;
         }
       }
     }
     selectedItem.expanded = !selectedItem.expanded;
+  }
+
+  getActiveClass(data: INavData): string {
+    return this.router.url.includes(data.routerLink) ? 'active' : '';
   }
 }

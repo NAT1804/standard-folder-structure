@@ -1,6 +1,12 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*", "src/environments/*", "dist", "node_modules"],
+  "ignorePatterns": [
+    "projects/**/*",
+    "src/environments/*",
+    "dist",
+    "node_modules",
+    "src/**/*.scss"
+  ],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -34,9 +40,7 @@
             "endOfLine": "auto"
           }
         ],
-        "@angular-eslint/template/interactive-supports-focus": [
-          "error"
-        ]
+        "@angular-eslint/template/interactive-supports-focus": ["error"]
       }
     },
     {

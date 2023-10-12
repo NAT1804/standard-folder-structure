@@ -2,7 +2,6 @@
   list-style: none;
   margin-left: 10px;
 
-
   .sublevel-nav-item {
     .sublevel-nav-link {
       display: flex;
@@ -11,7 +10,7 @@
       color: #898989;
       text-decoration: none;
       border-radius: 0.625rem;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       .sublevel-link-icon {
         font-size: 4px;
@@ -30,4 +29,9 @@
       }
     }
   }
+}
+
+.active-sublevel {
+  color: #f3f3f3 !important;
+  opacity: 1;
 }

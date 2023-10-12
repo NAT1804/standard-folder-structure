@@ -24,10 +24,13 @@
       href=""
       class="sublevel-nav-link"
       *ngIf="item.children && item.children.length > 0"
+      [ngClass]="getActiveClass(item)"
       (click)="handleClick($event, item)"
     >
       <i class="sublevel-link-icon fa fa-circle"></i>
-      <span class="sublevel-link-text" *ngIf="collapsed">{{ item.label }}</span>
+      <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">
+        {{ item.label }}
+      </span>
       <i
         *ngIf="item.children && collapsed"
         class="menu-collapsed-icon"
@@ -43,10 +46,13 @@
       [routerLinkActiveOptions]="{ exact: true }"
     >
       <i class="sublevel-link-icon fa fa-circle"></i>
-      <span class="sublevel-link-text" *ngIf="collapsed">{{ item.label }}</span>
+      <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">
+        {{ item.label }}
+      </span>
     </a>
     <div *ngIf="item.children && item.children.length > 0">
       <app-subnav
+        [data]="item"
         [collapsed]="collapsed"
         [multiple]="multiple"
         [expanded]="item.expanded"

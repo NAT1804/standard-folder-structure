@@ -19,7 +19,7 @@
   "lint-staged": {
     "src/**/*.{js,ts,html,css,scss}": [
       "prettier --write",
-      "eslint --max-warnings=0"
+      "eslint ."
     ]
   },
   "private": true,

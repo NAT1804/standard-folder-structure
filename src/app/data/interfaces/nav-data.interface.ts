@@ -5,3 +5,8 @@ export interface INavData {
   expanded?: boolean;
   children?: INavData[];
 }
+
+export interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}

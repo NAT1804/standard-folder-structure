@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomLayoutComponent } from './layout/custom-layout/custom-layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
@@ -16,7 +15,6 @@ import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CustomLayoutComponent,
     HeaderComponent,
     FooterComponent,
     SideNavComponent,

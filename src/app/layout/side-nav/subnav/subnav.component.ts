@@ -5,15 +5,18 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { fadeInOut } from '@app/core/constants/nav/nav-animation';
 import { INavData } from '@app/data/interfaces/nav-data.interface';
 
 @Component({
   selector: 'app-subnav',
   templateUrl: './subnav.component.html',
-  styleUrls: ['./subnav.component.scss'],
+  styleUrls: ['../side-nav.component.scss', './subnav.component.scss'],
   animations: [
+    fadeInOut,
     trigger('submenu', [
       state(
         'hidden',
@@ -28,15 +31,15 @@ import { INavData } from '@app/data/interfaces/nav-data.interface';
           height: '*',
         })
       ),
-      transition('visible <=> visible', [
+      transition('visible <=> hidden', [
         style({ overflow: 'hidden' }),
-        animate('{{transitionParam}}'),
+        animate('{{transitionParams}}'),
       ]),
       transition('void => *', animate(0)),
     ]),
   ],
 })
-export class SubnavComponent implements OnInit {
+export class SubnavComponent {
   @Input() data: INavData = {
     routerLink: '',
     icon: '',
@@ -49,9 +52,7 @@ export class SubnavComponent implements OnInit {
   @Input() expanded: boolean | undefined;
   @Input() multiple = false;
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor(public router: Router) {}
 
   handleClick(event: Event, selectedItem: INavData): void {
     event.preventDefault();
@@ -65,5 +66,9 @@ export class SubnavComponent implements OnInit {
       }
     }
     selectedItem.expanded = !selectedItem.expanded;
+  }
+
+  getActiveClass(data: INavData): string {
+    return this.router.url.includes(data.routerLink) ? 'active-sublevel' : '';
   }
 }
