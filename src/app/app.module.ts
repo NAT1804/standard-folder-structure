@@ -11,6 +11,7 @@ import { SideNavComponent } from './layout/side-nav/side-nav.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { CoreModule } from './core/core.module';
+import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CoreModule } from './core/core.module';
     SideNavComponent,
     ContentLayoutComponent,
     AuthLayoutComponent,
+    SubnavComponent,
   ],
   imports: [
     BrowserModule,

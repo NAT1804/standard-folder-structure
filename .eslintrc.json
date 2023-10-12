@@ -33,6 +33,9 @@
           {
             "endOfLine": "auto"
           }
+        ],
+        "@angular-eslint/template/interactive-supports-focus": [
+          "error"
         ]
       }
     },
