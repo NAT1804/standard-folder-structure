@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,8 @@ import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    OverlayModule,
+    CdkMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

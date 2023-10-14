@@ -1,4 +1,8 @@
 <app-side-nav (toggleSidenav)="onToggleSidenav($event)"></app-side-nav>
+<app-header
+  [collapsed]="isSidenavCollapsed"
+  [screenWidth]="screenWidth"
+></app-header>
 <div class="container" [ngClass]="classStyling">
   <router-outlet></router-outlet>
 </div>
