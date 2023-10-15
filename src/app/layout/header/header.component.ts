@@ -26,9 +26,9 @@ export class HeaderComponent implements OnInit {
   getHeadClass(): string {
     let classStyle = '';
     if (this.collapsed && this.screenWidth > 768) {
-      classStyle = 'head-trimmed';
+      classStyle = 'layout-topbar-trimmed';
     } else {
-      classStyle = 'head-md-screen';
+      classStyle = 'layout-topbar-md-screen';
     }
     return classStyle;
   }

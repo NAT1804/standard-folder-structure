@@ -28,13 +28,13 @@ export class ContentLayoutComponent implements OnInit {
   getClass(): string {
     let styleClass = '';
     if (this.isSidenavCollapsed && this.screenWidth > 768) {
-      styleClass = 'container-trimmed';
+      styleClass = 'layout-main-trimmed';
     } else if (
       this.isSidenavCollapsed &&
       this.screenWidth <= 768 &&
       this.screenWidth > 0
     ) {
-      styleClass = 'container-md-screen';
+      styleClass = 'layout-main-md-screen';
     }
     return styleClass;
   }

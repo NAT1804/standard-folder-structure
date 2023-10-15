@@ -4,6 +4,7 @@
     <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
     <button
       class="btn-close"
+      @fadeInOut
       @rotate
       *ngIf="collapsed"
       (click)="closeSidenav()"

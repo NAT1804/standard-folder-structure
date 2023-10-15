@@ -1,1 +1,24 @@
-<p>footer works!</p>
+<div class="layout-footer" [ngClass]="getFooterClass()">
+  <div class="footer-content">
+    <div class="footer-content-left">
+      <div class="logo-container">
+        <button class="logo">A</button>
+        <div class="logo-text">Angular</div>
+      </div>
+    </div>
+    <div class="footer-content-right">
+      <div class="footer-menu">
+        <div class="footer-menu-item">
+          <button class="footer-menu-item-btn ripple">
+            <i class="far fa-bell menu"></i>
+          </button>
+        </div>
+        <div class="footer-menu-item">
+          <button class="footer-menu-item-btn ripple">
+            <i class="far fa-comment-alt menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
