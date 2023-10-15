@@ -5,32 +5,33 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: 5rem;
+  width: 8rem;
   height: 100vh;
-  box-shadow: 0.063rem 0 1.25rem 0 #86903a;
+  box-shadow: 0.1008rem 0 2rem 0 #86903a;
+  font-size: 1.6rem;
 
   .logo-container {
     display: flex;
     align-items: center;
-    padding: 0.938rem 0.938rem 0 0.938rem;
+    padding: 1.5rem 1.5rem 0 1.5rem;
     width: 100%;
 
     .logo {
       background: #fff;
       text-align: center;
-      width: 3rem;
-      min-width: 3rem;
-      border-radius: 0.313rem;
-      padding: 0.313rem;
-      font-size: 24px;
+      width: 4.8rem;
+      min-width: 4.8rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      font-size: 2.4rem;
       font-weight: 900;
       cursor: pointer;
       border: none;
     }
 
     .logo-text {
-      margin-left: 1.5rem;
-      font-size: 24px;
+      margin-left: 2.4rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: #fff;
     }
@@ -38,52 +39,52 @@
     .btn-close {
       margin-left: auto;
       cursor: pointer;
-      width: 2rem;
-      height: 2rem;
+      width: 3.2rem;
+      height: 3.2rem;
       border-radius: 50%;
       background-color: transparent;
       border: none;
 
       .fa-times {
         color: #fff;
-        font-size: 24px;
+        font-size: 2.4rem;
       }
     }
   }
 
   .sidenav-nav {
     list-style: none;
-    padding: 0.938rem;
+    padding: 1.5rem;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    // height: calc(100% - 3.65rem);
+    // height: calc(100% - 5.84rem);
 
     .sidenav-nav-item {
       width: 100%;
-      margin-bottom: 0.625rem;
+      margin-bottom: 1rem;
 
       .sidenav-nav-link {
         display: flex;
         align-items: center;
-        min-height: 3rem;
+        min-height: 4.8rem;
         color: #f3f3f3;
         text-decoration: none;
-        border-radius: 0.625rem;
+        border-radius: 1rem;
         transition: all 0.3s ease;
 
         .sidenav-link-icon {
-          font-size: 22px;
-          width: 2rem;
-          min-width: 2rem;
-          margin: 0 0.5rem;
+          font-size: 2.2rem;
+          width: 3.2rem;
+          min-width: 3.2rem;
+          margin: 0 0.8rem;
           text-align: center;
         }
 
         .sidenav-link-text {
-          margin-left: 1.5rem;
+          margin-left: 2.4rem;
         }
 
         &:hover {
@@ -99,7 +100,7 @@
 }
 
 .sidenav-collapsed {
-  width: 16.5625rem;
+  width: 26.5rem;
 }
 
 .active {
@@ -112,10 +113,10 @@
 }
 
 .menu-collapsed-icon {
-  font-size: 25px;
-  width: 2rem;
-  min-width: 2rem;
-  margin: auto 0.5rem auto auto;
+  font-size: 2.5rem;
+  width: 3.2rem;
+  min-width: 3.2rem;
+  margin: auto 0.8rem auto auto;
   text-align: center;
   color: #f3f3f3;
 }
@@ -123,12 +124,12 @@
 .scrollwrap {
   overflow-y: auto;
   visibility: hidden;
-  height: calc(100% - 3.65rem);
+  height: calc(100% - 5.4rem);
   scrollbar-width: thin;
   scrollbar-color: #556268 transparent;
 
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
   }
 
   &::-webkit-scrollbar-track {
@@ -137,7 +138,7 @@
 
   &::-webkit-scrollbar-thumb {
     background-color: #556268;
-    border-radius: 20px;
+    border-radius: 2rem;
   }
 }
 

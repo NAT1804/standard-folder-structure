@@ -1,21 +1,21 @@
 .layout-topbar {
-  width: calc(100% - 5rem);
-  height: 4.75rem;
-  margin-left: 5rem;
+  width: calc(100% - 8rem);
+  height: 7.6rem;
+  margin-left: 8rem;
   z-index: 1;
   transition: all 0.5s ease;
   // background: #f4f7fa;
   background: #fff;
-  box-shadow: 0px 0px 10px 0 rgb(34 41 47 / 10%);
-  padding: 0 1.75rem 0 1.75rem;
+  box-shadow: 0rem 0rem 1rem 0 rgb(34 41 47 / 10%);
+  padding: 0 2.8rem 0 2.8rem;
   position: fixed;
   top: 0;
   left: 0;
 
   .head-content {
     background-color: #fff;
-    // border-radius: 0.625rem;
-    padding: 0.813rem 0;
+    // border-radius: 1rem;
+    padding: 1.3rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,31 +27,31 @@
         .normal-search {
           .search {
             border: none;
-            height: 2.375rem;
-            padding-left: 2.5rem;
-            padding-right: 1.25rem;
+            height: 3.8rem;
+            padding-left: 4rem;
+            padding-right: 2rem;
             background-color: #f3f3f9;
             box-shadow: none;
-            border-radius: 1.875rem;
+            border-radius: 3rem;
             outline: 0;
           }
 
           .search-icon {
             position: absolute;
-            font-size: 1rem;
-            line-height: 2.375rem;
-            left: 0.813rem;
+            font-size: 1.6rem;
+            line-height: 3.8rem;
+            left: 1.3rem;
             top: 0;
             color: #74788d;
           }
         }
 
         .search-menu-btn {
-          font-size: 18px;
-          height: 42px;
-          width: 42px;
+          font-size: 1.8rem;
+          height: 4.2rem;
+          width: 4.2rem;
           cursor: pointer;
-          border: 1px solid transparent;
+          border: 0.1rem solid transparent;
           border-radius: 50%;
           outline: 0;
 
@@ -73,24 +73,24 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: 1.25rem;
+        margin-left: 2rem;
 
         .head-menu-item {
           .head-menu-item-btn {
-            font-size: 18px;
-            height: 42px;
-            width: 42px;
+            font-size: 1.8rem;
+            height: 4.2rem;
+            width: 4.2rem;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 0.1rem solid transparent;
             border-radius: 50%;
-            margin-left: 5px;
+            margin-left: 0.5rem;
             outline: 0;
             color: #495057;
 
             .flag {
-              height: 17px;
-              border-radius: 3px;
-              margin-top: 2px;
+              height: 1.7rem;
+              border-radius: 0.3rem;
+              margin-top: 0.2rem;
             }
 
             &:hover,
@@ -105,27 +105,27 @@
       }
 
       .head-user-avatar-container {
-        margin-left: 20px;
+        margin-left: 2rem;
 
         .head-user-avatar {
           position: relative;
 
           .user-avatar {
-            margin-bottom: -4px;
-            width: 50px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgb(35 35 35 / 15%);
+            margin-bottom: -0.4rem;
+            width: 5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 1.5rem rgb(35 35 35 / 15%);
             cursor: pointer;
           }
         }
 
         .circle-indicator {
-          width: 8px;
-          height: 8px;
+          width: 0.8rem;
+          height: 0.8rem;
           border-radius: 50%;
           position: absolute;
-          top: -2px;
-          right: -3px;
+          top: -0.2rem;
+          right: -0.3rem;
           background: #699dfa;
 
           &.pulse {
@@ -138,13 +138,13 @@
 }
 
 .layout-topbar-trimmed {
-  width: calc(100% - 16.5625rem);
-  margin-left: 16.5625rem;
+  width: calc(100% - 26.5rem);
+  margin-left: 26.5rem;
 }
 
 .layout-topbar-md-screen {
-  width: calc(100% - 5rem);
-  margin-left: 5rem;
+  width: calc(100% - 8rem);
+  margin-left: 8rem;
 }
 
 @keyframes pulse-animation {
@@ -152,7 +152,7 @@
     box-shadow: 0 0 0 0 rgba(26, 104, 206, 0.6);
   }
   100% {
-    box-shadow: 0 0 0 13px rgba(17, 64, 126, 0);
+    box-shadow: 0 0 0 1.3rem rgba(17, 64, 126, 0);
   }
 }
 
@@ -168,8 +168,8 @@
 .overlay {
   background: #fff;
   margin-top: 10%;
-  box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
-  border-radius: 0.25rem;
+  box-shadow: 0 1.6rem 4.8rem rgb(0 0 0 / 18%);
+  border-radius: 0.4rem;
 }
 
 .overlay-fall {
@@ -178,28 +178,28 @@
 }
 
 .overlay-search {
-  padding: 1rem;
+  padding: 1.6rem;
   display: flex;
 
   .search {
-    padding: 0.47rem 0.75rem;
-    font-size: 0.8125rem;
+    padding: 0.75rem 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 0.1rem solid #ced4da;
     outline: none;
-    border-radius: 0.25rem;
+    border-radius: 0.4rem;
   }
 
   .search-btn {
     color: #fff;
     background: #699dfa;
     cursor: pointer;
-    border: 1px solid transparent;
-    padding: 0.47rem 0.75rem;
-    border-radius: 0.25rem;
+    border: 0.1rem solid transparent;
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.4rem;
   }
 }
