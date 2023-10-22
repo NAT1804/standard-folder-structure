@@ -49,7 +49,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     number | undefined
   >(undefined);
   public screenWidth = 0;
-  public collapsed = true;
+  public collapsed = false;
   public navData = navData;
   public multiple = false;
 
@@ -72,7 +72,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this._onResize$.pipe(distinctUntilChanged()).subscribe((res) => {
       if (res && res < 0) {
-        this.collapsed = false;
+        this.collapsed = true;
         this.toggleSidenav.emit({
           collapsed: this.collapsed,
           screenWidth: this.screenWidth,
@@ -90,7 +90,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   closeSidenav() {
-    this.collapsed = false;
+    this.collapsed = true;
     this.toggleSidenav.emit({
       collapsed: this.collapsed,
       screenWidth: this.screenWidth,

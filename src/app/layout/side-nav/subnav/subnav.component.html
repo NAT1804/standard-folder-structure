@@ -1,5 +1,5 @@
 <ul
-  *ngIf="collapsed && data.children && data.children.length > 0"
+  *ngIf="!collapsed && data.children && data.children.length > 0"
   class="sublevel-nav"
   [@submenu]="
     expanded
@@ -27,14 +27,14 @@
       [ngClass]="getActiveClass(item)"
       (click)="handleClick($event, item)"
     >
-      <i class="sublevel-link-icon fa fa-circle"></i>
-      <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">
+      <i class="sublevel-link-icon pi pi-circle-fill"></i>
+      <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">
         {{ item.label }}
       </span>
       <i
-        *ngIf="item.children && collapsed"
+        *ngIf="item.children && !collapsed"
         class="menu-collapsed-icon"
-        [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'"
+        [ngClass]="!item.expanded ? 'pi pi-angle-right' : 'pi pi-angle-down'"
       ></i>
     </a>
     <a
@@ -46,7 +46,7 @@
       [routerLinkActiveOptions]="{ exact: true }"
     >
       <i class="sublevel-link-icon fa fa-circle"></i>
-      <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">
+      <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">
         {{ item.label }}
       </span>
     </a>

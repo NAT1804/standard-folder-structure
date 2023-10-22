@@ -5,7 +5,7 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: 8rem;
+  width: 26.5rem;
   height: 100vh;
   box-shadow: 0.1008rem 0 2rem 0 #86903a;
   font-size: 1.6rem;
@@ -13,7 +13,7 @@
   .logo-container {
     display: flex;
     align-items: center;
-    padding: 1.5rem 1.5rem 0 1.5rem;
+    padding: 1.5rem;
     width: 100%;
 
     .logo {
@@ -45,7 +45,7 @@
       background-color: transparent;
       border: none;
 
-      .fa-times {
+      .close-icon {
         color: #fff;
         font-size: 2.4rem;
       }
@@ -54,7 +54,9 @@
 
   .sidenav-nav {
     list-style: none;
-    padding: 1.5rem;
+    // padding: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.2rem;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -79,8 +81,12 @@
           font-size: 2.2rem;
           width: 3.2rem;
           min-width: 3.2rem;
+          // margin: 0 0.8rem;
+          // flex: 1;
           margin: 0 0.8rem;
+          flex: 0;
           text-align: center;
+          transition: all 0.5s ease-in;
         }
 
         .sidenav-link-text {
@@ -100,7 +106,17 @@
 }
 
 .sidenav-collapsed {
-  width: 26.5rem;
+  width: 8rem;
+
+  .sidenav-link-icon {
+    font-size: 2.2rem;
+    width: 3.2rem;
+    min-width: 3.2rem;
+    // margin: 0 0.8rem;
+    // flex: 0 !important;
+    flex: 1 !important;
+    text-align: center;
+  }
 }
 
 .active {
@@ -122,24 +138,11 @@
 }
 
 .scrollwrap {
-  overflow-y: auto;
+  overflow-y: scroll;
   visibility: hidden;
   height: calc(100% - 5.4rem);
   scrollbar-width: thin;
   scrollbar-color: #556268 transparent;
-
-  &::-webkit-scrollbar {
-    width: 1rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #556268;
-    border-radius: 2rem;
-  }
 }
 
 .sidenav-nav,

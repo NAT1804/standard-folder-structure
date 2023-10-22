@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-@import '~@angular/cdk/overlay-prebuilt.css';
+@import 'primeicons/primeicons.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 * {
   margin: 0;
@@ -16,4 +17,17 @@ body {
   position: relative;
   font-family: 'Roboto', sans-serif;
   background-color: #f4f7fa;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #556268;
+  border-radius: 2rem;
 }

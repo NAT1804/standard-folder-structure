@@ -22,6 +22,7 @@ export class ContentLayoutComponent implements OnInit {
   onToggleSidenav(data: SideNavToggle): void {
     this.isSidenavCollapsed = data.collapsed;
     this.screenWidth = data.screenWidth;
+    console.log(this.isSidenavCollapsed);
     this.classStyling = this.getClass();
   }
 
