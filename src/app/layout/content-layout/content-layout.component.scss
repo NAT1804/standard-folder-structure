@@ -1,8 +1,8 @@
 .layout-main {
-  width: calc(100% - 1.1719rem);
+  width: calc(100% - 15rem);
   height: 100vh;
   min-height: 100vh;
-  margin-left: 3.125rem;
+  margin-left: 15rem;
   z-index: 0;
   position: relative;
   top: 0;
@@ -19,11 +19,11 @@
 }
 
 .layout-main-trimmed {
-  width: calc(100% - 3.125rem);
-  margin-left: 3.125rem;
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
 }
 
 .layout-main-md-screen {
-  width: calc(100% - 3.125rem);
-  margin-left: 3.125rem;
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
 }

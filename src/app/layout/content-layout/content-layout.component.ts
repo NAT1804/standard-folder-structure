@@ -30,11 +30,7 @@ export class ContentLayoutComponent implements OnInit {
     let styleClass = '';
     if (this.isSidenavCollapsed && this.screenWidth > 768) {
       styleClass = 'layout-main-trimmed';
-    } else if (
-      this.isSidenavCollapsed &&
-      this.screenWidth <= 768 &&
-      this.screenWidth > 0
-    ) {
+    } else {
       styleClass = 'layout-main-md-screen';
     }
     return styleClass;
