@@ -13,6 +13,9 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { CoreModule } from './core/core.module';
 import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
+import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
+import { BreadcrumbService } from './layout/breadcrumb/breadcrumb.service';
+import { SharedModule } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
     ContentLayoutComponent,
     AuthLayoutComponent,
     SubnavComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +35,9 @@ import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
     CoreModule,
     OverlayModule,
     CdkMenuModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [BreadcrumbService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
