@@ -8,6 +8,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() collapsed = false;
   @Input() screenWidth = 0;
+  @Input() isHover = false;
 
   canShowSearchAsOverlay = false;
 
@@ -25,10 +26,12 @@ export class HeaderComponent implements OnInit {
 
   getHeadClass(): string {
     let classStyle = '';
-    if (this.collapsed && this.screenWidth > 768) {
-      classStyle = 'layout-topbar-trimmed';
-    } else {
-      classStyle = 'layout-topbar-md-screen';
+    if (this.isHover) {
+      classStyle = 'layout-topbar-collapsed';
+      return classStyle;
+    }
+    if (this.collapsed || this.screenWidth <= 768) {
+      classStyle = 'layout-topbar-collapsed';
     }
     return classStyle;
   }

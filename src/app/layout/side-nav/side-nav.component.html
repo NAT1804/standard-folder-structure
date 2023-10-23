@@ -1,6 +1,11 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+<div
+  class="sidenav"
+  [ngClass]="collapsed ? 'sidenav-collapsed' : ''"
+  (mouseenter)="onMouseOverSidenav($event)"
+  (mouseleave)="onMouseOutSidenav($event)"
+>
   <div class="logo-container">
-    <button class="logo" (click)="toggleCollapse()">A</button>
+    <button class="logo" (click)="clickOpenSideNav()">A</button>
     <div class="logo-text" @fadeInOut *ngIf="!collapsed">Angular</div>
     <button
       class="btn-close"
@@ -51,7 +56,7 @@
             {{ data.label }}
           </span>
         </a>
-        <div *ngIf="!collapsed && data.children && data.children.length > 0">
+        <div *ngIf="data.children && data.children.length > 0">
           <app-subnav
             [data]="data"
             [collapsed]="collapsed"

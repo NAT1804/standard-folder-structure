@@ -52,6 +52,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   public collapsed = false;
   public navData = navData;
   public multiple = false;
+  public hoverOnsideNav = false;
 
   constructor(public router: Router) {
     this._onResize = new BehaviorSubject<number | undefined>(undefined);
@@ -89,6 +90,15 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     });
   }
 
+  clickOpenSideNav() {
+    this.collapsed = false;
+    this.hoverOnsideNav = false;
+    this.toggleSidenav.emit({
+      collapsed: this.collapsed,
+      screenWidth: this.screenWidth,
+    });
+  }
+
   closeSidenav() {
     this.collapsed = true;
     this.toggleSidenav.emit({
@@ -116,5 +126,23 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   getActiveClass(data: INavData): string {
     return this.router.url.includes(data.routerLink) ? 'active' : '';
+  }
+
+  onMouseOverSidenav(data: Event) {
+    if (this.collapsed) {
+      this.hoverOnsideNav = true;
+      this.collapsed = false;
+      this.toggleSidenav.emit({
+        collapsed: this.collapsed,
+        screenWidth: this.screenWidth,
+        isHover: true,
+      });
+    }
+  }
+
+  onMouseOutSidenav(data: Event) {
+    if (this.hoverOnsideNav) {
+      this.collapsed = true;
+    }
   }
 }

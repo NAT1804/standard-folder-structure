@@ -9,4 +9,5 @@ export interface INavData {
 export interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
+  isHover?: boolean;
 }

@@ -13,8 +13,13 @@ export const navData: INavData[] = [
     children: [
       {
         routerLink: 'customer/event',
-        icon: 'pi pi-home',
+        icon: 'pi pi-youtube',
         label: 'Customer Event',
+      },
+      {
+        routerLink: 'customer/info',
+        icon: 'pi pi-discord',
+        label: 'Customer Information',
       },
     ],
   },

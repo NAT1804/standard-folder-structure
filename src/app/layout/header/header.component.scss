@@ -1,7 +1,7 @@
 .layout-topbar {
   width: calc(100% - 15rem);
   height: 4.75rem;
-  margin-left: 5rem;
+  margin-left: 15rem;
   z-index: 1;
   transition: all 0.5s ease;
   // background: #f4f7fa;
@@ -137,12 +137,7 @@
   }
 }
 
-.layout-topbar-trimmed {
-  width: calc(100% - 5rem);
-  margin-left: 5rem;
-}
-
-.layout-topbar-md-screen {
+.layout-topbar-collapsed {
   width: calc(100% - 5rem);
   margin-left: 5rem;
 }

@@ -11,10 +11,8 @@ export class FooterComponent {
 
   getFooterClass(): string {
     let classStyle = '';
-    if (this.collapsed && this.screenWidth > 768) {
-      classStyle = 'layout-topbar-trimmed';
-    } else {
-      classStyle = 'layout-topbar-md-screen';
+    if (this.collapsed || this.screenWidth <= 768) {
+      classStyle = 'layout-footer-collapsed';
     }
     return classStyle;
   }
