@@ -9,10 +9,6 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 10px;
-}
-
 body {
   position: relative;
   font-family: 'Roboto', sans-serif;
@@ -20,7 +16,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.3125rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,5 +25,5 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: #556268;
-  border-radius: 2rem;
+  border-radius: 1.25rem;
 }

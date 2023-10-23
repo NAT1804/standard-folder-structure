@@ -1,27 +1,27 @@
 .sublevel-nav {
   list-style: none;
-  margin-left: 1rem;
+  margin-left: 0.625rem;
 
   .sublevel-nav-item {
     .sublevel-nav-link {
       display: flex;
       align-items: center;
-      height: 4.8rem;
+      height: 3rem;
       color: #898989;
       text-decoration: none;
-      border-radius: 1rem;
+      border-radius: 0.625rem;
       transition: all 0.3s ease;
 
       .sublevel-link-icon {
-        font-size: 0.4rem;
-        width: 3.2rem;
-        min-width: 3.2rem;
-        margin: 0 0.8rem;
+        font-size: 0.25rem;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
         text-align: center;
       }
 
       .sublevel-link-text {
-        margin-left: 1.28rem;
+        margin-left: 0.8rem;
       }
 
       &:hover {

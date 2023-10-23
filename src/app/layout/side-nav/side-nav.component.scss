@@ -5,33 +5,33 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: 26.5rem;
+  width: 16.5625rem;
   height: 100vh;
-  box-shadow: 0.1008rem 0 2rem 0 #86903a;
-  font-size: 1.6rem;
+  box-shadow: 0.0625rem 0 1.25rem 0 #86903a;
+  font-size: 1rem;
 
   .logo-container {
     display: flex;
     align-items: center;
-    padding: 1.5rem;
+    padding: 0.9375rem;
     width: 100%;
 
     .logo {
       background: #fff;
       text-align: center;
-      width: 4.8rem;
-      min-width: 4.8rem;
-      border-radius: 0.5rem;
-      padding: 0.5rem;
-      font-size: 2.4rem;
+      width: 3rem;
+      min-width: 3rem;
+      border-radius: 0.3125rem;
+      padding: 0.3125rem;
+      font-size: 1.5rem;
       font-weight: 900;
       cursor: pointer;
       border: none;
     }
 
     .logo-text {
-      margin-left: 2.4rem;
-      font-size: 2.4rem;
+      margin-left: 1.5rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
     }
@@ -39,58 +39,57 @@
     .btn-close {
       margin-left: auto;
       cursor: pointer;
-      width: 3.2rem;
-      height: 3.2rem;
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
       background-color: transparent;
       border: none;
 
       .close-icon {
         color: #fff;
-        font-size: 2.4rem;
+        font-size: 1.5rem;
       }
     }
   }
 
   .sidenav-nav {
     list-style: none;
-    // padding: 1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.2rem;
+    // padding: 0.9375rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.75rem;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    // height: calc(100% - 5.84rem);
 
     .sidenav-nav-item {
       width: 100%;
-      margin-bottom: 1rem;
+      margin-bottom: 0.625rem;
 
       .sidenav-nav-link {
         display: flex;
         align-items: center;
-        min-height: 4.8rem;
+        min-height: 3rem;
         color: #f3f3f3;
         text-decoration: none;
-        border-radius: 1rem;
+        border-radius: 0.625rem;
         transition: all 0.3s ease;
 
         .sidenav-link-icon {
-          font-size: 2.2rem;
-          width: 3.2rem;
-          min-width: 3.2rem;
-          // margin: 0 0.8rem;
+          font-size: 1.375rem;
+          width: 2rem;
+          min-width: 2rem;
+          // margin: 0 0.5rem;
           // flex: 1;
-          margin: 0 0.8rem;
+          margin: 0 0.5rem;
           flex: 0;
           text-align: center;
           transition: all 0.5s ease-in;
         }
 
         .sidenav-link-text {
-          margin-left: 2.4rem;
+          margin-left: 1.5rem;
         }
 
         &:hover {
@@ -106,13 +105,13 @@
 }
 
 .sidenav-collapsed {
-  width: 8rem;
+  width: 5rem;
 
   .sidenav-link-icon {
-    font-size: 2.2rem;
-    width: 3.2rem;
-    min-width: 3.2rem;
-    // margin: 0 0.8rem;
+    font-size: 1.375rem;
+    width: 2rem;
+    min-width: 2rem;
+    // margin: 0 0.5rem;
     // flex: 0 !important;
     flex: 1 !important;
     text-align: center;
@@ -129,10 +128,10 @@
 }
 
 .menu-collapsed-icon {
-  font-size: 2.5rem;
-  width: 3.2rem;
-  min-width: 3.2rem;
-  margin: auto 0.8rem auto auto;
+  font-size: 1.5625rem;
+  width: 2rem;
+  min-width: 2rem;
+  margin: auto 0.5rem auto auto;
   text-align: center;
   color: #f3f3f3;
 }
@@ -140,7 +139,7 @@
 .scrollwrap {
   overflow-y: scroll;
   visibility: hidden;
-  height: calc(100% - 5.4rem);
+  height: calc(100% - 3.375rem);
   scrollbar-width: thin;
   scrollbar-color: #556268 transparent;
 }

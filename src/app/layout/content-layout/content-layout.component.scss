@@ -1,29 +1,29 @@
 .layout-main {
-  width: calc(100% - 26.5rem);
+  width: calc(100% - 1.1719rem);
   height: 100vh;
   min-height: 100vh;
-  margin-left: 8rem;
+  margin-left: 3.125rem;
   z-index: 0;
   position: relative;
   top: 0;
   transition: all 0.5s ease;
   background: #f4f7fa;
-  padding-top: 7.6rem;
+  padding-top: 2.9688rem;
   display: flex;
   flex-direction: column;
 
   .layout-content {
-    padding: 2.8rem;
+    padding: 1.0938rem;
     flex: 1 0 auto;
   }
 }
 
 .layout-main-trimmed {
-  width: calc(100% - 8rem);
-  margin-left: 8rem;
+  width: calc(100% - 3.125rem);
+  margin-left: 3.125rem;
 }
 
 .layout-main-md-screen {
-  width: calc(100% - 8rem);
-  margin-left: 8rem;
+  width: calc(100% - 3.125rem);
+  margin-left: 3.125rem;
 }
