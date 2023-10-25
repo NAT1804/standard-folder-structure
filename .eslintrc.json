@@ -30,7 +30,7 @@
           "error",
           {
             "type": "element",
-            "prefix": ["app", "emir"],
+            "prefix": ["app", "emir", "ecore"],
             "style": "kebab-case"
           }
         ],

@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": ["app", "emir", "ecore"],
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser-esbuild",

@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  EPositionFrozenCell,
-  EPositionTextCell,
-  ETypeDataTable,
-  ETypeStatus,
-} from '@app/core/constants/app.const';
-import {
   IActionTable,
   IDropdown,
   IHeaderColumn,
@@ -13,46 +7,48 @@ import {
 } from '@app/data/interfaces/interface';
 import { BreadcrumbService } from '@app/layout/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
-import { AccountVerifiedModel } from '../../model/AccountVerified.model';
-import { AccountVerifiedConst } from '../../service/account-verified.const';
-import { DialogService } from '@app/shared/dialogs/dialog.service';
+import { IndividualCustomerModel } from '../../model/IndividualCustomer.model';
+import { IndividualCustomerConst } from '../../service/individual-customer.const';
+import {
+  EPositionFrozenCell,
+  EPositionTextCell,
+  ETypeDataTable,
+  ETypeStatus,
+} from '@app/core/constants/app.const';
 
 @Component({
-  selector: 'app-account-verified',
-  templateUrl: './account-verified.component.html',
-  styleUrls: ['./account-verified.component.scss'],
+  selector: 'ecore-individual-customer',
+  templateUrl: './individual-customer.component.html',
+  styleUrls: ['./individual-customer.component.scss'],
 })
-export class AccountVerifiedComponent implements OnInit {
+export class IndividualCustomerComponent implements OnInit {
   public headerColumns: IHeaderColumn[] = [];
-  public dataSource: AccountVerifiedModel[] = [];
+  public dataSource: IndividualCustomerModel[] = [];
   public isLoading: boolean;
   public listAction: IActionTable[][] = [];
 
-  public get listSource() {
-    return AccountVerifiedConst.listAccountCreationSource;
+  public get listCreateSource() {
+    return IndividualCustomerConst.listCreateSource;
   }
 
   public get listStatus() {
-    return AccountVerifiedConst.listStatus;
+    return IndividualCustomerConst.listStatus;
   }
 
   public getStatusSeverity(code: number) {
-    return AccountVerifiedConst.getStatus(code, ETypeStatus.SEVERITY);
+    return IndividualCustomerConst.getStatus(code, ETypeStatus.SEVERITY);
   }
 
   public getStatusName(code: number) {
-    return AccountVerifiedConst.getStatus(code, ETypeStatus.LABEL);
+    return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(
-    private breadcrumbService: BreadcrumbService,
-    private dialogService: DialogService
-  ) {}
+  constructor(private breadcrumbService: BreadcrumbService) {}
 
   ngOnInit() {
     this.breadcrumbService.setItems([
       { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Tài khoản' },
+      { label: 'Khách hàng' },
       { label: 'Tài khoản xác minh' },
     ] as MenuItem[]);
 
@@ -96,17 +92,17 @@ export class AccountVerifiedComponent implements OnInit {
         isResize: true,
       },
       {
-        field: 'email',
-        header: 'Email',
+        field: 'gender',
+        header: 'Giới tính',
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'email',
+        fieldSort: 'gender',
         isResize: true,
       },
       {
-        field: 'idNo',
-        header: 'Số giấy tờ',
+        field: 'birthday',
+        header: 'Ngày sinh',
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
@@ -114,22 +110,14 @@ export class AccountVerifiedComponent implements OnInit {
         isResize: true,
       },
       {
-        field: 'phone',
-        header: 'Số điện thoại',
+        field: 'check',
+        header: 'Vận hành kiểm tra',
         minWidth: '10rem',
-        type: ETypeDataTable.TEXT,
+        type: ETypeDataTable.CHECK_BOX,
         isSort: true,
-        fieldSort: 'phone',
+        fieldSort: 'check',
         isResize: true,
-      },
-      {
-        field: 'referralCode',
-        header: 'Mã giới thiệu',
-        minWidth: '10rem',
-        type: ETypeDataTable.TEXT,
-        isSort: true,
-        fieldSort: 'referralCode',
-        isResize: true,
+        posTextCell: EPositionTextCell.CENTER,
       },
       {
         field: 'source',
@@ -141,8 +129,9 @@ export class AccountVerifiedComponent implements OnInit {
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data
-            ? this.listSource.find((e: IDropdown) => e.value === param.data)
-                ?.label
+            ? this.listCreateSource.find(
+                (e: IDropdown) => e.value === param.data
+              )?.label
             : '',
       },
       {
@@ -173,9 +162,9 @@ export class AccountVerifiedComponent implements OnInit {
         code: '1111',
         name: '1111',
         phone: '1111',
-        email: '1111',
-        idNo: '1111',
-        referralCode: '1111',
+        gender: '1111',
+        birthday: '1111',
+        check: true,
         source: 1,
         status: 1,
       },
@@ -184,9 +173,9 @@ export class AccountVerifiedComponent implements OnInit {
         code: '2222',
         name: '2222',
         phone: '2222',
-        email: '2222',
-        idNo: '2222',
-        referralCode: '2222',
+        gender: '2222',
+        birthday: '2222',
+        check: true,
         source: 2,
         status: 2,
       },
@@ -195,25 +184,25 @@ export class AccountVerifiedComponent implements OnInit {
         code: '3333',
         name: '3333',
         phone: '3333',
-        email: '3333',
-        idNo: '3333',
-        referralCode: '3333',
-        source: 3,
-        status: 3,
+        gender: '3333',
+        birthday: '3333',
+        check: true,
+        source: 1,
+        status: 1,
       },
       {
         id: 4,
         code: '4444',
         name: '4444',
         phone: '4444',
-        email: '4444',
-        idNo: '4444',
-        referralCode: '4444',
-        source: 1,
-        status: 1,
+        gender: '4444',
+        birthday: '4444',
+        check: true,
+        source: 2,
+        status: 2,
       },
     ];
-    this.genListAction();
+    // this.genListAction();
   }
 
   public funcStyleClassStatus = (status: any) => {
@@ -224,37 +213,37 @@ export class AccountVerifiedComponent implements OnInit {
     return this.getStatusName(status);
   };
 
-  private genListAction() {
-    this.listAction = this.dataSource.map((data: AccountVerifiedModel) => {
-      const actions: IActionTable[] = [];
+  // private genListAction() {
+  //   this.listAction = this.dataSource.map((data: AccountVerifiedModel) => {
+  //     const actions: IActionTable[] = [];
 
-      if (data.status === AccountVerifiedConst.HOAT_DONG) {
-        actions.push({
-          data: data,
-          label: 'Khóa tài khoản',
-          icon: 'pi pi-lock',
-          command: ($event) => {
-            this.lock($event.item.data);
-          },
-        });
-      }
+  //     if (data.status === AccountVerifiedConst.HOAT_DONG) {
+  //       actions.push({
+  //         data: data,
+  //         label: 'Khóa tài khoản',
+  //         icon: 'pi pi-lock',
+  //         command: ($event) => {
+  //           this.lock($event.item.data);
+  //         },
+  //       });
+  //     }
 
-      return actions;
-    });
-  }
+  //     return actions;
+  //   });
+  // }
 
-  public lock(data: AccountVerifiedModel) {
-    if (data) {
-      this.dialogService.createConfirmDialog(
-        'Khóa tài khoản',
-        'Khóa tài khoản',
-        () => {
-          console.log('accept');
-        },
-        () => {
-          console.log('reject');
-        }
-      );
-    }
-  }
+  // public lock(data: AccountVerifiedModel) {
+  //   if (data) {
+  //     this.dialogService.createConfirmDialog(
+  //       'Khóa tài khoản',
+  //       'Khóa tài khoản',
+  //       () => {
+  //         console.log('accept');
+  //       },
+  //       () => {
+  //         console.log('reject');
+  //       }
+  //     );
+  //   }
+  // }
 }

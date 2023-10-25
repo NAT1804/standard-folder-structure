@@ -127,10 +127,10 @@
             ></p-tag>
           </span>
           <span *ngIf="col.type === ETypeDataTable.ACTION">
-            <form-menu
+            <emir-form-menu
               *ngIf="showAction"
               [actions]="listAction[rowIndex]"
-            ></form-menu>
+            ></emir-form-menu>
           </span>
           <span *ngIf="col.type === ETypeDataTable.CHECK_BOX">
             <p-checkbox

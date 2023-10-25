@@ -1,8 +1,8 @@
 import { ETypeStatus, SEVERITY } from '@app/core/constants/app.const';
 import { IDropdown } from '@app/data/interfaces/interface';
 
-export class AccountVerifiedConst {
-  public static listAccountCreationSource: IDropdown[] = [
+export class IndividualCustomerConst {
+  public static listCreateSource: IDropdown[] = [
     {
       value: 1,
       label: 'Khách hàng',
@@ -18,8 +18,7 @@ export class AccountVerifiedConst {
   ];
 
   public static HOAT_DONG = 1;
-  public static DANG_KHOA = 2;
-  public static TAM_KHOA = 3;
+  public static CHO_XU_LY = 2;
   public static listStatus: IDropdown[] = [
     {
       value: this.HOAT_DONG,
@@ -27,14 +26,9 @@ export class AccountVerifiedConst {
       severity: SEVERITY.SUCCESS,
     },
     {
-      value: this.DANG_KHOA,
-      label: 'Đang khóa',
+      value: this.CHO_XU_LY,
+      label: 'Chờ xử lý',
       severity: SEVERITY.WARNING,
-    },
-    {
-      value: this.TAM_KHOA,
-      label: 'Tạm khóa',
-      severity: SEVERITY.DANGER,
     },
   ];
 

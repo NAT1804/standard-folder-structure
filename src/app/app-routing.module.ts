@@ -22,11 +22,11 @@ const routes: Routes = [
           import('@modules/home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'customer',
+        path: 'individual-customer',
         loadChildren: () =>
-          import('@modules/customer/customer.module').then(
-            (m) => m.CustomerModule
-          ),
+          import(
+            '@app/modules/customer/individual-customer/module/individual-customer.module'
+          ).then((m) => m.IndividualCustomerModule),
       },
       {
         path: 'account-verified',

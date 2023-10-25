@@ -8,18 +8,13 @@ export const navData: INavData[] = [
   },
   {
     routerLink: 'customer',
-    icon: 'pi pi-bitcoin',
-    label: 'Customer',
+    icon: 'pi pi-users',
+    label: 'Khách hàng',
     children: [
       {
-        routerLink: 'customer/event',
-        icon: 'pi pi-youtube',
-        label: 'Customer Event',
-      },
-      {
-        routerLink: 'customer/info',
-        icon: 'pi pi-discord',
-        label: 'Customer Information',
+        routerLink: 'individual-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng cá nhân',
       },
     ],
   },
