@@ -8,7 +8,7 @@ import {
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { fadeInOut } from '@app/core/constants/nav/nav-animation';
+import { fadeInOut } from '@shared/constants/nav/nav-animation';
 import { INavData } from '@app/data/interfaces/nav-data.interface';
 
 @Component({

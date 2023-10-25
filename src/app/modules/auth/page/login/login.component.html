@@ -1,11 +1,11 @@
-<div >
+<div>
   Username: admin
-  <br/>
+  <br />
   Password: 123456
 </div>
 
 <fieldset [disabled]="isLoading">
-  <form (ngSubmit)="login()" [formGroup]="loginForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
     <div class="form-group">
       <label class="d-block">
         <input

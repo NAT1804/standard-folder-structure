@@ -1,29 +1,34 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from '@app/core/authentication/auth.service';
-import { Subscription, catchError, delay, finalize, of, tap } from 'rxjs';
 
+import { AuthService } from '@core/services/auth/auth.service';
+import { StorageService } from '@core/services/storage/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
   error!: string;
   isLoading!: boolean;
   loginForm!: UntypedFormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  roles: string[] = [];
 
   private sub = new Subscription();
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageService: StorageService
   ) {
     this.buildForm();
   }
@@ -32,20 +37,33 @@ export class LoginComponent implements OnDestroy {
     return this.loginForm.controls;
   }
 
-  login() {
-    this.isLoading = true;
+  ngOnInit(): void {
+    this.storageService.isLoggedIn$.subscribe((res) => {
+      if (res) {
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+      }
+    });
+  }
 
-    const credentials = this.loginForm.value;
+  onSubmit(): void {
+    const { username, password } = this.loginForm.value;
 
-    this.sub = this.authService
-      .login(credentials)
-      .pipe(
-        delay(1500),
-        tap(() => this.router.navigate(['/home'])),
-        finalize(() => (this.isLoading = false)),
-        catchError((error) => of((this.error = error)))
-      )
-      .subscribe();
+    this.authService.login(username, password).subscribe({
+      next: (data) => {
+        this.storageService.saveUser(data);
+        this.storageService.saveToken(data.accessToken);
+        this.storageService.saveRefreshToken(data.refreshToken);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+      },
+      error: (err) => {
+        this.error = err.error.message;
+        this.isLoginFailed = true;
+      },
+    });
   }
 
   ngOnDestroy(): void {

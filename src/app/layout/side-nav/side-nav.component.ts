@@ -15,12 +15,12 @@ import {
   keyframes,
 } from '@angular/animations';
 
-import { navData } from '@app/core/constants/nav/nav-data';
+import { navData } from '@shared/constants/nav/nav-data';
 import {
   INavData,
   SideNavToggle,
 } from '@app/data/interfaces/nav-data.interface';
-import { fadeInOut } from '@app/core/constants/nav/nav-animation';
+import { fadeInOut } from '@shared/constants/nav/nav-animation';
 import { Router } from '@angular/router';
 
 @Component({
