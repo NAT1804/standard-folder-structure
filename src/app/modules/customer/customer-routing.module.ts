@@ -9,11 +9,17 @@ const routes: Routes = [
   {
     path: '',
     component: CustomerComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: ':id',
-    component: CustomerDetailComponent,
+    children: [
+      {
+        path: ':id',
+        children: [
+          {
+            path: '',
+            component: CustomerDetailComponent,
+          },
+        ],
+      },
+    ],
   },
 ];
 

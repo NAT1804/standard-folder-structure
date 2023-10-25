@@ -1,0 +1,23 @@
+<div
+  [ngClass]="'relative ' + classContainer"
+  [style.width]="widthDiv"
+  [style.height]="heightDiv"
+>
+  <div aria-hidden="true" (click)="insertImage($event)">
+    <p-image
+      [src]="src"
+      alt="Image"
+      [width]="widthImg"
+      [height]="heightImg"
+      [imageStyle]="{ 'object-fit': 'cover' }"
+      [ngClass]="'cursor-pointer' + classImage"
+    ></p-image>
+  </div>
+  <emir-form-button
+    *ngIf="showBtnRemove"
+    class="button-remove-image"
+    [styleClassButton]="'p-button-text p-button-danger'"
+    [icon]="'pi pi-trash'"
+    (_onClick)="remove($event)"
+  ></emir-form-button>
+</div>

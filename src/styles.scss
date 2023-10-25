@@ -2,14 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import 'primeicons/primeicons.css';
 @import '@angular/cdk/overlay-prebuilt.css';
+@import 'styles/themes/theme.scss';
 
 * {
-  margin: 0;
-  padding: 0;
+  // padding: 0;
   box-sizing: border-box;
 }
 
 body {
+  margin: 0;
   position: relative;
   font-family: 'Roboto', sans-serif;
   background-color: #f4f7fa;

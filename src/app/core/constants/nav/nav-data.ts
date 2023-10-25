@@ -24,6 +24,18 @@ export const navData: INavData[] = [
     ],
   },
   {
+    routerLink: 'account',
+    icon: 'pi pi-users',
+    label: 'Tài khoản',
+    children: [
+      {
+        routerLink: 'account-verified',
+        icon: 'pi pi-users',
+        label: 'Tài khoản xác minh',
+      },
+    ],
+  },
+  {
     routerLink: 'files',
     icon: 'pi pi-file',
     label: 'Files',

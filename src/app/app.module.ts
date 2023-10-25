@@ -15,7 +15,8 @@ import { CoreModule } from './core/core.module';
 import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 import { BreadcrumbService } from './layout/breadcrumb/breadcrumb.service';
-import { SharedModule } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { SharedModule } from 'primeng/api';
     CdkMenuModule,
     SharedModule,
   ],
-  providers: [BreadcrumbService],
+  providers: [BreadcrumbService, MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

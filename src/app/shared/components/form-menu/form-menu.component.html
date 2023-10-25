@@ -1,0 +1,14 @@
+<div [ngClass]="classContainer">
+  <i
+    (click)="menu.toggle($event)"
+    aria-hidden="true"
+    class="pi pi-ellipsis-h cursor-pointer"
+  ></i>
+  <p-menu
+    #menu
+    [popup]="true"
+    [ngClass]="'button-actions ' + classMenu"
+    [model]="actions"
+    appendTo="body"
+  ></p-menu>
+</div>

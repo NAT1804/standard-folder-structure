@@ -1,6 +1,6 @@
 .layout-breadcrumb {
   background-color: #d8dee9;
-  padding: 0.625rem 1.875rem;
+  padding: 0.5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +14,7 @@
       padding: 0;
 
       li {
-        padding: 0 0.3125rem;
+        padding: 0 0.25rem;
         &:first-child {
           padding-left: 0;
         }

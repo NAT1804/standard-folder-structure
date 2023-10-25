@@ -1,0 +1,15 @@
+emir-form-button.button-remove-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+:host ::ng-deep {
+  emir-form-button.button-remove-image {
+    button {
+      background-color: #fff !important;
+      border-color: #dc3545 !important;
+    }
+  }
+}

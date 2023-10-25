@@ -28,6 +28,13 @@ const routes: Routes = [
             (m) => m.CustomerModule
           ),
       },
+      {
+        path: 'account-verified',
+        loadChildren: () =>
+          import(
+            '@app/modules/account/account-verified/module/account-verified.module'
+          ).then((m) => m.AccountVerifiedModule),
+      },
     ],
   },
   {
