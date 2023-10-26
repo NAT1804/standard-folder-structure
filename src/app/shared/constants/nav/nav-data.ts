@@ -16,6 +16,11 @@ export const navData: INavData[] = [
         icon: 'pi pi-users',
         label: 'Khách hàng cá nhân',
       },
+      {
+        routerLink: 'business-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng doanh nghiệp',
+      },
     ],
   },
   {

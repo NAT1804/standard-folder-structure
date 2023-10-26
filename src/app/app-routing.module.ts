@@ -29,6 +29,13 @@ const routes: Routes = [
             '@app/modules/customer/individual-customer/module/individual-customer.module'
           ).then((m) => m.IndividualCustomerModule),
       },
+      {
+        path: 'business-customer',
+        loadChildren: () =>
+          import(
+            '@app/modules/customer/business-customer/module/business-customer.module'
+          ).then((m) => m.BusinessCustomerModule),
+      },
       /* #endregion Khách hàng */
 
       /* #region Tài khoản */

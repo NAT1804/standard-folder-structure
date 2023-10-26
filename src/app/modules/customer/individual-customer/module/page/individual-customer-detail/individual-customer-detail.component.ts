@@ -24,7 +24,6 @@ export class IndividualCustomerDetailComponent
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.getListTabPanel();
   }
 
