@@ -8,6 +8,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TabViewModule } from 'primeng/tabview';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -17,6 +19,10 @@ import { FormMenuComponent } from './components/form-menu/form-menu.component';
 import { FormImageComponent } from './components/form-image/form-image.component';
 import { FormMultiSelectComponent } from './components/form-multi-select/form-multi-select.component';
 import { DialogService } from './dialogs/dialog.service';
+import { RouterService } from './services/router.service';
+import { FormTabViewComponent } from './components/form-tab-view/form-tab-view.component';
+import { GenerateComponentDirective } from './directives/generate-component.directive';
+import { FormInputComponent } from './components/form-input/form-input.component';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -30,6 +36,8 @@ export const commonModules: any[] = [
   MultiSelectModule,
   ToastModule,
   ConfirmDialogModule,
+  TabViewModule,
+  InputTextModule,
   //
 ];
 
@@ -39,8 +47,12 @@ export const commonComponents: any[] = [
   FormMenuComponent,
   FormImageComponent,
   FormMultiSelectComponent,
+  FormTabViewComponent,
+  FormInputComponent,
 ];
 
 export const pipes: any[] = [ValueFormatterPipe];
 
-export const services: any[] = [DialogService];
+export const services: any[] = [DialogService, RouterService];
+
+export const directives: any[] = [GenerateComponentDirective];

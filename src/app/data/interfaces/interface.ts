@@ -70,3 +70,11 @@ export interface IDropdown {
   severity?: string;
   rawData?: any;
 }
+
+export interface ITabView {
+  key: string;
+  title: string;
+  component: any;
+  isDisabled: boolean;
+  isHide?: boolean;
+}

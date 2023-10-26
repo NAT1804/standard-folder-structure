@@ -11,18 +11,18 @@ import {
   IHeaderColumn,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
-import { BreadcrumbService } from '@app/layout/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
 import { AccountVerifiedModel } from '../../model/AccountVerified.model';
 import { AccountVerifiedConst } from '../../service/account-verified.const';
 import { DialogService } from '@app/shared/dialogs/dialog.service';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
   selector: 'app-account-verified',
   templateUrl: './account-verified.component.html',
   styleUrls: ['./account-verified.component.scss'],
 })
-export class AccountVerifiedComponent implements OnInit {
+export class AccountVerifiedComponent extends BaseComponent implements OnInit {
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: AccountVerifiedModel[] = [];
   public isLoading: boolean;
@@ -44,10 +44,9 @@ export class AccountVerifiedComponent implements OnInit {
     return AccountVerifiedConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(
-    private breadcrumbService: BreadcrumbService,
-    private dialogService: DialogService
-  ) {}
+  constructor(private dialogService: DialogService) {
+    super();
+  }
 
   ngOnInit() {
     this.breadcrumbService.setItems([
@@ -216,11 +215,11 @@ export class AccountVerifiedComponent implements OnInit {
     this.genListAction();
   }
 
-  public funcStyleClassStatus = (status: any) => {
+  public funcStyleClassStatus = (status: number) => {
     return this.getStatusSeverity(status);
   };
 
-  public funcLabelStatus = (status: any) => {
+  public funcLabelStatus = (status: number) => {
     return this.getStatusName(status);
   };
 

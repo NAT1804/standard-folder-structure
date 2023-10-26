@@ -12,7 +12,7 @@
         [listAction]="listAction"
       >
         <ng-container filter>
-          <div #divFilter class="flex flex-column md:flex-row w-full">
+          <div #divFilter class="flex flex-column xl:flex-row w-full">
             <!-- <form-input
               class="col"
               [floatLabel]="true"
@@ -22,7 +22,7 @@
               (_onChange)="changeFilter($event)"
             ></form-input> -->
             <emir-form-multi-select
-              class="col-12 md:col-2"
+              class="col-12 xl:col-2"
               [label]="'Trạng thái'"
               [floatLabel]="true"
               [options]="listStatus"

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-button',
   templateUrl: './form-button.component.html',
   styleUrls: ['./form-button.component.scss'],
 })
-export class FormButtonComponent implements OnInit {
+export class FormButtonComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classButton = String('');
   @Input()
@@ -24,6 +25,7 @@ export class FormButtonComponent implements OnInit {
   public _onClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
+    super();
     console.log('constructor');
   }
 

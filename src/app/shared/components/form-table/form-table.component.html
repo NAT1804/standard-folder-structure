@@ -14,7 +14,9 @@
     [columnResizeMode]="columnResizeMode"
     [scrollable]="scrollable"
     [scrollHeight]="scrollHeight"
-    [styleClass]="'custom-table ' + styleClass"
+    [styleClass]="
+      'custom-table ' + (hideDivHeader ? 'hideDivHeader ' : '') + styleClass
+    "
     [(selection)]="selectedData"
     (selectionChange)="selectionChange($event)"
     [customSort]="true"

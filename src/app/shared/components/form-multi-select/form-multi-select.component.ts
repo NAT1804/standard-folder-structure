@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { IDropdown } from '@app/data/interfaces/interface';
 import { AccountVerifiedConst } from '@app/modules/account/account-verified/service/account-verified.const';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 export const LABEL = 'label';
 
@@ -16,7 +17,10 @@ export const LABEL = 'label';
   templateUrl: './form-multi-select.component.html',
   styleUrls: ['./form-multi-select.component.scss'],
 })
-export class FormMultiSelectComponent implements OnInit {
+export class FormMultiSelectComponent
+  extends BaseCommonComponent
+  implements OnInit
+{
   @Input()
   public floatLabel = Boolean(false);
   @Input()
@@ -56,6 +60,7 @@ export class FormMultiSelectComponent implements OnInit {
     new EventEmitter<number[] | string[] | undefined>();
 
   constructor() {
+    super();
     console.log('constructor');
   }
 

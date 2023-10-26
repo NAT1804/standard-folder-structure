@@ -6,16 +6,16 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
 import { IImage } from '@app/data/interfaces/interface';
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/shared/constants/app.const';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-image',
   templateUrl: './form-image.component.html',
   styleUrls: ['./form-image.component.scss'],
 })
-export class FormImageComponent implements OnInit {
+export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classContainer = String('');
   @Input()
@@ -38,6 +38,8 @@ export class FormImageComponent implements OnInit {
   public showBtnRemove = Boolean(false);
   @Input()
   public singleFile = Boolean(true);
+  @Input()
+  public preview = Boolean(false);
   @Output()
   public _onChange: EventEmitter<IImage | undefined> = new EventEmitter<
     IImage | undefined
@@ -45,7 +47,9 @@ export class FormImageComponent implements OnInit {
   @Output()
   public _onRemove: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private dialogService: DialogService) {}
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     // this.baseUrl = AppConsts.remoteServiceBaseUrl;

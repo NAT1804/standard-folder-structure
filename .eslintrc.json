@@ -22,7 +22,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": ["emir"],
             "style": "camelCase"
           }
         ],

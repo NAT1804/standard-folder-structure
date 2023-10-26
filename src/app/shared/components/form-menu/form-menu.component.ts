@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IActionTable } from '@app/data/interfaces/interface';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-menu',
   templateUrl: './form-menu.component.html',
   styleUrls: ['./form-menu.component.scss'],
 })
-export class FormMenuComponent implements OnInit {
+export class FormMenuComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classContainer = String('');
   @Input()
@@ -17,6 +18,7 @@ export class FormMenuComponent implements OnInit {
   public actions: IActionTable[] = [];
 
   constructor() {
+    super();
     console.log('constructor');
   }
 

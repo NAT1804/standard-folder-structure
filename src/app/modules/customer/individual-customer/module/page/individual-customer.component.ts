@@ -5,7 +5,6 @@ import {
   IHeaderColumn,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
-import { BreadcrumbService } from '@app/layout/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
 import { IndividualCustomerModel } from '../../model/IndividualCustomer.model';
 import { IndividualCustomerConst } from '../../service/individual-customer.const';
@@ -15,13 +14,17 @@ import {
   ETypeDataTable,
   ETypeStatus,
 } from '@app/shared/constants/app.const';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
   selector: 'ecore-individual-customer',
   templateUrl: './individual-customer.component.html',
   styleUrls: ['./individual-customer.component.scss'],
 })
-export class IndividualCustomerComponent implements OnInit {
+export class IndividualCustomerComponent
+  extends BaseComponent
+  implements OnInit
+{
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: IndividualCustomerModel[] = [];
   public isLoading: boolean;
@@ -43,13 +46,15 @@ export class IndividualCustomerComponent implements OnInit {
     return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private breadcrumbService: BreadcrumbService) {}
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     this.breadcrumbService.setItems([
       { label: 'Trang chủ', routerLink: ['/home'] },
       { label: 'Khách hàng' },
-      { label: 'Tài khoản xác minh' },
+      { label: 'Khách hàng cá nhân' },
     ] as MenuItem[]);
 
     this.headerColumns = [
@@ -202,48 +207,37 @@ export class IndividualCustomerComponent implements OnInit {
         status: 2,
       },
     ];
-    // this.genListAction();
+    this.genListAction();
   }
 
-  public funcStyleClassStatus = (status: any) => {
+  public funcStyleClassStatus = (status: number) => {
     return this.getStatusSeverity(status);
   };
 
-  public funcLabelStatus = (status: any) => {
+  public funcLabelStatus = (status: number) => {
     return this.getStatusName(status);
   };
 
-  // private genListAction() {
-  //   this.listAction = this.dataSource.map((data: AccountVerifiedModel) => {
-  //     const actions: IActionTable[] = [];
+  private genListAction() {
+    this.listAction = this.dataSource.map((data: IndividualCustomerModel) => {
+      const actions: IActionTable[] = [];
 
-  //     if (data.status === AccountVerifiedConst.HOAT_DONG) {
-  //       actions.push({
-  //         data: data,
-  //         label: 'Khóa tài khoản',
-  //         icon: 'pi pi-lock',
-  //         command: ($event) => {
-  //           this.lock($event.item.data);
-  //         },
-  //       });
-  //     }
+      actions.push({
+        data: data,
+        label: 'Xem chi tiết',
+        icon: 'pi pi-eye',
+        command: ($event) => {
+          this.detail($event.item.data);
+        },
+      });
 
-  //     return actions;
-  //   });
-  // }
+      return actions;
+    });
+  }
 
-  // public lock(data: AccountVerifiedModel) {
-  //   if (data) {
-  //     this.dialogService.createConfirmDialog(
-  //       'Khóa tài khoản',
-  //       'Khóa tài khoản',
-  //       () => {
-  //         console.log('accept');
-  //       },
-  //       () => {
-  //         console.log('reject');
-  //       }
-  //     );
-  //   }
-  // }
+  public detail(data: IndividualCustomerModel) {
+    if (data) {
+      this.routerService.routerNavigate(['/individual-customer/' + data.id]);
+    }
+  }
 }

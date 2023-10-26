@@ -23,13 +23,17 @@ import {
   ISortTable,
 } from '@app/data/interfaces/interface';
 import { Page } from '@app/data/model/page';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-table',
   templateUrl: './form-table.component.html',
   styleUrls: ['./form-table.component.scss'],
 })
-export class FormTableComponent implements OnInit, OnChanges {
+export class FormTableComponent
+  extends BaseCommonComponent
+  implements OnInit, OnChanges
+{
   @Input()
   public columns: IHeaderColumn[] = [];
   @Input()
@@ -66,6 +70,8 @@ export class FormTableComponent implements OnInit, OnChanges {
   public page: Page = new Page();
   @Input()
   public selectedData: any[] = [];
+  @Input()
+  public hideDivHeader = Boolean(false);
   @Output()
   public _setColumn: EventEmitter<any> = new EventEmitter<any>();
   @Output()
@@ -78,7 +84,9 @@ export class FormTableComponent implements OnInit, OnChanges {
   public pageChange: EventEmitter<Page> = new EventEmitter<Page>();
   public isShowTable = Boolean(false);
 
-  constructor(public changeDetectorRef: ChangeDetectorRef) {}
+  constructor(public changeDetectorRef: ChangeDetectorRef) {
+    super();
+  }
 
   public get ETypeDataTable() {
     return ETypeDataTable;

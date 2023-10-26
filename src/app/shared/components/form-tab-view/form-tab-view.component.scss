@@ -1,0 +1,9 @@
+:host ::ng-deep {
+  .custom-tabview {
+    div.p-tabview-panels {
+      p-tabpanel.hidden-tabpanel {
+        display: none;
+      }
+    }
+  }
+}

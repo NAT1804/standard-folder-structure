@@ -1,0 +1,140 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <div class="p-fluid p-formgrid grid">
+        <div class="col-12 xl:col-4">
+          <emir-form-image
+            [imageSource]="avatarIImage"
+            [preview]="true"
+          ></emir-form-image>
+        </div>
+        <div class="col-12 xl:col-4">
+          <emir-form-image
+            [imageSource]="idImageIImage"
+            [preview]="true"
+          ></emir-form-image>
+        </div>
+        <div class="col-12 xl:col-4">
+          <emir-form-image
+            [imageSource]="idImageIImage"
+            [preview]="true"
+          ></emir-form-image>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Mã khách hàng'"
+            [(ngModelValue)]="dataSource.code"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Họ tên'"
+            [(ngModelValue)]="dataSource.name"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Ngày sinh'"
+            [(ngModelValue)]="dataSource.birthday"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Giới tính'"
+            [(ngModelValue)]="dataSource.gender"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Loại giấy tờ'"
+            [(ngModelValue)]="dataSource.idType"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Mã giấy tờ'"
+            [(ngModelValue)]="dataSource.idNo"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Mã giới thiệu'"
+            [(ngModelValue)]="dataSource.referralCode"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Ngày cấp giấy tờ'"
+            [(ngModelValue)]="dataSource.idDate"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Ngày hết hạn giấy tờ'"
+            [(ngModelValue)]="dataSource.idExpiredDate"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Nơi cấp'"
+            [(ngModelValue)]="dataSource.idPlace"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Quốc tịch'"
+            [(ngModelValue)]="dataSource.idNationality"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Nguyên quán'"
+            [(ngModelValue)]="dataSource.idCountry"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Số điện thoại'"
+            [(ngModelValue)]="dataSource.numberPhone"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Email'"
+            [(ngModelValue)]="dataSource.email"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Địa chỉ thường trú'"
+            [(ngModelValue)]="dataSource.permanentAddress"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Địa chỉ liên hệ'"
+            [(ngModelValue)]="dataSource.contactAddress"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Nguồn tạo tài khoản'"
+            [(ngModelValue)]="dataSource.accountSource"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Người tạo'"
+            [(ngModelValue)]="dataSource.createdUser"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Thời gian tạo'"
+            [(ngModelValue)]="dataSource.createdTime"
+          ></emir-form-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

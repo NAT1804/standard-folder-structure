@@ -21,6 +21,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('@modules/home/home.module').then((m) => m.HomeModule),
       },
+      /* #region Khách hàng */
       {
         path: 'individual-customer',
         loadChildren: () =>
@@ -28,6 +29,9 @@ const routes: Routes = [
             '@app/modules/customer/individual-customer/module/individual-customer.module'
           ).then((m) => m.IndividualCustomerModule),
       },
+      /* #endregion Khách hàng */
+
+      /* #region Tài khoản */
       {
         path: 'account-verified',
         loadChildren: () =>
@@ -35,6 +39,7 @@ const routes: Routes = [
             '@app/modules/account/account-verified/module/account-verified.module'
           ).then((m) => m.AccountVerifiedModule),
       },
+      /* #endregion Tài khoản */
     ],
   },
   {
