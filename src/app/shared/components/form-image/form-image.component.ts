@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { IImage } from '@app/data/interfaces/interface';
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/core/constants/app.const';
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/shared/constants/app.const';
 
 @Component({
   selector: 'emir-form-image',

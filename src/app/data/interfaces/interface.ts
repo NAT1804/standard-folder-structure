@@ -3,7 +3,7 @@ import {
   EPositionTextCell,
   ETypeDataTable,
   ETypeSortTable,
-} from '../../core/constants/app.const';
+} from '@app/shared/constants/app.const';
 
 export interface IValueFormatter {
   data: any;

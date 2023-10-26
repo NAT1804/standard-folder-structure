@@ -1,4 +1,4 @@
-import { ETypeStatus, SEVERITY } from '@app/core/constants/app.const';
+import { ETypeStatus, SEVERITY } from '@app/shared/constants/app.const';
 import { IDropdown } from '@app/data/interfaces/interface';
 
 export class AccountVerifiedConst {

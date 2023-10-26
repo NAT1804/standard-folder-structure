@@ -14,7 +14,7 @@ import {
   EPositionTextCell,
   ETypeDataTable,
   ETypeStatus,
-} from '@app/core/constants/app.const';
+} from '@app/shared/constants/app.const';
 
 @Component({
   selector: 'ecore-individual-customer',

@@ -14,7 +14,7 @@ import {
   EPositionTextCell,
   ETypeDataTable,
   ETypeSortTable,
-} from '@app/core/constants/app.const';
+} from '@app/shared/constants/app.const';
 import {
   IActionButtonTable,
   IActionTable,
