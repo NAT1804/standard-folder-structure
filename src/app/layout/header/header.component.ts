@@ -1,4 +1,8 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
+
+import { StorageService } from '@core/services/storage/storage.service';
+import { AuthService } from '@core/services/auth/auth.service';
+import { LoggerService } from '@core/logger.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +15,10 @@ export class HeaderComponent implements OnInit {
   @Input() isHover = false;
 
   canShowSearchAsOverlay = false;
+
+  private authService = inject(AuthService);
+  private storageService = inject(StorageService);
+  private loggerService = inject(LoggerService);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
@@ -42,5 +50,16 @@ export class HeaderComponent implements OnInit {
     } else {
       this.canShowSearchAsOverlay = false;
     }
+  }
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: (_) => {
+        this.storageService.clean();
+      },
+      error: (err) => {
+        this.loggerService.error(err);
+      },
+    });
   }
 }

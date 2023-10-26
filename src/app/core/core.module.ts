@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, NgModule, Optional, SkipSelf } from '@angular/core';
-import { AuthGuard } from './guards/auth.guard';
 import { DynamicEnvironmentService } from './services/configure/dynamic-environment.service';
 import {
   AppConfigService,
@@ -14,7 +13,6 @@ import { SharedModule } from '@shared/shared.module';
   declarations: [],
   imports: [SharedModule],
   providers: [
-    AuthGuard,
     DynamicEnvironmentService,
     {
       provide: APP_INITIALIZER,

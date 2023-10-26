@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '@core/services/auth/auth.service';
 import { StorageService } from '@core/services/storage/storage.service';
+import { LoggerService } from '@core/logger.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,9 +29,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private loggerService: LoggerService
   ) {
     this.buildForm();
+    this.loggerService.info('Log info initialized');
   }
 
   get f() {
@@ -58,6 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.error = err.error.message;

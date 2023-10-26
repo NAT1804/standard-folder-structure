@@ -49,7 +49,7 @@ export class AuthService {
         {},
         { headers: this.createDefaultHeaders() }
       )
-      .pipe(switchMap((_) => this.router.navigate(['home'])));
+      .pipe(switchMap((_) => this.router.navigate(['auth/login'])));
   }
 
   refreshToken(token: string | null): Observable<any> {
