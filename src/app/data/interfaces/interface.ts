@@ -78,3 +78,8 @@ export interface ITabView {
   isDisabled: boolean;
   isHide?: boolean;
 }
+
+export interface IActionButtonDialog {
+  label: string;
+  callBack: (...params: any[]) => void;
+}

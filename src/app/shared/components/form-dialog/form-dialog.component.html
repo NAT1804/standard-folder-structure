@@ -1,0 +1,20 @@
+<div class="p-dialog max-h-full h-full w-full">
+  <div
+    [ngClass]="'p-dialog-header ' + classDialogHeader"
+    [style.height]="'5rem'"
+  >
+    <span>{{ header }}</span>
+  </div>
+
+  <div [ngClass]="'p-dialog-content ' + classDialogContnent">
+    <ng-content></ng-content>
+  </div>
+
+  <div [ngClass]="'p-dialog-footer ' + classDialogFooter">
+    <emir-form-button
+      *ngFor="let action of listAction"
+      [label]="action.label"
+      (_onClick)="handleClick($event, action)"
+    ></emir-form-button>
+  </div>
+</div>

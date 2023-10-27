@@ -23,24 +23,42 @@
 <!-- #region form -->
 <ng-container *ngIf="!floatLabel">
   <div [ngClass]="'field ' + classContainer">
-    <label
-      for=""
-      [ngClass]="'inline-block mb-2 ' + classLabel"
-      *ngIf="showLabel"
-    >
+    <label for="" [ngClass]="classLabel" *ngIf="showLabel">
       {{ label }}
       <span class="required-field" *ngIf="isRequired">*</span>
     </label>
     <input
       pInputText
+      #inputValueTextModel="ngModel"
       [(ngModel)]="ngModelValue"
       [placeholder]="placeholder"
-      [ngClass]="(isHideArrows ? 'hideArrows ' : '') + classInput"
+      [ngClass]="
+        (isHideArrows ? 'hideArrows ' : '') +
+        (isValidData &&
+        (isSubmit
+          ? true
+          : inputValueTextModel.dirty || inputValueTextModel.touched)
+          ? 'ng-invalid ng-dirty '
+          : '') +
+        classInput
+      "
       [attr.minlength]="min"
       [attr.maxlength]="max"
       [disabled]="isDisabled"
       (input)="handleInput($event)"
     />
+    <small
+      id=""
+      *ngIf="
+        isValidData &&
+        (isSubmit
+          ? true
+          : inputValueTextModel.dirty || inputValueTextModel.touched)
+      "
+      class="p-error"
+    >
+      {{ messageError }}
+    </small>
   </div>
 </ng-container>
 <!-- #endregion -->

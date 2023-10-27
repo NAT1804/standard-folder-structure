@@ -10,6 +10,8 @@ import {
   ETypeStatus,
 } from '@app/shared/constants/app.const';
 import { MenuItem } from 'primeng/api';
+import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
+import { CreateBusinessCustomerDialogComponent } from './create-business-customer-dialog/create-business-customer-dialog.component';
 
 @Component({
   selector: 'ecore-business-customer',
@@ -34,7 +36,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
     return BusinessCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor() {
+  constructor(private dialogCommonService: DialogCommonService) {
     super();
   }
 
@@ -143,6 +145,21 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
   public detail(data: BusinessCustomerModel) {
     if (data) {
       this.routerService.routerNavigate(['/business-customer/' + data.id]);
+    }
+  }
+
+  public create(event: any) {
+    if (event) {
+      const modalRef = this.dialogCommonService.createDialog(
+        CreateBusinessCustomerDialogComponent,
+        '100%',
+        '100%'
+      );
+      modalRef.onClose.subscribe((res) => {
+        if (res?.accept) {
+          console.log(1111);
+        }
+      });
     }
   }
 }

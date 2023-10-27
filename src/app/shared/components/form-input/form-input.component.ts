@@ -39,6 +39,12 @@ export class FormInputComponent extends BaseCommonComponent implements OnInit {
   public max: number;
   @Input()
   public isHideArrows = Boolean(false);
+  @Input()
+  public isValidData = Boolean(false);
+  @Input()
+  public isSubmit = Boolean(false);
+  @Input()
+  public messageError = String('');
   private subjectChangeInput: Subject<any> = new Subject();
   @Output()
   public _onChange: EventEmitter<any> = new EventEmitter<any>();

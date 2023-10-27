@@ -14,7 +14,7 @@ import {
 import { MenuItem } from 'primeng/api';
 import { AccountVerifiedModel } from '../../model/AccountVerified.model';
 import { AccountVerifiedConst } from '../../service/account-verified.const';
-import { DialogService } from '@app/shared/dialogs/dialog.service';
+import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
@@ -44,7 +44,7 @@ export class AccountVerifiedComponent extends BaseComponent implements OnInit {
     return AccountVerifiedConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private dialogService: DialogService) {
+  constructor(private dialogCommonService: DialogCommonService) {
     super();
   }
 
@@ -244,7 +244,7 @@ export class AccountVerifiedComponent extends BaseComponent implements OnInit {
 
   public lock(data: AccountVerifiedModel) {
     if (data) {
-      this.dialogService.createConfirmDialog(
+      this.dialogCommonService.createConfirmDialog(
         'Khóa tài khoản',
         'Khóa tài khoản',
         () => {

@@ -1,0 +1,58 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 xl:col-3">
+            <emir-form-input
+              [label]="'Mã doanh nghiệp'"
+              [(ngModelValue)]="dataSource.code"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('code')"
+              [messageError]="
+                dataSource.dataValidator['code'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 xl:col-3">
+            <emir-form-input
+              [label]="'Mã số thuế'"
+              [(ngModelValue)]="dataSource.taxCode"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('taxCode')"
+              [messageError]="
+                dataSource.dataValidator['taxCode'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 xl:col-3">
+            <emir-form-input
+              [label]="'Nơi cấp'"
+              [(ngModelValue)]="dataSource.taxCodePlace"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('taxCodePlace')"
+              [messageError]="
+                dataSource.dataValidator['taxCodePlace'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 xl:col-3">
+            <emir-form-input
+              [label]="'Ngày cấp'"
+              [(ngModelValue)]="dataSource.taxCodeDate"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('taxCodeDate')"
+              [messageError]="
+                dataSource.dataValidator['taxCodeDate'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>
