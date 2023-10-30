@@ -43,3 +43,15 @@ export enum ETypeConfirm {
   ACCEPT = 'accept',
   REJECT = 'reject',
 }
+export enum ESelectionModeCalendar {
+  MULTIPLE = 'multiple',
+  RANGE = 'range',
+  SINGLE = 'single',
+}
+export const COMPARE_TYPE = {
+  EQUAL: 1,
+  GREATER: 2,
+  LESS: 3,
+  GREATER_EQUAL: 4,
+  LESS_EQUAL: 5,
+};

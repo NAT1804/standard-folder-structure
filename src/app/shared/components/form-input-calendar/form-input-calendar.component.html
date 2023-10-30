@@ -1,0 +1,58 @@
+<!-- #region filter -->
+<ng-container *ngIf="floatLabel">
+  <span class="p-float-label b-custom w-full">
+    <p-calendar
+      [showButtonBar]="showButtonBar"
+      [dateFormat]="'dd/mm/yy'"
+      [style]="{ width: widthInput }"
+      appendTo="body"
+      utc="true"
+      [(ngModel)]="ngModelValue"
+      [readonlyInput]="readonlyInput"
+      [placeholder]="placeholder"
+      [showIcon]="showIcon"
+      [selectionMode]="selectionMode"
+      (onSelect)="handleSelect($event)"
+      (onClearClick)="handleClearClick($event)"
+      (onClose)="handleClose($event)"
+      (onInput)="handleInput($event)"
+      [timeOnly]="timeOnly"
+    ></p-calendar>
+    <label for="" class="font-normal" *ngIf="showLabel">{{ label }}</label>
+  </span>
+</ng-container>
+<!-- #endregion -->
+
+<!-- #region form -->
+<ng-container *ngIf="!floatLabel">
+  <div [ngClass]="'field ' + classContainer">
+    <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+      {{ label }}
+      <span class="required-field" *ngIf="isRequired">*</span>
+    </label>
+    <p-calendar
+      appendTo="body"
+      utc="true"
+      [dateFormat]="'dd/mm/yy'"
+      [showTime]="showTime"
+      [placeholder]="placeholder"
+      [(ngModel)]="ngModelValue"
+      [readonlyInput]="readonlyInput"
+      (onSelect)="handleSelect($event)"
+      (onClearClick)="handleClearClick($event)"
+      (onClose)="handleClose($event)"
+      (onInput)="handleInput($event)"
+      [showIcon]="showIcon"
+      [disabled]="isDisabled"
+      [timeOnly]="timeOnly"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [selectionMode]="selectionMode"
+      [ngClass]="isValidData && isSubmit ? 'ng-invalid ng-dirty ' : ''"
+    ></p-calendar>
+    <small id="" *ngIf="isValidData && isSubmit" class="p-error">
+      {{ messageError }}
+    </small>
+  </div>
+</ng-container>
+<!-- #endregion -->

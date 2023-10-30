@@ -22,12 +22,12 @@ export class CreateBusinessCustomerModel {
   public code = String('');
   public taxCode = String('');
   public taxCodePlace = String('');
-  public taxCodeDate = String('');
-  public timesChange = Number('');
-  public dateChange = String('');
+  public taxCodeDate: Date | any = undefined;
+  public timesChange: number | undefined = undefined;
+  public dateChange: Date | any = undefined;
   public name = String('');
   public abbreviation = String('');
-  public authorizedCapital = Number('');
+  public authorizedCapital: number | undefined = undefined;
   public email = String('');
   public phone = String('');
   public otherPhone = String('');
@@ -38,7 +38,7 @@ export class CreateBusinessCustomerModel {
   public nation = String('');
   public representative = String('');
   public representativePosition = String('');
-  public decisionNumber = Number('');
+  public decisionNumber = String('');
   public decisionDate = String('');
   public bank = String('');
   public accountNumber = String('');
@@ -91,7 +91,8 @@ export class CreateBusinessCustomerModel {
 
   private isValidTaxCodeDate() {
     const field = 'taxCodeDate';
-    const validRequired = Validator.isEmplty(this.taxCodeDate);
+    const validRequired =
+      !this.taxCodeDate && Validator.isEmplty(this.taxCodeDate);
     if (!this._dataValidator[field])
       this._dataValidator[field] = new ValidatorItem();
     if (validRequired) {

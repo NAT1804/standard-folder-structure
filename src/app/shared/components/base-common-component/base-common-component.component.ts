@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'emir-base-common-component',
@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./base-common-component.component.scss'],
 })
 export class BaseCommonComponent {
+  @Input()
+  public isValidData = Boolean(false);
+  @Input()
+  public isSubmit = Boolean(false);
+  @Input()
+  public messageError = String('');
+
   constructor() {
     console.log('constructor');
   }

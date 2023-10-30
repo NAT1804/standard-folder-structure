@@ -1,0 +1,28 @@
+<div [ngClass]="'field ' + classContainer">
+  <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+    {{ label }}
+    <span class="required-field" *ngIf="isRequired">*</span>
+  </label>
+  <p-inputNumber
+    #ctrlInput="ngModel"
+    [(ngModel)]="ngModelValue"
+    [placeholder]="placeholder"
+    [ngClass]="classInput"
+    [disabled]="isDisabled"
+    [showButtons]="showButtons"
+    [buttonLayout]="'horizontal'"
+    [inputId]="'horizontal'"
+    [min]="min"
+    [max]="max"
+    [incrementButtonIcon]="'pi pi-plus'"
+    [decrementButtonIcon]="'pi pi-minus'"
+    [decrementButtonClass]="'p-button-primary'"
+    [incrementButtonClass]="'p-button-primary'"
+    [useGrouping]="!isNotMask"
+    [ngClass]="isValidData && isSubmit ? 'ng-invalid ng-dirty ' : ''"
+    (onInput)="handleInput($event)"
+  ></p-inputNumber>
+  <small id="" *ngIf="isValidData && isSubmit" class="p-error">
+    {{ messageError }}
+  </small>
+</div>

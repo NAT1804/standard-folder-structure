@@ -10,6 +10,8 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -24,6 +26,8 @@ import { FormTabViewComponent } from './components/form-tab-view/form-tab-view.c
 import { GenerateComponentDirective } from './directives/generate-component.directive';
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
+import { FormInputCalendarComponent } from './components/form-input-calendar/form-input-calendar.component';
+import { FormInputNumberComponent } from './components/form-input-number/form-input-number.component';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -39,6 +43,8 @@ export const commonModules: any[] = [
   ConfirmDialogModule,
   TabViewModule,
   InputTextModule,
+  CalendarModule,
+  InputNumberModule,
   //
 ];
 
@@ -51,6 +57,8 @@ export const commonComponents: any[] = [
   FormTabViewComponent,
   FormInputComponent,
   FormDialogComponent,
+  FormInputCalendarComponent,
+  FormInputNumberComponent,
 ];
 
 export const pipes: any[] = [ValueFormatterPipe];
