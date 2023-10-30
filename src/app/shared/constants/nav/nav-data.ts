@@ -36,31 +36,19 @@ export const navData: INavData[] = [
     ],
   },
   {
-    routerLink: 'files',
-    icon: 'pi pi-file',
-    label: 'Files',
+    routerLink: 'notification',
+    icon: 'pi pi-users',
+    label: 'Thông báo',
     children: [
       {
-        routerLink: 'home/create',
-        icon: 'pi pi-home',
-        label: 'Files Create',
-        children: [
-          {
-            routerLink: 'home/create',
-            icon: 'pi pi-home',
-            label: 'File Create lv2',
-          },
-          {
-            routerLink: 'home/edit',
-            icon: 'pi pi-home',
-            label: 'Edit lv2',
-          },
-        ],
+        routerLink: 'default-notification',
+        icon: 'pi pi-users',
+        label: 'Thông báo mặc định',
       },
       {
-        routerLink: 'home/edit',
-        icon: 'pi pi-home',
-        label: 'Files Edit',
+        routerLink: 'flex-notification',
+        icon: 'pi pi-users',
+        label: 'Thông báo linh động',
       },
     ],
   },

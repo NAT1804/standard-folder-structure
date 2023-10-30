@@ -47,6 +47,23 @@ const routes: Routes = [
           ).then((m) => m.AccountVerifiedModule),
       },
       /* #endregion Tài khoản */
+
+      /* #region Thông báo */
+      {
+        path: 'default-notification',
+        loadChildren: () =>
+          import(
+            '@app/modules/notification/default-notification/module/default-notification.module'
+          ).then((m) => m.DefaultNotificationModule),
+      },
+      {
+        path: 'flex-notification',
+        loadChildren: () =>
+          import(
+            '@app/modules/notification/flex-notification/module/flex-notification.module'
+          ).then((m) => m.FlexNotificationModule),
+      },
+      /* #endregion Tài khoản */
     ],
   },
   {
