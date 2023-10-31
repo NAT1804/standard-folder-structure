@@ -80,6 +80,13 @@ const routes: Routes = [
             '@app/modules/setting/setting-signature/module/setting-signature.module'
           ).then((m) => m.SettingSignatureModule),
       },
+      {
+        path: 'setting-send-noti',
+        loadChildren: () =>
+          import(
+            '@app/modules/setting/setting-send-noti/module/setting-send-noti.module'
+          ).then((m) => m.SettingSendNotiModule),
+      },
       /* #endregion Cài đặt chung */
     ],
   },

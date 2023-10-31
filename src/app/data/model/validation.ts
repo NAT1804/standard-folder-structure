@@ -2,16 +2,19 @@ export class Validator {
   public static isEmplty(val: string | undefined) {
     return !val || val.replace(/ /g, '').length <= 0;
   }
+  public static funcValidValueString(
+    value: string,
+    validValue: ValidatorItem,
+    mess: string
+  ) {
+    const validRequired = this.isEmplty(value);
+    validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
+    return !validRequired;
+  }
 }
 
 export class DataValidator {
   [key: string]: ValidatorItem;
-
-  constructor() {
-    Object.keys(this).forEach(
-      (key: string) => (this[key] = new ValidatorItem())
-    );
-  }
 }
 
 export class ValidatorItem {

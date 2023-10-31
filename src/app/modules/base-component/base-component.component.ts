@@ -11,6 +11,7 @@ export abstract class BaseComponent {
   protected breadcrumbService = inject(BreadcrumbService);
   protected routerService = inject(RouterService);
 
+  public isSubmit = Boolean(false);
   constructor() {
     console.log('constructor');
   }

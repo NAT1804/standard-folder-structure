@@ -52,172 +52,145 @@ export class CreateBusinessCustomerModel {
 
   private isValidCode() {
     const field = 'code';
-    const validRequired = Validator.isEmplty(this.code);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_code);
-    } else {
-      this._dataValidator[field].removeMess(mess_code);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.code,
+      this._dataValidator[field],
+      mess_code
+    );
   }
 
   private isValidTaxCode() {
     const field = 'taxCode';
-    const validRequired = Validator.isEmplty(this.taxCode);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_taxCode);
-    } else {
-      this._dataValidator[field].removeMess(mess_taxCode);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.taxCode,
+      this._dataValidator[field],
+      mess_taxCode
+    );
   }
 
   private isValidTaxCodePlace() {
     const field = 'taxCodePlace';
-    const validRequired = Validator.isEmplty(this.taxCodePlace);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_taxCodePlace);
-    } else {
-      this._dataValidator[field].removeMess(mess_taxCodePlace);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.taxCodePlace,
+      this._dataValidator[field],
+      mess_taxCodePlace
+    );
   }
 
   private isValidTaxCodeDate() {
     const field = 'taxCodeDate';
-    const validRequired =
-      !this.taxCodeDate && Validator.isEmplty(this.taxCodeDate);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_taxCodeDate);
-    } else {
-      this._dataValidator[field].removeMess(mess_taxCodeDate);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.taxCodeDate,
+      this._dataValidator[field],
+      mess_taxCodeDate
+    );
   }
 
   private isValidName() {
     const field = 'name';
-    const validRequired = Validator.isEmplty(this.name);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_name);
-    } else {
-      this._dataValidator[field].removeMess(mess_name);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.name,
+      this._dataValidator[field],
+      mess_name
+    );
   }
 
   private isValidAbbreviation() {
     const field = 'abbreviation';
-    const validRequired = Validator.isEmplty(this.abbreviation);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_abbreviation);
-    } else {
-      this._dataValidator[field].removeMess(mess_abbreviation);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.abbreviation,
+      this._dataValidator[field],
+      mess_abbreviation
+    );
   }
 
   private isValidRegisterAddress() {
     const field = 'registerAddress';
-    const validRequired = Validator.isEmplty(this.registerAddress);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_registerAddress);
-    } else {
-      this._dataValidator[field].removeMess(mess_registerAddress);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.registerAddress,
+      this._dataValidator[field],
+      mess_registerAddress
+    );
   }
 
   private isValidTransactionAddress() {
     const field = 'transactionAddress';
-    const validRequired = Validator.isEmplty(this.transactionAddress);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_transactionAddress);
-    } else {
-      this._dataValidator[field].removeMess(mess_transactionAddress);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.transactionAddress,
+      this._dataValidator[field],
+      mess_transactionAddress
+    );
   }
 
   private isValidNation() {
     const field = 'nation';
-    const validRequired = Validator.isEmplty(this.nation);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_nation);
-    } else {
-      this._dataValidator[field].removeMess(mess_nation);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.nation,
+      this._dataValidator[field],
+      mess_nation
+    );
   }
 
   private isValidRepresentative() {
     const field = 'representative';
-    const validRequired = Validator.isEmplty(this.representative);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_representative);
-    } else {
-      this._dataValidator[field].removeMess(mess_representative);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.representative,
+      this._dataValidator[field],
+      mess_representative
+    );
   }
 
   private isValidBank() {
     const field = 'bank';
-    const validRequired = Validator.isEmplty(this.bank);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_bank);
-    } else {
-      this._dataValidator[field].removeMess(mess_bank);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.bank,
+      this._dataValidator[field],
+      mess_bank
+    );
   }
 
   private isValidAccountNumber() {
     const field = 'accountNumber';
-    const validRequired = Validator.isEmplty(this.accountNumber);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_accountNumber);
-    } else {
-      this._dataValidator[field].removeMess(mess_accountNumber);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.accountNumber,
+      this._dataValidator[field],
+      mess_accountNumber
+    );
   }
 
   private isValidAccountName() {
     const field = 'accountName';
-    const validRequired = Validator.isEmplty(this.accountName);
-    if (!this._dataValidator[field])
-      this._dataValidator[field] = new ValidatorItem();
-    if (validRequired) {
-      this._dataValidator[field].addMess(mess_accountName);
-    } else {
-      this._dataValidator[field].removeMess(mess_accountName);
-    }
-    return !validRequired;
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.accountName,
+      this._dataValidator[field],
+      mess_accountName
+    );
   }
 
   public isValidData() {

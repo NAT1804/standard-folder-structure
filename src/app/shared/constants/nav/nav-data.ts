@@ -67,6 +67,11 @@ export const navData: INavData[] = [
         icon: 'pi pi-users',
         label: 'Chữ ký số',
       },
+      {
+        routerLink: 'setting-send-noti',
+        icon: 'pi pi-users',
+        label: 'Thông số gửi báo cáo',
+      },
     ],
   },
 ];
