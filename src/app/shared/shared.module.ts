@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
   commonComponents,
+  commonDialogs,
   commonModules,
   directives,
   pipes,
@@ -11,7 +12,12 @@ import {
 } from '.';
 
 @NgModule({
-  declarations: [...commonComponents, ...pipes, ...directives],
+  declarations: [
+    ...commonComponents,
+    ...commonDialogs,
+    ...pipes,
+    ...directives,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,6 +32,7 @@ import {
     RouterModule,
     ...commonModules,
     ...commonComponents,
+    ...commonDialogs,
     ...directives,
   ],
   providers: [...services],

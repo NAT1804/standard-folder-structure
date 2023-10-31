@@ -1,0 +1,22 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div [ngClass]="classContainer">
+    <p-fileUpload
+      [auto]="true"
+      [name]="'demo[]'"
+      [customUpload]="true"
+      (uploadHandler)="onUpload($event)"
+      [accept]="accept"
+      [maxFileSize]="maxFileSize"
+    >
+      <ng-template pTemplate="content" let-files></ng-template>
+      <ng-template let-file pTemplate="file"></ng-template>
+      <ng-template pTemplate="content">
+        <!-- <p-progressBar *ngIf="isUploading" mode="indeterminate"></p-progressBar> -->
+        <!-- <div *ngFor="let image of uploadedFiles" class="gallery">
+          <div class="gallery-image"></div>
+          <i class="remove-img pi pi-trash" (click)="removeFile(image)"></i>
+        </div> -->
+      </ng-template>
+    </p-fileUpload>
+  </div>
+</emir-form-dialog>

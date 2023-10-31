@@ -9,6 +9,8 @@ import {
 import { IImage } from '@app/data/interfaces/interface';
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
+import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
+import { UploadImageDialogComponent } from '@app/shared/dialogs/upload-image-dialog/upload-image-dialog.component';
 
 @Component({
   selector: 'emir-form-image',
@@ -30,7 +32,7 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classImage = String('');
   @Input()
-  public isDisabled = Boolean(false);
+  public isDisabled = Boolean(true);
   public baseUrl = String('');
   @Input()
   public maxFileSize = Number(0);
@@ -47,7 +49,7 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Output()
   public _onRemove: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {
+  constructor(private dialogCommonService: DialogCommonService) {
     super();
   }
 
@@ -95,6 +97,16 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
       //     } as IImage);
       //   }
       // });
+
+      const modalRef = this.dialogCommonService.createDialog(
+        UploadImageDialogComponent,
+        '600px'
+      );
+      modalRef.onClose.subscribe((res) => {
+        if (res?.accept) {
+          console.log(1111);
+        }
+      });
     }
   }
 

@@ -1,0 +1,35 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <div>
+        <h4>Chữ ký số</h4>
+      </div>
+      <div class="p-fluid p-formgrid grid">
+        <div class="col-12 xl:col-6">
+          <emir-form-input
+            [label]="'Địa chỉ server'"
+            [(ngModelValue)]="dataSource.server"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Key'"
+            [(ngModelValue)]="dataSource.key"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-3">
+          <emir-form-input
+            [label]="'Secret'"
+            [(ngModelValue)]="dataSource.secret"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 xl:col-4">
+          <emir-form-image
+            [imageSource]="image"
+            [preview]="true"
+          ></emir-form-image>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

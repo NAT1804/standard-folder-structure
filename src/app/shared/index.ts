@@ -12,6 +12,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -29,6 +30,8 @@ import { FormDialogComponent } from './components/form-dialog/form-dialog.compon
 import { FormInputCalendarComponent } from './components/form-input-calendar/form-input-calendar.component';
 import { FormInputNumberComponent } from './components/form-input-number/form-input-number.component';
 
+import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload-image-dialog.component';
+
 export const commonModules: any[] = [
   // ngprime module
   MenuModule,
@@ -45,6 +48,7 @@ export const commonModules: any[] = [
   InputTextModule,
   CalendarModule,
   InputNumberModule,
+  FileUploadModule,
   //
 ];
 
@@ -60,6 +64,8 @@ export const commonComponents: any[] = [
   FormInputCalendarComponent,
   FormInputNumberComponent,
 ];
+
+export const commonDialogs: any[] = [UploadImageDialogComponent];
 
 export const pipes: any[] = [ValueFormatterPipe];
 

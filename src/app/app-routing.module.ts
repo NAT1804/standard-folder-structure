@@ -64,6 +64,23 @@ const routes: Routes = [
           ).then((m) => m.FlexNotificationModule),
       },
       /* #endregion Tài khoản */
+
+      /* #region Cài đặt chung */
+      {
+        path: 'setting-business',
+        loadChildren: () =>
+          import(
+            '@app/modules/setting/setting-business/module/setting-business.module'
+          ).then((m) => m.SettingBusinessModule),
+      },
+      {
+        path: 'setting-signature',
+        loadChildren: () =>
+          import(
+            '@app/modules/setting/setting-signature/module/setting-signature.module'
+          ).then((m) => m.SettingSignatureModule),
+      },
+      /* #endregion Cài đặt chung */
     ],
   },
   {

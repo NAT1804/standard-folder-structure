@@ -52,4 +52,21 @@ export const navData: INavData[] = [
       },
     ],
   },
+  {
+    routerLink: 'setting',
+    icon: 'pi pi-users',
+    label: 'Cài đặt chung',
+    children: [
+      {
+        routerLink: 'setting-business',
+        icon: 'pi pi-users',
+        label: 'Thông tin doanh nghiệp',
+      },
+      {
+        routerLink: 'setting-signature',
+        icon: 'pi pi-users',
+        label: 'Chữ ký số',
+      },
+    ],
+  },
 ];
