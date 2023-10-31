@@ -74,4 +74,21 @@ export const navData: INavData[] = [
       },
     ],
   },
+  {
+    routerLink: 'approve',
+    icon: 'pi pi-users',
+    label: 'Quản lý phê duyệt',
+    children: [
+      {
+        routerLink: 'approve-individual-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng cá nhân',
+      },
+      {
+        routerLink: 'approve-business-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng doanh nghiệp',
+      },
+    ],
+  },
 ];

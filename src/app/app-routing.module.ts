@@ -88,6 +88,23 @@ const routes: Routes = [
           ).then((m) => m.SettingSendNotiModule),
       },
       /* #endregion Cài đặt chung */
+
+      /* #region Quản lý phê duyệt */
+      {
+        path: 'approve-individual-customer',
+        loadChildren: () =>
+          import(
+            '@app/modules/approve/approve-individual-customer/module/approve-individual-customer.module'
+          ).then((m) => m.ApproveIndividualCustomerModule),
+      },
+      {
+        path: 'approve-business-customer',
+        loadChildren: () =>
+          import(
+            '@app/modules/approve/approve-business-customer/module/approve-business-customer.module'
+          ).then((m) => m.ApproveBusinessCustomerModule),
+      },
+      /* #endregion Quản lý phê duyệt */
     ],
   },
   {
