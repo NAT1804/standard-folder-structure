@@ -26,6 +26,7 @@
       *ngIf="item.children && item.children.length > 0"
       [ngClass]="getActiveClass(item)"
       (click)="handleClick($event, item)"
+      [title]="data.label"
     >
       <i class="sublevel-link-icon" [class]="item.icon"></i>
       <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">
@@ -44,6 +45,7 @@
       [routerLink]="[item.routerLink]"
       routerLinkActive="active-sublevel"
       [routerLinkActiveOptions]="{ exact: true }"
+      [title]="data.label"
     >
       <i class="sublevel-link-icon" [class]="item.icon"></i>
       <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">

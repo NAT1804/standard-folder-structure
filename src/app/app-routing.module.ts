@@ -21,90 +21,101 @@ const routes: Routes = [
         loadChildren: () =>
           import('@modules/home/home.module').then((m) => m.HomeModule),
       },
-      /* #region Khách hàng */
       {
-        path: 'individual-customer',
-        loadChildren: () =>
-          import(
-            '@app/modules/customer/individual-customer/module/individual-customer.module'
-          ).then((m) => m.IndividualCustomerModule),
+        path: 'customer',
+        children: [
+          {
+            path: 'individual-customer',
+            loadChildren: () =>
+              import(
+                '@app/modules/customer/individual-customer/module/individual-customer.module'
+              ).then((m) => m.IndividualCustomerModule),
+          },
+          {
+            path: 'business-customer',
+            loadChildren: () =>
+              import(
+                '@app/modules/customer/business-customer/module/business-customer.module'
+              ).then((m) => m.BusinessCustomerModule),
+          },
+        ],
       },
       {
-        path: 'business-customer',
-        loadChildren: () =>
-          import(
-            '@app/modules/customer/business-customer/module/business-customer.module'
-          ).then((m) => m.BusinessCustomerModule),
-      },
-      /* #endregion Khách hàng */
-
-      /* #region Tài khoản */
-      {
-        path: 'account-verified',
-        loadChildren: () =>
-          import(
-            '@app/modules/account/account-verified/module/account-verified.module'
-          ).then((m) => m.AccountVerifiedModule),
-      },
-      /* #endregion Tài khoản */
-
-      /* #region Thông báo */
-      {
-        path: 'default-notification',
-        loadChildren: () =>
-          import(
-            '@app/modules/notification/default-notification/module/default-notification.module'
-          ).then((m) => m.DefaultNotificationModule),
+        path: 'account',
+        children: [
+          {
+            path: 'account-verified',
+            loadChildren: () =>
+              import(
+                '@app/modules/account/account-verified/module/account-verified.module'
+              ).then((m) => m.AccountVerifiedModule),
+          },
+        ],
       },
       {
-        path: 'flex-notification',
-        loadChildren: () =>
-          import(
-            '@app/modules/notification/flex-notification/module/flex-notification.module'
-          ).then((m) => m.FlexNotificationModule),
-      },
-      /* #endregion Tài khoản */
-
-      /* #region Cài đặt chung */
-      {
-        path: 'setting-business',
-        loadChildren: () =>
-          import(
-            '@app/modules/setting/setting-business/module/setting-business.module'
-          ).then((m) => m.SettingBusinessModule),
-      },
-      {
-        path: 'setting-signature',
-        loadChildren: () =>
-          import(
-            '@app/modules/setting/setting-signature/module/setting-signature.module'
-          ).then((m) => m.SettingSignatureModule),
+        path: 'notification',
+        children: [
+          {
+            path: 'default-notification',
+            loadChildren: () =>
+              import(
+                '@app/modules/notification/default-notification/module/default-notification.module'
+              ).then((m) => m.DefaultNotificationModule),
+          },
+          {
+            path: 'flex-notification',
+            loadChildren: () =>
+              import(
+                '@app/modules/notification/flex-notification/module/flex-notification.module'
+              ).then((m) => m.FlexNotificationModule),
+          },
+        ],
       },
       {
-        path: 'setting-send-noti',
-        loadChildren: () =>
-          import(
-            '@app/modules/setting/setting-send-noti/module/setting-send-noti.module'
-          ).then((m) => m.SettingSendNotiModule),
+        path: 'setting',
+        children: [
+          {
+            path: 'setting-business',
+            loadChildren: () =>
+              import(
+                '@app/modules/setting/setting-business/module/setting-business.module'
+              ).then((m) => m.SettingBusinessModule),
+          },
+          {
+            path: 'setting-signature',
+            loadChildren: () =>
+              import(
+                '@app/modules/setting/setting-signature/module/setting-signature.module'
+              ).then((m) => m.SettingSignatureModule),
+          },
+          {
+            path: 'setting-send-noti',
+            loadChildren: () =>
+              import(
+                '@app/modules/setting/setting-send-noti/module/setting-send-noti.module'
+              ).then((m) => m.SettingSendNotiModule),
+          },
+        ],
       },
-      /* #endregion Cài đặt chung */
-
-      /* #region Quản lý phê duyệt */
       {
-        path: 'approve-individual-customer',
-        loadChildren: () =>
-          import(
-            '@app/modules/approve/approve-individual-customer/module/approve-individual-customer.module'
-          ).then((m) => m.ApproveIndividualCustomerModule),
+        path: 'approve',
+        children: [
+          {
+            path: 'approve-individual-customer',
+            loadChildren: () =>
+              import(
+                '@app/modules/approve/approve-individual-customer/module/approve-individual-customer.module'
+              ).then((m) => m.ApproveIndividualCustomerModule),
+          },
+          {
+            path: 'approve-business-customer',
+            loadChildren: () =>
+              import(
+                '@app/modules/approve/approve-business-customer/module/approve-business-customer.module'
+              ).then((m) => m.ApproveBusinessCustomerModule),
+          },
+        ],
       },
-      {
-        path: 'approve-business-customer',
-        loadChildren: () =>
-          import(
-            '@app/modules/approve/approve-business-customer/module/approve-business-customer.module'
-          ).then((m) => m.ApproveBusinessCustomerModule),
-      },
-      /* #endregion Quản lý phê duyệt */
     ],
   },
   {

@@ -12,12 +12,12 @@ export const navData: INavData[] = [
     label: 'Khách hàng',
     children: [
       {
-        routerLink: 'individual-customer',
+        routerLink: 'customer/individual-customer',
         icon: 'pi pi-users',
         label: 'Khách hàng cá nhân',
       },
       {
-        routerLink: 'business-customer',
+        routerLink: 'customer/business-customer',
         icon: 'pi pi-users',
         label: 'Khách hàng doanh nghiệp',
       },
@@ -29,7 +29,7 @@ export const navData: INavData[] = [
     label: 'Tài khoản',
     children: [
       {
-        routerLink: 'account-verified',
+        routerLink: 'account/account-verified',
         icon: 'pi pi-users',
         label: 'Tài khoản xác minh',
       },
@@ -41,12 +41,12 @@ export const navData: INavData[] = [
     label: 'Thông báo',
     children: [
       {
-        routerLink: 'default-notification',
+        routerLink: 'notification/default-notification',
         icon: 'pi pi-users',
         label: 'Thông báo mặc định',
       },
       {
-        routerLink: 'flex-notification',
+        routerLink: 'notification/flex-notification',
         icon: 'pi pi-users',
         label: 'Thông báo linh động',
       },
@@ -58,17 +58,17 @@ export const navData: INavData[] = [
     label: 'Cài đặt chung',
     children: [
       {
-        routerLink: 'setting-business',
+        routerLink: 'setting/setting-business',
         icon: 'pi pi-users',
         label: 'Thông tin doanh nghiệp',
       },
       {
-        routerLink: 'setting-signature',
+        routerLink: 'setting/setting-signature',
         icon: 'pi pi-users',
         label: 'Chữ ký số',
       },
       {
-        routerLink: 'setting-send-noti',
+        routerLink: 'setting/setting-send-noti',
         icon: 'pi pi-users',
         label: 'Thông số gửi báo cáo',
       },
@@ -80,12 +80,12 @@ export const navData: INavData[] = [
     label: 'Quản lý phê duyệt',
     children: [
       {
-        routerLink: 'approve-individual-customer',
+        routerLink: 'approve/approve-individual-customer',
         icon: 'pi pi-users',
         label: 'Khách hàng cá nhân',
       },
       {
-        routerLink: 'approve-business-customer',
+        routerLink: 'approve/approve-business-customer',
         icon: 'pi pi-users',
         label: 'Khách hàng doanh nghiệp',
       },

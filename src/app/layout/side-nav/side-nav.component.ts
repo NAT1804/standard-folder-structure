@@ -125,7 +125,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   getActiveClass(data: INavData): string {
-    return this.router.url.includes(data.routerLink) ? 'active' : '';
+    return this.router.url.includes('/' + data.routerLink) ? 'active' : '';
   }
 
   onMouseOverSidenav(data: Event) {
