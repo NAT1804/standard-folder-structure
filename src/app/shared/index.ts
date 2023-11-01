@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -21,16 +22,18 @@ import { FormButtonComponent } from './components/form-button/form-button.compon
 import { FormMenuComponent } from './components/form-menu/form-menu.component';
 import { FormImageComponent } from './components/form-image/form-image.component';
 import { FormMultiSelectComponent } from './components/form-multi-select/form-multi-select.component';
-import { DialogCommonService } from './dialogs/dialog-common.service';
-import { RouterService } from './services/router.service';
 import { FormTabViewComponent } from './components/form-tab-view/form-tab-view.component';
 import { GenerateComponentDirective } from './directives/generate-component.directive';
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
 import { FormInputCalendarComponent } from './components/form-input-calendar/form-input-calendar.component';
 import { FormInputNumberComponent } from './components/form-input-number/form-input-number.component';
-
+import { FormSpinnerLoadingComponent } from './components/form-spinner-loading/form-spinner-loading.component';
 import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload-image-dialog.component';
+
+import { SpinnerService } from './services/spinner.service';
+import { DialogCommonService } from './dialogs/dialog-common.service';
+import { RouterService } from './services/router.service';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -49,6 +52,7 @@ export const commonModules: any[] = [
   CalendarModule,
   InputNumberModule,
   FileUploadModule,
+  ProgressSpinnerModule,
   //
 ];
 
@@ -63,12 +67,17 @@ export const commonComponents: any[] = [
   FormDialogComponent,
   FormInputCalendarComponent,
   FormInputNumberComponent,
+  FormSpinnerLoadingComponent,
 ];
 
 export const commonDialogs: any[] = [UploadImageDialogComponent];
 
 export const pipes: any[] = [ValueFormatterPipe];
 
-export const services: any[] = [DialogCommonService, RouterService];
+export const services: any[] = [
+  DialogCommonService,
+  RouterService,
+  SpinnerService,
+];
 
 export const directives: any[] = [GenerateComponentDirective];

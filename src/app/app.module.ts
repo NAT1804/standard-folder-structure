@@ -37,7 +37,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     CoreModule,
     OverlayModule,
     CdkMenuModule,
-    SharedModule,
+    SharedModule.forRoot(),
   ],
   providers: [
     BreadcrumbService,
