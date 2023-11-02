@@ -144,7 +144,9 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
 
   public detail(data: BusinessCustomerModel) {
     if (data) {
-      this.routerService.routerNavigate(['/business-customer/' + data.id]);
+      this.routerService.routerNavigate([
+        'customer/business-customer/' + data.id,
+      ]);
     }
   }
 

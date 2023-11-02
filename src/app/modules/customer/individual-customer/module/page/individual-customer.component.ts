@@ -237,7 +237,9 @@ export class IndividualCustomerComponent
 
   public detail(data: IndividualCustomerModel) {
     if (data) {
-      this.routerService.routerNavigate(['/individual-customer/' + data.id]);
+      this.routerService.routerNavigate([
+        '/customer/individual-customer/' + data.id,
+      ]);
     }
   }
 }
