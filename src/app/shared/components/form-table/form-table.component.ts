@@ -57,7 +57,7 @@ export class FormTableComponent
   @Input()
   public scrollable = Boolean(true);
   @Input()
-  public scrollHeight = String('500px');
+  public scrollHeight: string;
   @Input()
   public styleClass = String('');
   @Input()

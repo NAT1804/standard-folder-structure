@@ -116,6 +116,18 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'media',
+        children: [
+          {
+            path: 'media-image',
+            loadChildren: () =>
+              import(
+                '@app/modules/media/media-image/module/media-image.module'
+              ).then((m) => m.MediaImageModule),
+          },
+        ],
+      },
     ],
   },
   {

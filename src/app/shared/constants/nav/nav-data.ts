@@ -91,4 +91,16 @@ export const navData: INavData[] = [
       },
     ],
   },
+  {
+    routerLink: 'media',
+    icon: 'pi pi-users',
+    label: 'Truyền thông',
+    children: [
+      {
+        routerLink: 'media/media-image',
+        icon: 'pi pi-users',
+        label: 'Hình ảnh',
+      },
+    ],
+  },
 ];
