@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IActionButtonDialog } from '@app/data/interfaces/interface';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { CreateBusinessCustomerModel } from '../../../model/CreateBusinessCustomer.model';
+import { scrollToErorr } from '@app/shared/function-common';
 
 @Component({
   selector: 'ecore-create-business-customer-dialog',
@@ -41,6 +42,8 @@ export class CreateBusinessCustomerDialogComponent
     this.isSubmit = true;
     if (this.dataSource.isValidData()) {
       console.log('onClickSaveDialog');
+    } else {
+      scrollToErorr();
     }
   };
 

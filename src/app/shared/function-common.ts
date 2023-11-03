@@ -24,3 +24,10 @@ export function compareDate(firstDate: Date, secondDate: Date, type: number) {
   }
   return null;
 }
+
+export function scrollToErorr() {
+  const elements = document.getElementsByClassName('ng-invalid');
+  if (elements && elements.length) {
+    elements[0].scrollIntoView({ behavior: 'smooth' });
+  }
+}
