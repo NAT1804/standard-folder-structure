@@ -4,7 +4,7 @@
       <div class="card">
         <h5>Thông tin doanh nghiệp</h5>
         <div class="p-fluid p-formgrid grid">
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Mã doanh nghiệp'"
               [(ngModelValue)]="dataSource.code"
@@ -16,7 +16,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Mã số thuế'"
               [(ngModelValue)]="dataSource.taxCode"
@@ -28,7 +28,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Nơi cấp'"
               [(ngModelValue)]="dataSource.taxCodePlace"
@@ -40,7 +40,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input-calendar
               [label]="'Ngày cấp'"
               [isRequired]="true"
@@ -53,20 +53,20 @@
               "
             ></emir-form-input-calendar>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input-number
               [label]="'Số lần thay đổi'"
               [(ngModelValue)]="dataSource.timesChange"
             ></emir-form-input-number>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input-calendar
               [label]="'Ngày thay đổi'"
               [(ngModelValue)]="dataSource.dateChange"
               [placeholder]="'dd/mm/yy'"
             ></emir-form-input-calendar>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Tên doanh nghiệp'"
               [(ngModelValue)]="dataSource.name"
@@ -78,7 +78,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Tên viết tắt'"
               [(ngModelValue)]="dataSource.abbreviation"
@@ -90,7 +90,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input-number
               [label]="'Vốn điều lệ'"
               [(ngModelValue)]="dataSource.authorizedCapital"
@@ -101,37 +101,37 @@
       <div class="card">
         <h5>Liên hệ</h5>
         <div class="p-fluid p-formgrid grid">
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Email'"
               [(ngModelValue)]="dataSource.email"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Số điện thoại'"
               [(ngModelValue)]="dataSource.phone"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Số điện thoại khác'"
               [(ngModelValue)]="dataSource.otherPhone"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Website'"
               [(ngModelValue)]="dataSource.website"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Facebook'"
               [(ngModelValue)]="dataSource.facebook"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Địa chỉ đăng ký'"
               [(ngModelValue)]="dataSource.registerAddress"
@@ -143,7 +143,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Địa chỉ giao dịch'"
               [(ngModelValue)]="dataSource.transactionAddress"
@@ -155,7 +155,7 @@
               [isRequired]="true"
             ></emir-form-input>
           </div>
-          <div class="col-12 xl:col-3">
+          <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Quốc gia'"
               [(ngModelValue)]="dataSource.nation"
@@ -171,7 +171,7 @@
         <div class="card">
           <h5>Thông tin người đại diện</h5>
           <div class="p-fluid p-formgrid grid">
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Người đại diện'"
                 [(ngModelValue)]="dataSource.representative"
@@ -183,19 +183,19 @@
                 [isRequired]="true"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Chức vụ'"
                 [(ngModelValue)]="dataSource.representativePosition"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Quyết định số'"
                 [(ngModelValue)]="dataSource.decisionNumber"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input-calendar
                 [label]="'Ngày quyết định'"
                 [(ngModelValue)]="dataSource.decisionDate"
@@ -207,7 +207,7 @@
         <div class="card">
           <h5>Thông tin tài khoản</h5>
           <div class="p-fluid p-formgrid grid">
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Ngân hàng'"
                 [(ngModelValue)]="dataSource.bank"
@@ -219,7 +219,7 @@
                 [isRequired]="true"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Số tài khoản'"
                 [(ngModelValue)]="dataSource.accountNumber"
@@ -231,13 +231,13 @@
                 [isRequired]="true"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Chi nhánh'"
                 [(ngModelValue)]="dataSource.bankBranch"
               ></emir-form-input>
             </div>
-            <div class="col-12 xl:col-3">
+            <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-input
                 [label]="'Tên tài khoản'"
                 [(ngModelValue)]="dataSource.accountName"
