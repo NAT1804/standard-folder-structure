@@ -13,7 +13,7 @@ import {
   COMPARE_TYPE,
   ESelectionModeCalendar,
 } from '@app/shared/constants/app.const';
-import * as moment from 'moment';
+import moment from 'moment';
 import { compareDate } from '@app/shared/function-common';
 
 @Component({
