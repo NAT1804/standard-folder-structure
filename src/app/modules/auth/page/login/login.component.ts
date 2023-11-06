@@ -44,30 +44,32 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.storageService.isLoggedIn$.subscribe((res) => {
       if (res) {
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
+        // this.roles = this.storageService.getUser().roles;
       }
     });
   }
 
   onSubmit(): void {
-    const { username, password } = this.loginForm.value;
+    if (this.loginForm.value) {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (data) => {
+          // this.storageService.saveUser(data);
+          this.storageService.saveToken(data.access_token);
+          this.storageService.saveRefreshToken(data.refresh_token);
+          this.storageService.saveTokenType(data.token_type);
+          this.storageService.saveTokenExpiresIn(data.expires_in);
 
-    this.authService.login(username, password).subscribe({
-      next: (data) => {
-        this.storageService.saveUser(data);
-        this.storageService.saveToken(data.accessToken);
-        this.storageService.saveRefreshToken(data.refreshToken);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.router.navigate(['/home']);
-      },
-      error: (err) => {
-        this.error = err.error.message;
-        this.isLoginFailed = true;
-      },
-    });
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          // this.roles = this.storageService.getUser().roles;
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.error = err.error.message;
+          this.isLoginFailed = true;
+        },
+      });
+    }
   }
 
   ngOnDestroy(): void {
