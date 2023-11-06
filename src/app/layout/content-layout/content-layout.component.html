@@ -6,7 +6,10 @@
     [isHover]="isHover"
   ></app-header>
   <app-breadcrumb></app-breadcrumb>
-  <div class="layout-content">
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+  <div class="layout-content relative">
+    <emir-form-spinner-loading></emir-form-spinner-loading>
     <router-outlet></router-outlet>
   </div>
   <!-- <app-footer

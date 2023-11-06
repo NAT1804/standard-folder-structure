@@ -1,0 +1,64 @@
+<!-- #region filter -->
+<ng-container *ngIf="floatLabel">
+  <span
+    [ngClass]="
+      'p-input-icon-left p-float-label b-custom p-inputtext-filter w-full' +
+      classContainer
+    "
+  >
+    <i class="pi pi-search" *ngIf="showIconSearch"></i>
+    <input
+      pInputText
+      [placeholder]="placeholder"
+      [style.width]="widthInput"
+      [(ngModel)]="ngModelValue"
+      [ngClass]="classInput"
+      (input)="handleInput($event)"
+    />
+    <label for="" class="font-normal" *ngIf="showLabel">{{ label }}</label>
+  </span>
+</ng-container>
+<!-- #endregion -->
+
+<!-- #region form -->
+<ng-container *ngIf="!floatLabel">
+  <div [ngClass]="'field ' + classContainer">
+    <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+      {{ label }}
+      <span class="required-field" *ngIf="isRequired">*</span>
+    </label>
+    <input
+      pInputText
+      #inputValueTextModel="ngModel"
+      [(ngModel)]="ngModelValue"
+      [placeholder]="placeholder"
+      [ngClass]="
+        (isHideArrows ? 'hideArrows ' : '') +
+        (isValidData &&
+        (isSubmit
+          ? true
+          : inputValueTextModel.dirty || inputValueTextModel.touched)
+          ? 'ng-invalid ng-dirty '
+          : '') +
+        classInput
+      "
+      [attr.minlength]="min"
+      [attr.maxlength]="max"
+      [disabled]="isDisabled"
+      (input)="handleInput($event)"
+    />
+    <small
+      id=""
+      *ngIf="
+        isValidData &&
+        (isSubmit
+          ? true
+          : inputValueTextModel.dirty || inputValueTextModel.touched)
+      "
+      class="p-error"
+    >
+      {{ messageError }}
+    </small>
+  </div>
+</ng-container>
+<!-- #endregion -->

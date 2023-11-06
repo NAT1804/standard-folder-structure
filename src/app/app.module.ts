@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { SharedModule } from 'primeng/api';
+// import { SharedModule } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,9 @@ import { SubnavComponent } from './layout/side-nav/subnav/subnav.component';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 import { BreadcrumbService } from './layout/breadcrumb/breadcrumb.service';
 import { NotfoundComponent } from './layout/not-found/not-found.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { SharedModule } from './shared/shared.module';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -37,9 +40,14 @@ import { NotfoundComponent } from './layout/not-found/not-found.component';
     OverlayModule,
     CdkMenuModule,
     CoreModule,
-    SharedModule,
+    SharedModule.forRoot(),
   ],
-  providers: [BreadcrumbService],
+  providers: [
+    BreadcrumbService,
+    MessageService,
+    ConfirmationService,
+    DialogService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

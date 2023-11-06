@@ -8,47 +8,98 @@ export const navData: INavData[] = [
   },
   {
     routerLink: 'customer',
-    icon: 'pi pi-bitcoin',
-    label: 'Customer',
+    icon: 'pi pi-users',
+    label: 'Khách hàng',
     children: [
       {
-        routerLink: 'customer/event',
-        icon: 'pi pi-youtube',
-        label: 'Customer Event',
+        routerLink: 'customer/individual-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng cá nhân',
       },
       {
-        routerLink: 'customer/info',
-        icon: 'pi pi-discord',
-        label: 'Customer Information',
+        routerLink: 'customer/business-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng doanh nghiệp',
       },
     ],
   },
   {
-    routerLink: 'files',
-    icon: 'pi pi-file',
-    label: 'Files',
+    routerLink: 'account',
+    icon: 'pi pi-users',
+    label: 'Tài khoản',
     children: [
       {
-        routerLink: 'home/create',
-        icon: 'pi pi-home',
-        label: 'Files Create',
-        children: [
-          {
-            routerLink: 'home/create',
-            icon: 'pi pi-home',
-            label: 'File Create lv2',
-          },
-          {
-            routerLink: 'home/edit',
-            icon: 'pi pi-home',
-            label: 'Edit lv2',
-          },
-        ],
+        routerLink: 'account/account-verified',
+        icon: 'pi pi-users',
+        label: 'Tài khoản xác minh',
+      },
+    ],
+  },
+  {
+    routerLink: 'notification',
+    icon: 'pi pi-users',
+    label: 'Thông báo',
+    children: [
+      {
+        routerLink: 'notification/default-notification',
+        icon: 'pi pi-users',
+        label: 'Thông báo mặc định',
       },
       {
-        routerLink: 'home/edit',
-        icon: 'pi pi-home',
-        label: 'Files Edit',
+        routerLink: 'notification/flex-notification',
+        icon: 'pi pi-users',
+        label: 'Thông báo linh động',
+      },
+    ],
+  },
+  {
+    routerLink: 'setting',
+    icon: 'pi pi-users',
+    label: 'Cài đặt chung',
+    children: [
+      {
+        routerLink: 'setting/setting-business',
+        icon: 'pi pi-users',
+        label: 'Thông tin doanh nghiệp',
+      },
+      {
+        routerLink: 'setting/setting-signature',
+        icon: 'pi pi-users',
+        label: 'Chữ ký số',
+      },
+      {
+        routerLink: 'setting/setting-send-noti',
+        icon: 'pi pi-users',
+        label: 'Thông số gửi báo cáo',
+      },
+    ],
+  },
+  {
+    routerLink: 'approve',
+    icon: 'pi pi-users',
+    label: 'Quản lý phê duyệt',
+    children: [
+      {
+        routerLink: 'approve/approve-individual-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng cá nhân',
+      },
+      {
+        routerLink: 'approve/approve-business-customer',
+        icon: 'pi pi-users',
+        label: 'Khách hàng doanh nghiệp',
+      },
+    ],
+  },
+  {
+    routerLink: 'media',
+    icon: 'pi pi-users',
+    label: 'Truyền thông',
+    children: [
+      {
+        routerLink: 'media/media-image',
+        icon: 'pi pi-users',
+        label: 'Hình ảnh',
       },
     ],
   },

@@ -1,0 +1,197 @@
+<ng-container>
+  <p-table
+    *ngIf="isShowTable"
+    class="block"
+    [columns]="columns"
+    [value]="dataSource"
+    [loading]="isLoading"
+    [rowHover]="rowHover"
+    [showCurrentPageReport]="showCurrentPageReport"
+    [paginator]="false"
+    [responsiveLayout]="responsiveLayout"
+    [dataKey]="dataKey"
+    [resizableColumns]="resizableColumns"
+    [columnResizeMode]="columnResizeMode"
+    [scrollable]="scrollable"
+    [scrollHeight]="scrollHeight"
+    [styleClass]="
+      'custom-table ' + (hideDivHeader ? 'hideDivHeader ' : '') + styleClass
+    "
+    [(selection)]="selectedData"
+    (selectionChange)="selectionChange($event)"
+    [customSort]="true"
+    [lazy]="true"
+    (onLazyLoad)="handleSort($event)"
+  >
+    <ng-template pTemplate="caption">
+      <ng-content select="[filter]"></ng-content>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th
+          *ngFor="let col of columns; index as i"
+          [ngStyle]="{
+            'max-width': getWidth('max', col),
+            'min-width': getWidth('min', col),
+            width: getWidth('width', col)
+          }"
+          [ngClass]="col.class"
+          pResizableColumn
+          [pResizableColumnDisabled]="!col.isResize"
+          pFrozenColumn
+          [frozen]="col.isFrozen"
+          [alignFrozen]="col.posFrozen"
+          pSortableColumn="{{ getFieldSort(col) }}"
+        >
+          <span *ngIf="col.type === ETypeDataTable.ACTION">
+            <!-- <i
+              class="pi pi-cog cursor-pointer"
+              *ngIf="!col.hideBtnSetColumn"
+              (click)="setColumn($event)"
+            ></i> -->
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.SELECT_CHECK_BOX">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </span>
+          <span
+            *ngIf="
+              col.type !== ETypeDataTable.ACTION &&
+              col.type !== ETypeDataTable.SELECT_CHECK_BOX
+            "
+          >
+            {{ col.header }}
+          </span>
+          <p-sortIcon
+            *ngIf="!!col.isSort"
+            field="{{ getFieldSort(col) }}"
+          ></p-sortIcon>
+          <!-- <img *ngIf="col.isResize" class="icon-resize" [src]="RESIZE_COLUMN" /> -->
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-row
+      let-rowIndex="rowIndex"
+      let-columns="columns"
+    >
+      <tr>
+        <td
+          *ngFor="let col of columns; index as i"
+          [ngStyle]="{
+            'max-width': getWidth('max', col),
+            'min-width': getWidth('min', col),
+            width: getWidth('width', col),
+            'text-align': col.posTextCell || EPositionTextCell.LEFT
+          }"
+          [ngClass]="col.class"
+          pFrozenColumn
+          [frozen]="col.isFrozen"
+          [alignFrozen]="col.posFrozen"
+        >
+          <span
+            [ngClass]="!col.isDefaultNotCutText ? 'three-dot-text' : ''"
+            *ngIf="
+              col.type === ETypeDataTable.TEXT ||
+              col.type === ETypeDataTable.INDEX ||
+              !col.type
+            "
+            [title]="
+              col.valueGetter
+                ? col.valueGetter(row)
+                : (row[col.field] | valueFormatter: col.valueFormatter)
+            "
+          >
+            {{
+              col.valueGetter
+                ? col.valueGetter(row)
+                : (row[col.field] | valueFormatter: col.valueFormatter)
+            }}
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.ACTION_BUTTON">
+            <ng-container *ngFor="let action of actionButtons">
+              <emir-form-button
+                *ngIf="isGetShowButton(row, action, rowIndex, col)"
+                [icon]="action.icon"
+                [label]="action.label"
+                [classButton]="action.classButton || ''"
+                [styleClassButton]="action.styleClassButton || ''"
+                [isDisabled]="action.isDisabled || false"
+                (_onClick)="handleClickButton(row, action, i)"
+              ></emir-form-button>
+            </ng-container>
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.STATUS">
+            <p-tag
+              styleClass="p-tag-{{ getStatus(row.status, 'style', col) }}"
+              severity="{{ getStatus(row.status, 'style', col) }}"
+              value="{{ getStatus(row.status, 'label', col) }}"
+            ></p-tag>
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.ACTION">
+            <emir-form-menu
+              *ngIf="showAction"
+              [actions]="listAction[rowIndex]"
+            ></emir-form-menu>
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.CHECK_BOX">
+            <p-checkbox
+              [(ngModel)]="row[col.field]"
+              [binary]="true"
+              inputId="binary"
+              [readonly]="true"
+            ></p-checkbox>
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.SELECT_CHECK_BOX">
+            <p-tableCheckbox [value]="row"></p-tableCheckbox>
+          </span>
+          <span *ngIf="col.type === ETypeDataTable.COUNT_DOWN_TIME">
+            <ng-container *ngIf="row[col.field] || row[col.field] === 0">
+              <!-- <ngx-countdown
+                [time]="row[col.field]"
+                [render]="render"
+                format="HH:mm:ss:SSS"
+                [millisecond]="true"
+              >
+                <ng-template #render let-data>
+                  <div style="display: flex">
+                    <span>{{ data.fragments[0] }}:</span>
+                    <span>{{ data.fragments[1] }}:</span>
+                    <span>{{ data.fragments[2] }}</span>
+                  </div>
+                </ng-template>
+              </ngx-countdown> -->
+            </ng-container>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr class="row-empty">
+        <td colspan="7" class="justify-content-center">
+          <emir-form-image
+            [imageSource]="emptyDataTable"
+            [isDisabled]="true"
+          ></emir-form-image>
+          <span class="ml-4">Chưa có dữ liệu</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+      <tr>
+        <td colspan="7">Đang tải dữ liệu ...</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-paginator
+    *ngIf="showPaginator"
+    class="block"
+    [style.height.px]="56"
+    [rows]="page.pageSize"
+    [totalRecords]="page.totalItems"
+    [rowsPerPageOptions]="page.perPageOptions"
+    currentPageReportTemplate="Tất cả {{ page.totalItems }} dòng"
+    [showCurrentPageReport]="true"
+    (onPageChange)="handleChangePage($event)"
+  ></p-paginator>
+</ng-container>

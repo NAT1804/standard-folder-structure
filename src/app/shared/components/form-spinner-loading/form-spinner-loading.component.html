@@ -1,0 +1,9 @@
+<div class="text-center loading-css" *ngIf="spinnerService.loading$ | async">
+  <p-progressSpinner
+    class=""
+    styleClass="w-5rem h-5rem mt-40vh"
+    strokeWidth="8"
+    fill="var(--surface-ground)"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</div>

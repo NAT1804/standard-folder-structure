@@ -27,6 +27,7 @@
           class="sidenav-nav-link"
           [ngClass]="getActiveClass(data)"
           (click)="handleClick($event, data)"
+          [title]="data.label"
         >
           <i class="sidenav-link-icon" [class]="data.icon"></i>
           <span class="sidenav-link-text" @fadeInOut *ngIf="!collapsed">
@@ -50,6 +51,7 @@
           [routerLink]="[data.routerLink]"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
+          [title]="data.label"
         >
           <i class="sidenav-link-icon" [class]="data.icon"></i>
           <span class="sidenav-link-text" @fadeInOut *ngIf="!collapsed">
