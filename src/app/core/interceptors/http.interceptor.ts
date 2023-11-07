@@ -36,7 +36,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     const accessToken = this.storageService.getToken();
     const tokenType = this.storageService.getTokenType();
     if (accessToken && accessToken.length > 0) {
-      const tokenExpiration: any = new Date(
+      const tokenExpiration: Date = new Date(
         new Date().getTime() +
           Number(this.storageService.getTokenExpiresIn()) * 1000
       );
@@ -47,15 +47,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           },
         });
       } else {
-        this.authService.logout().subscribe({
-          next: (response) => {
-            localStorage.clear();
-            this.router.navigate(['/auth/login']);
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
+        this.eventBusService.emit(new EventData('logout', null));
       }
     } else {
       req = req.clone({
@@ -84,7 +76,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
 
-      const token = this.storageService.getRefreshToken();
+      const token = this.storageService.getRefreshToken() ?? '';
 
       if (this.storageService.isLoggedIn()) {
         return this.authService.refreshToken(token).pipe(

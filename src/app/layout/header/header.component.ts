@@ -3,6 +3,8 @@ import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
 import { StorageService } from '@core/services/storage/storage.service';
 import { AuthService } from '@core/services/auth/auth.service';
 import { LoggerService } from '@core/logger.service';
+import { Subscription } from 'rxjs';
+import { EventBusService } from '@app/core/services/event-bus/event-bus.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,9 @@ export class HeaderComponent implements OnInit {
   private authService = inject(AuthService);
   private storageService = inject(StorageService);
   private loggerService = inject(LoggerService);
+  private eventBusService = inject(EventBusService);
+
+  eventBusSub?: Subscription;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
@@ -30,6 +35,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCanShowSerachAsOverlay(window.innerWidth);
+
+    this.eventBusSub = this.eventBusService.on('logout', () => {
+      this.logout();
+    });
   }
 
   getHeadClass(): string {
@@ -53,13 +62,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe({
-      next: (_) => {
-        this.storageService.clean();
-      },
-      error: (err) => {
-        this.loggerService.error(err);
-      },
-    });
+    this.storageService.clean();
+
+    // this.authService.logout().subscribe({
+    //   next: (_) => {
+    //     this.storageService.clean();
+    //   },
+    //   error: (err) => {
+    //     this.loggerService.error(err);
+    //   },
+    // });
   }
 }

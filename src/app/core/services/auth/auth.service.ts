@@ -56,12 +56,18 @@ export class AuthService {
       .pipe(switchMap((_) => this.router.navigate(['auth/login'])));
   }
 
-  refreshToken(token: string | null): Observable<any> {
-    return this.http.post(
-      this.AUTH_API + 'refreshtoken',
-      { refreshToken: token },
-      { headers: this.createDefaultHeaders() }
-    );
+  refreshToken(token: string): Observable<any> {
+    const params = new HttpParams()
+      .set('grant_type', 'refresh_token')
+      .set(
+        'scope',
+        'api_emir_core api_emir_invest offline_access openid profile'
+      )
+      .set('refresh_token', token);
+
+    return this.http.post(this.AUTH_API, params.toString(), {
+      headers: this.createDefaultHeaders(),
+    });
   }
 
   private createDefaultHeaders() {
