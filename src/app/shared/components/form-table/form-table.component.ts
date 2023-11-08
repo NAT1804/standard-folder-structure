@@ -196,7 +196,6 @@ export class FormTableComponent
       this._onSort.emit({
         field: event.sortField,
         type: typeSort,
-        sort: event.sortField + '-' + typeSort,
       } as ISortTable);
     }
   }

@@ -3,6 +3,8 @@ import {
   Validator,
   ValidatorItem,
 } from '@app/data/model/validation';
+import { IndividualCustomerConst } from '../service/individual-customer.const';
+import { formatDateToAPI } from '@app/shared/function-common';
 
 export const mess_typeOfDocument = 'Vui lòng chọn Loại giấy tờ';
 export const mess_frontImage = 'Vui lòng chọn Ảnh mặt trước';
@@ -314,5 +316,25 @@ export class CreateIndividualCustomerModel {
         return !this.isValidPassword();
     }
     return false;
+  }
+
+  public toObjectSendToAPI() {
+    return {
+      custId: undefined,
+      cif_no: this.idNo,
+      full_name: this.fullname,
+      sex: !!(this.gender === IndividualCustomerConst.NAM),
+      birthday: this.birthday ? formatDateToAPI(this.birthday) : undefined,
+      cntry_reg: this.nation,
+      origin_add: this.country,
+      res_add: this.permanentAddress,
+      idcard_issue_dt: this.taxCodeDate
+        ? formatDateToAPI(this.taxCodeDate)
+        : undefined,
+      idcard_expire_dt: this.expiredDate
+        ? formatDateToAPI(this.expiredDate)
+        : undefined,
+      idcard_issue_plc: this.taxCodePlace,
+    };
   }
 }

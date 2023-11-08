@@ -3,6 +3,7 @@ import {
   IActionTable,
   IDropdown,
   IHeaderColumn,
+  ISortTable,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
 import { MenuItem } from 'primeng/api';
@@ -13,10 +14,14 @@ import {
   EPositionTextCell,
   ETypeDataTable,
   ETypeStatus,
+  STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
+import { IndividualCustomerService } from '../../service/individual-customer.service';
+import { Page } from '@app/data/model/page';
+import { getListDropdownFilter } from '@app/shared/function-common';
 
 @Component({
   selector: 'ecore-individual-customer',
@@ -31,13 +36,30 @@ export class IndividualCustomerComponent
   public dataSource: IndividualCustomerModel[] = [];
   public isLoading: boolean;
   public listAction: IActionTable[][] = [];
+  public page: Page = new Page();
+  public sort: ISortTable;
+  public filter: {
+    keyword: string;
+    type: number;
+    check: boolean;
+    source: number | undefined;
+    status: number | undefined;
+  } = {
+    keyword: '',
+    type: 1,
+    check: true,
+    source: undefined,
+    status: undefined,
+  };
+  public listStatus: IDropdown[] = [];
+  public listCreateSource: IDropdown[] = [];
 
-  public get listCreateSource() {
-    return IndividualCustomerConst.listCreateSource;
+  public get listCheck() {
+    return IndividualCustomerConst.listCheck;
   }
 
-  public get listStatus() {
-    return IndividualCustomerConst.listStatus;
+  public get listFilterType() {
+    return IndividualCustomerConst.listFilterType;
   }
 
   public getStatusSeverity(code: number) {
@@ -48,7 +70,10 @@ export class IndividualCustomerComponent
     return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private dialogCommonService: DialogCommonService) {
+  constructor(
+    private dialogCommonService: DialogCommonService,
+    private individualCustomerService: IndividualCustomerService
+  ) {
     super();
   }
 
@@ -169,7 +194,7 @@ export class IndividualCustomerComponent
         code: '1111',
         name: '1111',
         phone: '1111',
-        gender: '1111',
+        gender: 1111,
         birthday: '1111',
         check: true,
         source: 1,
@@ -180,7 +205,7 @@ export class IndividualCustomerComponent
         code: '2222',
         name: '2222',
         phone: '2222',
-        gender: '2222',
+        gender: 2222,
         birthday: '2222',
         check: true,
         source: 2,
@@ -191,7 +216,7 @@ export class IndividualCustomerComponent
         code: '3333',
         name: '3333',
         phone: '3333',
-        gender: '3333',
+        gender: 3333,
         birthday: '3333',
         check: true,
         source: 1,
@@ -202,13 +227,20 @@ export class IndividualCustomerComponent
         code: '4444',
         name: '4444',
         phone: '4444',
-        gender: '4444',
+        gender: 4444,
         birthday: '4444',
         check: true,
         source: 2,
         status: 2,
       },
     ];
+
+    this.listStatus = getListDropdownFilter(IndividualCustomerConst.listStatus);
+    this.listCreateSource = getListDropdownFilter(
+      IndividualCustomerConst.listCreateSource
+    );
+
+    this.setPage();
     this.genListAction();
   }
 
@@ -257,6 +289,48 @@ export class IndividualCustomerComponent
           console.log(1111);
         }
       });
+    }
+  }
+
+  public changePage(event: any) {
+    if (event) {
+      this.setPage();
+    }
+  }
+
+  public changeFilter(event: any) {
+    this.setPage();
+  }
+
+  private setPage() {
+    this.individualCustomerService
+      .getListIndividualCustomer(this.page, this.filter, this.sort)
+      .subscribe((res) => {
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this.dataSource = res.data.map(
+            (data: any) =>
+              ({
+                id: data.custId,
+                code: '1111',
+                name: data.full_name,
+                phone: '1111',
+                gender: data.sex
+                  ? IndividualCustomerConst.NAM
+                  : IndividualCustomerConst.NU,
+                birthday: data.birthday,
+                check: true,
+                source: data.cust_source,
+                status: data.cust_st,
+              }) as IndividualCustomerModel
+          );
+        }
+      });
+  }
+
+  public onSort(event: ISortTable) {
+    if (event) {
+      this.sort = event;
+      this.setPage();
     }
   }
 }

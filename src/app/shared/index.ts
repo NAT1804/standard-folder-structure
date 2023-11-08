@@ -31,11 +31,13 @@ import { FormInputCalendarComponent } from './components/form-input-calendar/for
 import { FormInputNumberComponent } from './components/form-input-number/form-input-number.component';
 import { FormSpinnerLoadingComponent } from './components/form-spinner-loading/form-spinner-loading.component';
 import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload-image-dialog.component';
+import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
 
 import { SpinnerService } from './services/spinner.service';
 import { DialogCommonService } from './dialogs/dialog-common.service';
 import { RouterService } from './services/router.service';
-import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
+import { CommonService } from './services/common.service';
+import { ToastService } from './services/toast.service';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -82,6 +84,8 @@ export const services: any[] = [
   DialogCommonService,
   RouterService,
   SpinnerService,
+  CommonService,
+  ToastService,
 ];
 
 export const directives: any[] = [GenerateComponentDirective];

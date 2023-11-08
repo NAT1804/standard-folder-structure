@@ -7,6 +7,10 @@ import {
   IImage,
 } from '@app/data/interfaces/interface';
 import { scrollToErorr } from '@app/shared/function-common';
+import { STATUS_RESPONSE, TYPE_INPUT } from '@app/shared/constants/app.const';
+import { IndividualCustomerConst } from '../../../service/individual-customer.const';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IndividualCustomerService } from '../../../service/individual-customer.service';
 
 @Component({
   selector: 'ecore-create-individual-customer-dialog',
@@ -21,15 +25,19 @@ export class CreateIndividualCustomerDialogComponent
   public dataSource: CreateIndividualCustomerModel =
     new CreateIndividualCustomerModel();
 
+  public get TYPE_INPUT() {
+    return TYPE_INPUT;
+  }
+
   public get listTypeOfDocument() {
     return [] as IDropdown[];
   }
 
   public get listGender() {
-    return [] as IDropdown[];
+    return IndividualCustomerConst.listGender as IDropdown[];
   }
 
-  constructor() {
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
@@ -75,13 +83,19 @@ export class CreateIndividualCustomerDialogComponent
   }
 
   public onClickCloseDialog = () => {
-    console.log('onClickCloseDialog');
+    this.dynamicDialogRef.close();
   };
 
   public onClickSaveDialog = () => {
     this.isSubmit = true;
     if (this.dataSource.isValidData()) {
-      console.log('onClickSaveDialog');
+      this.individualCustomerService
+        .createIndividualCustomer(this.dataSource.toObjectSendToAPI())
+        .subscribe((response) => {
+          if (response.status === STATUS_RESPONSE.SUCCESS) {
+            this.dynamicDialogRef.close();
+          }
+        });
     } else {
       scrollToErorr();
     }

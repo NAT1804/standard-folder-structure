@@ -95,4 +95,11 @@ export class StorageService {
   public isLoggedIn() {
     return this.isLoggedInSubject$.getValue();
   }
+
+  public getHeaderToken() {
+    const result = `Bearer ${this.getToken()}`;
+    return {
+      Authorization: result,
+    };
+  }
 }

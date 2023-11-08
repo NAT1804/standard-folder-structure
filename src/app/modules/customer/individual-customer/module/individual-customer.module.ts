@@ -10,6 +10,7 @@ import { IndividualCustomerDetailContactComponent } from './page/individual-cust
 import { IndividualCustomerDetailVerifyComponent } from './page/individual-customer-detail/individual-customer-detail-verify/individual-customer-detail-verify.component';
 import { IndividualCustomerDetailSaleComponent } from './page/individual-customer-detail/individual-customer-detail-sale/individual-customer-detail-sale.component';
 import { CreateIndividualCustomerDialogComponent } from './page/create-individual-customer-dialog/create-individual-customer-dialog.component';
+import { IndividualCustomerService } from '../service/individual-customer.service';
 
 @NgModule({
   declarations: [
@@ -23,5 +24,6 @@ import { CreateIndividualCustomerDialogComponent } from './page/create-individua
     CreateIndividualCustomerDialogComponent,
   ],
   imports: [CommonModule, SharedModule, IndividualCustomerRoutingModule],
+  providers: [IndividualCustomerService],
 })
 export class IndividualCustomerModule {}

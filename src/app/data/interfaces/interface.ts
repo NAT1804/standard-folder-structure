@@ -61,7 +61,6 @@ export interface IHeaderColumn {
 export interface ISortTable {
   field: string;
   type: ETypeSortTable;
-  sort: string;
 }
 
 export interface IDropdown {

@@ -167,19 +167,17 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
-      <tr class="row-empty">
-        <td colspan="7" class="justify-content-center">
-          <emir-form-image
-            [imageSource]="emptyDataTable"
-            [isDisabled]="true"
-          ></emir-form-image>
-          <span class="ml-4">Chưa có dữ liệu</span>
+      <tr>
+        <td colspan="100%" class="text-center">
+          <span>Chưa có dữ liệu</span>
         </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="loadingbody">
       <tr>
-        <td colspan="7">Đang tải dữ liệu ...</td>
+        <td colspan="100%" class="text-center">
+          <span>Đang tải dữ liệu ...</span>
+        </td>
       </tr>
     </ng-template>
   </p-table>
@@ -192,6 +190,7 @@
     [rowsPerPageOptions]="page.perPageOptions"
     currentPageReportTemplate="Tất cả {{ page.totalItems }} dòng"
     [showCurrentPageReport]="true"
+    [showFirstLastIcon]="false"
     (onPageChange)="handleChangePage($event)"
   ></p-paginator>
 </ng-container>

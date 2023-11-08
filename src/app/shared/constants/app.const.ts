@@ -34,6 +34,7 @@ export const SEVERITY = {
   SUCCESS: 'success',
   DANGER: 'danger',
   INFO: 'info',
+  ERROR: 'error',
 };
 export enum ETypeStatus {
   SEVERITY = 'severity',
@@ -55,3 +56,18 @@ export const COMPARE_TYPE = {
   GREATER_EQUAL: 4,
   LESS_EQUAL: 5,
 };
+export const folder = 'ecore';
+export const STATUS_RESPONSE = {
+  SUCCESS: 'success',
+};
+export const TYPE_INPUT = {
+  TEXT: 'text',
+  NUMBER: 'number',
+};
+export enum ETypeFormatDate {
+  DATE = 'DD/MM/YYYY',
+  DATE_TIME = 'DD/MM/YYYY HH:mm',
+  DATE_TIME_SECOND = 'DD/MM/YYYY HH:mm:ss',
+  DATE_YMD = 'YYYY/MM/DD',
+  DATE_TIME_VIEW = 'YYYY-MM-DDTHH:mm',
+}

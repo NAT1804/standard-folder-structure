@@ -33,7 +33,7 @@ export class FormDropdownComponent
   @Input()
   public options: IDropdown[] = [];
   @Input()
-  public ngModelValue: number | undefined = undefined;
+  public ngModelValue: number | boolean | undefined | any = undefined;
   @Input()
   public showClear = Boolean(false);
   @Input()
@@ -57,8 +57,8 @@ export class FormDropdownComponent
   @Output()
   public _onChange: EventEmitter<any> = new EventEmitter<any>();
   @Output()
-  public ngModelValueChange: EventEmitter<number | undefined> =
-    new EventEmitter<number | undefined>();
+  public ngModelValueChange: EventEmitter<number | boolean | undefined | any> =
+    new EventEmitter<number | boolean | undefined | any>();
 
   constructor() {
     super();

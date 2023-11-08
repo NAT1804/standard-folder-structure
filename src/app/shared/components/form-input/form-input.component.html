@@ -1,12 +1,6 @@
 <!-- #region filter -->
 <ng-container *ngIf="floatLabel">
-  <span
-    [ngClass]="
-      'p-input-icon-left p-float-label b-custom p-inputtext-filter w-full' +
-      classContainer
-    "
-  >
-    <i class="pi pi-search" *ngIf="showIconSearch"></i>
+  <span [ngClass]="'p-float-label ' + classContainer">
     <input
       pInputText
       [placeholder]="placeholder"
@@ -30,6 +24,7 @@
     <input
       pInputText
       #inputValueTextModel="ngModel"
+      [type]="type"
       [(ngModel)]="ngModelValue"
       [placeholder]="placeholder"
       [ngClass]="

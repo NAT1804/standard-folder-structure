@@ -9,7 +9,6 @@ export class Page {
   totalPages = 0;
   // The current page number
   pageNumber = 0;
-  keyword = String('');
   isActive: boolean | string;
 
   perPageOptions: Array<number> = [25, 50, 100, 200];

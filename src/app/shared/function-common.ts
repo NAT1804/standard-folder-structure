@@ -1,4 +1,6 @@
-import { COMPARE_TYPE } from './constants/app.const';
+import moment from 'moment';
+import { COMPARE_TYPE, ETypeFormatDate } from './constants/app.const';
+import { IDropdown } from '@app/data/interfaces/interface';
 
 export function compareDate(firstDate: Date, secondDate: Date, type: number) {
   if (
@@ -30,4 +32,25 @@ export function scrollToErorr() {
   if (elements && elements.length) {
     elements[0].scrollIntoView({ behavior: 'smooth' });
   }
+}
+
+export function formatDateToAPI(datetime: Date | string) {
+  return moment(new Date(datetime)).format('YYYY-MM-DDTHH:mm:ss');
+}
+
+export function formatDate(value: Date | string, type: ETypeFormatDate) {
+  return moment(value).isValid() && value ? moment(value).format(type) : '';
+}
+
+export function getListDropdownFilter(listData: IDropdown[]) {
+  if (listData && listData.length) {
+    return [
+      {
+        value: undefined,
+        label: 'Tất cả',
+      },
+      ...listData,
+    ] as IDropdown[];
+  }
+  return [] as IDropdown[];
 }

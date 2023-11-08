@@ -28,3 +28,10 @@ body {
   background-color: #556268;
   border-radius: 1.25rem;
 }
+
+div.layout-content {
+  & > *:not(:nth-child(1), :nth-child(2)) {
+    display: block;
+    height: 100%;
+  }
+}

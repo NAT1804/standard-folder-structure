@@ -36,4 +36,47 @@ export class IndividualCustomerConst {
     const status = this.listStatus.find((status) => status.value === code);
     return status ? status[atribution] : '';
   }
+
+  public static NAM = 1;
+  public static NU = 2;
+  public static listGender: IDropdown[] = [
+    {
+      value: this.NAM,
+      label: 'Nam',
+    },
+    {
+      value: this.NU,
+      label: 'Nữ',
+    },
+  ];
+
+  public static listCheck: IDropdown[] = [
+    {
+      value: true,
+      label: 'Đã kiểm tra',
+    },
+    {
+      value: false,
+      label: 'Chưa kiểm tra',
+    },
+  ];
+
+  public static listFilterType: IDropdown[] = [
+    {
+      value: 1,
+      label: 'Mã khách hàng',
+    },
+    {
+      value: 2,
+      label: 'Số điện thoại',
+    },
+    {
+      value: 3,
+      label: 'Email',
+    },
+    {
+      value: 4,
+      label: 'Họ tên',
+    },
+  ];
 }

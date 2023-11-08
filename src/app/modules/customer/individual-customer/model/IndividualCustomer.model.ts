@@ -3,7 +3,7 @@ export class IndividualCustomerModel {
   public code: string;
   public name: string;
   public phone: string;
-  public gender: string;
+  public gender: number;
   public birthday: string;
   public check: boolean;
   public source: number;

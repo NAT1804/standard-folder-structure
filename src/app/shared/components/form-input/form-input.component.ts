@@ -1,20 +1,33 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
+import { TYPE_INPUT } from '@app/shared/constants/app.const';
 
 @Component({
   selector: 'emir-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
 })
-export class FormInputComponent extends BaseCommonComponent implements OnInit {
+export class FormInputComponent
+  extends BaseCommonComponent
+  implements OnInit, AfterViewInit
+{
   @Input()
   public floatLabel = Boolean(false);
   @Input()
   public classContainer = String('');
   @Input()
   public showIconSearch = Boolean(true);
+  @Input()
+  public type = String(TYPE_INPUT.TEXT);
   @Input()
   public placeholder = String('');
   @Input()
@@ -54,14 +67,11 @@ export class FormInputComponent extends BaseCommonComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit');
-    // this.subjectChangeInput
-    //   .pipe(debounceTime(SearchConst.DEBOUNCE_TIME))
-    //   .subscribe((res) => {
-    //     if (res) {
-    //       this._onChange.emit(res);
-    //     }
-    //   });
+    this.subjectChangeInput.pipe(debounceTime(1000)).subscribe((res) => {
+      if (res) {
+        this._onChange.emit(res);
+      }
+    });
   }
 
   public handleInput(event: any) {
