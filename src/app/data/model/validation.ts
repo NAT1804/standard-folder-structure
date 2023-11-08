@@ -11,6 +11,26 @@ export class Validator {
     validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
     return !validRequired;
   }
+
+  public static funcValidValueNumber(
+    value: number | undefined,
+    validValue: ValidatorItem,
+    mess: string
+  ) {
+    const validRequired = typeof value !== 'number' || !value;
+    validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
+    return !validRequired;
+  }
+
+  public static funcValidValueDate(
+    value: Date | undefined,
+    validValue: ValidatorItem,
+    mess: string
+  ) {
+    const validRequired = !value;
+    validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
+    return !validRequired;
+  }
 }
 
 export class DataValidator {

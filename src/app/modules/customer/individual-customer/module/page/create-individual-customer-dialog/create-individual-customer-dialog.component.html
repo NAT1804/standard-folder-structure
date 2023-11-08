@@ -1,0 +1,259 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-dropdown
+              [label]="'Loại giấy tờ'"
+              [(ngModelValue)]="dataSource.typeOfDocument"
+              [options]="listTypeOfDocument"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('typeOfDocument')"
+              [messageError]="
+                dataSource.dataValidator['typeOfDocument'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-dropdown>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-image
+              [imageSource]="frontImageIImage"
+              [preview]="false"
+              [isDisabled]="false"
+            ></emir-form-image>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-image
+              [imageSource]="backImageIImage"
+              [preview]="true"
+            ></emir-form-image>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h5>Thông tin giấy tờ</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Mã số'"
+              [(ngModelValue)]="dataSource.idNo"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('idNo')"
+              [messageError]="
+                dataSource.dataValidator['idNo'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Họ và tên'"
+              [(ngModelValue)]="dataSource.fullname"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('fullname')"
+              [messageError]="
+                dataSource.dataValidator['fullname'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-dropdown
+              [label]="'Giới tính'"
+              [(ngModelValue)]="dataSource.gender"
+              [options]="listGender"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('gender')"
+              [messageError]="
+                dataSource.dataValidator['gender'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-dropdown>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input-calendar
+              [label]="'Ngày sinh'"
+              [isRequired]="true"
+              [(ngModelValue)]="dataSource.birthday"
+              [placeholder]="'dd/mm/yy'"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('birthday')"
+              [messageError]="
+                dataSource.dataValidator['birthday'].toMessageString()
+              "
+            ></emir-form-input-calendar>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Quốc tịch'"
+              [(ngModelValue)]="dataSource.nation"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('nation')"
+              [messageError]="
+                dataSource.dataValidator['nation'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Nguyên quán'"
+              [(ngModelValue)]="dataSource.country"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('country')"
+              [messageError]="
+                dataSource.dataValidator['country'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Địa chỉ thường trú'"
+              [(ngModelValue)]="dataSource.permanentAddress"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('permanentAddress')"
+              [messageError]="
+                dataSource.dataValidator['permanentAddress'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input-calendar
+              [label]="'Ngày cấp'"
+              [isRequired]="true"
+              [(ngModelValue)]="dataSource.taxCodeDate"
+              [placeholder]="'dd/mm/yy'"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('taxCodeDate')"
+              [messageError]="
+                dataSource.dataValidator['taxCodeDate'].toMessageString()
+              "
+            ></emir-form-input-calendar>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input-calendar
+              [label]="'Ngày hết hạn'"
+              [isRequired]="true"
+              [(ngModelValue)]="dataSource.expiredDate"
+              [placeholder]="'dd/mm/yy'"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('expiredDate')"
+              [messageError]="
+                dataSource.dataValidator['expiredDate'].toMessageString()
+              "
+            ></emir-form-input-calendar>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Nơi cấp'"
+              [(ngModelValue)]="dataSource.taxCodePlace"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('taxCodePlace')"
+              [messageError]="
+                dataSource.dataValidator['taxCodePlace'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-image
+              [imageSource]="signatureImageIImage"
+              [preview]="true"
+            ></emir-form-image>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Mã giới thiệu'"
+              [(ngModelValue)]="dataSource.referralCode"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Tên người giới thiệu'"
+              [(ngModelValue)]="dataSource.referralUser"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h5>Thông tin tài khoản ngân hàng</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Ngân hàng'"
+              [(ngModelValue)]="dataSource.bank"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('bank')"
+              [messageError]="
+                dataSource.dataValidator['bank'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Số tài khoản'"
+              [(ngModelValue)]="dataSource.accountNumber"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('accountNumber')"
+              [messageError]="
+                dataSource.dataValidator['accountNumber'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Chủ tài khoản'"
+              [(ngModelValue)]="dataSource.accountOwner"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('accountOwner')"
+              [messageError]="
+                dataSource.dataValidator['accountOwner'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h5>Thông tin đăng nhập</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Số điện thoại'"
+              [(ngModelValue)]="dataSource.numberPhone"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('numberPhone')"
+              [messageError]="
+                dataSource.dataValidator['numberPhone'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Email'"
+              [(ngModelValue)]="dataSource.email"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Mật khẩu'"
+              [(ngModelValue)]="dataSource.password"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('password')"
+              [messageError]="
+                dataSource.dataValidator['password'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

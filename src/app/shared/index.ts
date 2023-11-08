@@ -14,6 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -34,6 +35,7 @@ import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload
 import { SpinnerService } from './services/spinner.service';
 import { DialogCommonService } from './dialogs/dialog-common.service';
 import { RouterService } from './services/router.service';
+import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -53,6 +55,7 @@ export const commonModules: any[] = [
   InputNumberModule,
   FileUploadModule,
   ProgressSpinnerModule,
+  DropdownModule,
   //
 ];
 
@@ -68,6 +71,7 @@ export const commonComponents: any[] = [
   FormInputCalendarComponent,
   FormInputNumberComponent,
   FormSpinnerLoadingComponent,
+  FormDropdownComponent,
 ];
 
 export const commonDialogs: any[] = [UploadImageDialogComponent];

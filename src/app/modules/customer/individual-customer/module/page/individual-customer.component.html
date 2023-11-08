@@ -1,8 +1,14 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <div>
+      <div
+        class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center"
+      >
         <h4>Khách hàng cá nhân</h4>
+        <emir-form-button
+          [label]="'Thêm mới'"
+          (_onClick)="create($event)"
+        ></emir-form-button>
       </div>
       <emir-form-table
         [columns]="headerColumns"

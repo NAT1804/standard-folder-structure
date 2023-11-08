@@ -9,6 +9,7 @@ import { IndividualCustomerDetailBankComponent } from './page/individual-custome
 import { IndividualCustomerDetailContactComponent } from './page/individual-customer-detail/individual-customer-detail-contact/individual-customer-detail-contact.component';
 import { IndividualCustomerDetailVerifyComponent } from './page/individual-customer-detail/individual-customer-detail-verify/individual-customer-detail-verify.component';
 import { IndividualCustomerDetailSaleComponent } from './page/individual-customer-detail/individual-customer-detail-sale/individual-customer-detail-sale.component';
+import { CreateIndividualCustomerDialogComponent } from './page/create-individual-customer-dialog/create-individual-customer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { IndividualCustomerDetailSaleComponent } from './page/individual-custome
     IndividualCustomerDetailContactComponent,
     IndividualCustomerDetailVerifyComponent,
     IndividualCustomerDetailSaleComponent,
+    CreateIndividualCustomerDialogComponent,
   ],
   imports: [CommonModule, SharedModule, IndividualCustomerRoutingModule],
 })

@@ -15,6 +15,8 @@ import {
   ETypeStatus,
 } from '@app/shared/constants/app.const';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
+import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
+import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
 
 @Component({
   selector: 'ecore-individual-customer',
@@ -46,7 +48,7 @@ export class IndividualCustomerComponent
     return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor() {
+  constructor(private dialogCommonService: DialogCommonService) {
     super();
   }
 
@@ -240,6 +242,21 @@ export class IndividualCustomerComponent
       this.routerService.routerNavigate([
         '/customer/individual-customer/' + data.id,
       ]);
+    }
+  }
+
+  public create(event: any) {
+    if (event) {
+      const modalRef = this.dialogCommonService.createDialog(
+        CreateIndividualCustomerDialogComponent,
+        '100%',
+        '100%'
+      );
+      modalRef.onClose.subscribe((res) => {
+        if (res?.accept) {
+          console.log(1111);
+        }
+      });
     }
   }
 }

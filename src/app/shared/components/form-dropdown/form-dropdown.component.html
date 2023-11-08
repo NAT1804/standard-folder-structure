@@ -1,0 +1,53 @@
+<!-- #region filter -->
+<ng-container *ngIf="floatLabel">
+  <span [ngClass]="'p-float-label ' + classContainer">
+    <p-dropdown
+      [ngClass]="classDropdown"
+      [style]="{ width: widthDropdown }"
+      [showClear]="showClearFloatLabel"
+      [placeholder]="placeholder"
+      [options]="options"
+      [(ngModel)]="ngModelValue"
+      (onChange)="onChange($event)"
+      [filter]="isFilter"
+      [resetFilterOnHide]="true"
+      [filterBy]="filterBy"
+    ></p-dropdown>
+    <label for="" [ngClass]="'font-normal' + classLabel" *ngIf="showLabel">
+      {{ label }}
+    </label>
+  </span>
+</ng-container>
+<!-- #endregion -->
+
+<!-- #region form -->
+<ng-container *ngIf="!floatLabel">
+  <div [ngClass]="'field ' + classContainer">
+    <label for="" [ngClass]="'title-info' + classLabel" *ngIf="showLabel">
+      {{ label }}
+      <span class="required-field" *ngIf="isRequired">*</span>
+    </label>
+    <p-dropdown
+      [autoDisplayFirst]="autoDisplayFirst"
+      [ngClass]="
+        'b-disabled ' +
+        (isValidData && isSubmit ? 'ng-invalid ng-dirty ' : '') +
+        classDropdown
+      "
+      [placeholder]="placeholder"
+      [options]="options"
+      [showClear]="showClear"
+      [(ngModel)]="ngModelValue"
+      [disabled]="isDisabled"
+      (onChange)="onChange($event)"
+      (onClear)="onClear($event)"
+      [filter]="isFilter"
+      [resetFilterOnHide]="true"
+      [filterBy]="filterBy"
+    ></p-dropdown>
+    <small id="" *ngIf="isValidData && isSubmit" class="p-error">
+      {{ messageError }}
+    </small>
+  </div>
+</ng-container>
+<!-- #endregion -->

@@ -1,0 +1,318 @@
+import {
+  DataValidator,
+  Validator,
+  ValidatorItem,
+} from '@app/data/model/validation';
+
+export const mess_typeOfDocument = 'Vui lòng chọn Loại giấy tờ';
+export const mess_frontImage = 'Vui lòng chọn Ảnh mặt trước';
+export const mess_backImage = 'Vui lòng chọn Ảnh mặt sau';
+export const mess_idNo = 'Vui lòng nhập Mã giấy tờ';
+export const mess_fullname = 'Vui lòng nhập Họ và tên';
+export const mess_gender = 'Vui lòng chọn Giới tính';
+export const mess_birthday = 'Vui lòng chọn Ngày sinh';
+export const mess_nation = 'Vui lòng nhập Quốc tịch';
+export const mess_country = 'Vui lòng nhập Nguyên quán';
+export const mess_permanentAddress = 'Vui lòng nhập Địa chỉ thường trú';
+export const mess_taxCodeDate = 'Vui lòng chọn Ngày cấp';
+export const mess_expiredDate = 'Vui lòng chọn Ngày hết hạn';
+export const mess_taxCodePlace = 'Vui lòng nhập Nơi cấp';
+export const mess_bank = 'Vui lòng nhập Ngân hàng';
+export const mess_accountNumber = 'Vui lòng nhập Số tài khoản';
+export const mess_accountOwner = 'Vui lòng nhập Chủ tài khoản';
+export const mess_numberPhone = 'Vui lòng nhập Số điện thoại';
+export const mess_password = 'Vui lòng nhập Mật khẩu';
+
+export class CreateIndividualCustomerModel {
+  public typeOfDocument: number | undefined = undefined;
+  public frontImage = String('');
+  public backImage = String('');
+  public idNo = String('');
+  public fullname = String('');
+  public gender: number | undefined = undefined;
+  public birthday: Date | undefined = undefined;
+  public nation = String('');
+  public country = String('');
+  public permanentAddress = String('');
+  public taxCodeDate: Date | undefined = undefined;
+  public expiredDate: Date | undefined = undefined;
+  public taxCodePlace = String('');
+  public signatureImage = String('');
+  public referralCode = String('');
+  public referralUser = String('');
+  public bank = String('');
+  public accountNumber = String('');
+  public accountOwner = String('');
+  public numberPhone = String('');
+  public email = String('');
+  public password = String('');
+  private _dataValidator: DataValidator = new DataValidator();
+
+  public get dataValidator() {
+    return this._dataValidator;
+  }
+
+  private isValidTypeOfDocument() {
+    const field = 'typeOfDocument';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueNumber(
+      this.typeOfDocument,
+      this._dataValidator[field],
+      mess_typeOfDocument
+    );
+  }
+
+  private isValidFrontImage() {
+    const field = 'frontImage';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.frontImage,
+      this._dataValidator[field],
+      mess_frontImage
+    );
+  }
+
+  private isValidBackImage() {
+    const field = 'backImage';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.backImage,
+      this._dataValidator[field],
+      mess_backImage
+    );
+  }
+
+  private isValidIdNo() {
+    const field = 'idNo';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.idNo,
+      this._dataValidator[field],
+      mess_idNo
+    );
+  }
+
+  private isValidFullname() {
+    const field = 'fullname';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.fullname,
+      this._dataValidator[field],
+      mess_fullname
+    );
+  }
+
+  private isValidGender() {
+    const field = 'gender';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueNumber(
+      this.gender,
+      this._dataValidator[field],
+      mess_gender
+    );
+  }
+
+  private isValidBirthday() {
+    const field = 'birthday';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    console.log(1111, this.birthday);
+    return Validator.funcValidValueDate(
+      this.birthday,
+      this._dataValidator[field],
+      mess_birthday
+    );
+  }
+
+  private isValidNation() {
+    const field = 'nation';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.nation,
+      this._dataValidator[field],
+      mess_nation
+    );
+  }
+
+  private isValidCountry() {
+    const field = 'country';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.country,
+      this._dataValidator[field],
+      mess_country
+    );
+  }
+
+  private isValidPermanentAddress() {
+    const field = 'permanentAddress';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.permanentAddress,
+      this._dataValidator[field],
+      mess_permanentAddress
+    );
+  }
+
+  private isValidTaxCodeDate() {
+    const field = 'taxCodeDate';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueDate(
+      this.taxCodeDate,
+      this._dataValidator[field],
+      mess_taxCodeDate
+    );
+  }
+
+  private isValidExpiredDate() {
+    const field = 'expiredDate';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueDate(
+      this.expiredDate,
+      this._dataValidator[field],
+      mess_expiredDate
+    );
+  }
+
+  private isValidTaxCodePlace() {
+    const field = 'taxCodePlace';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.taxCodePlace,
+      this._dataValidator[field],
+      mess_taxCodePlace
+    );
+  }
+
+  private isValidBank() {
+    const field = 'bank';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.bank,
+      this._dataValidator[field],
+      mess_bank
+    );
+  }
+
+  private isValidAccountNumber() {
+    const field = 'accountNumber';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.accountNumber,
+      this._dataValidator[field],
+      mess_accountNumber
+    );
+  }
+
+  private isValidAccountOwner() {
+    const field = 'accountOwner';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.accountOwner,
+      this._dataValidator[field],
+      mess_accountOwner
+    );
+  }
+
+  private isValidNumberPhone() {
+    const field = 'numberPhone';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.numberPhone,
+      this._dataValidator[field],
+      mess_numberPhone
+    );
+  }
+
+  private isValidPassword() {
+    const field = 'password';
+    !this._dataValidator[field] &&
+      (this._dataValidator[field] = new ValidatorItem());
+    return Validator.funcValidValueString(
+      this.password,
+      this._dataValidator[field],
+      mess_password
+    );
+  }
+
+  public isValidData() {
+    return (
+      this.isValidTypeOfDocument() &&
+      this.isValidFrontImage() &&
+      this.isValidBackImage() &&
+      this.isValidIdNo() &&
+      this.isValidFullname() &&
+      this.isValidGender() &&
+      this.isValidBirthday() &&
+      this.isValidNation() &&
+      this.isValidCountry() &&
+      this.isValidPermanentAddress() &&
+      this.isValidTaxCodeDate() &&
+      this.isValidExpiredDate() &&
+      this.isValidTaxCodePlace() &&
+      this.isValidBank() &&
+      this.isValidAccountNumber() &&
+      this.isValidAccountOwner() &&
+      this.isValidNumberPhone() &&
+      this.isValidPassword()
+    );
+  }
+
+  public showValidateData(keyString: string) {
+    switch (keyString) {
+      case 'typeOfDocument':
+        return !this.isValidTypeOfDocument();
+      case 'frontImage':
+        return !this.isValidFrontImage();
+      case 'backImage':
+        return !this.isValidBackImage();
+      case 'idNo':
+        return !this.isValidIdNo();
+      case 'fullname':
+        return !this.isValidFullname();
+      case 'gender':
+        return !this.isValidGender();
+      case 'birthday':
+        return !this.isValidBirthday();
+      case 'nation':
+        return !this.isValidNation();
+      case 'country':
+        return !this.isValidCountry();
+      case 'permanentAddress':
+        return !this.isValidPermanentAddress();
+      case 'taxCodeDate':
+        return !this.isValidTaxCodeDate();
+      case 'expiredDate':
+        return !this.isValidExpiredDate();
+      case 'taxCodePlace':
+        return !this.isValidTaxCodePlace();
+      case 'bank':
+        return !this.isValidBank();
+      case 'accountNumber':
+        return !this.isValidAccountNumber();
+      case 'accountOwner':
+        return !this.isValidAccountOwner();
+      case 'numberPhone':
+        return !this.isValidNumberPhone();
+      case 'password':
+        return !this.isValidPassword();
+    }
+    return false;
+  }
+}
