@@ -6,6 +6,7 @@ import { IndividualCustomerDetailBankComponent } from './individual-customer-det
 import { IndividualCustomerDetailContactComponent } from './individual-customer-detail-contact/individual-customer-detail-contact.component';
 import { IndividualCustomerDetailVerifyComponent } from './individual-customer-detail-verify/individual-customer-detail-verify.component';
 import { IndividualCustomerDetailSaleComponent } from './individual-customer-detail-sale/individual-customer-detail-sale.component';
+import { IndividualCustomerService } from '../../../service/individual-customer.service';
 
 @Component({
   selector: 'ecore-individual-customer-detail',
@@ -19,11 +20,13 @@ export class IndividualCustomerDetailComponent
   public activeIndex = Number(0);
   public listTabPanel: ITabView[] = [];
 
-  constructor() {
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
   ngOnInit() {
+    this.individualCustomerService.individualCustomerId =
+      this.routeActive.snapshot.paramMap.get('id') || undefined;
     this.getListTabPanel();
   }
 

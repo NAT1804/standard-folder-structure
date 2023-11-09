@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="p-fluid p-formgrid grid">
-        <div class="col-12 lg:col-4 xl:col-4">
+        <!-- <div class="col-12 lg:col-4 xl:col-4">
           <emir-form-image
             [imageSource]="avatarIImage"
             [preview]="true"
@@ -19,7 +19,7 @@
             [imageSource]="idImageIImage"
             [preview]="true"
           ></emir-form-image>
-        </div>
+        </div> -->
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Mã khách hàng'"
@@ -33,10 +33,10 @@
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-input-calendar
             [label]="'Ngày sinh'"
             [(ngModelValue)]="dataSource.birthday"
-          ></emir-form-input>
+          ></emir-form-input-calendar>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input

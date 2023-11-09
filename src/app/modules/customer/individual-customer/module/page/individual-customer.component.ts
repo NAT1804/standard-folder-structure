@@ -277,7 +277,7 @@ export class IndividualCustomerComponent
           this.dataSource = res.data.map(
             (data: any) =>
               ({
-                id: data.id,
+                id: data.custId,
                 no: data.stt,
                 code: data.cif_no,
                 name: data.full_name,

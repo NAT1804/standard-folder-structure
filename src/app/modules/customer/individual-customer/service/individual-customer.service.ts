@@ -25,6 +25,11 @@ export class IndividualCustomerService extends BaseService {
     IDropdown[] | undefined
   >;
   public _listStatusIndividualCustomer$: Observable<IDropdown[] | undefined>;
+  public _listIdTypeIndividualCustomer: BehaviorSubject<
+    IDropdown[] | undefined
+  >;
+  public _listIdTypeIndividualCustomer$: Observable<IDropdown[] | undefined>;
+  public individualCustomerId: string | undefined;
 
   constructor() {
     super();
@@ -49,6 +54,11 @@ export class IndividualCustomerService extends BaseService {
     >(undefined);
     this._listStatusIndividualCustomer$ =
       this._listStatusIndividualCustomer.asObservable();
+    this._listIdTypeIndividualCustomer = new BehaviorSubject<
+      IDropdown[] | undefined
+    >(undefined);
+    this._listIdTypeIndividualCustomer$ =
+      this._listIdTypeIndividualCustomer.asObservable();
   }
 
   public getListFilterIndividualCustomer() {
@@ -99,6 +109,18 @@ export class IndividualCustomerService extends BaseService {
     );
   }
 
+  public getListIdTypeIndividualCustomer() {
+    this.requestGet(String(this.baseAPI + '/GetIdCardType')).subscribe(
+      (res: any) => {
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this._listIdTypeIndividualCustomer.next(
+            mapDropdownDTOToIDropdown(res.data)
+          );
+        }
+      }
+    );
+  }
+
   public getListIndividualCustomer(page: Page, filter: any, sort?: ISortTable) {
     let url = String(this.baseAPI + '/GetCustInfoPage?');
     url += this.convertPageParamUrl(page);
@@ -116,6 +138,11 @@ export class IndividualCustomerService extends BaseService {
       filter.status && (url += this.convertParamUrl('custSt', filter.status));
     }
 
+    return this.requestGet(url);
+  }
+
+  public getIndividualCustomerDetail(id: string) {
+    const url = String(this.baseAPI + '/GetCustInfoById?custId=' + id);
     return this.requestGet(url);
   }
 

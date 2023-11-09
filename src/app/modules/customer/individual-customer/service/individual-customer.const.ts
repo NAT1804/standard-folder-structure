@@ -1,8 +1,8 @@
 import { IDropdown } from '@app/data/interfaces/interface';
 
 export class IndividualCustomerConst {
-  public static NAM = 'True';
-  public static NU = 'False';
+  public static NAM = true;
+  public static NU = false;
   public static listGender: IDropdown[] = [
     {
       value: this.NAM,

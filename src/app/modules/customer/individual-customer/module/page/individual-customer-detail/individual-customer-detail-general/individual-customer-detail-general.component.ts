@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { IImage } from '@app/data/interfaces/interface';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { IDropdown, IImage } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { IndividualCustomerDetailGeneralModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailGeneral.model';
+import { IndividualCustomerConst } from '@app/modules/customer/individual-customer/service/individual-customer.const';
+import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
 
 @Component({
   selector: 'ecore-individual-customer-detail-general',
@@ -10,27 +12,48 @@ import { IndividualCustomerDetailGeneralModel } from '@app/modules/customer/indi
 })
 export class IndividualCustomerDetailGeneralComponent
   extends BaseComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public dataSource: IndividualCustomerDetailGeneralModel =
     new IndividualCustomerDetailGeneralModel();
+  public get listGender() {
+    return IndividualCustomerConst.listGender;
+  }
+  public listIdType: IDropdown[] = [];
 
-  constructor() {
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
   ngOnInit() {
+    this.initData();
     this.getData();
   }
 
+  ngAfterViewInit(): void {
+    this.individualCustomerService._listIdTypeIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listIdType = res;
+        }
+      }
+    );
+  }
+
+  private initData() {
+    this.individualCustomerService.getListIdTypeIndividualCustomer();
+  }
+
   private getData() {
-    const dataSource: IndividualCustomerDetailGeneralModel =
-      new IndividualCustomerDetailGeneralModel();
-    dataSource.avatar =
-      'https://www.primefaces.org/mirage-ng/assets/demo/images/galleria/galleria10.jpg';
-    dataSource.idImage =
-      'https://www.primefaces.org/mirage-ng/assets/demo/images/product/bamboo-watch.jpg';
-    this.dataSource = dataSource;
+    if (this.individualCustomerService.individualCustomerId) {
+      this.individualCustomerService
+        .getIndividualCustomerDetail(
+          this.individualCustomerService.individualCustomerId
+        )
+        .subscribe((res) => {
+          this.dataSource.mapDTO(res.data);
+        });
+    }
   }
 
   public get avatarIImage() {

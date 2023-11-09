@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '@app/layout/breadcrumb/breadcrumb.service';
 import { RouterService } from '@app/shared/services/router.service';
 import { SpinnerService } from '@app/shared/services/spinner.service';
@@ -14,6 +15,7 @@ export abstract class BaseComponent {
   protected routerService = inject(RouterService);
   protected spinnerService = inject(SpinnerService);
   protected toastService = inject(ToastService);
+  protected routeActive = inject(ActivatedRoute);
 
   public isSubmit = Boolean(false);
   constructor() {
