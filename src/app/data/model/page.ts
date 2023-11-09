@@ -16,4 +16,7 @@ export class Page {
   getPageNumber() {
     return this.pageNumber + 1;
   }
+
+  public readonly MAX_PAGE_SIZE = 1000;
+  public readonly OFFSET_DEFAULT = 1;
 }

@@ -24,6 +24,7 @@
           <emir-form-input
             [label]="'Mã khách hàng'"
             [(ngModelValue)]="dataSource.code"
+            [isDisabled]="true"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
@@ -114,24 +115,28 @@
           <emir-form-input
             [label]="'Địa chỉ liên hệ'"
             [(ngModelValue)]="dataSource.contactAddress"
+            [isDisabled]="true"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Nguồn tạo tài khoản'"
             [(ngModelValue)]="dataSource.accountSource"
+            [isDisabled]="true"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Người tạo'"
             [(ngModelValue)]="dataSource.createdUser"
+            [isDisabled]="true"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input-calendar
             [label]="'Thời gian tạo'"
             [(ngModelValue)]="dataSource.createdTime"
+            [isDisabled]="true"
           ></emir-form-input-calendar>
         </div>
       </div>

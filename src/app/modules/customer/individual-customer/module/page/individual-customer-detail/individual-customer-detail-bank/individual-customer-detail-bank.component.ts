@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { IHeaderColumn } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { IndividualCustomerDetailBankModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailBank.model';
+import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
+  STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 
 @Component({
@@ -30,7 +32,7 @@ export class IndividualCustomerDetailBankComponent
   //   return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
   // }
 
-  constructor() {
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
@@ -44,16 +46,12 @@ export class IndividualCustomerDetailBankComponent
         posTextCell: EPositionTextCell.CENTER,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.LEFT,
-        isSort: true,
-        fieldSort: 'id',
       },
       {
         field: 'bankName',
         header: 'Tên ngân hàng',
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
-        isSort: true,
-        fieldSort: 'bankName',
         isResize: true,
       },
       {
@@ -61,8 +59,6 @@ export class IndividualCustomerDetailBankComponent
         header: 'Số tài khoản',
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
-        isSort: true,
-        fieldSort: 'accountNumber',
         isResize: true,
       },
       {
@@ -70,9 +66,7 @@ export class IndividualCustomerDetailBankComponent
         header: 'Tên tài khoản',
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
-        isSort: true,
         fieldSort: 'accountName',
-        isResize: true,
       },
       // {
       //   field: 'status',
@@ -99,22 +93,26 @@ export class IndividualCustomerDetailBankComponent
   // };
 
   private getData() {
-    const dataSource: IndividualCustomerDetailBankModel[] = [
-      {
-        id: 1,
-        bankName: '1111',
-        accountNumber: '1111',
-        accountName: '1111',
-        status: 1,
-      },
-      {
-        id: 2,
-        bankName: '2222',
-        accountNumber: '2222',
-        accountName: '2222',
-        status: 2,
-      },
-    ];
-    this.dataSource = dataSource;
+    if (this.individualCustomerService.individualCustomerId) {
+      this.individualCustomerService
+        .getIndiCusDetailBank(
+          this.individualCustomerService.individualCustomerId
+        )
+        .subscribe((res: any) => {
+          this.spinnerService.removeSpinner();
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            this.dataSource = res.data.map(
+              (data: any) =>
+                ({
+                  id: data.acc_no,
+                  bankName: data.bank_code,
+                  accountNumber: data.acc_no,
+                  accountName: data.acc_name,
+                  status: 1,
+                }) as IndividualCustomerDetailBankModel
+            );
+          }
+        });
+    }
   }
 }

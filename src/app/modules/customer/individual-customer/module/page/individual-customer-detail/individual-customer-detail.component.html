@@ -1,6 +1,25 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
+      <div
+        class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center"
+      >
+        <h4>Thông tin khách hàng cá nhân</h4>
+        <div>
+          <emir-form-button
+            class="ml-2"
+            [label]="'Quay lại'"
+          ></emir-form-button>
+          <emir-form-button
+            class="ml-2"
+            [label]="'Vận hành kiểm tra'"
+          ></emir-form-button>
+          <emir-form-button
+            class="ml-2"
+            [label]="'Chỉnh sửa'"
+          ></emir-form-button>
+        </div>
+      </div>
       <emir-form-tab-view
         [(activeIndex)]="activeIndex"
         [listTabPanel]="listTabPanel"

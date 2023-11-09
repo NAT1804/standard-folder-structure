@@ -11,6 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class IndividualCustomerService extends BaseService {
   private readonly baseAPI = '/api/v1/custinfo';
+  private readonly baseAPIBank = '/api/v1/accountbank';
   public _listFilterIndividualCustomer: BehaviorSubject<
     IDropdown[] | undefined
   >;
@@ -153,5 +154,11 @@ export class IndividualCustomerService extends BaseService {
       },
       `${this.baseAPI}/SetCustInfo`
     );
+  }
+
+  public getIndiCusDetailBank(id: string) {
+    let url = String(this.baseAPIBank + '/GetCustAcccountBankById?');
+    url += this.convertParamUrl('custId', id);
+    return this.requestGet(url);
   }
 }
