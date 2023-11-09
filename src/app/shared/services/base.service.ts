@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicEnvironmentService } from '@app/core/services/configure/dynamic-environment.service';
 import { StorageService } from '@app/core/services/storage/storage.service';
+import { ISortTable } from '@app/data/interfaces/interface';
 import { Page } from '@app/data/model/page';
 import { Observable, catchError, mergeMap, of, throwError } from 'rxjs';
 
@@ -146,10 +147,10 @@ export class BaseService {
     return name;
   }
 
-  protected convertSortParamUrl(sort: Page) {
-    const name = String('');
-    // name += this.convertParamUrl('pageNumber', page.getPageNumber());
-    // name += this.convertParamUrl('pageSize', page.pageSize);
+  protected convertSortParamUrl(sort: ISortTable) {
+    let name = String('');
+    name += this.convertParamUrl('sortType', sort.type);
+    name += this.convertParamUrl('sortColumn', sort.field);
     return name;
   }
 }

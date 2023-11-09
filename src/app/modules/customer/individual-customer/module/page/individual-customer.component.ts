@@ -70,7 +70,7 @@ export class IndividualCustomerComponent
 
     this.headerColumns = [
       {
-        field: 'id',
+        field: 'no',
         header: '#ID',
         width: '3rem',
         type: ETypeDataTable.INDEX,
@@ -78,7 +78,7 @@ export class IndividualCustomerComponent
         isFrozen: true,
         posFrozen: EPositionFrozenCell.LEFT,
         isSort: true,
-        fieldSort: 'id',
+        fieldSort: 'stt',
       },
       {
         field: 'code',
@@ -86,7 +86,7 @@ export class IndividualCustomerComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'code',
+        fieldSort: 'cif_no',
         isResize: true,
       },
       {
@@ -95,7 +95,7 @@ export class IndividualCustomerComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'name',
+        fieldSort: 'full_name',
         isResize: true,
       },
       {
@@ -113,7 +113,7 @@ export class IndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'gender',
+        fieldSort: 'sex',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data
@@ -128,7 +128,7 @@ export class IndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'idNo',
+        fieldSort: 'birthday',
         isResize: true,
       },
       {
@@ -137,7 +137,7 @@ export class IndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.CHECK_BOX,
         isSort: true,
-        fieldSort: 'check',
+        fieldSort: 'is_check',
         isResize: true,
         posTextCell: EPositionTextCell.CENTER,
       },
@@ -147,7 +147,7 @@ export class IndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'source',
+        fieldSort: 'cust_source',
         isResize: true,
       },
       {
@@ -277,7 +277,8 @@ export class IndividualCustomerComponent
           this.dataSource = res.data.map(
             (data: any) =>
               ({
-                id: data.stt,
+                id: data.id,
+                no: data.stt,
                 code: data.cif_no,
                 name: data.full_name,
                 phone: data.phone,

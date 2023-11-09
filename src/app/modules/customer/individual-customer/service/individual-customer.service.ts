@@ -102,6 +102,9 @@ export class IndividualCustomerService extends BaseService {
   public getListIndividualCustomer(page: Page, filter: any, sort?: ISortTable) {
     let url = String(this.baseAPI + '/GetCustInfoPage?');
     url += this.convertPageParamUrl(page);
+    if (sort) {
+      url += this.convertSortParamUrl(sort);
+    }
     if (filter) {
       filter.keyword &&
         (url += this.convertParamUrl('keyword', filter.keyword));
