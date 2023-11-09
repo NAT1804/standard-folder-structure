@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { COMPARE_TYPE, ETypeFormatDate } from './constants/app.const';
-import { IDropdown } from '@app/data/interfaces/interface';
+import { DropdownDTO, IDropdown } from '@app/data/interfaces/interface';
 
 export function compareDate(firstDate: Date, secondDate: Date, type: number) {
   if (
@@ -42,15 +42,13 @@ export function formatDate(value: Date | string, type: ETypeFormatDate) {
   return moment(value).isValid() && value ? moment(value).format(type) : '';
 }
 
-export function getListDropdownFilter(listData: IDropdown[]) {
-  if (listData && listData.length) {
-    return [
-      {
-        value: undefined,
-        label: 'Tất cả',
-      },
-      ...listData,
-    ] as IDropdown[];
-  }
-  return [] as IDropdown[];
+export function mapDropdownDTOToIDropdown(dtos: DropdownDTO[]) {
+  const result: IDropdown[] = dtos.map(
+    (item: DropdownDTO) =>
+      ({
+        value: item.value,
+        label: item.name,
+      }) as IDropdown
+  );
+  return result;
 }

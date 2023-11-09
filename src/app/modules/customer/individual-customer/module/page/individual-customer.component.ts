@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   IActionTable,
   IDropdown,
@@ -13,7 +13,6 @@ import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
-  ETypeStatus,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
@@ -21,7 +20,6 @@ import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
 import { IndividualCustomerService } from '../../service/individual-customer.service';
 import { Page } from '@app/data/model/page';
-import { getListDropdownFilter } from '@app/shared/function-common';
 
 @Component({
   selector: 'ecore-individual-customer',
@@ -30,7 +28,7 @@ import { getListDropdownFilter } from '@app/shared/function-common';
 })
 export class IndividualCustomerComponent
   extends BaseComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: IndividualCustomerModel[] = [];
@@ -40,35 +38,21 @@ export class IndividualCustomerComponent
   public sort: ISortTable;
   public filter: {
     keyword: string;
-    type: number;
-    check: boolean;
+    type: string;
+    check: string | undefined;
     source: number | undefined;
     status: number | undefined;
   } = {
     keyword: '',
-    type: 1,
-    check: true,
+    type: 'cif_no',
+    check: '0',
     source: undefined,
     status: undefined,
   };
+  public listFilterType: IDropdown[] = [];
+  public listCheck: IDropdown[] = [];
+  public listSource: IDropdown[] = [];
   public listStatus: IDropdown[] = [];
-  public listCreateSource: IDropdown[] = [];
-
-  public get listCheck() {
-    return IndividualCustomerConst.listCheck;
-  }
-
-  public get listFilterType() {
-    return IndividualCustomerConst.listFilterType;
-  }
-
-  public getStatusSeverity(code: number) {
-    return IndividualCustomerConst.getStatus(code, ETypeStatus.SEVERITY);
-  }
-
-  public getStatusName(code: number) {
-    return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
-  }
 
   constructor(
     private dialogCommonService: DialogCommonService,
@@ -131,6 +115,12 @@ export class IndividualCustomerComponent
         isSort: true,
         fieldSort: 'gender',
         isResize: true,
+        valueFormatter: (param: IValueFormatter) =>
+          param.data
+            ? IndividualCustomerConst.listGender.find(
+                (e: IDropdown) => e.value === param.data
+              )?.label
+            : '',
       },
       {
         field: 'birthday',
@@ -159,20 +149,16 @@ export class IndividualCustomerComponent
         isSort: true,
         fieldSort: 'source',
         isResize: true,
-        valueFormatter: (param: IValueFormatter) =>
-          param.data
-            ? this.listCreateSource.find(
-                (e: IDropdown) => e.value === param.data
-              )?.label
-            : '',
       },
       {
         field: 'status',
         header: 'Trạng thái',
         width: '8rem',
         type: ETypeDataTable.STATUS,
-        funcStyleClassStatus: this.funcStyleClassStatus,
-        funcLabelStatus: this.funcLabelStatus,
+        fieldStatus: {
+          fieldLabel: 'status',
+          fieldSeverity: 'statusSeverity',
+        },
         posTextCell: EPositionTextCell.LEFT,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.RIGHT,
@@ -188,69 +174,47 @@ export class IndividualCustomerComponent
       },
     ] as IHeaderColumn[];
 
-    this.dataSource = [
-      {
-        id: 1,
-        code: '1111',
-        name: '1111',
-        phone: '1111',
-        gender: 1111,
-        birthday: '1111',
-        check: true,
-        source: 1,
-        status: 1,
-      },
-      {
-        id: 2,
-        code: '2222',
-        name: '2222',
-        phone: '2222',
-        gender: 2222,
-        birthday: '2222',
-        check: true,
-        source: 2,
-        status: 2,
-      },
-      {
-        id: 3,
-        code: '3333',
-        name: '3333',
-        phone: '3333',
-        gender: 3333,
-        birthday: '3333',
-        check: true,
-        source: 1,
-        status: 1,
-      },
-      {
-        id: 4,
-        code: '4444',
-        name: '4444',
-        phone: '4444',
-        gender: 4444,
-        birthday: '4444',
-        check: true,
-        source: 2,
-        status: 2,
-      },
-    ];
-
-    this.listStatus = getListDropdownFilter(IndividualCustomerConst.listStatus);
-    this.listCreateSource = getListDropdownFilter(
-      IndividualCustomerConst.listCreateSource
-    );
-
+    this.initData();
     this.setPage();
-    this.genListAction();
   }
 
-  public funcStyleClassStatus = (status: number) => {
-    return this.getStatusSeverity(status);
-  };
+  ngAfterViewInit(): void {
+    this.individualCustomerService._listFilterIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listFilterType = res;
+        }
+      }
+    );
+    this.individualCustomerService._listCheckIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listCheck = res;
+        }
+      }
+    );
+    this.individualCustomerService._listSourceIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listSource = res;
+        }
+      }
+    );
+    this.individualCustomerService._listStatusIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listStatus = res;
+        }
+      }
+    );
+  }
 
-  public funcLabelStatus = (status: number) => {
-    return this.getStatusName(status);
-  };
+  private initData() {
+    this.individualCustomerService.getListFilterIndividualCustomer();
+    this.individualCustomerService.getListCheckIndividualCustomer();
+    this.individualCustomerService.getListSourceIndividualCustomer();
+    this.individualCustomerService.getListStatusIndividualCustomer();
+  }
 
   private genListAction() {
     this.listAction = this.dataSource.map((data: IndividualCustomerModel) => {
@@ -303,26 +267,29 @@ export class IndividualCustomerComponent
   }
 
   private setPage() {
+    this.spinnerService.showSpinner();
     this.individualCustomerService
       .getListIndividualCustomer(this.page, this.filter, this.sort)
       .subscribe((res) => {
+        this.spinnerService.removeSpinner();
         if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this.page.totalItems = res.recordsTotal;
           this.dataSource = res.data.map(
             (data: any) =>
               ({
-                id: data.custId,
-                code: '1111',
+                id: data.stt,
+                code: data.cif_no,
                 name: data.full_name,
-                phone: '1111',
-                gender: data.sex
-                  ? IndividualCustomerConst.NAM
-                  : IndividualCustomerConst.NU,
+                phone: data.phone,
+                gender: data.sex,
                 birthday: data.birthday,
-                check: true,
+                check: !!data.is_check,
                 source: data.cust_source,
                 status: data.cust_st,
+                statusSeverity: data.cust_st_label,
               }) as IndividualCustomerModel
           );
+          this.genListAction();
         }
       });
   }

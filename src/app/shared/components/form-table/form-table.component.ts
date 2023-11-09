@@ -82,7 +82,7 @@ export class FormTableComponent
   public _onSort: EventEmitter<ISortTable> = new EventEmitter<ISortTable>();
   @Output()
   public pageChange: EventEmitter<Page> = new EventEmitter<Page>();
-  public isShowTable = Boolean(false);
+  public visible = Boolean(false);
 
   constructor(public changeDetectorRef: ChangeDetectorRef) {
     super();
@@ -102,10 +102,10 @@ export class FormTableComponent
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes && changes['columns']) {
-      this.isShowTable = false;
+      this.visible = false;
       this.changeDetectorRef.detectChanges();
       this.changeDetectorRef.markForCheck();
-      this.isShowTable = true;
+      this.visible = true;
     }
   }
 
@@ -131,13 +131,19 @@ export class FormTableComponent
     }
   }
 
-  public getStatus(status: any, key: string, col: IHeaderColumn) {
+  public getStatus(row: any, key: string, col: IHeaderColumn) {
     if (key === 'style') {
+      if (col.fieldStatus) {
+        return row[col.fieldStatus.fieldSeverity];
+      }
       return col.funcStyleClassStatus
-        ? col.funcStyleClassStatus(status)
+        ? col.funcStyleClassStatus(row.status)
         : undefined;
     } else if (key === 'label') {
-      return col.funcLabelStatus ? col.funcLabelStatus(status) : undefined;
+      if (col.fieldStatus) {
+        return row[col.fieldStatus.fieldLabel];
+      }
+      return col.funcLabelStatus ? col.funcLabelStatus(row.status) : undefined;
     }
     return '';
   }

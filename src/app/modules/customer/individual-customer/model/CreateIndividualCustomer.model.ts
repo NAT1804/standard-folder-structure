@@ -255,7 +255,7 @@ export class CreateIndividualCustomerModel {
 
   public isValidData() {
     return (
-      this.isValidTypeOfDocument() &&
+      // this.isValidTypeOfDocument() &&
       this.isValidFrontImage() &&
       this.isValidBackImage() &&
       this.isValidIdNo() &&
@@ -323,7 +323,7 @@ export class CreateIndividualCustomerModel {
       custId: undefined,
       cif_no: this.idNo,
       full_name: this.fullname,
-      sex: !!(this.gender === IndividualCustomerConst.NAM),
+      // sex: !!(this.gender === IndividualCustomerConst.NAM),
       birthday: this.birthday ? formatDateToAPI(this.birthday) : undefined,
       cntry_reg: this.nation,
       origin_add: this.country,
@@ -335,6 +335,9 @@ export class CreateIndividualCustomerModel {
         ? formatDateToAPI(this.expiredDate)
         : undefined,
       idcard_issue_plc: this.taxCodePlace,
+      bank_name: this.bank,
+      bank_acc_no: this.accountNumber,
+      bank_acc_name: this.accountOwner,
     };
   }
 }

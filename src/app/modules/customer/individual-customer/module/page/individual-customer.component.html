@@ -2,6 +2,7 @@
   <div class="col-12 h-full">
     <div class="card h-full">
       <div
+        #divHeader
         class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center"
       >
         <h4>Khách hàng cá nhân</h4>
@@ -10,7 +11,17 @@
           (_onClick)="create($event)"
         ></emir-form-button>
       </div>
+      <div class="test"></div>
       <emir-form-table
+        [style.height]="
+          'calc(100% - ' + divHeader.getBoundingClientRect().height + 'px)'
+        "
+        class="block auto-height-form-table"
+        [scrollHeight]="
+          'calc(100% - 2rem - ' +
+          divFilter.getBoundingClientRect().height +
+          'px)'
+        "
         [columns]="headerColumns"
         [dataSource]="dataSource"
         [isLoading]="isLoading"
@@ -28,7 +39,7 @@
             <emir-form-input
               class="col-12 lg:col-2 xl:col-2"
               [floatLabel]="true"
-              [placeholder]="'Tìm kiếm'"
+              [placeholder]="'123123123'"
               [label]="'Tìm kiếm'"
               [(ngModelValue)]="filter.keyword"
               (_onChange)="changeFilter($event)"
@@ -54,7 +65,7 @@
               class="col-12 lg:col-2 xl:col-2"
               [label]="'Nguồn khởi tạo'"
               [floatLabel]="true"
-              [options]="listCreateSource"
+              [options]="listSource"
               [(ngModelValue)]="filter.source"
               (_onChange)="changeFilter($event)"
             ></emir-form-dropdown>

@@ -49,6 +49,7 @@ export interface IHeaderColumn {
   posTextCell?: EPositionTextCell;
   isFrozen?: boolean;
   posFrozen?: EPositionFrozenCell;
+  fieldStatus?: IStatusHeaderColumn;
   funcStyleClassStatus?: (...params: any[]) => string;
   funcLabelStatus?: (...params: any[]) => string;
   valueFormatter?: (...params: any[]) => any;
@@ -56,6 +57,11 @@ export interface IHeaderColumn {
   isDefaultNotCutText?: boolean;
   hideBtnSetColumn?: boolean;
   hideDefault?: boolean; // ẩn mặc định
+}
+
+export interface IStatusHeaderColumn {
+  fieldLabel: string;
+  fieldSeverity: string;
 }
 
 export interface ISortTable {
@@ -67,6 +73,12 @@ export interface IDropdown {
   label: string;
   value: number | string | boolean;
   severity?: string;
+  rawData?: any;
+}
+
+export interface DropdownDTO {
+  name: string;
+  value: number | string | boolean;
   rawData?: any;
 }
 

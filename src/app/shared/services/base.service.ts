@@ -130,7 +130,7 @@ export class BaseService {
 
   private createDefaultHeaders() {
     return new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
       Accept: 'text/plain',
     });
   }
@@ -141,7 +141,7 @@ export class BaseService {
 
   protected convertPageParamUrl(page: Page) {
     let name = String('');
-    name += this.convertParamUrl('pageNumber', page.getPageNumber());
+    name += this.convertParamUrl('offSet', page.getPageNumber());
     name += this.convertParamUrl('pageSize', page.pageSize);
     return name;
   }

@@ -18,6 +18,8 @@ body {
 
 ::-webkit-scrollbar {
   width: 0.3125rem;
+  height: 0.3125rem;
+  background: #e0e0e0;
 }
 
 ::-webkit-scrollbar-track {
@@ -30,8 +32,27 @@ body {
 }
 
 div.layout-content {
+  height: calc(100% - 4.75rem - 2.3125rem);
   & > *:not(:nth-child(1), :nth-child(2)) {
     display: block;
     height: 100%;
   }
+}
+
+emir-form-table.auto-height-form-table {
+  p-table {
+    height: calc(100% - 56px) !important;
+    div.p-datatable {
+      height: 100% !important;
+    }
+  }
+}
+
+.p-datatable-scrollable td.p-frozen-column {
+  z-index: unset;
+}
+
+span.p-float-label > label {
+  top: -0.75rem;
+  font-size: 0.75rem;
 }

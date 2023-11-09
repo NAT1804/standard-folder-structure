@@ -1,6 +1,6 @@
 <ng-container>
   <p-table
-    *ngIf="isShowTable"
+    *ngIf="visible"
     class="block"
     [columns]="columns"
     [value]="dataSource"
@@ -123,9 +123,9 @@
           </span>
           <span *ngIf="col.type === ETypeDataTable.STATUS">
             <p-tag
-              styleClass="p-tag-{{ getStatus(row.status, 'style', col) }}"
-              severity="{{ getStatus(row.status, 'style', col) }}"
-              value="{{ getStatus(row.status, 'label', col) }}"
+              styleClass="p-tag-{{ getStatus(row, 'style', col) }}"
+              severity="{{ getStatus(row, 'style', col) }}"
+              value="{{ getStatus(row, 'label', col) }}"
             ></p-tag>
           </span>
           <span *ngIf="col.type === ETypeDataTable.ACTION">
