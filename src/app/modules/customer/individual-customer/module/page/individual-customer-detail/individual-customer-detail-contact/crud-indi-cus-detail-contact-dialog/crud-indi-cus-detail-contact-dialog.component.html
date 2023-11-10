@@ -1,0 +1,25 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Địa chỉ liên hệ'"
+          [(ngModelValue)]="dataSource.contactAddress"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('contactAddress')"
+          [messageError]="
+            dataSource.dataValidator['contactAddress'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input-switch
+          [label]="'Đặt làm mặc định'"
+          [(ngModelValue)]="dataSource.isDefault"
+          [classLabel]="'ml-2'"
+        ></emir-form-input-switch>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

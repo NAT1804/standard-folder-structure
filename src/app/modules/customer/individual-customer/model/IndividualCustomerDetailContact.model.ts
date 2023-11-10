@@ -1,5 +1,6 @@
 export class IndividualCustomerDetailContactModel {
-  public id: number;
+  public id: string;
+  public no: number;
   public contactName: string;
-  public status: number;
+  public status: boolean;
 }
