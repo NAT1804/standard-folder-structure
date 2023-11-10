@@ -27,7 +27,7 @@ export function compareDate(firstDate: Date, secondDate: Date, type: number) {
   return null;
 }
 
-export function scrollToErorr() {
+export function scrollToError() {
   const elements = document.getElementsByClassName('ng-invalid');
   if (elements && elements.length) {
     elements[0].scrollIntoView({ behavior: 'smooth' });
@@ -51,4 +51,12 @@ export function mapDropdownDTOToIDropdown(dtos: DropdownDTO[]) {
       }) as IDropdown
   );
   return result;
+}
+
+export function compareValueToString(value1: any, value2: any) {
+  return value1 + '' === value2 + '';
+}
+
+export function compareValueToUpperCase(value1: any, value2: any) {
+  return (value1 + '').toUpperCase() === (value2 + '').toUpperCase();
 }

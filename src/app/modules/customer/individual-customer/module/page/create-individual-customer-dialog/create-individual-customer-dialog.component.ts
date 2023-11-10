@@ -6,7 +6,7 @@ import {
   IDropdown,
   IImage,
 } from '@app/data/interfaces/interface';
-import { scrollToErorr } from '@app/shared/function-common';
+import { scrollToError } from '@app/shared/function-common';
 import { STATUS_RESPONSE, TYPE_INPUT } from '@app/shared/constants/app.const';
 import { IndividualCustomerConst } from '../../../service/individual-customer.const';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -90,14 +90,14 @@ export class CreateIndividualCustomerDialogComponent
     this.isSubmit = true;
     if (this.dataSource.isValidData()) {
       this.individualCustomerService
-        .createIndividualCustomer(this.dataSource.toObjectSendToAPI())
+        .createOrEditIndividualCustomer(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
           if (response.status === STATUS_RESPONSE.SUCCESS) {
             this.dynamicDialogRef.close();
           }
         });
     } else {
-      scrollToErorr();
+      scrollToError();
     }
   };
 

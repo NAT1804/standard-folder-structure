@@ -17,7 +17,7 @@ export class Validator {
     validValue: ValidatorItem,
     mess: string
   ) {
-    const validRequired = typeof value !== 'number' || !value;
+    const validRequired = typeof value !== 'number' || (!value && value !== 0);
     validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
     return !validRequired;
   }
@@ -28,6 +28,16 @@ export class Validator {
     mess: string
   ) {
     const validRequired = !value;
+    validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
+    return !validRequired;
+  }
+
+  public static funcValidValueBoolean(
+    value: boolean | undefined,
+    validValue: ValidatorItem,
+    mess: string
+  ) {
+    const validRequired = value !== true && value !== false;
     validRequired ? validValue.addMess(mess) : validValue.removeMess(mess);
     return !validRequired;
   }

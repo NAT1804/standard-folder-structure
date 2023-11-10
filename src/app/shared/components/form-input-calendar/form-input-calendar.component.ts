@@ -3,8 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -23,7 +25,7 @@ import { compareDate } from '@app/shared/function-common';
 })
 export class FormInputCalendarComponent
   extends BaseCommonComponent
-  implements OnInit, AfterViewInit
+  implements OnInit, AfterViewInit, OnChanges
 {
   @Input()
   public floatLabel = Boolean(false);
@@ -78,9 +80,13 @@ export class FormInputCalendarComponent
     console.log('ngOnInit');
   }
 
-  ngAfterViewInit() {
-    this.ngModelValue && (this.oldValue = new Date(this.ngModelValue));
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes && changes['ngModelValue']) {
+      this.oldValue = this.oldValue = new Date(this.ngModelValue);
+    }
+  }
 
+  ngAfterViewInit() {
     this.subjectChangeInput
       .pipe(debounceTime(200))
       .subscribe((responseDate) => {
@@ -148,7 +154,6 @@ export class FormInputCalendarComponent
   private emitUndefinedData() {
     if (this.checkCompareData()) {
       this.oldValue = undefined;
-
       this.ngModelValueChange.emit(undefined);
       this._onChange.emit(undefined);
     }

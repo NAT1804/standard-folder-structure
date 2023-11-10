@@ -31,7 +31,7 @@ export class CreateIndividualCustomerModel {
   public backImage = String('');
   public idNo = String('');
   public fullname = String('');
-  public gender: number | undefined = undefined;
+  public gender: boolean | undefined = undefined;
   public birthday: Date | undefined = undefined;
   public nation = String('');
   public country = String('');
@@ -48,13 +48,13 @@ export class CreateIndividualCustomerModel {
   public numberPhone = String('');
   public email = String('');
   public password = String('');
-  private _dataValidator: DataValidator = new DataValidator();
+  protected _dataValidator: DataValidator = new DataValidator();
 
   public get dataValidator() {
     return this._dataValidator;
   }
 
-  private isValidTypeOfDocument() {
+  protected isValidTypeOfDocument() {
     const field = 'typeOfDocument';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -65,7 +65,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidFrontImage() {
+  protected isValidFrontImage() {
     const field = 'frontImage';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -76,7 +76,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidBackImage() {
+  protected isValidBackImage() {
     const field = 'backImage';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -87,7 +87,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidIdNo() {
+  protected isValidIdNo() {
     const field = 'idNo';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -98,7 +98,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidFullname() {
+  protected isValidFullname() {
     const field = 'fullname';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -109,22 +109,21 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidGender() {
+  protected isValidGender() {
     const field = 'gender';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
-    return Validator.funcValidValueNumber(
+    return Validator.funcValidValueBoolean(
       this.gender,
       this._dataValidator[field],
       mess_gender
     );
   }
 
-  private isValidBirthday() {
+  protected isValidBirthday() {
     const field = 'birthday';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
-    console.log(1111, this.birthday);
     return Validator.funcValidValueDate(
       this.birthday,
       this._dataValidator[field],
@@ -132,7 +131,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidNation() {
+  protected isValidNation() {
     const field = 'nation';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -143,7 +142,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidCountry() {
+  protected isValidCountry() {
     const field = 'country';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -154,7 +153,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidPermanentAddress() {
+  protected isValidPermanentAddress() {
     const field = 'permanentAddress';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -165,7 +164,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidTaxCodeDate() {
+  protected isValidTaxCodeDate() {
     const field = 'taxCodeDate';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -176,7 +175,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidExpiredDate() {
+  protected isValidExpiredDate() {
     const field = 'expiredDate';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -187,7 +186,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidTaxCodePlace() {
+  protected isValidTaxCodePlace() {
     const field = 'taxCodePlace';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -198,7 +197,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidBank() {
+  protected isValidBank() {
     const field = 'bank';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -209,7 +208,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidAccountNumber() {
+  protected isValidAccountNumber() {
     const field = 'accountNumber';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -220,7 +219,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidAccountOwner() {
+  protected isValidAccountOwner() {
     const field = 'accountOwner';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -231,7 +230,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidNumberPhone() {
+  protected isValidNumberPhone() {
     const field = 'numberPhone';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -242,7 +241,7 @@ export class CreateIndividualCustomerModel {
     );
   }
 
-  private isValidPassword() {
+  protected isValidPassword() {
     const field = 'password';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -320,6 +319,7 @@ export class CreateIndividualCustomerModel {
 
   public toObjectSendToAPI() {
     return {
+      cust_type: IndividualCustomerConst.TYPE_INDIVIDUAL_CUSTOMER,
       custId: undefined,
       cif_no: this.idNo,
       full_name: this.fullname,

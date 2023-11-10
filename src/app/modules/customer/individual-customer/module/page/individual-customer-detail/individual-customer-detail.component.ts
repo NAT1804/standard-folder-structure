@@ -7,6 +7,7 @@ import { IndividualCustomerDetailContactComponent } from './individual-customer-
 import { IndividualCustomerDetailVerifyComponent } from './individual-customer-detail-verify/individual-customer-detail-verify.component';
 import { IndividualCustomerDetailSaleComponent } from './individual-customer-detail-sale/individual-customer-detail-sale.component';
 import { IndividualCustomerService } from '../../../service/individual-customer.service';
+import { IndividualCustomerConst } from '../../../service/individual-customer.const';
 
 @Component({
   selector: 'ecore-individual-customer-detail',
@@ -69,5 +70,25 @@ export class IndividualCustomerDetailComponent
     });
 
     this.listTabPanel = listTabPanel;
+  }
+
+  public get tabDetailGeneral() {
+    return IndividualCustomerConst.tabDetailGeneral;
+  }
+
+  public get isEdit() {
+    return this.individualCustomerService.isEdit;
+  }
+
+  public onClickEdit(event: any) {
+    if (event) {
+      this.individualCustomerService.isEdit = true;
+    }
+  }
+
+  public onClickSave(event: any) {
+    if (event) {
+      this.individualCustomerService._handleEventSave.next(true);
+    }
   }
 }

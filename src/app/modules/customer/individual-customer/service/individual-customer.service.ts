@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IDropdown, ISortTable } from '@app/data/interfaces/interface';
+import {
+  DropdownDTO,
+  IDropdown,
+  ISortTable,
+} from '@app/data/interfaces/interface';
 import { Page } from '@app/data/model/page';
 import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { mapDropdownDTOToIDropdown } from '@app/shared/function-common';
@@ -31,6 +35,9 @@ export class IndividualCustomerService extends BaseService {
   >;
   public _listIdTypeIndividualCustomer$: Observable<IDropdown[] | undefined>;
   public individualCustomerId: string | undefined;
+  public isEdit = Boolean(false);
+  public _handleEventSave: BehaviorSubject<boolean | undefined>;
+  public _handleEventSave$: Observable<boolean | undefined>;
 
   constructor() {
     super();
@@ -60,6 +67,8 @@ export class IndividualCustomerService extends BaseService {
     >(undefined);
     this._listIdTypeIndividualCustomer$ =
       this._listIdTypeIndividualCustomer.asObservable();
+    this._handleEventSave = new BehaviorSubject<boolean | undefined>(undefined);
+    this._handleEventSave$ = this._handleEventSave.asObservable();
   }
 
   public getListFilterIndividualCustomer() {
@@ -114,9 +123,14 @@ export class IndividualCustomerService extends BaseService {
     this.requestGet(String(this.baseAPI + '/GetIdCardType')).subscribe(
       (res: any) => {
         if (res.status === STATUS_RESPONSE.SUCCESS) {
-          this._listIdTypeIndividualCustomer.next(
-            mapDropdownDTOToIDropdown(res.data)
+          const listIdTypeIndividualCustomer = res.data.map(
+            (e: DropdownDTO) =>
+              ({
+                value: Number(e.value),
+                label: e.name,
+              }) as IDropdown
           );
+          this._listIdTypeIndividualCustomer.next(listIdTypeIndividualCustomer);
         }
       }
     );
@@ -147,7 +161,7 @@ export class IndividualCustomerService extends BaseService {
     return this.requestGet(url);
   }
 
-  public createIndividualCustomer(body: any) {
+  public createOrEditIndividualCustomer(body: any) {
     return this.requestPost(
       {
         cust: body,
@@ -157,7 +171,7 @@ export class IndividualCustomerService extends BaseService {
   }
 
   public getIndiCusDetailBank(id: string) {
-    let url = String(this.baseAPIBank + '/GetCustAcccountBankById?');
+    let url = String(this.baseAPIBank + '/GetCustAccountBankByCustId?');
     url += this.convertParamUrl('custId', id);
     return this.requestGet(url);
   }

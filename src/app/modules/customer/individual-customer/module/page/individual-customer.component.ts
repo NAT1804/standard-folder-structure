@@ -20,6 +20,7 @@ import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
 import { IndividualCustomerService } from '../../service/individual-customer.service';
 import { Page } from '@app/data/model/page';
+import { compareValueToUpperCase } from '@app/shared/function-common';
 
 @Component({
   selector: 'ecore-individual-customer',
@@ -117,8 +118,8 @@ export class IndividualCustomerComponent
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data
-            ? IndividualCustomerConst.listGender.find(
-                (e: IDropdown) => e.value === param.data
+            ? IndividualCustomerConst.listGender.find((e: IDropdown) =>
+                compareValueToUpperCase(e.value, param.data)
               )?.label
             : '',
       },

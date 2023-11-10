@@ -6,17 +6,27 @@
       >
         <h4>Thông tin khách hàng cá nhân</h4>
         <div>
-          <emir-form-button
-            class="ml-2"
-            [label]="'Quay lại'"
-          ></emir-form-button>
+          <ng-container *ngIf="activeIndex === tabDetailGeneral">
+            <emir-form-button
+              *ngIf="isEdit"
+              class="ml-2"
+              [label]="'Lưu lại'"
+              (_onClick)="onClickSave($event)"
+            ></emir-form-button>
+            <emir-form-button
+              *ngIf="!isEdit"
+              class="ml-2"
+              [label]="'Chỉnh sửa'"
+              (_onClick)="onClickEdit($event)"
+            ></emir-form-button>
+          </ng-container>
           <emir-form-button
             class="ml-2"
             [label]="'Vận hành kiểm tra'"
           ></emir-form-button>
           <emir-form-button
             class="ml-2"
-            [label]="'Chỉnh sửa'"
+            [label]="'Quay lại'"
           ></emir-form-button>
         </div>
       </div>

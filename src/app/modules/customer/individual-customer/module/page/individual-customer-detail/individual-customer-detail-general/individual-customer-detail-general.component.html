@@ -30,85 +30,171 @@
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Họ tên'"
-            [(ngModelValue)]="dataSource.name"
+            [(ngModelValue)]="dataSource.fullname"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('fullname')"
+            [messageError]="
+              dataSource.dataValidator['fullname'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input-calendar
             [label]="'Ngày sinh'"
             [(ngModelValue)]="dataSource.birthday"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('birthday')"
+            [messageError]="
+              dataSource.dataValidator['birthday'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input-calendar>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-dropdown
             [label]="'Giới tính'"
             [(ngModelValue)]="dataSource.gender"
-          ></emir-form-input>
+            [options]="listGender"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('gender')"
+            [messageError]="
+              dataSource.dataValidator['gender'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-dropdown>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-dropdown
             [label]="'Loại giấy tờ'"
-            [(ngModelValue)]="dataSource.idType"
-          ></emir-form-input>
+            [(ngModelValue)]="dataSource.typeOfDocument"
+            [options]="listIdType"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('typeOfDocument')"
+            [messageError]="
+              dataSource.dataValidator['typeOfDocument'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-dropdown>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Mã giấy tờ'"
             [(ngModelValue)]="dataSource.idNo"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('idNo')"
+            [messageError]="dataSource.dataValidator['idNo'].toMessageString()"
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Mã giới thiệu'"
             [(ngModelValue)]="dataSource.referralCode"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-input-calendar
             [label]="'Ngày cấp giấy tờ'"
-            [(ngModelValue)]="dataSource.idDate"
-          ></emir-form-input>
+            [(ngModelValue)]="dataSource.taxCodeDate"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('taxCodeDate')"
+            [messageError]="
+              dataSource.dataValidator['taxCodeDate'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-input-calendar>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-input-calendar
             [label]="'Ngày hết hạn giấy tờ'"
-            [(ngModelValue)]="dataSource.idExpiredDate"
-          ></emir-form-input>
+            [(ngModelValue)]="dataSource.expiredDate"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('expiredDate')"
+            [messageError]="
+              dataSource.dataValidator['expiredDate'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-input-calendar>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Nơi cấp'"
-            [(ngModelValue)]="dataSource.idPlace"
+            [(ngModelValue)]="dataSource.taxCodePlace"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('taxCodePlace')"
+            [messageError]="
+              dataSource.dataValidator['taxCodePlace'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Quốc tịch'"
-            [(ngModelValue)]="dataSource.idNationality"
+            [(ngModelValue)]="dataSource.nation"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('nation')"
+            [messageError]="
+              dataSource.dataValidator['nation'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Nguyên quán'"
-            [(ngModelValue)]="dataSource.idCountry"
+            [(ngModelValue)]="dataSource.country"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('country')"
+            [messageError]="
+              dataSource.dataValidator['country'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Số điện thoại'"
             [(ngModelValue)]="dataSource.numberPhone"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('numberPhone')"
+            [messageError]="
+              dataSource.dataValidator['numberPhone'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Email'"
             [(ngModelValue)]="dataSource.email"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Địa chỉ thường trú'"
             [(ngModelValue)]="dataSource.permanentAddress"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('permanentAddress')"
+            [messageError]="
+              dataSource.dataValidator['permanentAddress'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
