@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IHeaderColumn } from '@app/data/interfaces/interface';
+import {
+  IActionTable,
+  ICloseDialog,
+  IHeaderColumn,
+} from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { IndividualCustomerDetailBankModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailBank.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
@@ -7,8 +11,10 @@ import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
+  SEVERITY,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
+import { CrudIndiCusDetailBankDialogComponent } from './crud-indi-cus-detail-bank-dialog/crud-indi-cus-detail-bank-dialog.component';
 
 @Component({
   selector: 'ecore-individual-customer-detail-bank',
@@ -22,15 +28,7 @@ export class IndividualCustomerDetailBankComponent
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: IndividualCustomerDetailBankModel[] = [];
   public isLoading: boolean;
-  // public listAction: IActionTable[][] = [];
-
-  // public getStatusSeverity(code: number) {
-  //   return IndividualCustomerConst.getStatus(code, ETypeStatus.SEVERITY);
-  // }
-
-  // public getStatusName(code: number) {
-  //   return IndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
-  // }
+  public listAction: IActionTable[][] = [];
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
@@ -68,29 +66,38 @@ export class IndividualCustomerDetailBankComponent
         type: ETypeDataTable.TEXT,
         fieldSort: 'accountName',
       },
-      // {
-      //   field: 'status',
-      //   header: 'Trạng thái',
-      //   width: '8rem',
-      //   type: ETypeDataTable.STATUS,
-      //   funcStyleClassStatus: this.funcStyleClassStatus,
-      //   funcLabelStatus: this.funcLabelStatus,
-      //   posTextCell: EPositionTextCell.LEFT,
-      //   isFrozen: true,
-      //   posFrozen: EPositionFrozenCell.RIGHT,
-      // },
+      {
+        field: 'status',
+        header: 'Trạng thái',
+        width: '8rem',
+        type: ETypeDataTable.STATUS,
+        funcStyleClassStatus: this.funcStyleClassStatus,
+        funcLabelStatus: this.funcLabelStatus,
+        posTextCell: EPositionTextCell.LEFT,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.RIGHT,
+      },
+      {
+        field: '',
+        header: '',
+        width: '3rem',
+        type: ETypeDataTable.ACTION,
+        posTextCell: EPositionTextCell.CENTER,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.RIGHT,
+      },
     ];
 
     this.getData();
   }
 
-  // public funcStyleClassStatus = (status: number) => {
-  //   return this.getStatusSeverity(status);
-  // };
+  public funcStyleClassStatus = (status: boolean) => {
+    return status ? SEVERITY.INFO : '';
+  };
 
-  // public funcLabelStatus = (status: number) => {
-  //   return this.getStatusName(status);
-  // };
+  public funcLabelStatus = (status: boolean) => {
+    return status ? 'Mặc định' : '';
+  };
 
   private getData() {
     if (this.individualCustomerService.individualCustomerId) {
@@ -108,9 +115,76 @@ export class IndividualCustomerDetailBankComponent
                   bankName: data.bank_code,
                   accountNumber: data.acc_no,
                   accountName: data.acc_name,
-                  status: 1,
+                  status: data.is_default,
                 }) as IndividualCustomerDetailBankModel
             );
+            this.genListAction();
+          }
+        });
+    }
+  }
+
+  private genListAction() {
+    this.listAction = this.dataSource.map(
+      (data: IndividualCustomerDetailBankModel) => {
+        const actions: IActionTable[] = [];
+
+        actions.push({
+          data: data,
+          label: 'Xem chi tiết',
+          icon: 'pi pi-eye',
+          command: ($event) => {
+            this.detail($event.item.data);
+          },
+        });
+
+        return actions;
+      }
+    );
+  }
+
+  public create(event: any) {
+    if (event) {
+      const modalRef = this.dialogCommonService.createDialog(
+        CrudIndiCusDetailBankDialogComponent,
+        '600px',
+        'auto',
+        true,
+        {
+          customerId: this.individualCustomerService.individualCustomerId,
+        }
+      );
+      modalRef.onClose.subscribe((res: ICloseDialog) => {
+        if (res.status) {
+          this.getData();
+        }
+      });
+    }
+  }
+
+  public detail(event: any) {
+    if (event) {
+      this.individualCustomerService
+        .getIndiCusDetailBankDetail(
+          this.individualCustomerService.individualCustomerId || ''
+        )
+        .subscribe((res: any) => {
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            const modalRef = this.dialogCommonService.createDialog(
+              CrudIndiCusDetailBankDialogComponent,
+              '600px',
+              'auto',
+              true,
+              {
+                customerId: this.individualCustomerService.individualCustomerId,
+                dataSource: res.data,
+              }
+            );
+            modalRef.onClose.subscribe((res) => {
+              if (res?.accept) {
+                console.log(1111);
+              }
+            });
           }
         });
     }

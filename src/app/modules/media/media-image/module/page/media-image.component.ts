@@ -9,7 +9,6 @@ import {
   ETypeDataTable,
   ETypeStatus,
 } from '@app/shared/constants/app.const';
-import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { MenuItem } from 'primeng/api';
 import { CrudMediaImageDialogComponent } from './crud-media-image-dialog/crud-media-image-dialog.component';
 
@@ -36,7 +35,7 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
     return MediaImageConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private dialogCommonService: DialogCommonService) {
+  constructor() {
     super();
   }
 

@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { ValueFormatterPipe } from './pipes/valueFormatter.pipe';
 
@@ -32,6 +33,7 @@ import { FormInputNumberComponent } from './components/form-input-number/form-in
 import { FormSpinnerLoadingComponent } from './components/form-spinner-loading/form-spinner-loading.component';
 import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload-image-dialog.component';
 import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
+import { FormInputSwitchComponent } from './components/form-input-switch/form-input-switch.component';
 
 import { SpinnerService } from './services/spinner.service';
 import { DialogCommonService } from './dialogs/dialog-common.service';
@@ -58,6 +60,7 @@ export const commonModules: any[] = [
   FileUploadModule,
   ProgressSpinnerModule,
   DropdownModule,
+  InputSwitchModule,
   //
 ];
 
@@ -74,6 +77,7 @@ export const commonComponents: any[] = [
   FormInputNumberComponent,
   FormSpinnerLoadingComponent,
   FormDropdownComponent,
+  FormInputSwitchComponent,
 ];
 
 export const commonDialogs: any[] = [UploadImageDialogComponent];

@@ -14,7 +14,6 @@ import {
 import { MenuItem } from 'primeng/api';
 import { AccountVerifiedModel } from '../../model/AccountVerified.model';
 import { AccountVerifiedConst } from '../../service/account-verified.const';
-import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
@@ -44,7 +43,7 @@ export class AccountVerifiedComponent extends BaseComponent implements OnInit {
     return AccountVerifiedConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private dialogCommonService: DialogCommonService) {
+  constructor() {
     super();
   }
 

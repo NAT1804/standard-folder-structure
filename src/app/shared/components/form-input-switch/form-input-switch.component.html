@@ -1,0 +1,13 @@
+<div [ngClass]="'field ' + classContainer">
+  <p-inputSwitch
+    [(ngModel)]="ngModelValue"
+    [disabled]="isDisabled"
+    [trueValue]="trueValue"
+    [falseValue]="falseValue"
+    (onChange)="onChange($event)"
+  ></p-inputSwitch>
+  <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+    {{ label }}
+    <span class="required-field" *ngIf="isRequired">*</span>
+  </label>
+</div>

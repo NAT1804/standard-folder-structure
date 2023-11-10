@@ -1,6 +1,15 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
+      <div
+        class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center my-2"
+      >
+        <div></div>
+        <emir-form-button
+          [label]="'Thêm mới'"
+          (_onClick)="create($event)"
+        ></emir-form-button>
+      </div>
       <emir-form-table
         [columns]="headerColumns"
         [dataSource]="dataSource"
@@ -8,6 +17,7 @@
         [resizableColumns]="true"
         [hideDivHeader]="true"
         [showPaginator]="false"
+        [listAction]="listAction"
       ></emir-form-table>
     </div>
   </div>

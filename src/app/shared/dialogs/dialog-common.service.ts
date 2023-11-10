@@ -15,7 +15,8 @@ export class DialogCommonService {
     component: any,
     width: string,
     height = String('auto'),
-    isResize = Boolean(true)
+    isResize = Boolean(true),
+    data?: any
   ) {
     const modalRef = this.dialogService.open(component, {
       showHeader: false,
@@ -30,6 +31,7 @@ export class DialogCommonService {
         'border-top-right-radius': '0.25rem',
       },
       resizable: isResize,
+      data: data,
     });
     return modalRef;
   }

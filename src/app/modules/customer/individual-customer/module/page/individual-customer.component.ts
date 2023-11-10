@@ -16,7 +16,6 @@ import {
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
 import { IndividualCustomerService } from '../../service/individual-customer.service';
 import { Page } from '@app/data/model/page';
@@ -55,10 +54,7 @@ export class IndividualCustomerComponent
   public listSource: IDropdown[] = [];
   public listStatus: IDropdown[] = [];
 
-  constructor(
-    private dialogCommonService: DialogCommonService,
-    private individualCustomerService: IndividualCustomerService
-  ) {
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 

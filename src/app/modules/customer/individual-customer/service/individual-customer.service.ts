@@ -175,4 +175,19 @@ export class IndividualCustomerService extends BaseService {
     url += this.convertParamUrl('custId', id);
     return this.requestGet(url);
   }
+
+  public getIndiCusDetailBankDetail(id: string) {
+    let url = String(this.baseAPIBank + '/GetCustAccountBankById?');
+    url += this.convertParamUrl('id', id);
+    return this.requestGet(url);
+  }
+
+  public createOrEditIndiCusDetailBank(body: any) {
+    return this.requestPost(
+      {
+        cust: body,
+      },
+      `${this.baseAPIBank}/SetCustAccountBankInfo`
+    );
+  }
 }

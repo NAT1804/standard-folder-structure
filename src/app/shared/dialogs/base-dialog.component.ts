@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'emir-base-dialog',
@@ -7,5 +7,6 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 })
 export class BaseDialogComponent {
   public dynamicDialogRef = inject(DynamicDialogRef);
+  public dynamicDialogConfig = inject(DynamicDialogConfig);
   public isSubmit = Boolean(false);
 }

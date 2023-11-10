@@ -9,7 +9,6 @@ import {
 import { scrollToError } from '@app/shared/function-common';
 import { STATUS_RESPONSE, TYPE_INPUT } from '@app/shared/constants/app.const';
 import { IndividualCustomerConst } from '../../../service/individual-customer.const';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IndividualCustomerService } from '../../../service/individual-customer.service';
 
 @Component({

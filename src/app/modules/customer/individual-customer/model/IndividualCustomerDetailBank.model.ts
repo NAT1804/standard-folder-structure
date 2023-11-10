@@ -3,5 +3,5 @@ export class IndividualCustomerDetailBankModel {
   public bankName: string;
   public accountNumber: string;
   public accountName: string;
-  public status: number;
+  public status: boolean;
 }

@@ -123,6 +123,7 @@
           </span>
           <span *ngIf="col.type === ETypeDataTable.STATUS">
             <p-tag
+              *ngIf="!!getStatus(row, 'style', col)"
               styleClass="p-tag-{{ getStatus(row, 'style', col) }}"
               severity="{{ getStatus(row, 'style', col) }}"
               value="{{ getStatus(row, 'label', col) }}"

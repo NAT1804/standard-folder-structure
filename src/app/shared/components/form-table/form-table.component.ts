@@ -145,7 +145,7 @@ export class FormTableComponent
       }
       return col.funcLabelStatus ? col.funcLabelStatus(row.status) : undefined;
     }
-    return '';
+    return undefined;
   }
 
   public setColumn(event: any) {

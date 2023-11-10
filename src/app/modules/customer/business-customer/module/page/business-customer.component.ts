@@ -36,7 +36,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
     return BusinessCustomerConst.getStatus(code, ETypeStatus.LABEL);
   }
 
-  constructor(private dialogCommonService: DialogCommonService) {
+  constructor() {
     super();
   }
 

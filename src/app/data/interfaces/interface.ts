@@ -94,3 +94,8 @@ export interface IActionButtonDialog {
   label: string;
   callBack: (...params: any[]) => void;
 }
+
+export interface ICloseDialog {
+  status: boolean;
+  message?: string;
+}
