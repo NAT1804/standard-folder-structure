@@ -79,7 +79,7 @@ export class CrudIndiCusDetailBankModel {
       bank_code: this.bank,
       acc_no: this.accountNo,
       acc_name: this.accountName,
-      is_default: !this.isDefault,
+      is_default: !!this.isDefault,
     };
   }
 

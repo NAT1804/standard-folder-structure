@@ -163,12 +163,7 @@ export class IndividualCustomerService extends BaseService {
   }
 
   public createOrEditIndividualCustomer(body: any) {
-    return this.requestPost(
-      {
-        cust: body,
-      },
-      `${this.baseAPI}/SetCustInfo`
-    );
+    return this.requestPost(body, `${this.baseAPI}/SetCustInfo`);
   }
 
   public getIndiCusDetailBank(id: string) {
@@ -184,12 +179,7 @@ export class IndividualCustomerService extends BaseService {
   }
 
   public createOrEditIndiCusDetailBank(body: any) {
-    return this.requestPost(
-      {
-        cust: body,
-      },
-      `${this.baseAPIBank}/SetCustAccountBankInfo`
-    );
+    return this.requestPost(body, `${this.baseAPIBank}/SetCustAccountBankInfo`);
   }
 
   public getIndiCusDetailContact(id: string) {
@@ -205,11 +195,6 @@ export class IndividualCustomerService extends BaseService {
   }
 
   public createOrEditIndiCusDetailContact(body: any) {
-    return this.requestPost(
-      {
-        cust: body,
-      },
-      `${this.baseAPIContact}/SetCustAddressInfo`
-    );
+    return this.requestPost(body, `${this.baseAPIContact}/SetCustAddressInfo`);
   }
 }

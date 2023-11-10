@@ -37,7 +37,7 @@ export class IndividualCustomerDetailBankComponent
   ngOnInit() {
     this.headerColumns = this.headerColumns = [
       {
-        field: 'id',
+        field: 'no',
         header: '#ID',
         width: '3rem',
         type: ETypeDataTable.INDEX,
@@ -109,9 +109,10 @@ export class IndividualCustomerDetailBankComponent
           this.spinnerService.removeSpinner();
           if (res.status === STATUS_RESPONSE.SUCCESS) {
             this.dataSource = res.data.map(
-              (data: any) =>
+              (data: any, index: number) =>
                 ({
-                  id: data.acc_no,
+                  id: data.id,
+                  no: index,
                   bankName: data.bank_code,
                   accountNumber: data.acc_no,
                   accountName: data.acc_name,
@@ -162,12 +163,10 @@ export class IndividualCustomerDetailBankComponent
     }
   }
 
-  public detail(event: any) {
-    if (event) {
+  public detail(data: IndividualCustomerDetailBankModel) {
+    if (data) {
       this.individualCustomerService
-        .getIndiCusDetailBankDetail(
-          this.individualCustomerService.individualCustomerId || ''
-        )
+        .getIndiCusDetailBankDetail(data.id)
         .subscribe((res: any) => {
           if (res.status === STATUS_RESPONSE.SUCCESS) {
             const modalRef = this.dialogCommonService.createDialog(

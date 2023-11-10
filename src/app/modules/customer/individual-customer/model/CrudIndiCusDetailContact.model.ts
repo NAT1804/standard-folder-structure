@@ -45,7 +45,7 @@ export class CrudIndiCusDetailContactModel {
       id: this.id,
       custId: this.customerId,
       contact_address: this.contactAddress,
-      is_default: !this.isDefault,
+      is_default: !!this.isDefault,
     };
   }
 

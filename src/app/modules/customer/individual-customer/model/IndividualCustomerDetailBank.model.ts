@@ -1,5 +1,6 @@
 export class IndividualCustomerDetailBankModel {
-  public id: number;
+  public no: number;
+  public id: string;
   public bankName: string;
   public accountNumber: string;
   public accountName: string;
