@@ -7,7 +7,11 @@ import {
   IImage,
 } from '@app/data/interfaces/interface';
 import { scrollToError } from '@app/shared/function-common';
-import { STATUS_RESPONSE, TYPE_INPUT } from '@app/shared/constants/app.const';
+import {
+  I_ADD_IMAGE_BG,
+  STATUS_RESPONSE,
+  TYPE_INPUT,
+} from '@app/shared/constants/app.const';
 import { IndividualCustomerConst } from '../../../service/individual-customer.const';
 import { IndividualCustomerService } from '../../../service/individual-customer.service';
 
@@ -35,6 +39,8 @@ export class CreateIndividualCustomerDialogComponent
   public get listGender() {
     return IndividualCustomerConst.listGender as IDropdown[];
   }
+  public frontImageIImage: IImage;
+  public backImageIImage: IImage;
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
@@ -52,26 +58,8 @@ export class CreateIndividualCustomerDialogComponent
       },
     ];
 
-    this.dataSource.frontImage =
-      'https://www.primefaces.org/mirage-ng/assets/demo/images/galleria/galleria10.jpg';
-    this.dataSource.backImage =
-      'https://www.primefaces.org/mirage-ng/assets/demo/images/galleria/galleria10.jpg';
-    this.dataSource.signatureImage =
-      'https://www.primefaces.org/mirage-ng/assets/demo/images/galleria/galleria10.jpg';
-  }
-
-  public get frontImageIImage() {
-    return {
-      src: this.dataSource.frontImage,
-      width: 'auto',
-    } as IImage;
-  }
-
-  public get backImageIImage() {
-    return {
-      src: this.dataSource.backImage,
-      width: 'auto',
-    } as IImage;
+    this.frontImageIImage = I_ADD_IMAGE_BG;
+    this.backImageIImage = I_ADD_IMAGE_BG;
   }
 
   public get signatureImageIImage() {
@@ -102,5 +90,15 @@ export class CreateIndividualCustomerDialogComponent
 
   public isValidData(key: string) {
     return this.dataSource.showValidateData(key);
+  }
+
+  public onChangeImage(event: IImage | undefined, key: string) {
+    if (event) {
+      if (key === 'frontImage') {
+        this.frontImageIImage = event;
+      } else if (key === 'backImage') {
+        this.backImageIImage = event;
+      }
+    }
   }
 }

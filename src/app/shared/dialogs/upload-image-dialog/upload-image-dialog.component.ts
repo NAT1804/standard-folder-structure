@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseDialogComponent } from '../base-dialog.component';
-import { IActionButtonDialog } from '@app/data/interfaces/interface';
+import {
+  IActionButtonDialog,
+  ICloseDialog,
+  IImage,
+} from '@app/data/interfaces/interface';
 import { CommonService } from '@app/shared/services/common.service';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { ToastService } from '@app/shared/services/toast.service';
-import { DynamicEnvironmentService } from '@app/core/services/configure/dynamic-environment.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 export const DEFAULT_MAX_FILE_SIZE = 100000000;
 
@@ -24,15 +26,12 @@ export class UploadImageDialogComponent
   public isImage = Boolean(false);
   public maxFileSize: number = DEFAULT_MAX_FILE_SIZE;
   public fileImageUrl = String('');
-  public BASE_URL = String('');
 
   constructor(
     private commonService: CommonService,
-    private toastService: ToastService,
-    private dynamicEnvironmentService: DynamicEnvironmentService
+    private toastService: ToastService
   ) {
     super();
-    this.BASE_URL = this.dynamicEnvironmentService.getConfig().baseAPIUrl;
   }
 
   ngOnInit() {
@@ -53,7 +52,16 @@ export class UploadImageDialogComponent
   };
 
   public onClickSaveDialog = () => {
-    console.log('onClickSaveDialog');
+    if (this.fileImageUrl && this.fileImageUrl.length) {
+      this.dynamicDialogRef.close({
+        status: true,
+        data: {
+          urlImage: this.fileImageUrl,
+        },
+      } as ICloseDialog);
+    } else {
+      this.dynamicDialogRef.close();
+    }
   };
 
   public get accept() {
@@ -76,8 +84,17 @@ export class UploadImageDialogComponent
     }
   }
 
-  public get backgroundImage() {
-    console.log(5555, `url(${this.BASE_URL}/${this.fileImageUrl})`);
-    return `url(${this.BASE_URL}/${this.fileImageUrl})`;
+  public onRemoveImage(event: any) {
+    if (event) {
+      this.fileImageUrl = '';
+    }
+  }
+
+  public get selectedImage() {
+    return {
+      src: this.fileImageUrl,
+      width: '200px',
+      height: '200px',
+    } as IImage;
   }
 }

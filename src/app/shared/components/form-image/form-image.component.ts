@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { IImage } from '@app/data/interfaces/interface';
+import { ICloseDialog, IImage } from '@app/data/interfaces/interface';
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
@@ -37,11 +37,13 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public maxFileSize = Number(0);
   @Input()
-  public showBtnRemove = Boolean(false);
+  public showBtnRemove = Boolean(true);
+  @Input()
+  public showBtnInsert = Boolean(true);
   @Input()
   public singleFile = Boolean(true);
   @Input()
-  public preview = Boolean(false);
+  public preview = Boolean(true);
   @Output()
   public _onChange: EventEmitter<IImage | undefined> = new EventEmitter<
     IImage | undefined
@@ -54,7 +56,6 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.baseUrl = AppConsts.remoteServiceBaseUrl;
     console.log('ngOnInit');
   }
 
@@ -67,59 +68,28 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   }
 
   public insertImage(event: any) {
-    if (event && !this.isDisabled) {
-      // const ref = this.dialogService.open(UploadImageComponent, {
-      //   data: {
-      //     showOrder: false,
-      //     isImage: true,
-      //     maxFileSize: this.maxFileSize,
-      //     singleFile: this.singleFile,
-      //   },
-      //   header: 'Chèn hình ảnh',
-      //   width: '600px',
-      //   footer: '',
-      // });
-      // ref.onClose.subscribe((images) => {
-      //   if (images) {
-      //     let imagesUrl = '';
-      //     images?.forEach((image) => {
-      //       imagesUrl += `${this.baseUrl}/${image.data}`;
-      //     });
-      //     this.src = `${this.baseUrl}/${
-      //       images && images.length ? images[0].data : ''
-      //     }`;
-      //     this.width = this.widthLimit || DEFAULT_WIDTH;
-      //     this.height = this.height || DEFAULT_HEIGHT;
-      //     this._onChange.emit({
-      //       src: this.src,
-      //       width: this.width,
-      //       height: this.height,
-      //     } as IImage);
-      //   }
-      // });
-
+    if (event) {
       const modalRef = this.dialogCommonService.createDialog(
         UploadImageDialogComponent,
         '600px'
       );
-      modalRef.onClose.subscribe((res) => {
-        if (res?.accept) {
-          console.log(1111);
+      modalRef.onClose.subscribe((res: ICloseDialog) => {
+        if (res?.status) {
+          this.src = res.data.urlImage || '';
+          this.width = this.widthLimit || DEFAULT_WIDTH;
+          this.height = this.height || DEFAULT_HEIGHT;
+          this._onChange.emit({
+            src: this.src,
+            width: this.width,
+            height: this.height,
+          } as IImage);
         }
       });
     }
   }
 
-  public get widthDiv() {
-    return typeof this.width === 'number' ? this.width + 'px' : this.width;
-  }
-
-  public get heightDiv() {
-    return typeof this.height === 'number' ? this.height + 'px' : this.height;
-  }
-
-  public remove(event: any) {
-    if (event && !this.isDisabled) {
+  public removeImage(event: any) {
+    if (event) {
       this._onRemove.emit(event);
     }
   }

@@ -1,9 +1,9 @@
 <emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
   <div class="grid">
     <div class="col-12">
-      <!-- <div class="card">
+      <div class="card">
         <div class="p-fluid p-formgrid grid">
-          <div class="col-12 lg:col-4 xl:col-3">
+          <!-- <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-dropdown
               [label]="'Loại giấy tờ'"
               [(ngModelValue)]="dataSource.typeOfDocument"
@@ -15,22 +15,23 @@
               "
               [isRequired]="true"
             ></emir-form-dropdown>
-          </div>
+          </div> -->
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-image
               [imageSource]="frontImageIImage"
-              [preview]="false"
               [isDisabled]="false"
+              (_onChange)="onChangeImage($event, 'frontImage')"
             ></emir-form-image>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-image
               [imageSource]="backImageIImage"
-              [preview]="true"
+              [isDisabled]="false"
+              (_onChange)="onChangeImage($event, 'backImage')"
             ></emir-form-image>
           </div>
         </div>
-      </div> -->
+      </div>
       <div class="card">
         <h5>Thông tin giấy tờ</h5>
         <div class="p-fluid p-formgrid grid">

@@ -1,3 +1,5 @@
+import { IImage } from '@app/data/interfaces/interface';
+
 export const DEFAULT_WIDTH = 100;
 export const DEFAULT_HEIGHT = 100;
 export enum ETypeDataTable {
@@ -71,3 +73,9 @@ export enum ETypeFormatDate {
   DATE_YMD = 'YYYY/MM/DD',
   DATE_TIME_VIEW = 'YYYY-MM-DDTHH:mm',
 }
+export const ADD_IMAGE_BG = 'assets/images/add-image-bg.svg';
+export const I_ADD_IMAGE_BG = {
+  src: 'assets/images/add-image-bg.svg',
+  width: 'auto',
+  height: 'auto',
+} as IImage;

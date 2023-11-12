@@ -168,7 +168,7 @@ export class IndividualCustomerDetailContactComponent
               }
             );
             modalRef.onClose.subscribe((res: ICloseDialog) => {
-              if (res.status) {
+              if (res?.status) {
                 this.getData();
               }
             });

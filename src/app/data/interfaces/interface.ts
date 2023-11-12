@@ -98,4 +98,5 @@ export interface IActionButtonDialog {
 export interface ICloseDialog {
   status: boolean;
   message?: string;
+  data?: any;
 }
