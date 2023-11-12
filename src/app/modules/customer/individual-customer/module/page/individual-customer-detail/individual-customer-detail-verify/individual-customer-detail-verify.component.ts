@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
+import { IndividualCustomerDetailVerifyModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailVerify.model';
+import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
+import {
+  EPositionFrozenCell,
+  EPositionTextCell,
+  ETypeDataTable,
+  SEVERITY,
+  STATUS_RESPONSE,
+} from '@app/shared/constants/app.const';
 
 @Component({
   selector: 'ecore-individual-customer-detail-verify',
@@ -10,11 +20,205 @@ export class IndividualCustomerDetailVerifyComponent
   extends BaseComponent
   implements OnInit
 {
-  constructor() {
+  public headerColumns: IHeaderColumn[] = [];
+  public dataSource: IndividualCustomerDetailVerifyModel[] = [];
+  public isLoading: boolean;
+  public listAction: IActionTable[][] = [];
+
+  constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
+    this.headerColumns = this.headerColumns = [
+      {
+        field: 'no',
+        header: '#ID',
+        width: '3rem',
+        type: ETypeDataTable.INDEX,
+        posTextCell: EPositionTextCell.CENTER,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.LEFT,
+        isSort: true,
+        fieldSort: 'id',
+      },
+      {
+        field: 'documentType',
+        header: 'Loại giấy tờ',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'documentType',
+        isResize: true,
+      },
+      {
+        field: 'code',
+        header: 'Mã giấy tờ',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'code',
+        isResize: true,
+      },
+      {
+        field: 'date',
+        header: 'Ngày cấp',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'date',
+        isResize: true,
+      },
+      {
+        field: 'expiredDate',
+        header: 'Ngày hết hạn',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'expiredDate',
+        isResize: true,
+      },
+      {
+        field: 'documentImage',
+        header: 'Ảnh giấy tờ',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'documentImage',
+        isResize: true,
+      },
+      {
+        field: 'signatureImage',
+        header: 'Ảnh chữ ký',
+        minWidth: '10rem',
+        type: ETypeDataTable.TEXT,
+        isSort: true,
+        fieldSort: 'signatureImage',
+        isResize: true,
+      },
+      {
+        field: 'status',
+        header: 'Trạng thái',
+        width: '8rem',
+        type: ETypeDataTable.STATUS,
+        funcStyleClassStatus: this.funcStyleClassStatus,
+        funcLabelStatus: this.funcLabelStatus,
+        posTextCell: EPositionTextCell.LEFT,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.RIGHT,
+      },
+      {
+        field: '',
+        header: '',
+        width: '3rem',
+        type: ETypeDataTable.ACTION,
+        posTextCell: EPositionTextCell.CENTER,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.RIGHT,
+      },
+    ];
+
+    this.getData();
+  }
+
+  public funcStyleClassStatus = (status: boolean) => {
+    return status ? SEVERITY.INFO : '';
+  };
+
+  public funcLabelStatus = (status: boolean) => {
+    return status ? 'Mặc định' : '';
+  };
+
+  private getData() {
+    if (this.individualCustomerService.individualCustomerId) {
+      this.individualCustomerService
+        .getIndiCusDetailVerify(
+          this.individualCustomerService.individualCustomerId
+        )
+        .subscribe((res: any) => {
+          this.spinnerService.removeSpinner();
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            this.dataSource = res.data.map(
+              (data: any, index: number) =>
+                ({
+                  no: index,
+                  id: data.id,
+                  documentType: data.idcard_type,
+                  code: data.idcard_no,
+                  date: data.idcard_issue_dt,
+                  expiredDate: data.idcard_expire_dt,
+                  documentImage: data.idcard_font_url,
+                  signatureImage: data.idcard_back_url,
+                  status: data.is_default,
+                }) as IndividualCustomerDetailVerifyModel
+            );
+            this.genListAction();
+          }
+        });
+    }
+  }
+
+  private genListAction() {
+    this.listAction = this.dataSource.map(
+      (data: IndividualCustomerDetailVerifyModel) => {
+        const actions: IActionTable[] = [];
+
+        actions.push({
+          data: data,
+          label: 'Xem chi tiết',
+          icon: 'pi pi-eye',
+          command: ($event) => {
+            this.detail($event.item.data);
+          },
+        });
+
+        return actions;
+      }
+    );
+  }
+
+  public create(event: any) {
+    if (event) {
+      // const modalRef = this.dialogCommonService.createDialog(
+      //   CrudIndiCusDetailSaleDialogComponent,
+      //   '600px',
+      //   'auto',
+      //   true,
+      //   {
+      //     customerId: this.individualCustomerService.individualCustomerId,
+      //   }
+      // );
+      // modalRef.onClose.subscribe((res: ICloseDialog) => {
+      //   if (res.status) {
+      //     this.getData();
+      //   }
+      // });
+    }
+  }
+
+  public detail(data: IndividualCustomerDetailVerifyModel) {
+    if (data) {
+      // this.individualCustomerService
+      //   .getIndiCusDetailSaleDetail(data.id)
+      //   .subscribe((res: any) => {
+      //     if (res.status === STATUS_RESPONSE.SUCCESS) {
+      //       const modalRef = this.dialogCommonService.createDialog(
+      //         CrudIndiCusDetailSaleDialogComponent,
+      //         '600px',
+      //         'auto',
+      //         true,
+      //         {
+      //           customerId: this.individualCustomerService.individualCustomerId,
+      //           dataSource: res.data,
+      //         }
+      //       );
+      //       modalRef.onClose.subscribe((res: ICloseDialog) => {
+      //         if (res.status) {
+      //           this.getData();
+      //         }
+      //       });
+      //     }
+      //   });
+    }
   }
 }

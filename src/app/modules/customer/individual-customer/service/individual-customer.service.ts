@@ -18,6 +18,7 @@ export class IndividualCustomerService extends BaseService {
   private readonly baseAPIBank = '/api/v1/accountbank';
   private readonly baseAPIContact = '/api/v1/custaddress';
   private readonly baseAPISale = '/api/v1/custsaler';
+  private readonly baseAPIVerify = '/api/v1/custidcard';
   public _listFilterIndividualCustomer: BehaviorSubject<
     IDropdown[] | undefined
   >;
@@ -213,5 +214,21 @@ export class IndividualCustomerService extends BaseService {
 
   public createOrEditIndiCusDetailSale(body: any) {
     return this.requestPost(body, `${this.baseAPISale}/SetCustSalerInfo`);
+  }
+
+  public getIndiCusDetailVerify(id: string) {
+    let url = String(this.baseAPIVerify + '/GetCustIdCardByCustId?');
+    url += this.convertParamUrl('custId', id);
+    return this.requestGet(url);
+  }
+
+  public getIndiCusDetailSaleVerify(id: string) {
+    let url = String(this.baseAPIVerify + '/GetCustIdCardById?');
+    url += this.convertParamUrl('id', id);
+    return this.requestGet(url);
+  }
+
+  public createOrEditIndiCusDetailVerify(body: any) {
+    return this.requestPost(body, `${this.baseAPIVerify}/SetCustIdCardInfo`);
   }
 }
