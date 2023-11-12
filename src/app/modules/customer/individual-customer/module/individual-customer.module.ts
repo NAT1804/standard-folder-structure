@@ -13,6 +13,7 @@ import { CreateIndividualCustomerDialogComponent } from './page/create-individua
 import { IndividualCustomerService } from '../service/individual-customer.service';
 import { CrudIndiCusDetailBankDialogComponent } from './page/individual-customer-detail/individual-customer-detail-bank/crud-indi-cus-detail-bank-dialog/crud-indi-cus-detail-bank-dialog.component';
 import { CrudIndiCusDetailContactDialogComponent } from './page/individual-customer-detail/individual-customer-detail-contact/crud-indi-cus-detail-contact-dialog/crud-indi-cus-detail-contact-dialog.component';
+import { CrudIndiCusDetailSaleDialogComponent } from './page/individual-customer-detail/individual-customer-detail-sale/crud-indi-cus-detail-sale-dialog/crud-indi-cus-detail-sale-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CrudIndiCusDetailContactDialogComponent } from './page/individual-custo
     CreateIndividualCustomerDialogComponent,
     CrudIndiCusDetailBankDialogComponent,
     CrudIndiCusDetailContactDialogComponent,
+    CrudIndiCusDetailSaleDialogComponent,
   ],
   imports: [CommonModule, SharedModule, IndividualCustomerRoutingModule],
   providers: [IndividualCustomerService],

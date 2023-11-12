@@ -179,9 +179,9 @@ export class IndividualCustomerDetailBankComponent
                 dataSource: res.data,
               }
             );
-            modalRef.onClose.subscribe((res) => {
-              if (res?.accept) {
-                console.log(1111);
+            modalRef.onClose.subscribe((res: ICloseDialog) => {
+              if (res.status) {
+                this.getData();
               }
             });
           }

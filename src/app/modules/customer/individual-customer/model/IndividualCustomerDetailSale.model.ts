@@ -1,5 +1,6 @@
 export class IndividualCustomerDetailSaleModel {
-  public id: number;
+  public id: string;
+  public no: number;
   public code: string;
   public name: string;
   public phone: string;

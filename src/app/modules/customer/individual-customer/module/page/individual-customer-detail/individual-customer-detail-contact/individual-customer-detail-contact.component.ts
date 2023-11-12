@@ -151,12 +151,10 @@ export class IndividualCustomerDetailContactComponent
     }
   }
 
-  public detail(event: any) {
-    if (event) {
+  public detail(data: IndividualCustomerDetailContactModel) {
+    if (data) {
       this.individualCustomerService
-        .getIndiCusDetailContactDetail(
-          this.individualCustomerService.individualCustomerId || ''
-        )
+        .getIndiCusDetailContactDetail(data.id)
         .subscribe((res: any) => {
           if (res.status === STATUS_RESPONSE.SUCCESS) {
             const modalRef = this.dialogCommonService.createDialog(
@@ -169,9 +167,9 @@ export class IndividualCustomerDetailContactComponent
                 dataSource: res.data,
               }
             );
-            modalRef.onClose.subscribe((res) => {
-              if (res?.accept) {
-                console.log(1111);
+            modalRef.onClose.subscribe((res: ICloseDialog) => {
+              if (res.status) {
+                this.getData();
               }
             });
           }

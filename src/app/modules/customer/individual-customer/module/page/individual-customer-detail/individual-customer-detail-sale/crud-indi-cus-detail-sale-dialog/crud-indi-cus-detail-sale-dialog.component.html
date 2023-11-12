@@ -1,0 +1,59 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Mã tư vấn viên'"
+          [(ngModelValue)]="dataSource.code"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('code')"
+          [messageError]="dataSource.dataValidator['code'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Họ và tên'"
+          [(ngModelValue)]="dataSource.name"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('name')"
+          [messageError]="dataSource.dataValidator['name'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Số điện thoại'"
+          [(ngModelValue)]="dataSource.phone"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('phone')"
+          [messageError]="dataSource.dataValidator['phone'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Phòng ban'"
+          [(ngModelValue)]="dataSource.organization"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('organization')"
+          [messageError]="
+            dataSource.dataValidator['organization'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input-calendar
+          [label]="'Ngày bắt đầu tư vấn'"
+          [isRequired]="true"
+          [(ngModelValue)]="dataSource.date"
+          [placeholder]="'dd/mm/yy'"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('date')"
+          [messageError]="dataSource.dataValidator['date'].toMessageString()"
+        ></emir-form-input-calendar>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>
