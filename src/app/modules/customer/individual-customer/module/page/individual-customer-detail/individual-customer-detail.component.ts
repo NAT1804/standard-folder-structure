@@ -8,6 +8,7 @@ import { IndividualCustomerDetailVerifyComponent } from './individual-customer-d
 import { IndividualCustomerDetailSaleComponent } from './individual-customer-detail-sale/individual-customer-detail-sale.component';
 import { IndividualCustomerService } from '../../../service/individual-customer.service';
 import { IndividualCustomerConst } from '../../../service/individual-customer.const';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'ecore-individual-customer-detail',
@@ -26,6 +27,12 @@ export class IndividualCustomerDetailComponent
   }
 
   ngOnInit() {
+    this.breadcrumbService.setItems([
+      { label: 'Trang chủ', routerLink: ['/home'] },
+      { label: 'Khách hàng' },
+      { label: 'Khách hàng cá nhân' },
+      { label: 'Chi tiết khách hàng cá nhân' },
+    ] as MenuItem[]);
     this.individualCustomerService.individualCustomerId =
       this.routeActive.snapshot.paramMap.get('id') || undefined;
     this.getListTabPanel();

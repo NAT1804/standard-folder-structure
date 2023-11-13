@@ -7,7 +7,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ICloseDialog, IImage } from '@app/data/interfaces/interface';
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '@app/shared/constants/app.const';
+import {
+  ADD_IMAGE_BG,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { UploadImageDialogComponent } from '@app/shared/dialogs/upload-image-dialog/upload-image-dialog.component';
@@ -100,5 +104,12 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
 
   public get heightImg() {
     return typeof this.height === 'number' ? this.height + 'px' : this.height;
+  }
+
+  public get _preview() {
+    if (this.src === ADD_IMAGE_BG) {
+      return false;
+    }
+    return this.preview;
   }
 }

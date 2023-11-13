@@ -4,7 +4,12 @@ import { BaseComponent } from '@app/modules/base-component/base-component.compon
 import { IndividualCustomerDetailGeneralModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailGeneral.model';
 import { IndividualCustomerConst } from '@app/modules/customer/individual-customer/service/individual-customer.const';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
-import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import {
+  HEIGHT_DEFAULT_IMAGE,
+  I_ADD_IMAGE_BG,
+  STATUS_RESPONSE,
+  WIDTH_DEFAULT_IMAGE,
+} from '@app/shared/constants/app.const';
 import { scrollToError } from '@app/shared/function-common';
 
 @Component({
@@ -22,6 +27,10 @@ export class IndividualCustomerDetailGeneralComponent
     return IndividualCustomerConst.listGender;
   }
   public listIdType: IDropdown[] = [];
+  public listNation: IDropdown[] = [];
+  public avatarImageIImage: IImage = I_ADD_IMAGE_BG;
+  public frontImageIImage: IImage = I_ADD_IMAGE_BG;
+  public backImageIImage: IImage = I_ADD_IMAGE_BG;
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
@@ -29,6 +38,7 @@ export class IndividualCustomerDetailGeneralComponent
 
   ngOnInit() {
     this.individualCustomerService.isEdit = false;
+    this.individualCustomerService._handleEventSave.next(false);
     this.initData();
     this.getData();
   }
@@ -38,6 +48,14 @@ export class IndividualCustomerDetailGeneralComponent
       (res: IDropdown[] | undefined) => {
         if (res) {
           this.listIdType = res;
+        }
+      }
+    );
+
+    this.apiConstantService._listNation$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listNation = res;
         }
       }
     );
@@ -53,6 +71,7 @@ export class IndividualCustomerDetailGeneralComponent
 
   private initData() {
     this.individualCustomerService.getListIdTypeIndividualCustomer();
+    this.apiConstantService.getListNation();
   }
 
   private getData() {
@@ -63,22 +82,26 @@ export class IndividualCustomerDetailGeneralComponent
         )
         .subscribe((res) => {
           this.dataSource.mapDTO(res.data);
+          if (this.dataSource.frontImage && this.dataSource.frontImage.length) {
+            this.frontImageIImage = {
+              src: this.dataSource.frontImage,
+              width: WIDTH_DEFAULT_IMAGE,
+              height: HEIGHT_DEFAULT_IMAGE,
+            };
+          } else {
+            this.frontImageIImage = I_ADD_IMAGE_BG;
+          }
+          if (this.dataSource.backImage && this.dataSource.backImage.length) {
+            this.backImageIImage = {
+              src: this.dataSource.backImage,
+              width: WIDTH_DEFAULT_IMAGE,
+              height: HEIGHT_DEFAULT_IMAGE,
+            };
+          } else {
+            this.backImageIImage = I_ADD_IMAGE_BG;
+          }
         });
     }
-  }
-
-  public get avatarIImage() {
-    return {
-      src: this.dataSource.avatar,
-      width: 'auto',
-    } as IImage;
-  }
-
-  public get idImageIImage() {
-    return {
-      src: this.dataSource.idImage,
-      width: 'auto',
-    } as IImage;
   }
 
   private saveData() {
@@ -115,5 +138,35 @@ export class IndividualCustomerDetailGeneralComponent
 
   public get isDisabled() {
     return !this.individualCustomerService.isEdit;
+  }
+
+  public onChangeImage(event: IImage | undefined, key: string) {
+    if (event) {
+      if (key === 'avatarImage') {
+        this.avatarImageIImage = event;
+        this.dataSource.avatar = event.src;
+      } else if (key === 'frontImage') {
+        this.frontImageIImage = event;
+        this.dataSource.frontImage = event.src;
+      } else if (key === 'backImage') {
+        this.backImageIImage = event;
+        this.dataSource.backImage = event.src;
+      }
+    }
+  }
+
+  public onRemoveImage(event: IImage | undefined, key: string) {
+    if (event) {
+      if (key === 'avatarImage') {
+        this.avatarImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.avatar = '';
+      } else if (key === 'frontImage') {
+        this.frontImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.frontImage = '';
+      } else if (key === 'backImage') {
+        this.backImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.backImage = '';
+      }
+    }
   }
 }

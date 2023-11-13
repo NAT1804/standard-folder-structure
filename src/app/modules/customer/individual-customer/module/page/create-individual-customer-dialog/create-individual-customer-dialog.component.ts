@@ -28,6 +28,7 @@ export class CreateIndividualCustomerDialogComponent
   public dataSource: CreateIndividualCustomerModel =
     new CreateIndividualCustomerModel();
   public listTypeOfDocument: IDropdown[] = [];
+  public listNation: IDropdown[] = [];
 
   public get TYPE_INPUT() {
     return TYPE_INPUT;
@@ -46,6 +47,7 @@ export class CreateIndividualCustomerDialogComponent
 
   ngOnInit() {
     this.individualCustomerService.getListIdTypeIndividualCustomer();
+    this.apiConstantService.getListNation();
     this.listAction = [
       {
         label: 'Đóng',
@@ -63,6 +65,13 @@ export class CreateIndividualCustomerDialogComponent
       (res: IDropdown[] | undefined) => {
         if (res) {
           this.listTypeOfDocument = res;
+        }
+      }
+    );
+    this.apiConstantService._listNation$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listNation = res;
         }
       }
     );

@@ -2,24 +2,55 @@
   <div class="col-12">
     <div class="card">
       <div class="p-fluid p-formgrid grid">
-        <!-- <div class="col-12 lg:col-4 xl:col-4">
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-label
+            [classLabel]="'inline-block mb-2'"
+            [label]="'Ảnh đại diện'"
+          ></emir-form-label>
           <emir-form-image
-            [imageSource]="avatarIImage"
-            [preview]="true"
+            [imageSource]="avatarImageIImage"
+            [isDisabled]="isDisabled"
+            (_onChange)="onChangeImage($event, 'avatarImage')"
+            (_onRemove)="onRemoveImage($event, 'avatarImage')"
           ></emir-form-image>
         </div>
-        <div class="col-12 lg:col-4 xl:col-4">
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-label
+            [classLabel]="'inline-block mb-2'"
+            [label]="'Ảnh mặt trước'"
+            [isRequired]="true"
+          ></emir-form-label>
           <emir-form-image
-            [imageSource]="idImageIImage"
-            [preview]="true"
+            [imageSource]="frontImageIImage"
+            [isDisabled]="isDisabled"
+            (_onChange)="onChangeImage($event, 'frontImage')"
+            (_onRemove)="onRemoveImage($event, 'frontImage')"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('frontImage')"
+            [messageError]="
+              dataSource.dataValidator['frontImage'].toMessageString()
+            "
           ></emir-form-image>
         </div>
-        <div class="col-12 lg:col-4 xl:col-4">
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-label
+            [classLabel]="'inline-block mb-2'"
+            [label]="'Ảnh mặt sau'"
+            [isRequired]="true"
+          ></emir-form-label>
           <emir-form-image
-            [imageSource]="idImageIImage"
-            [preview]="true"
+            [imageSource]="backImageIImage"
+            [isDisabled]="isDisabled"
+            (_onChange)="onChangeImage($event, 'backImage')"
+            (_onRemove)="onRemoveImage($event, 'backImage')"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('backImage')"
+            [messageError]="
+              dataSource.dataValidator['backImage'].toMessageString()
+            "
           ></emir-form-image>
-        </div> -->
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3"></div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input
             [label]="'Mã khách hàng'"
@@ -139,8 +170,9 @@
           ></emir-form-input>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
+          <emir-form-dropdown
             [label]="'Quốc tịch'"
+            [options]="listNation"
             [(ngModelValue)]="dataSource.nation"
             [isSubmit]="isSubmit"
             [isValidData]="isValidData('nation')"
@@ -149,7 +181,7 @@
             "
             [isRequired]="true"
             [isDisabled]="isDisabled"
-          ></emir-form-input>
+          ></emir-form-dropdown>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
           <emir-form-input

@@ -83,7 +83,6 @@ export class FormTableComponent
   public _onSort: EventEmitter<ISortTable> = new EventEmitter<ISortTable>();
   @Output()
   public pageChange: EventEmitter<Page> = new EventEmitter<Page>();
-  public visible = Boolean(false);
 
   constructor(public changeDetectorRef: ChangeDetectorRef) {
     super();
@@ -102,11 +101,9 @@ export class FormTableComponent
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes && changes['columns']) {
-      this.visible = false;
+    if (changes) {
       this.changeDetectorRef.detectChanges();
       this.changeDetectorRef.markForCheck();
-      this.visible = true;
     }
   }
 

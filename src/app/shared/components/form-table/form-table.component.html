@@ -1,6 +1,5 @@
 <ng-container>
   <p-table
-    *ngIf="visible"
     class="block"
     [columns]="columns"
     [value]="dataSource"
@@ -29,7 +28,6 @@
         <th
           *ngFor="let col of columns; index as i"
           [ngStyle]="{
-            'max-width': getWidth('max', col),
             'min-width': getWidth('min', col),
             width: getWidth('width', col)
           }"
@@ -77,7 +75,6 @@
         <td
           *ngFor="let col of columns; index as i"
           [ngStyle]="{
-            'max-width': getWidth('max', col),
             'min-width': getWidth('min', col),
             width: getWidth('width', col),
             'text-align': col.posTextCell || EPositionTextCell.LEFT

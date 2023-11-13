@@ -15,6 +15,9 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
   public mapDTO(dto: any) {
     if (dto) {
       this.id = dto.custId;
+      this.avatar = dto.avatar_url;
+      this.frontImage = dto.idcard_font_url;
+      this.backImage = dto.idcard_back_url;
       this.code = dto.cif_no;
       this.fullname = dto.full_name;
       this.birthday = dto.birthday ? new Date(dto.birthday) : undefined;
@@ -43,6 +46,8 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
 
   public isValidDataEdit() {
     return (
+      this.isValidFrontImage() &&
+      this.isValidBackImage() &&
       this.isValidFullname() &&
       this.isValidBirthday() &&
       this.isValidGender() &&
@@ -62,6 +67,9 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
     return {
       cust_type: IndividualCustomerConst.TYPE_INDIVIDUAL_CUSTOMER,
       custId: this.id,
+      avatar_url: this.avatar,
+      idcard_font_url: this.frontImage,
+      idcard_back_url: this.backImage,
       cif_no: this.idNo,
       full_name: this.fullname,
       birthday: this.birthday ? formatDateToAPI(this.birthday) : undefined,
