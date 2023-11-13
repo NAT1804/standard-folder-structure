@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { CreateIndividualCustomerModel } from '../../../model/CreateIndividualCustomer.model';
 import {
@@ -22,31 +22,30 @@ import { IndividualCustomerService } from '../../../service/individual-customer.
 })
 export class CreateIndividualCustomerDialogComponent
   extends BaseDialogComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public listAction: IActionButtonDialog[] = [];
   public dataSource: CreateIndividualCustomerModel =
     new CreateIndividualCustomerModel();
+  public listTypeOfDocument: IDropdown[] = [];
 
   public get TYPE_INPUT() {
     return TYPE_INPUT;
   }
 
-  public get listTypeOfDocument() {
-    return [] as IDropdown[];
-  }
-
   public get listGender() {
     return IndividualCustomerConst.listGender as IDropdown[];
   }
-  public frontImageIImage: IImage;
-  public backImageIImage: IImage;
+  public frontImageIImage: IImage = I_ADD_IMAGE_BG;
+  public backImageIImage: IImage = I_ADD_IMAGE_BG;
+  public signatureImageIImage: IImage = I_ADD_IMAGE_BG;
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
   }
 
   ngOnInit() {
+    this.individualCustomerService.getListIdTypeIndividualCustomer();
     this.listAction = [
       {
         label: 'Đóng',
@@ -57,16 +56,16 @@ export class CreateIndividualCustomerDialogComponent
         callBack: this.onClickSaveDialog,
       },
     ];
-
-    this.frontImageIImage = I_ADD_IMAGE_BG;
-    this.backImageIImage = I_ADD_IMAGE_BG;
   }
 
-  public get signatureImageIImage() {
-    return {
-      src: this.dataSource.signatureImage,
-      width: 'auto',
-    } as IImage;
+  ngAfterViewInit(): void {
+    this.individualCustomerService._listIdTypeIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listTypeOfDocument = res;
+        }
+      }
+    );
   }
 
   public onClickCloseDialog = () => {
@@ -96,8 +95,28 @@ export class CreateIndividualCustomerDialogComponent
     if (event) {
       if (key === 'frontImage') {
         this.frontImageIImage = event;
+        this.dataSource.frontImage = event.src;
       } else if (key === 'backImage') {
         this.backImageIImage = event;
+        this.dataSource.backImage = event.src;
+      } else if (key === 'signatureImage') {
+        this.signatureImageIImage = event;
+        this.dataSource.signatureImage = event.src;
+      }
+    }
+  }
+
+  public onRemoveImage(event: IImage | undefined, key: string) {
+    if (event) {
+      if (key === 'frontImage') {
+        this.frontImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.frontImage = '';
+      } else if (key === 'backImage') {
+        this.backImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.backImage = '';
+      } else if (key === 'signatureImage') {
+        this.signatureImageIImage = I_ADD_IMAGE_BG;
+        this.dataSource.signatureImage = '';
       }
     }
   }

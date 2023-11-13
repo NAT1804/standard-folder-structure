@@ -34,6 +34,7 @@ import { FormSpinnerLoadingComponent } from './components/form-spinner-loading/f
 import { UploadImageDialogComponent } from './dialogs/upload-image-dialog/upload-image-dialog.component';
 import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
 import { FormInputSwitchComponent } from './components/form-input-switch/form-input-switch.component';
+import { FormLabelComponent } from './components/form-label/form-label.component';
 
 import { SpinnerService } from './services/spinner.service';
 import { DialogCommonService } from './dialogs/dialog-common.service';
@@ -78,6 +79,7 @@ export const commonComponents: any[] = [
   FormSpinnerLoadingComponent,
   FormDropdownComponent,
   FormInputSwitchComponent,
+  FormLabelComponent,
 ];
 
 export const commonDialogs: any[] = [UploadImageDialogComponent];

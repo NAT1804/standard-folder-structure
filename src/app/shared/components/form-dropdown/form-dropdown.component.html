@@ -23,7 +23,7 @@
 <!-- #region form -->
 <ng-container *ngIf="!floatLabel">
   <div [ngClass]="'field ' + classContainer">
-    <label for="" [ngClass]="'title-info' + classLabel" *ngIf="showLabel">
+    <label for="" [ngClass]="classLabel" *ngIf="showLabel">
       {{ label }}
       <span class="required-field" *ngIf="isRequired">*</span>
     </label>

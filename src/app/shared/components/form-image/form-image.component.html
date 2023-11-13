@@ -22,4 +22,7 @@
       (click)="removeImage($event)"
     ></i>
   </div>
+  <small id="" *ngIf="isValidData && isSubmit" class="p-error">
+    {{ messageError }}
+  </small>
 </div>

@@ -28,11 +28,7 @@
 <!-- #region form -->
 <ng-container *ngIf="!floatLabel">
   <div [ngClass]="'field' + classContainer">
-    <label
-      for="multiSelect"
-      [ngClass]="'title-info' + classLabel"
-      *ngIf="showLabel"
-    >
+    <label for="multiSelect" [ngClass]="classLabel" *ngIf="showLabel">
       {{ label }}
       <span class="required-field" *ngIf="isRequired">*</span>
     </label>

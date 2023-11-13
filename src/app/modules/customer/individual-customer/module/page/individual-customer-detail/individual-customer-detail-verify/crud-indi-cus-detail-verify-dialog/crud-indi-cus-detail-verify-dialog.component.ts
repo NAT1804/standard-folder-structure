@@ -28,8 +28,8 @@ export class CrudIndiCusDetailVerifyDialogComponent
   public dataSource: CrudIndiCusDetailVerifyModel =
     new CrudIndiCusDetailVerifyModel();
   public listTypeOfDocument: IDropdown[] = [];
-  public frontImageIImage: IImage;
-  public backImageIImage: IImage;
+  public frontImageIImage: IImage = I_ADD_IMAGE_BG;
+  public backImageIImage: IImage = I_ADD_IMAGE_BG;
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
@@ -47,8 +47,6 @@ export class CrudIndiCusDetailVerifyDialogComponent
         callBack: this.onClickSaveDialog,
       },
     ];
-    this.frontImageIImage = I_ADD_IMAGE_BG;
-    this.backImageIImage = I_ADD_IMAGE_BG;
 
     if (this.dynamicDialogConfig.data) {
       if (this.dynamicDialogConfig.data.customerId) {

@@ -254,7 +254,7 @@ export class CreateIndividualCustomerModel {
 
   public isValidData() {
     return (
-      // this.isValidTypeOfDocument() &&
+      this.isValidTypeOfDocument() &&
       this.isValidFrontImage() &&
       this.isValidBackImage() &&
       this.isValidIdNo() &&
