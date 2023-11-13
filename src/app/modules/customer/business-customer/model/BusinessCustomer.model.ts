@@ -1,7 +1,9 @@
 export class BusinessCustomerModel {
-  public id: number;
+  public no: number;
+  public id: string;
   public code: string;
   public abbreviation: string;
   public name: string;
   public status: number;
+  public statusSeverity: string;
 }

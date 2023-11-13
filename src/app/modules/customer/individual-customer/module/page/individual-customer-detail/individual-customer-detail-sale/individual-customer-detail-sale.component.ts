@@ -190,7 +190,7 @@ export class IndividualCustomerDetailSaleComponent
         }
       );
       modalRef.onClose.subscribe((res: ICloseDialog) => {
-        if (res.status) {
+        if (res?.status) {
           this.getData();
         }
       });
@@ -214,7 +214,7 @@ export class IndividualCustomerDetailSaleComponent
               }
             );
             modalRef.onClose.subscribe((res: ICloseDialog) => {
-              if (res.status) {
+              if (res?.status) {
                 this.getData();
               }
             });

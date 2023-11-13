@@ -5,16 +5,16 @@
         <h5>Thông tin doanh nghiệp</h5>
         <div class="p-fluid p-formgrid grid">
           <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Mã doanh nghiệp'"
-              [(ngModelValue)]="dataSource.code"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('code')"
-              [messageError]="
-                dataSource.dataValidator['code'].toMessageString()
-              "
-              [isRequired]="true"
-            ></emir-form-input>
+            <emir-form-label
+              [classLabel]="'inline-block mb-2'"
+              [label]="'Ảnh mặt trước'"
+            ></emir-form-label>
+            <emir-form-image
+              [imageSource]="avatarIImage"
+              [isDisabled]="false"
+              (_onChange)="onChangeAvatar($event)"
+              (_onRemove)="onRemoveAvatar($event)"
+            ></emir-form-image>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
@@ -32,12 +32,6 @@
             <emir-form-input
               [label]="'Nơi cấp'"
               [(ngModelValue)]="dataSource.taxCodePlace"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('taxCodePlace')"
-              [messageError]="
-                dataSource.dataValidator['taxCodePlace'].toMessageString()
-              "
-              [isRequired]="true"
             ></emir-form-input>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
@@ -45,24 +39,6 @@
               [label]="'Ngày cấp'"
               [isRequired]="true"
               [(ngModelValue)]="dataSource.taxCodeDate"
-              [placeholder]="'dd/mm/yy'"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('taxCodeDate')"
-              [messageError]="
-                dataSource.dataValidator['taxCodeDate'].toMessageString()
-              "
-            ></emir-form-input-calendar>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input-number
-              [label]="'Số lần thay đổi'"
-              [(ngModelValue)]="dataSource.timesChange"
-            ></emir-form-input-number>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input-calendar
-              [label]="'Ngày thay đổi'"
-              [(ngModelValue)]="dataSource.dateChange"
               [placeholder]="'dd/mm/yy'"
             ></emir-form-input-calendar>
           </div>
@@ -82,19 +58,7 @@
             <emir-form-input
               [label]="'Tên viết tắt'"
               [(ngModelValue)]="dataSource.abbreviation"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('abbreviation')"
-              [messageError]="
-                dataSource.dataValidator['abbreviation'].toMessageString()
-              "
-              [isRequired]="true"
             ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input-number
-              [label]="'Vốn điều lệ'"
-              [(ngModelValue)]="dataSource.authorizedCapital"
-            ></emir-form-input-number>
           </div>
         </div>
       </div>
@@ -115,56 +79,8 @@
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
-              [label]="'Số điện thoại khác'"
-              [(ngModelValue)]="dataSource.otherPhone"
-            ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Website'"
-              [(ngModelValue)]="dataSource.website"
-            ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Facebook'"
-              [(ngModelValue)]="dataSource.facebook"
-            ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Địa chỉ đăng ký'"
-              [(ngModelValue)]="dataSource.registerAddress"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('registerAddress')"
-              [messageError]="
-                dataSource.dataValidator['registerAddress'].toMessageString()
-              "
-              [isRequired]="true"
-            ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Địa chỉ giao dịch'"
-              [(ngModelValue)]="dataSource.transactionAddress"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('transactionAddress')"
-              [messageError]="
-                dataSource.dataValidator['transactionAddress'].toMessageString()
-              "
-              [isRequired]="true"
-            ></emir-form-input>
-          </div>
-          <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
-              [label]="'Quốc gia'"
-              [(ngModelValue)]="dataSource.nation"
-              [isSubmit]="isSubmit"
-              [isValidData]="isValidData('nation')"
-              [messageError]="
-                dataSource.dataValidator['nation'].toMessageString()
-              "
-              [isRequired]="true"
+              [label]="'Địa chỉ'"
+              [(ngModelValue)]="dataSource.address"
             ></emir-form-input>
           </div>
         </div>
@@ -175,12 +91,6 @@
               <emir-form-input
                 [label]="'Người đại diện'"
                 [(ngModelValue)]="dataSource.representative"
-                [isSubmit]="isSubmit"
-                [isValidData]="isValidData('representative')"
-                [messageError]="
-                  dataSource.dataValidator['representative'].toMessageString()
-                "
-                [isRequired]="true"
               ></emir-form-input>
             </div>
             <div class="col-12 lg:col-4 xl:col-3">
@@ -188,19 +98,6 @@
                 [label]="'Chức vụ'"
                 [(ngModelValue)]="dataSource.representativePosition"
               ></emir-form-input>
-            </div>
-            <div class="col-12 lg:col-4 xl:col-3">
-              <emir-form-input
-                [label]="'Quyết định số'"
-                [(ngModelValue)]="dataSource.decisionNumber"
-              ></emir-form-input>
-            </div>
-            <div class="col-12 lg:col-4 xl:col-3">
-              <emir-form-input-calendar
-                [label]="'Ngày quyết định'"
-                [(ngModelValue)]="dataSource.decisionDate"
-                [placeholder]="'dd/mm/yy'"
-              ></emir-form-input-calendar>
             </div>
           </div>
         </div>

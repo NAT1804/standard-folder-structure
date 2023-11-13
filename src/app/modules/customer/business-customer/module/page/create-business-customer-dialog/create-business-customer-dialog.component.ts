@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { IActionButtonDialog } from '@app/data/interfaces/interface';
+import {
+  IActionButtonDialog,
+  ICloseDialog,
+  IImage,
+} from '@app/data/interfaces/interface';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { CreateBusinessCustomerModel } from '../../../model/CreateBusinessCustomer.model';
 import { scrollToError } from '@app/shared/function-common';
+import {
+  I_ADD_IMAGE_BG,
+  STATUS_RESPONSE,
+} from '@app/shared/constants/app.const';
+import { BusinessCustomerService } from '../../../service/business-customer.service';
 
 @Component({
   selector: 'ecore-create-business-customer-dialog',
@@ -16,8 +25,9 @@ export class CreateBusinessCustomerDialogComponent
   public listAction: IActionButtonDialog[] = [];
   public dataSource: CreateBusinessCustomerModel =
     new CreateBusinessCustomerModel();
+  public avatarIImage: IImage = I_ADD_IMAGE_BG;
 
-  constructor() {
+  constructor(private businessCustomerService: BusinessCustomerService) {
     super();
   }
 
@@ -35,13 +45,21 @@ export class CreateBusinessCustomerDialogComponent
   }
 
   public onClickCloseDialog = () => {
-    console.log('onClickCloseDialog');
+    this.dynamicDialogRef.close();
   };
 
   public onClickSaveDialog = () => {
     this.isSubmit = true;
     if (this.dataSource.isValidData()) {
-      console.log('onClickSaveDialog');
+      this.businessCustomerService
+        .createOrEditBusinessCustomer(this.dataSource.toObjectSendToAPI())
+        .subscribe((response) => {
+          if (response.status === STATUS_RESPONSE.SUCCESS) {
+            this.dynamicDialogRef.close({
+              status: true,
+            } as ICloseDialog);
+          }
+        });
     } else {
       scrollToError();
     }
@@ -49,5 +67,17 @@ export class CreateBusinessCustomerDialogComponent
 
   public isValidData(key: string) {
     return this.dataSource.showValidateData(key);
+  }
+
+  public onChangeAvatar(event: IImage | undefined) {
+    if (event) {
+      this.avatarIImage = event;
+      this.dataSource.avatar = event.src;
+    }
+  }
+
+  public onRemoveAvatar(event: any) {
+    this.avatarIImage = I_ADD_IMAGE_BG;
+    this.dataSource.avatar = '';
   }
 }

@@ -225,7 +225,7 @@ export class IndividualCustomerDetailVerifyComponent
               }
             );
             modalRef.onClose.subscribe((res: ICloseDialog) => {
-              if (res.status) {
+              if (res?.status) {
                 this.getData();
               }
             });

@@ -117,7 +117,7 @@ export class CrudIndiCusDetailVerifyDialogComponent
     }
   }
 
-  public onRemoveImage(event: IImage | undefined, key: string) {
+  public onRemoveImage(event: any, key: string) {
     if (event) {
       if (key === 'frontImage') {
         this.frontImageIImage = I_ADD_IMAGE_BG;

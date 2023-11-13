@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   IActionTable,
+  ICloseDialog,
   IDropdown,
   IHeaderColumn,
   ISortTable,
@@ -245,9 +246,9 @@ export class IndividualCustomerComponent
         '100%',
         '100%'
       );
-      modalRef.onClose.subscribe((res) => {
-        if (res?.accept) {
-          console.log(1111);
+      modalRef.onClose.subscribe((res: ICloseDialog) => {
+        if (res?.status) {
+          this.setPage();
         }
       });
     }

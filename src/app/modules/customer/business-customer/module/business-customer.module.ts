@@ -6,6 +6,7 @@ import { BusinessCustomerRoutingModule } from './business-customer-routing';
 import { BusinessCustomerDetailComponent } from './page/business-customer-detail/business-customer-detail.component';
 import { BusinessCustomerDetailGeneralComponent } from './page/business-customer-detail/business-customer-detail-general/business-customer-detail-general.component';
 import { CreateBusinessCustomerDialogComponent } from './page/create-business-customer-dialog/create-business-customer-dialog.component';
+import { BusinessCustomerService } from '../service/business-customer.service';
 
 @NgModule({
   declarations: [
@@ -15,5 +16,6 @@ import { CreateBusinessCustomerDialogComponent } from './page/create-business-cu
     CreateBusinessCustomerDialogComponent,
   ],
   imports: [CommonModule, SharedModule, BusinessCustomerRoutingModule],
+  providers: [BusinessCustomerService],
 })
 export class BusinessCustomerModule {}

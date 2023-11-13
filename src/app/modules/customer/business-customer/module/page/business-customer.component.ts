@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  IActionTable,
+  ICloseDialog,
+  IDropdown,
+  IHeaderColumn,
+  ISortTable,
+} from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { BusinessCustomerModel } from '../../model/BusinessCustomer.model';
 import { BusinessCustomerConst } from '../../service/business-customer.const';
@@ -7,36 +13,41 @@ import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
-  ETypeStatus,
+  STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { MenuItem } from 'primeng/api';
-import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { CreateBusinessCustomerDialogComponent } from './create-business-customer-dialog/create-business-customer-dialog.component';
+import { Page } from '@app/data/model/page';
+import { BusinessCustomerService } from '../../service/business-customer.service';
 
 @Component({
   selector: 'ecore-business-customer',
   templateUrl: './business-customer.component.html',
   styleUrls: ['./business-customer.component.scss'],
 })
-export class BusinessCustomerComponent extends BaseComponent implements OnInit {
+export class BusinessCustomerComponent
+  extends BaseComponent
+  implements OnInit, AfterViewInit
+{
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: BusinessCustomerModel[] = [];
   public isLoading: boolean;
   public listAction: IActionTable[][] = [];
+  public page: Page = new Page();
+  public sort: ISortTable;
+  public filter: {
+    keyword: string;
+    type: string;
+    status: number | undefined;
+  } = {
+    keyword: '',
+    type: 'cif_no',
+    status: undefined,
+  };
+  public listFilterType: IDropdown[] = [];
+  public listStatus: IDropdown[] = [];
 
-  public get listStatus() {
-    return BusinessCustomerConst.listStatus;
-  }
-
-  public getStatusSeverity(code: number) {
-    return BusinessCustomerConst.getStatus(code, ETypeStatus.SEVERITY);
-  }
-
-  public getStatusName(code: number) {
-    return BusinessCustomerConst.getStatus(code, ETypeStatus.LABEL);
-  }
-
-  constructor() {
+  constructor(private businessCustomerService: BusinessCustomerService) {
     super();
   }
 
@@ -49,7 +60,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
 
     this.headerColumns = [
       {
-        field: 'id',
+        field: 'no',
         header: '#ID',
         width: '3rem',
         type: ETypeDataTable.INDEX,
@@ -57,7 +68,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         isFrozen: true,
         posFrozen: EPositionFrozenCell.LEFT,
         isSort: true,
-        fieldSort: 'id',
+        fieldSort: 'stt',
       },
       {
         field: 'code',
@@ -65,7 +76,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'code',
+        fieldSort: 'com_tax_code',
         isResize: true,
       },
       {
@@ -74,7 +85,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'abbreviation',
+        fieldSort: 'com_name_short',
         isResize: true,
       },
       {
@@ -83,7 +94,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'name',
+        fieldSort: 'com_name',
         isResize: true,
       },
       {
@@ -91,8 +102,10 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         header: 'Trạng thái',
         width: '8rem',
         type: ETypeDataTable.STATUS,
-        funcStyleClassStatus: this.funcStyleClassStatus,
-        funcLabelStatus: this.funcLabelStatus,
+        fieldStatus: {
+          fieldLabel: 'status',
+          fieldSeverity: 'statusSeverity',
+        },
         posTextCell: EPositionTextCell.LEFT,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.RIGHT,
@@ -108,22 +121,17 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
       },
     ] as IHeaderColumn[];
 
-    this.dataSource = [
-      { id: 1, code: '1111', abbreviation: '1111', name: '1111', status: 1 },
-      { id: 2, code: '2222', abbreviation: '2222', name: '2222', status: 2 },
-      { id: 3, code: '3333', abbreviation: '3333', name: '3333', status: 1 },
-      { id: 4, code: '4444', abbreviation: '4444', name: '4444', status: 1 },
-    ];
-    this.genListAction();
+    this.initData();
+    this.setPage();
   }
 
-  public funcStyleClassStatus = (status: number) => {
-    return this.getStatusSeverity(status);
-  };
+  ngAfterViewInit(): void {
+    console.timeLog('ngAfterViewInit');
+  }
 
-  public funcLabelStatus = (status: number) => {
-    return this.getStatusName(status);
-  };
+  private initData() {
+    console.log('initData');
+  }
 
   private genListAction() {
     this.listAction = this.dataSource.map((data: BusinessCustomerModel) => {
@@ -145,7 +153,7 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
   public detail(data: BusinessCustomerModel) {
     if (data) {
       this.routerService.routerNavigate([
-        'customer/business-customer/' + data.id,
+        '/customer/business-customer/' + data.id,
       ]);
     }
   }
@@ -157,11 +165,53 @@ export class BusinessCustomerComponent extends BaseComponent implements OnInit {
         '100%',
         '100%'
       );
-      modalRef.onClose.subscribe((res) => {
-        if (res?.accept) {
-          console.log(1111);
+      modalRef.onClose.subscribe((res: ICloseDialog) => {
+        if (res?.status) {
+          this.setPage();
         }
       });
+    }
+  }
+
+  public changePage(event: any) {
+    if (event) {
+      this.setPage();
+    }
+  }
+
+  public changeFilter(event: any) {
+    this.setPage();
+  }
+
+  private setPage() {
+    this.spinnerService.showSpinner();
+    this.businessCustomerService
+      .getListBusinessCustomer(this.page, this.filter, this.sort)
+      .subscribe((res) => {
+        this.spinnerService.removeSpinner();
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this.page.totalItems = res.recordsTotal;
+          this.dataSource = res.data.map(
+            (data: any) =>
+              ({
+                no: data.stt,
+                id: data.custId,
+                code: data.com_tax_code,
+                abbreviation: data.com_name_short,
+                name: data.com_name,
+                status: data.cust_st,
+                statusSeverity: data.cust_st_label,
+              }) as BusinessCustomerModel
+          );
+          this.genListAction();
+        }
+      });
+  }
+
+  public onSort(event: ISortTable) {
+    if (event) {
+      this.sort = event;
+      this.setPage();
     }
   }
 }

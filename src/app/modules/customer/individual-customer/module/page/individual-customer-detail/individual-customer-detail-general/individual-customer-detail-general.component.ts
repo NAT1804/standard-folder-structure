@@ -155,7 +155,7 @@ export class IndividualCustomerDetailGeneralComponent
     }
   }
 
-  public onRemoveImage(event: IImage | undefined, key: string) {
+  public onRemoveImage(event: any, key: string) {
     if (event) {
       if (key === 'avatarImage') {
         this.avatarImageIImage = I_ADD_IMAGE_BG;

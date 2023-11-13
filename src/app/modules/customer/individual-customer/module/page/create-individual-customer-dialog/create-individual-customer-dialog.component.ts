@@ -3,6 +3,7 @@ import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { CreateIndividualCustomerModel } from '../../../model/CreateIndividualCustomer.model';
 import {
   IActionButtonDialog,
+  ICloseDialog,
   IDropdown,
   IImage,
 } from '@app/data/interfaces/interface';
@@ -88,7 +89,9 @@ export class CreateIndividualCustomerDialogComponent
         .createOrEditIndividualCustomer(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
           if (response.status === STATUS_RESPONSE.SUCCESS) {
-            this.dynamicDialogRef.close();
+            this.dynamicDialogRef.close({
+              status: true,
+            } as ICloseDialog);
           }
         });
     } else {
@@ -115,7 +118,7 @@ export class CreateIndividualCustomerDialogComponent
     }
   }
 
-  public onRemoveImage(event: IImage | undefined, key: string) {
+  public onRemoveImage(event: any, key: string) {
     if (event) {
       if (key === 'frontImage') {
         this.frontImageIImage = I_ADD_IMAGE_BG;

@@ -1,7 +1,8 @@
-<div class="grid">
-  <div class="col-12">
-    <div class="card">
+<div class="grid h-full">
+  <div class="col-12 h-full">
+    <div class="card h-full">
       <div
+        #divHeader
         class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center"
       >
         <h4>Khách hàng doanh nghiệp</h4>
@@ -11,48 +12,54 @@
         ></emir-form-button>
       </div>
       <emir-form-table
+        [style.height]="
+          'calc(100% - ' + divHeader.getBoundingClientRect().height + 'px)'
+        "
+        class="block auto-height-form-table"
+        [scrollHeight]="
+          'calc(100% - 2rem - ' +
+          divFilter.getBoundingClientRect().height +
+          'px)'
+        "
         [columns]="headerColumns"
         [dataSource]="dataSource"
         [isLoading]="isLoading"
         [resizableColumns]="true"
         [listAction]="listAction"
+        [(page)]="page"
+        (_changePage)="changePage($event)"
+        (_onSort)="onSort($event)"
       >
         <ng-container filter>
           <div
             #divFilter
             class="flex flex-column lg:flex-row xl:flex-row w-full"
           >
-            <!-- <form-input
-              class="col"
+            <emir-form-input
+              class="col-12 lg:col-2 xl:col-2"
               [floatLabel]="true"
-              [placeholder]="'Nhập tên sự kiện/ ban tổ chức'"
+              [placeholder]="'Tìm kiếm'"
               [label]="'Tìm kiếm'"
-            [(ngModelValue)]="filter.keyword"
+              [(ngModelValue)]="filter.keyword"
               (_onChange)="changeFilter($event)"
-            ></form-input> -->
-            <emir-form-multi-select
-              class="col-12 lg:col-4 xl:col-3"
-              [label]="'Trạng thái'"
+            ></emir-form-input>
+            <emir-form-dropdown
+              class="col-12 lg:col-2 xl:col-2"
+              [label]="'Tìm kiếm theo'"
               [floatLabel]="true"
-              [options]="listStatus"
-            ></emir-form-multi-select>
-            <!-- <form-multi-select
-              class="col"
+              [options]="listFilterType"
+              [showClearFloatLabel]="false"
+              [(ngModelValue)]="filter.type"
+              (_onChange)="changeFilter($event)"
+            ></emir-form-dropdown>
+            <emir-form-dropdown
+              class="col-12 lg:col-2 xl:col-2"
+              [label]="'Trạng thái'"
               [floatLabel]="true"
               [options]="listStatus"
               [(ngModelValue)]="filter.status"
-              [label]="'Trạng thái'"
               (_onChange)="changeFilter($event)"
-            ></form-multi-select> -->
-            <!-- <form-input-calendar
-              class="col"
-              [floatLabel]="true"
-              [showButtonBar]="true"
-              [(ngModelValue)]="filter.startDate"
-              [placeholder]="'dd/mm/yyyy'"
-              [label]="'Ngày tổ chức'"
-              (_onChange)="changeFilter($event)"
-            ></form-input-calendar> -->
+            ></emir-form-dropdown>
           </div>
         </ng-container>
       </emir-form-table>

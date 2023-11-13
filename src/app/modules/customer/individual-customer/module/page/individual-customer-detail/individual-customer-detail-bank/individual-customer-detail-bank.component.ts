@@ -159,7 +159,7 @@ export class IndividualCustomerDetailBankComponent
         }
       );
       modalRef.onClose.subscribe((res: ICloseDialog) => {
-        if (res.status) {
+        if (res?.status) {
           this.getData();
         }
       });
@@ -183,7 +183,7 @@ export class IndividualCustomerDetailBankComponent
               }
             );
             modalRef.onClose.subscribe((res: ICloseDialog) => {
-              if (res.status) {
+              if (res?.status) {
                 this.getData();
               }
             });
