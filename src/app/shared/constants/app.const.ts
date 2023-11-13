@@ -11,6 +11,7 @@ export enum ETypeDataTable {
   CHECK_BOX = 6,
   SELECT_CHECK_BOX = 7,
   COUNT_DOWN_TIME = 8,
+  IMAGE = 9,
 }
 export enum EPositionTextCell {
   CENTER = 'center',
@@ -74,8 +75,10 @@ export enum ETypeFormatDate {
   DATE_TIME_VIEW = 'YYYY-MM-DDTHH:mm',
 }
 export const ADD_IMAGE_BG = 'assets/images/add-image-bg.svg';
+export const WIDTH_DEFAULT_IMAGE = 150;
+export const HEIGHT_DEFAULT_IMAGE = 150;
 export const I_ADD_IMAGE_BG = {
   src: 'assets/images/add-image-bg.svg',
-  width: 'auto',
-  height: 'auto',
+  width: WIDTH_DEFAULT_IMAGE,
+  height: HEIGHT_DEFAULT_IMAGE,
 } as IImage;

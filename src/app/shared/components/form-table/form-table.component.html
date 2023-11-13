@@ -164,6 +164,12 @@
               </ngx-countdown> -->
             </ng-container>
           </span>
+          <span *ngIf="col.type === ETypeDataTable.IMAGE">
+            <emir-form-image
+              *ngIf="showImage(row, col)"
+              [imageSource]="getImageIImage(row, col)"
+            ></emir-form-image>
+          </span>
         </td>
       </tr>
     </ng-template>

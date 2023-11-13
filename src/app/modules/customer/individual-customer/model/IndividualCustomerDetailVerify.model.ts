@@ -5,7 +5,7 @@ export class IndividualCustomerDetailVerifyModel {
   public code: string;
   public date: string;
   public expiredDate: string;
-  public documentImage: string;
-  public signatureImage: string;
+  public frontImage: string;
+  public backImage: string;
   public status: number;
 }

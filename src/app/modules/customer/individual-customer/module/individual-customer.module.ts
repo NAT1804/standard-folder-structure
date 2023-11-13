@@ -14,6 +14,7 @@ import { IndividualCustomerService } from '../service/individual-customer.servic
 import { CrudIndiCusDetailBankDialogComponent } from './page/individual-customer-detail/individual-customer-detail-bank/crud-indi-cus-detail-bank-dialog/crud-indi-cus-detail-bank-dialog.component';
 import { CrudIndiCusDetailContactDialogComponent } from './page/individual-customer-detail/individual-customer-detail-contact/crud-indi-cus-detail-contact-dialog/crud-indi-cus-detail-contact-dialog.component';
 import { CrudIndiCusDetailSaleDialogComponent } from './page/individual-customer-detail/individual-customer-detail-sale/crud-indi-cus-detail-sale-dialog/crud-indi-cus-detail-sale-dialog.component';
+import { CrudIndiCusDetailVerifyDialogComponent } from './page/individual-customer-detail/individual-customer-detail-verify/crud-indi-cus-detail-verify-dialog/crud-indi-cus-detail-verify-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CrudIndiCusDetailSaleDialogComponent } from './page/individual-customer
     CrudIndiCusDetailBankDialogComponent,
     CrudIndiCusDetailContactDialogComponent,
     CrudIndiCusDetailSaleDialogComponent,
+    CrudIndiCusDetailVerifyDialogComponent,
   ],
   imports: [CommonModule, SharedModule, IndividualCustomerRoutingModule],
   providers: [IndividualCustomerService],

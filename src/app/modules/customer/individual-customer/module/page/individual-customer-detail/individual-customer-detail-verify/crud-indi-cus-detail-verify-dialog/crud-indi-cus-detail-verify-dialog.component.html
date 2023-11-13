@@ -1,0 +1,74 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-dropdown
+          [label]="'Loại giấy tờ'"
+          [(ngModelValue)]="dataSource.typeOfDocument"
+          [options]="listTypeOfDocument"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('typeOfDocument')"
+          [messageError]="
+            dataSource.dataValidator['typeOfDocument'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-dropdown>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-input
+          [label]="'Mã giấy tờ'"
+          [(ngModelValue)]="dataSource.code"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('code')"
+          [messageError]="dataSource.dataValidator['code'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-input-calendar
+          [label]="'Ngày cấp'"
+          [(ngModelValue)]="dataSource.date"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('date')"
+          [messageError]="dataSource.dataValidator['date'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input-calendar>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-input-calendar
+          [label]="'Ngày hết hạn'"
+          [(ngModelValue)]="dataSource.expiredDate"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('expiredDate')"
+          [messageError]="
+            dataSource.dataValidator['expiredDate'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input-calendar>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-image
+          [imageSource]="frontImageIImage"
+          [isDisabled]="false"
+          (_onChange)="onChangeImage($event, 'frontImage')"
+          (_onRemove)="onRemoveImage($event, 'frontImage')"
+        ></emir-form-image>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-image
+          [imageSource]="backImageIImage"
+          [isDisabled]="false"
+          (_onChange)="onChangeImage($event, 'backImage')"
+          (_onRemove)="onRemoveImage($event, 'backImage')"
+        ></emir-form-image>
+      </div>
+      <div class="col-12 lg:col-6 xl:col-6">
+        <emir-form-input-switch
+          [label]="'Đặt làm mặc định'"
+          [(ngModelValue)]="dataSource.isDefault"
+          [classLabel]="'ml-2'"
+        ></emir-form-input-switch>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

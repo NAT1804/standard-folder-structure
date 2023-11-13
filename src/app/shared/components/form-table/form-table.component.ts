@@ -14,6 +14,7 @@ import {
   EPositionTextCell,
   ETypeDataTable,
   ETypeSortTable,
+  I_ADD_IMAGE_BG,
 } from '@app/shared/constants/app.const';
 import {
   IActionButtonTable,
@@ -224,5 +225,17 @@ export class FormTableComponent
 
   public get RESIZE_COLUMN() {
     return 'assets/layout/images/icon-resize-column.png';
+  }
+
+  public showImage(row: any, col: IHeaderColumn) {
+    return !!row[col.field];
+  }
+
+  public getImageIImage(row: any, col: IHeaderColumn) {
+    return {
+      src: row[col.field],
+      width: 80,
+      height: 80,
+    } as IImage;
   }
 }

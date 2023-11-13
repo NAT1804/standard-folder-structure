@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
+import {
+  IActionTable,
+  ICloseDialog,
+  IHeaderColumn,
+  IValueFormatter,
+} from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { IndividualCustomerDetailVerifyModel } from '@app/modules/customer/individual-customer/model/IndividualCustomerDetailVerify.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
@@ -7,9 +12,12 @@ import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
+  ETypeFormatDate,
   SEVERITY,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
+import { CrudIndiCusDetailVerifyDialogComponent } from './crud-indi-cus-detail-verify-dialog/crud-indi-cus-detail-verify-dialog.component';
+import { formatDate } from '@app/shared/function-common';
 
 @Component({
   selector: 'ecore-individual-customer-detail-verify',
@@ -68,6 +76,8 @@ export class IndividualCustomerDetailVerifyComponent
         isSort: true,
         fieldSort: 'date',
         isResize: true,
+        valueFormatter: (param: IValueFormatter) =>
+          param.data ? formatDate(param.data, ETypeFormatDate.DATE) : '',
       },
       {
         field: 'expiredDate',
@@ -77,23 +87,25 @@ export class IndividualCustomerDetailVerifyComponent
         isSort: true,
         fieldSort: 'expiredDate',
         isResize: true,
+        valueFormatter: (param: IValueFormatter) =>
+          param.data ? formatDate(param.data, ETypeFormatDate.DATE) : '',
       },
       {
-        field: 'documentImage',
-        header: 'Ảnh giấy tờ',
+        field: 'frontImage',
+        header: 'Ảnh mặt trước',
         minWidth: '10rem',
-        type: ETypeDataTable.TEXT,
+        type: ETypeDataTable.IMAGE,
         isSort: true,
-        fieldSort: 'documentImage',
+        fieldSort: 'frontImage',
         isResize: true,
       },
       {
-        field: 'signatureImage',
-        header: 'Ảnh chữ ký',
+        field: 'backImage',
+        header: 'Ảnh mặt sau',
         minWidth: '10rem',
-        type: ETypeDataTable.TEXT,
+        type: ETypeDataTable.IMAGE,
         isSort: true,
-        fieldSort: 'signatureImage',
+        fieldSort: 'backImage',
         isResize: true,
       },
       {
@@ -147,8 +159,8 @@ export class IndividualCustomerDetailVerifyComponent
                   code: data.idcard_no,
                   date: data.idcard_issue_dt,
                   expiredDate: data.idcard_expire_dt,
-                  documentImage: data.idcard_font_url,
-                  signatureImage: data.idcard_back_url,
+                  frontImage: data.idcard_font_url,
+                  backImage: data.idcard_back_url,
                   status: data.is_default,
                 }) as IndividualCustomerDetailVerifyModel
             );
@@ -179,46 +191,46 @@ export class IndividualCustomerDetailVerifyComponent
 
   public create(event: any) {
     if (event) {
-      // const modalRef = this.dialogCommonService.createDialog(
-      //   CrudIndiCusDetailSaleDialogComponent,
-      //   '600px',
-      //   'auto',
-      //   true,
-      //   {
-      //     customerId: this.individualCustomerService.individualCustomerId,
-      //   }
-      // );
-      // modalRef.onClose.subscribe((res: ICloseDialog) => {
-      //   if (res.status) {
-      //     this.getData();
-      //   }
-      // });
+      const modalRef = this.dialogCommonService.createDialog(
+        CrudIndiCusDetailVerifyDialogComponent,
+        '600px',
+        'auto',
+        true,
+        {
+          customerId: this.individualCustomerService.individualCustomerId,
+        }
+      );
+      modalRef.onClose.subscribe((res: ICloseDialog) => {
+        if (res?.status) {
+          this.getData();
+        }
+      });
     }
   }
 
   public detail(data: IndividualCustomerDetailVerifyModel) {
     if (data) {
-      // this.individualCustomerService
-      //   .getIndiCusDetailSaleDetail(data.id)
-      //   .subscribe((res: any) => {
-      //     if (res.status === STATUS_RESPONSE.SUCCESS) {
-      //       const modalRef = this.dialogCommonService.createDialog(
-      //         CrudIndiCusDetailSaleDialogComponent,
-      //         '600px',
-      //         'auto',
-      //         true,
-      //         {
-      //           customerId: this.individualCustomerService.individualCustomerId,
-      //           dataSource: res.data,
-      //         }
-      //       );
-      //       modalRef.onClose.subscribe((res: ICloseDialog) => {
-      //         if (res.status) {
-      //           this.getData();
-      //         }
-      //       });
-      //     }
-      //   });
+      this.individualCustomerService
+        .getIndiCusDetailSaleVerify(data.id)
+        .subscribe((res: any) => {
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            const modalRef = this.dialogCommonService.createDialog(
+              CrudIndiCusDetailVerifyDialogComponent,
+              '600px',
+              'auto',
+              true,
+              {
+                customerId: this.individualCustomerService.individualCustomerId,
+                dataSource: res.data,
+              }
+            );
+            modalRef.onClose.subscribe((res: ICloseDialog) => {
+              if (res.status) {
+                this.getData();
+              }
+            });
+          }
+        });
     }
   }
 }
