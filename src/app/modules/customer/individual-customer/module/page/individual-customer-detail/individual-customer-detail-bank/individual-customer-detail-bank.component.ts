@@ -44,6 +44,7 @@ export class IndividualCustomerDetailBankComponent
         posTextCell: EPositionTextCell.CENTER,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.LEFT,
+        fieldSort: 'id',
       },
       {
         field: 'bankName',
@@ -51,6 +52,7 @@ export class IndividualCustomerDetailBankComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isResize: true,
+        fieldSort: 'bank_code',
       },
       {
         field: 'accountNumber',
@@ -58,13 +60,14 @@ export class IndividualCustomerDetailBankComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isResize: true,
+        fieldSort: 'acc_no',
       },
       {
         field: 'accountName',
         header: 'Tên tài khoản',
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
-        fieldSort: 'accountName',
+        fieldSort: 'acc_name',
       },
       {
         field: 'status',

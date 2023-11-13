@@ -53,7 +53,7 @@ export class IndividualCustomerDetailContactComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'contactName',
+        fieldSort: 'contact_address',
         isResize: true,
       },
       {

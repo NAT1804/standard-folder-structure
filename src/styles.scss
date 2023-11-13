@@ -56,3 +56,29 @@ span.p-float-label > label {
   top: -0.75rem;
   font-size: 0.75rem;
 }
+
+span.p-float-label-input {
+  display: block;
+  position: relative;
+  & > label {
+    position: absolute;
+    pointer-events: none;
+    margin-top: -0.5rem;
+    transition-property: all;
+    transition-timing-function: ease;
+    line-height: 1;
+    top: -0.75rem;
+    font-size: 0.75rem;
+    left: 0.75rem;
+    color: #6c757d;
+    transition-duration: 0.2s;
+  }
+}
+
+span.p-float-label {
+  div.p-dropdown-clearable {
+    span.p-dropdown-label {
+      opacity: 1;
+    }
+  }
+}

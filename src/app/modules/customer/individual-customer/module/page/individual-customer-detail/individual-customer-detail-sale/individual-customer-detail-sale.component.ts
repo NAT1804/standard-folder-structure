@@ -56,7 +56,7 @@ export class IndividualCustomerDetailSaleComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'code',
+        fieldSort: 'saler_code',
         isResize: true,
       },
       {
@@ -65,7 +65,7 @@ export class IndividualCustomerDetailSaleComponent
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'name',
+        fieldSort: 'saler_name',
         isResize: true,
       },
       {
@@ -74,7 +74,7 @@ export class IndividualCustomerDetailSaleComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'phone',
+        fieldSort: 'saler_phone',
         isResize: true,
       },
       {
@@ -83,7 +83,7 @@ export class IndividualCustomerDetailSaleComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'organization',
+        fieldSort: 'saler_department',
         isResize: true,
       },
 
@@ -93,7 +93,7 @@ export class IndividualCustomerDetailSaleComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'date',
+        fieldSort: 'start_date',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data ? formatDate(param.data, ETypeFormatDate.DATE) : '',

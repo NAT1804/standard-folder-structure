@@ -56,7 +56,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'documentType',
+        fieldSort: 'idcard_type',
         isResize: true,
       },
       {
@@ -65,7 +65,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'code',
+        fieldSort: 'idcard_no',
         isResize: true,
       },
       {
@@ -74,7 +74,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'date',
+        fieldSort: 'idcard_issue_dt',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data ? formatDate(param.data, ETypeFormatDate.DATE) : '',
@@ -85,7 +85,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'expiredDate',
+        fieldSort: 'idcard_expire_dt',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data ? formatDate(param.data, ETypeFormatDate.DATE) : '',
@@ -96,7 +96,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.IMAGE,
         isSort: true,
-        fieldSort: 'frontImage',
+        fieldSort: 'idcard_font_url',
         isResize: true,
       },
       {
@@ -105,7 +105,7 @@ export class IndividualCustomerDetailVerifyComponent
         minWidth: '10rem',
         type: ETypeDataTable.IMAGE,
         isSort: true,
-        fieldSort: 'backImage',
+        fieldSort: 'idcard_back_url',
         isResize: true,
       },
       {
@@ -155,7 +155,7 @@ export class IndividualCustomerDetailVerifyComponent
                 ({
                   no: index,
                   id: data.id,
-                  documentType: data.idcard_type,
+                  documentType: data.idcard_type_name,
                   code: data.idcard_no,
                   date: data.idcard_issue_dt,
                   expiredDate: data.idcard_expire_dt,
