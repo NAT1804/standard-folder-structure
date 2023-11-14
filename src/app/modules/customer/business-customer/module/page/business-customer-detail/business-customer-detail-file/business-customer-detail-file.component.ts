@@ -81,6 +81,7 @@ export class BusinessCustomerDetailFileComponent
                   no: index,
                   fileName: data.meta_name,
                   fileSrc: data.meta_url,
+                  fileNameSrc: 'tải xuống.docx',
                 }) as BusinessCustomerDetailFileModel
             );
             this.genListAction();
@@ -106,7 +107,7 @@ export class BusinessCustomerDetailFileComponent
         actions.push({
           data: data,
           label: 'Tải file xuống',
-          icon: 'pi pi-eye',
+          icon: 'pi pi-download',
           command: ($event) => {
             this.download($event.item.data);
           },
@@ -165,7 +166,15 @@ export class BusinessCustomerDetailFileComponent
   public download(data: BusinessCustomerDetailFileModel) {
     if (data) {
       if (data.fileSrc && data.fileSrc.length) {
-        this.apiConstantService.downloadFile(data.fileSrc).subscribe();
+        this.apiConstantService
+          .downloadFile(data.fileSrc, data.fileNameSrc)
+          .subscribe((res: any) => {
+            if (res.status === STATUS_RESPONSE.SUCCESS) {
+              this.toastService.showToastSucess('Tải file xuống thành công');
+            } else {
+              this.toastService.showToastError('Có lỗi khi tải file xuống');
+            }
+          });
       }
     }
   }

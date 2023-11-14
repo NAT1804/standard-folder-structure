@@ -43,8 +43,7 @@
       class="sublevel-nav-link"
       *ngIf="!item.children || (item.children && item.children.length === 0)"
       [routerLink]="[item.routerLink]"
-      routerLinkActive="active-sublevel"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="getActiveClass(item)"
       [title]="data.label"
     >
       <i class="sublevel-link-icon" [class]="item.icon"></i>

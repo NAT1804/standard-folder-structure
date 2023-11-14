@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 import { IActionButtonDialog } from '@app/data/interfaces/interface';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'emir-form-dialog',
@@ -19,7 +20,7 @@ export class FormDialogComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public listAction: IActionButtonDialog[] = [];
 
-  constructor() {
+  constructor(private dynamicDialogRef: DynamicDialogRef) {
     super();
   }
 
@@ -30,6 +31,12 @@ export class FormDialogComponent extends BaseCommonComponent implements OnInit {
   public handleClick(event: any, action: IActionButtonDialog) {
     if (event && action) {
       action.callBack();
+    }
+  }
+
+  public onClickCloseModal(event: any) {
+    if (event) {
+      this.dynamicDialogRef.close();
     }
   }
 }

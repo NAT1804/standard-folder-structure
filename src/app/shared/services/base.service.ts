@@ -87,7 +87,7 @@ export class BaseService {
       );
   }
 
-  public requestDownloadFile(url: string) {
+  public requestDownloadFile(url: string, fileName: string) {
     let url_ = this.BASE_URL + url;
     url_ = url_.replace(/[?&]$/, '');
     const options: any = {
@@ -103,38 +103,22 @@ export class BaseService {
       .get(url_, options)
       .pipe(
         mergeMap((response: any) => {
-          const contentDisposition = (
-            response.headers.get('content-disposition') || ''
-          ).split(';');
-          // let filename = '';
-          // if (contentDisposition[1] && contentDisposition[1].includes('=')) {
-          //   // LẤY TÊN FILE
-          //   const name = contentDisposition[1].split('=')[1];
-          //   if (name[0] === '"' && name[name.length - 1] === '"') {
-          //     filename = name.substring(1, name.length - 1);
-          //   } else {
-          //     filename = name;
-          //   }
-          // } else {
-          //   // BÁO LỖI
-          //   const err = response.body.text();
-          //   return <Observable<any>>JSON.parse(err);
-          // }
-          // TẢI FILE
           const objectUrl = window.URL.createObjectURL(response.body);
 
           const anchor = document.createElement('a');
-
           anchor.href = objectUrl;
-          //TODO
-          anchor.download = 'filename';
+          anchor.download = fileName;
           anchor.click();
 
           window.URL.revokeObjectURL(objectUrl);
-          const result: any =
-            '{"statusCode":1,"data":null,"status":success,"message":"success","error":null}';
+          const result = {
+            error: null,
+            message: 'success',
+            status: 'success',
+            statusCode: 1,
+          };
           return new Observable((observer) => {
-            observer.next(JSON.stringify(result));
+            observer.next(result);
             observer.complete();
           });
         })

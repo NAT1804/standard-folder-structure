@@ -4,6 +4,11 @@
     [style.height]="'5rem'"
   >
     <span>{{ header }}</span>
+    <i
+      class="pi pi-spin pi-times cursor-pointer"
+      aria-hidden="true"
+      (click)="onClickCloseModal($event)"
+    ></i>
   </div>
 
   <div [ngClass]="'p-dialog-content ' + classDialogContnent">
