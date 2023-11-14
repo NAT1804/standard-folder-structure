@@ -87,9 +87,63 @@ export class BaseService {
       );
   }
 
-  fromJS(data: any): object {
-    data = typeof data === 'object' ? data : {};
-    return data;
+  public requestDownloadFile(url: string) {
+    let url_ = this.BASE_URL + url;
+    url_ = url_.replace(/[?&]$/, '');
+    const options: any = {
+      observe: 'response',
+      responseType: 'blob',
+      headers: {
+        Accept: 'text/plain',
+        ...this.storageService.getHeaderToken(),
+      },
+    };
+
+    return this.http
+      .get(url_, options)
+      .pipe(
+        mergeMap((response: any) => {
+          const contentDisposition = (
+            response.headers.get('content-disposition') || ''
+          ).split(';');
+          // let filename = '';
+          // if (contentDisposition[1] && contentDisposition[1].includes('=')) {
+          //   // LẤY TÊN FILE
+          //   const name = contentDisposition[1].split('=')[1];
+          //   if (name[0] === '"' && name[name.length - 1] === '"') {
+          //     filename = name.substring(1, name.length - 1);
+          //   } else {
+          //     filename = name;
+          //   }
+          // } else {
+          //   // BÁO LỖI
+          //   const err = response.body.text();
+          //   return <Observable<any>>JSON.parse(err);
+          // }
+          // TẢI FILE
+          const objectUrl = window.URL.createObjectURL(response.body);
+
+          const anchor = document.createElement('a');
+
+          anchor.href = objectUrl;
+          //TODO
+          anchor.download = 'filename';
+          anchor.click();
+
+          window.URL.revokeObjectURL(objectUrl);
+          const result: any =
+            '{"statusCode":1,"data":null,"status":success,"message":"success","error":null}';
+          return new Observable((observer) => {
+            observer.next(JSON.stringify(result));
+            observer.complete();
+          });
+        })
+      )
+      .pipe(
+        catchError((error: any) => {
+          return throwError(() => new Error(error.message));
+        })
+      );
   }
 
   private blobToText(blob: any) {

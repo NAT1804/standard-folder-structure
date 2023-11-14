@@ -35,4 +35,10 @@ export class ApiConstantService extends BaseService {
     const folderPath = `${folder}/${folderFnc}`;
     return this.requestPostFile(file, folderPath, `/api/v1/file/UploadFile`);
   }
+
+  public downloadFile(fileSrc: string) {
+    let url = String('/api/v1/file/DownloadFile?');
+    url += this.convertParamUrl('link', fileSrc);
+    return this.requestDownloadFile(url);
+  }
 }

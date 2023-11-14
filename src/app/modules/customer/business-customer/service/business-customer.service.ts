@@ -105,6 +105,18 @@ export class BusinessCustomerService extends BaseService {
     return this.requestPost(body, `${this.baseAPIBank}/SetCustAccountBankInfo`);
   }
 
+  public getBusiCusDetaiFile(id: string) {
+    let url = String(this.baseAPIFile + '/GetCustFileByCustId?');
+    url += this.convertParamUrl('custId', id);
+    return this.requestGet(url);
+  }
+
+  public getBusiCusDetailFileDetail(id: string) {
+    let url = String(this.baseAPIFile + '/GetCustFileById?');
+    url += this.convertParamUrl('id', id);
+    return this.requestGet(url);
+  }
+
   public createOrEditBusiCusDetailFile(body: any) {
     return this.requestPost(body, `${this.baseAPIFile}/SetCustFileInfo`);
   }
