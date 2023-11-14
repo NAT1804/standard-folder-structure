@@ -11,56 +11,63 @@
           <emir-form-image
             [imageSource]="avatarIImage"
             [isDisabled]="isDisabled"
+            [widthLimit]="200"
             (_onChange)="onChangeAvatar($event)"
             (_onRemove)="onRemoveAvatar($event)"
           ></emir-form-image>
         </div>
-        <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
-            [label]="'Mã số thuế'"
-            [(ngModelValue)]="dataSource.taxCode"
-            [isSubmit]="isSubmit"
-            [isValidData]="isValidData('taxCode')"
-            [messageError]="
-              dataSource.dataValidator['taxCode'].toMessageString()
-            "
-            [isRequired]="true"
-            [isDisabled]="isDisabled"
-          ></emir-form-input>
-        </div>
-        <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
-            [label]="'Nơi cấp'"
-            [(ngModelValue)]="dataSource.taxCodePlace"
-            [isDisabled]="isDisabled"
-          ></emir-form-input>
-        </div>
-        <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input-calendar
-            [label]="'Ngày cấp'"
-            [isRequired]="true"
-            [(ngModelValue)]="dataSource.taxCodeDate"
-            [placeholder]="'dd/mm/yy'"
-            [isDisabled]="isDisabled"
-          ></emir-form-input-calendar>
-        </div>
-        <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
-            [label]="'Tên doanh nghiệp'"
-            [(ngModelValue)]="dataSource.name"
-            [isSubmit]="isSubmit"
-            [isValidData]="isValidData('name')"
-            [messageError]="dataSource.dataValidator['name'].toMessageString()"
-            [isRequired]="true"
-            [isDisabled]="isDisabled"
-          ></emir-form-input>
-        </div>
-        <div class="col-12 lg:col-4 xl:col-3">
-          <emir-form-input
-            [label]="'Tên viết tắt'"
-            [(ngModelValue)]="dataSource.abbreviation"
-            [isDisabled]="isDisabled"
-          ></emir-form-input>
+        <div class="col-12 lg:col-8 xl:col-9">
+          <div class="p-fluid p-formgrid grid">
+            <div class="col-12 lg:col-6 xl:col-4">
+              <emir-form-input
+                [label]="'Mã số thuế'"
+                [(ngModelValue)]="dataSource.taxCode"
+                [isSubmit]="isSubmit"
+                [isValidData]="isValidData('taxCode')"
+                [messageError]="
+                  dataSource.dataValidator['taxCode'].toMessageString()
+                "
+                [isRequired]="true"
+                [isDisabled]="isDisabled"
+              ></emir-form-input>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-4">
+              <emir-form-input
+                [label]="'Nơi cấp'"
+                [(ngModelValue)]="dataSource.taxCodePlace"
+                [isDisabled]="isDisabled"
+              ></emir-form-input>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-4">
+              <emir-form-input-calendar
+                [label]="'Ngày cấp'"
+                [isRequired]="true"
+                [(ngModelValue)]="dataSource.taxCodeDate"
+                [placeholder]="'dd/mm/yy'"
+                [isDisabled]="isDisabled"
+              ></emir-form-input-calendar>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-4">
+              <emir-form-input
+                [label]="'Tên doanh nghiệp'"
+                [(ngModelValue)]="dataSource.name"
+                [isSubmit]="isSubmit"
+                [isValidData]="isValidData('name')"
+                [messageError]="
+                  dataSource.dataValidator['name'].toMessageString()
+                "
+                [isRequired]="true"
+                [isDisabled]="isDisabled"
+              ></emir-form-input>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-4">
+              <emir-form-input
+                [label]="'Tên viết tắt'"
+                [(ngModelValue)]="dataSource.abbreviation"
+                [isDisabled]="isDisabled"
+              ></emir-form-input>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card">
