@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IDropdown } from '@app/data/interfaces/interface';
-import { STATUS_RESPONSE } from '../constants/app.const';
+import { STATUS_RESPONSE, folder } from '../constants/app.const';
 import { mapDropdownDTOToIDropdown } from '../function-common';
 
 @Injectable({
@@ -29,5 +29,10 @@ export class ApiConstantService extends BaseService {
         }
       }
     );
+  }
+
+  public uploadFileGetUrl(file: File, folderFnc = String('')) {
+    const folderPath = `${folder}/${folderFnc}`;
+    return this.requestPostFile(file, folderPath, `/api/v1/file/UploadFile`);
   }
 }

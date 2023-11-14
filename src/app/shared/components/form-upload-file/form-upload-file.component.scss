@@ -1,0 +1,14 @@
+:host ::ng-deep {
+  p-fileupload.custom-upload-file {
+    div.p-fileupload-buttonbar {
+      padding: 0;
+      border: none;
+      > span {
+        margin: 0;
+      }
+    }
+    div.p-fileupload-content {
+      display: none;
+    }
+  }
+}

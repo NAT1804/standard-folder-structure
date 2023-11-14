@@ -1,0 +1,47 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Ngân hàng'"
+          [(ngModelValue)]="dataSource.bank"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('bank')"
+          [messageError]="dataSource.dataValidator['bank'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Số tài khoản'"
+          [(ngModelValue)]="dataSource.accountNo"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('accountNo')"
+          [messageError]="
+            dataSource.dataValidator['accountNo'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Tên tài khoản'"
+          [(ngModelValue)]="dataSource.accountName"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('accountName')"
+          [messageError]="
+            dataSource.dataValidator['accountName'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="col-12">
+        <emir-form-input-switch
+          [label]="'Đặt làm mặc định'"
+          [(ngModelValue)]="dataSource.isDefault"
+          [classLabel]="'ml-2'"
+        ></emir-form-input-switch>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

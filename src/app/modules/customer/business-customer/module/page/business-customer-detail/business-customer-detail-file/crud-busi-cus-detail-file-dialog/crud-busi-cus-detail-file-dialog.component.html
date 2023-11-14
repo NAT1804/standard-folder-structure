@@ -1,0 +1,36 @@
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Tên file'"
+          [(ngModelValue)]="dataSource.fileName"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('fileName')"
+          [messageError]="
+            dataSource.dataValidator['fileName'].toMessageString()
+          "
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+      <div class="p-2">
+        <emir-form-upload-file
+          [type]="'.docx, .pdf'"
+          [label]="'Chọn tệp tin'"
+          (_onChange)="upload($event)"
+        ></emir-form-upload-file>
+      </div>
+      <div class="col-12">
+        <emir-form-input
+          [label]="'Đường dẫn file'"
+          [(ngModelValue)]="dataSource.fileSrc"
+          [isDisabled]="true"
+          [isSubmit]="isSubmit"
+          [isValidData]="isValidData('fileSrc')"
+          [messageError]="dataSource.dataValidator['fileSrc'].toMessageString()"
+          [isRequired]="true"
+        ></emir-form-input>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

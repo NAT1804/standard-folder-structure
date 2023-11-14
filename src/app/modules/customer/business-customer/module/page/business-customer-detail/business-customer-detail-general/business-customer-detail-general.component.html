@@ -1,7 +1,113 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <div class="p-fluid p-formgrid grid"></div>
+      <h5>Thông tin doanh nghiệp</h5>
+      <div class="p-fluid p-formgrid grid">
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-label
+            [classLabel]="'inline-block mb-2'"
+            [label]="'Ảnh đại diện'"
+          ></emir-form-label>
+          <emir-form-image
+            [imageSource]="avatarIImage"
+            [isDisabled]="isDisabled"
+            (_onChange)="onChangeAvatar($event)"
+            (_onRemove)="onRemoveAvatar($event)"
+          ></emir-form-image>
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-input
+            [label]="'Mã số thuế'"
+            [(ngModelValue)]="dataSource.taxCode"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('taxCode')"
+            [messageError]="
+              dataSource.dataValidator['taxCode'].toMessageString()
+            "
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-input
+            [label]="'Nơi cấp'"
+            [(ngModelValue)]="dataSource.taxCodePlace"
+            [isDisabled]="isDisabled"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-input-calendar
+            [label]="'Ngày cấp'"
+            [isRequired]="true"
+            [(ngModelValue)]="dataSource.taxCodeDate"
+            [placeholder]="'dd/mm/yy'"
+            [isDisabled]="isDisabled"
+          ></emir-form-input-calendar>
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-input
+            [label]="'Tên doanh nghiệp'"
+            [(ngModelValue)]="dataSource.name"
+            [isSubmit]="isSubmit"
+            [isValidData]="isValidData('name')"
+            [messageError]="dataSource.dataValidator['name'].toMessageString()"
+            [isRequired]="true"
+            [isDisabled]="isDisabled"
+          ></emir-form-input>
+        </div>
+        <div class="col-12 lg:col-4 xl:col-3">
+          <emir-form-input
+            [label]="'Tên viết tắt'"
+            [(ngModelValue)]="dataSource.abbreviation"
+            [isDisabled]="isDisabled"
+          ></emir-form-input>
+        </div>
+      </div>
+      <div class="card">
+        <h5>Liên hệ</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Email'"
+              [(ngModelValue)]="dataSource.email"
+              [isDisabled]="isDisabled"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Số điện thoại'"
+              [(ngModelValue)]="dataSource.phone"
+              [isDisabled]="isDisabled"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Địa chỉ'"
+              [(ngModelValue)]="dataSource.address"
+              [isDisabled]="isDisabled"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h5>Thông tin người đại diện</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Người đại diện'"
+              [(ngModelValue)]="dataSource.representative"
+              [isDisabled]="isDisabled"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Chức vụ'"
+              [(ngModelValue)]="dataSource.representativePosition"
+              [isDisabled]="isDisabled"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

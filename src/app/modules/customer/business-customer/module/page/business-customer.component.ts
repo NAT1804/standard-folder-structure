@@ -8,7 +8,6 @@ import {
 } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { BusinessCustomerModel } from '../../model/BusinessCustomer.model';
-import { BusinessCustomerConst } from '../../service/business-customer.const';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
@@ -41,7 +40,7 @@ export class BusinessCustomerComponent
     status: number | undefined;
   } = {
     keyword: '',
-    type: 'cif_no',
+    type: 'com_tax_code',
     status: undefined,
   };
   public listFilterType: IDropdown[] = [];
@@ -126,11 +125,25 @@ export class BusinessCustomerComponent
   }
 
   ngAfterViewInit(): void {
-    console.timeLog('ngAfterViewInit');
+    this.businessCustomerService._listFilterBusinessCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listFilterType = res;
+        }
+      }
+    );
+    this.businessCustomerService._listStatusBusinessCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listStatus = res;
+        }
+      }
+    );
   }
 
   private initData() {
-    console.log('initData');
+    this.businessCustomerService.getListFilterBusinessCustomer();
+    this.businessCustomerService.getListStatusBusinessCustomer();
   }
 
   private genListAction() {

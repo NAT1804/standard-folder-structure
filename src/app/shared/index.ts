@@ -39,8 +39,8 @@ import { FormLabelComponent } from './components/form-label/form-label.component
 import { SpinnerService } from './services/spinner.service';
 import { DialogCommonService } from './dialogs/dialog-common.service';
 import { RouterService } from './services/router.service';
-import { CommonService } from './services/common.service';
 import { ToastService } from './services/toast.service';
+import { FormUploadFileComponent } from './components/form-upload-file/form-upload-file.component';
 
 export const commonModules: any[] = [
   // ngprime module
@@ -80,6 +80,7 @@ export const commonComponents: any[] = [
   FormDropdownComponent,
   FormInputSwitchComponent,
   FormLabelComponent,
+  FormUploadFileComponent,
 ];
 
 export const commonDialogs: any[] = [UploadImageDialogComponent];
@@ -90,7 +91,6 @@ export const services: any[] = [
   DialogCommonService,
   RouterService,
   SpinnerService,
-  CommonService,
   ToastService,
 ];
 

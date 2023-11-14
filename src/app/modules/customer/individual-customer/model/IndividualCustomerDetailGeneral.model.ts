@@ -1,6 +1,5 @@
 import { formatDateToAPI } from '@app/shared/function-common';
 import { CreateIndividualCustomerModel } from './CreateIndividualCustomer.model';
-import { IndividualCustomerConst } from '../service/individual-customer.const';
 
 export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustomerModel {
   public id: number;
@@ -65,7 +64,6 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
 
   public toObjectSendAPIEdit() {
     return {
-      cust_type: IndividualCustomerConst.TYPE_INDIVIDUAL_CUSTOMER,
       custId: this.id,
       avatar_url: this.avatar,
       idcard_font_url: this.frontImage,

@@ -27,13 +27,13 @@ export class CreateBusinessCustomerModel {
   public accountNumber = String('');
   public bankBranch = String('');
   public accountName = String('');
-  private _dataValidator: DataValidator = new DataValidator();
+  protected _dataValidator: DataValidator = new DataValidator();
 
   public get dataValidator() {
     return this._dataValidator;
   }
 
-  private isValidTaxCode() {
+  protected isValidTaxCode() {
     const field = 'taxCode';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -44,7 +44,7 @@ export class CreateBusinessCustomerModel {
     );
   }
 
-  private isValidName() {
+  protected isValidName() {
     const field = 'name';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -55,7 +55,7 @@ export class CreateBusinessCustomerModel {
     );
   }
 
-  private isValidBank() {
+  protected isValidBank() {
     const field = 'bank';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -66,7 +66,7 @@ export class CreateBusinessCustomerModel {
     );
   }
 
-  private isValidAccountNumber() {
+  protected isValidAccountNumber() {
     const field = 'accountNumber';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());
@@ -77,7 +77,7 @@ export class CreateBusinessCustomerModel {
     );
   }
 
-  private isValidAccountName() {
+  protected isValidAccountName() {
     const field = 'accountName';
     !this._dataValidator[field] &&
       (this._dataValidator[field] = new ValidatorItem());

@@ -1,0 +1,17 @@
+<ng-container>
+  <p-fileUpload
+    [customUpload]="true"
+    [ngClass]="'custom-upload-file ' + classFileUpload"
+    name="demo[]"
+    [accept]="type"
+    [chooseIcon]="icon"
+    (uploadHandler)="handleUpload($event)"
+    [auto]="true"
+    [chooseLabel]="label"
+    [disabled]="isDisabled"
+    [invalidFileTypeMessageSummary]="'invalidFileTypeMessageSummary'"
+    [invalidFileTypeMessageDetail]="'invalidFileTypeMessageDetail'"
+    [invalidFileLimitMessageDetail]="'invalidFileLimitMessageDetail'"
+    [invalidFileLimitMessageSummary]="'invalidFileLimitMessageSummary'"
+  ></p-fileUpload>
+</ng-container>

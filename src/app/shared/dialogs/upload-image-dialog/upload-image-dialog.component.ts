@@ -5,10 +5,10 @@ import {
   ICloseDialog,
   IImage,
 } from '@app/data/interfaces/interface';
-import { CommonService } from '@app/shared/services/common.service';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { ToastService } from '@app/shared/services/toast.service';
+import { ApiConstantService } from '@app/shared/services/api-constant.service';
 
 export const DEFAULT_MAX_FILE_SIZE = 100000000;
 
@@ -27,10 +27,7 @@ export class UploadImageDialogComponent
   public maxFileSize: number = DEFAULT_MAX_FILE_SIZE;
   public fileImageUrl = String('');
 
-  constructor(
-    private commonService: CommonService,
-    private toastService: ToastService
-  ) {
+  constructor() {
     super();
   }
 
@@ -70,17 +67,19 @@ export class UploadImageDialogComponent
 
   public onUpload(event: FileUploadHandlerEvent) {
     if (event) {
-      this.commonService.uploadFileGetUrl(event.files[0], 'media').subscribe(
-        (res) => {
-          if (res.status === STATUS_RESPONSE.SUCCESS) {
-            this.toastService.showToastSucess('Tải ảnh lên thành công');
-            this.fileImageUrl = res.data;
+      this.apiConstantService
+        .uploadFileGetUrl(event.files[0], 'media')
+        .subscribe(
+          (res) => {
+            if (res.status === STATUS_RESPONSE.SUCCESS) {
+              this.toastService.showToastSucess('Tải ảnh lên thành công');
+              this.fileImageUrl = res.data;
+            }
+          },
+          (error) => {
+            this.toastService.showToastError('Có lỗi khi tải ảnh lên');
           }
-        },
-        (error) => {
-          this.toastService.showToastError('Có lỗi khi tải ảnh lên');
-        }
-      );
+        );
     }
   }
 
