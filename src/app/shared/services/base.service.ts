@@ -6,12 +6,14 @@ import { StorageService } from '@app/core/services/storage/storage.service';
 import { ISortTable } from '@app/data/interfaces/interface';
 import { Page } from '@app/data/model/page';
 import { Observable, catchError, mergeMap, of, throwError } from 'rxjs';
+import { ToastService } from './toast.service';
 
 export class BaseService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private storageService = inject(StorageService);
   private dynamicEnvironmentService = inject(DynamicEnvironmentService);
+  private toastService = inject(ToastService);
   protected BASE_URL = '';
   private jsonParseReviver: ((key: string, value: any) => any) | undefined =
     undefined;
@@ -162,6 +164,7 @@ export class BaseService {
       )
       .pipe(
         catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi tải dữ liệu!');
           return throwError(() => new Error(error.message));
         })
       );

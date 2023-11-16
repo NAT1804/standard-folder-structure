@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 
 import { StorageService } from '@core/services/storage/storage.service';
 import { AuthService } from '@core/services/auth/auth.service';
@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
   @Input() screenWidth = 0;
   @Input() isHover = false;
 
-  canShowSearchAsOverlay = false;
-
   private authService = inject(AuthService);
   private storageService = inject(StorageService);
   private loggerService = inject(LoggerService);
@@ -28,14 +26,7 @@ export class HeaderComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.checkCanShowSerachAsOverlay(window.innerWidth);
-  }
-
   ngOnInit(): void {
-    this.checkCanShowSerachAsOverlay(window.innerWidth);
-
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
@@ -51,14 +42,6 @@ export class HeaderComponent implements OnInit {
       classStyle = 'layout-topbar-collapsed';
     }
     return classStyle;
-  }
-
-  checkCanShowSerachAsOverlay(innerWidth: number): void {
-    if (innerWidth < 845) {
-      this.canShowSearchAsOverlay = true;
-    } else {
-      this.canShowSearchAsOverlay = false;
-    }
   }
 
   logout() {

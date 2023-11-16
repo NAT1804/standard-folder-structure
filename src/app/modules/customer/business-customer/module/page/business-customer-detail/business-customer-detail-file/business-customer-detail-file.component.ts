@@ -81,7 +81,7 @@ export class BusinessCustomerDetailFileComponent
                   no: index,
                   fileName: data.meta_name,
                   fileSrc: data.meta_url,
-                  fileNameSrc: 'tải xuống.docx',
+                  fileNameSrc: data.meta_name_save,
                 }) as BusinessCustomerDetailFileModel
             );
             this.genListAction();

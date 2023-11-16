@@ -1,30 +1,6 @@
 <div class="layout-topbar" [ngClass]="getHeadClass()">
   <div class="head-content">
-    <div class="head-content-left">
-      <div class="search-container">
-        <div
-          *ngIf="!canShowSearchAsOverlay; else buttonShowSearch"
-          class="normal-search"
-        >
-          <input
-            type="search"
-            class="search"
-            name=""
-            id=""
-            placeholder="Search..."
-          />
-          <i class="pi pi-search search-icon"></i>
-        </div>
-        <ng-template #buttonShowSearch>
-          <button
-            [cdkMenuTriggerFor]="searchOverlay"
-            class="search-menu-btn ripple"
-          >
-            <i class="pi pi-search search-icon"></i>
-          </button>
-        </ng-template>
-      </div>
-    </div>
+    <div class="head-content-left"></div>
     <div class="head-content-right">
       <div class="head-menu">
         <button class="head-menu-item-btn ripple" (click)="logout()">
@@ -54,12 +30,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #searchOverlay>
-  <div class="overlay overlay-search overlay-fall" cdkMenu>
-    <input type="search" class="search" name="" id="" placeholder="Search..." />
-    <button class="search-btn">
-      <i class="pi pi-search search-icon"></i>
-    </button>
-  </div>
-</ng-template>

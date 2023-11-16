@@ -8,12 +8,12 @@ export const navData: INavData[] = [
   },
   {
     routerLink: 'customer',
-    icon: 'pi pi-users',
+    icon: 'pi pi-user-plus',
     label: 'Khách hàng',
     children: [
       {
         routerLink: 'customer/individual-customer',
-        icon: 'pi pi-users',
+        icon: 'pi pi-user',
         label: 'Khách hàng cá nhân',
       },
       {
@@ -37,7 +37,7 @@ export const navData: INavData[] = [
   },
   {
     routerLink: 'notification',
-    icon: 'pi pi-users',
+    icon: 'pi pi-bell',
     label: 'Thông báo',
     children: [
       {

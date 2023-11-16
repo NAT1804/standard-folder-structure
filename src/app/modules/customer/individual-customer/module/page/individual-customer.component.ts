@@ -268,29 +268,34 @@ export class IndividualCustomerComponent
     this.spinnerService.showSpinner();
     this.individualCustomerService
       .getListIndividualCustomer(this.page, this.filter, this.sort)
-      .subscribe((res) => {
-        this.spinnerService.removeSpinner();
-        if (res.status === STATUS_RESPONSE.SUCCESS) {
-          this.page.totalItems = res.recordsTotal;
-          this.dataSource = res.data.map(
-            (data: any) =>
-              ({
-                id: data.custId,
-                no: data.stt,
-                code: data.cif_no,
-                name: data.full_name,
-                phone: data.phone,
-                gender: data.sex,
-                birthday: data.birthday,
-                check: !!data.is_check,
-                source: data.cust_source,
-                status: data.cust_st,
-                statusSeverity: data.cust_st_label,
-              }) as IndividualCustomerModel
-          );
-          this.genListAction();
+      .subscribe(
+        (res) => {
+          this.spinnerService.removeSpinner();
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            this.page.totalItems = res.recordsTotal;
+            this.dataSource = res.data.map(
+              (data: any) =>
+                ({
+                  id: data.custId,
+                  no: data.stt,
+                  code: data.cif_no,
+                  name: data.full_name,
+                  phone: data.phone,
+                  gender: data.sex,
+                  birthday: data.birthday,
+                  check: !!data.is_check,
+                  source: data.cust_source,
+                  status: data.cust_st,
+                  statusSeverity: data.cust_st_label,
+                }) as IndividualCustomerModel
+            );
+            this.genListAction();
+          }
+        },
+        (err) => {
+          this.spinnerService.removeSpinner();
         }
-      });
+      );
   }
 
   public onSort(event: ISortTable) {

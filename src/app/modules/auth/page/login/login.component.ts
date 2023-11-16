@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       if (res) {
         this.isLoggedIn = true;
         // this.roles = this.storageService.getUser().roles;
+        this.router.navigate(['/home']);
       }
     });
   }

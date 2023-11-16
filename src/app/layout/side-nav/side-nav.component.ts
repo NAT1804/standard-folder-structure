@@ -21,7 +21,7 @@ import {
   SideNavToggle,
 } from '@app/data/interfaces/nav-data.interface';
 import { fadeInOut } from '@shared/constants/nav/nav-animation';
-import { Router } from '@angular/router';
+import { RouterService } from '@app/shared/services/router.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -54,7 +54,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   public multiple = false;
   public hoverOnsideNav = false;
 
-  constructor(public router: Router) {
+  constructor(private routerService: RouterService) {
     this._onResize = new BehaviorSubject<number | undefined>(undefined);
     this._onResize$ = this._onResize.asObservable();
   }
@@ -68,6 +68,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.emitOnResize();
+    this.getAtiveMenu();
   }
 
   ngAfterViewInit(): void {
@@ -125,11 +126,13 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   getActiveClass(data: INavData): string {
-    return this.router.url.includes('/' + data.routerLink) ? 'active' : '';
+    return this.routerService.getRouterInclude('/' + data.routerLink)
+      ? 'active'
+      : '';
   }
 
   onMouseOverSidenav(data: Event) {
-    if (this.collapsed) {
+    if (data && this.collapsed) {
       this.hoverOnsideNav = true;
       this.collapsed = false;
       this.toggleSidenav.emit({
@@ -141,8 +144,16 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   onMouseOutSidenav(data: Event) {
-    if (this.hoverOnsideNav) {
+    if (data && this.hoverOnsideNav) {
       this.collapsed = true;
     }
+  }
+
+  private getAtiveMenu() {
+    this.navData.forEach((navItem: INavData) => {
+      if (this.routerService.getRouterInclude('/' + navItem.routerLink)) {
+        navItem.expanded = true;
+      }
+    });
   }
 }
