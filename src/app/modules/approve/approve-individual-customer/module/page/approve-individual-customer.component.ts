@@ -51,7 +51,7 @@ export class ApproveIndividualCustomerComponent
   public listStatus: IDropdown[] = [];
 
   constructor(
-    private approveIndividualCustomerService: ApproveIndividualCustomerService // private dynamicDialogConfig: DynamicDialogConfig
+    private approveIndividualCustomerService: ApproveIndividualCustomerService
   ) {
     super();
   }
