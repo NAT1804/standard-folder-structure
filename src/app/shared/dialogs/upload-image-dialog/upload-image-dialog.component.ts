@@ -34,7 +34,7 @@ export class UploadImageDialogComponent
       {
         label: 'Đóng',
         icon: 'pi pi-times',
-        typeClassButton: SEVERITY.DANGER,
+        styleClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {

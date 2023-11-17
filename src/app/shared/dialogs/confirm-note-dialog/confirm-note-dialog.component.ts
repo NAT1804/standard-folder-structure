@@ -30,7 +30,7 @@ export class ConfirmNoteDialogComponent
             ? this.labelAction[0]
             : 'Đóng',
         icon: 'pi pi-times',
-        typeClassButton: SEVERITY.DANGER,
+        styleClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {

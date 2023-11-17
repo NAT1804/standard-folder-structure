@@ -25,7 +25,7 @@ export interface IActionTable {
 
 export interface IActionButtonTable {
   classButton?: string;
-  typeClassButton?: string;
+  styleClassButton?: string;
   label: string;
   icon: string;
   isDisabled?: boolean;
@@ -93,7 +93,7 @@ export interface ITabView {
 export interface IActionButtonDialog {
   label: string;
   icon?: string;
-  typeClassButton?: string;
+  styleClassButton?: string;
   callBack: (...params: any[]) => void;
 }
 
