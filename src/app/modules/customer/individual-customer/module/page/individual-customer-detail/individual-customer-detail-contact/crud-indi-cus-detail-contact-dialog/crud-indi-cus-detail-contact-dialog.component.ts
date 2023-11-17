@@ -5,7 +5,7 @@ import {
 } from '@app/data/interfaces/interface';
 import { CrudIndiCusDetailContactModel } from '@app/modules/customer/individual-customer/model/CrudIndiCusDetailContact.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
-import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import { SEVERITY, STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 
 @Component({
@@ -29,10 +29,13 @@ export class CrudIndiCusDetailContactDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { ApproveBusinessCustomerConst } from '../../service/approve-business-customer.const';
 import {
   IActionTable,
   IDropdown,
   IHeaderColumn,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
@@ -15,6 +14,7 @@ import {
 } from '@app/shared/constants/app.const';
 import { MenuItem } from 'primeng/api';
 import { ApproveBusinessCustomerModel } from '../../model/ApproveBusinessCustomer.model';
+import { ApproveBusinessCustomerConst } from '../../service/approve-business-customer.const';
 
 @Component({
   selector: 'emir-approve-business-customer',
@@ -263,7 +263,7 @@ export class ApproveBusinessCustomerComponent
           actions.push({
             data: data,
             label: 'Lịch sử thay đổi',
-            icon: 'pi pi-eye',
+            icon: 'pi pi-history',
             command: ($event) => {
               this.history($event.item.data);
             },

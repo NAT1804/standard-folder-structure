@@ -4,7 +4,7 @@ import {
   ICloseDialog,
   IImage,
 } from '@app/data/interfaces/interface';
-import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import { SEVERITY, STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { BaseDialogComponent } from '../base-dialog.component';
 
@@ -33,10 +33,13 @@ export class UploadImageDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

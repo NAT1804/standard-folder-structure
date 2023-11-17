@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ITabView } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { BusinessCustomerDetailGeneralComponent } from './business-customer-detail-general/business-customer-detail-general.component';
-import { BusinessCustomerService } from '../../../service/business-customer.service';
 import { MenuItem } from 'primeng/api';
 import { BusinessCustomerConst } from '../../../service/business-customer.const';
+import { BusinessCustomerService } from '../../../service/business-customer.service';
 import { BusinessCustomerDetailBankComponent } from './business-customer-detail-bank/business-customer-detail-bank.component';
 import { BusinessCustomerDetailFileComponent } from './business-customer-detail-file/business-customer-detail-file.component';
+import { BusinessCustomerDetailGeneralComponent } from './business-customer-detail-general/business-customer-detail-general.component';
 
 @Component({
   selector: 'ecore-business-customer-detail',
@@ -80,6 +80,16 @@ export class BusinessCustomerDetailComponent
   public onClickSave(event: any) {
     if (event) {
       this.businessCustomerService._handleEventSave.next(true);
+    }
+  }
+
+  public onClickBack(event: any) {
+    if (event) {
+      this.routerService.getRouterInclude('/customer')
+        ? this.routerService.routerNavigate(['/customer/business-customer'])
+        : this.routerService.routerNavigate([
+            '/approve/approve-business-customer',
+          ]);
     }
   }
 }

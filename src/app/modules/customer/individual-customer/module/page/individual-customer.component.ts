@@ -7,20 +7,20 @@ import {
   ISortTable,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
-import { MenuItem } from 'primeng/api';
-import { IndividualCustomerModel } from '../../model/IndividualCustomer.model';
-import { IndividualCustomerConst } from '../../service/individual-customer.const';
+import { Page } from '@app/data/model/page';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
-import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
-import { IndividualCustomerService } from '../../service/individual-customer.service';
-import { Page } from '@app/data/model/page';
 import { compareValueToUpperCase } from '@app/shared/function-common';
+import { MenuItem } from 'primeng/api';
+import { IndividualCustomerModel } from '../../model/IndividualCustomer.model';
+import { IndividualCustomerConst } from '../../service/individual-customer.const';
+import { IndividualCustomerService } from '../../service/individual-customer.service';
+import { CreateIndividualCustomerDialogComponent } from './create-individual-customer-dialog/create-individual-customer-dialog.component';
 
 @Component({
   selector: 'ecore-individual-customer',

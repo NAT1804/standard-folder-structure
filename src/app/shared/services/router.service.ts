@@ -42,6 +42,10 @@ export class RouterService {
     return this._previousUrl;
   }
 
+  public get url() {
+    return this.router.url;
+  }
+
   public getRouterInclude(key: string): boolean {
     return this.router.url.includes(key);
   }

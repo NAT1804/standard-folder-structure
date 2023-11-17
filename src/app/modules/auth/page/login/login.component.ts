@@ -4,12 +4,12 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
+import { LoggerService } from '@core/logger.service';
 import { AuthService } from '@core/services/auth/auth.service';
 import { StorageService } from '@core/services/storage/storage.service';
-import { LoggerService } from '@core/logger.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

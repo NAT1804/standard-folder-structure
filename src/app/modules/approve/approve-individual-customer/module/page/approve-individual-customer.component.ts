@@ -249,7 +249,7 @@ export class ApproveIndividualCustomerComponent
           actions.push({
             data: data,
             label: 'Lịch sử thay đổi',
-            icon: 'pi pi-eye',
+            icon: 'pi pi-history',
             command: ($event) => {
               this.history($event.item.data);
             },

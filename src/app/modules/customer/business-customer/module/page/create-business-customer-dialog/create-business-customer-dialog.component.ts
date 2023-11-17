@@ -4,13 +4,14 @@ import {
   ICloseDialog,
   IImage,
 } from '@app/data/interfaces/interface';
-import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
-import { CreateBusinessCustomerModel } from '../../../model/CreateBusinessCustomer.model';
-import { scrollToError } from '@app/shared/function-common';
 import {
   I_ADD_IMAGE_BG,
+  SEVERITY,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
+import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
+import { scrollToError } from '@app/shared/function-common';
+import { CreateBusinessCustomerModel } from '../../../model/CreateBusinessCustomer.model';
 import { BusinessCustomerService } from '../../../service/business-customer.service';
 
 @Component({
@@ -35,10 +36,13 @@ export class CreateBusinessCustomerDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

@@ -10,7 +10,7 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classButton = String('');
   @Input()
-  public styleClassButton = String('');
+  public typeClassButton = String('');
   @Input()
   public label = String('');
   @Input()
@@ -19,8 +19,6 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
   public iconPos: any = 'left';
   @Input()
   public isDisabled = Boolean(false);
-  @Input()
-  public isTypeRipple = Boolean(false);
   @Output()
   public _onClick: EventEmitter<any> = new EventEmitter<any>();
 

@@ -1,23 +1,9 @@
-<ng-container *ngIf="!isTypeRipple">
-  <p-button
-    (click)="handleClick($event)"
-    [ngClass]="classButton"
-    [styleClass]="styleClassButton"
-    [label]="label"
-    [icon]="icon"
-    [iconPos]="iconPos"
-    [disabled]="isDisabled"
-  ></p-button>
-</ng-container>
-<!-- <ng-container *ngIf="isTypeRipple">
-  <button
-    pButton
-    pRipple
-    (click)="handleClick($event)"
-    [ngClass]="classButton"
-    [label]="label"
-    [icon]="icon"
-    [iconPos]="iconPos"
-    [disabled]="isDisabled"
-  ></button>
-</ng-container> -->
+<p-button
+  (click)="handleClick($event)"
+  [ngClass]="classButton"
+  [severity]="typeClassButton"
+  [label]="label"
+  [icon]="icon"
+  [iconPos]="iconPos"
+  [disabled]="isDisabled"
+></p-button>

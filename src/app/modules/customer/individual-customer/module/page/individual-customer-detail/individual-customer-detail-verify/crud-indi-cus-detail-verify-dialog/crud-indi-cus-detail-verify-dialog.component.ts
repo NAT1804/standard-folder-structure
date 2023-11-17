@@ -10,6 +10,7 @@ import { IndividualCustomerService } from '@app/modules/customer/individual-cust
 import {
   HEIGHT_DEFAULT_IMAGE,
   I_ADD_IMAGE_BG,
+  SEVERITY,
   STATUS_RESPONSE,
   WIDTH_DEFAULT_IMAGE,
 } from '@app/shared/constants/app.const';
@@ -40,10 +41,13 @@ export class CrudIndiCusDetailVerifyDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

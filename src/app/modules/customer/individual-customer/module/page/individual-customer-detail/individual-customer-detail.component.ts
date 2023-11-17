@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ITabView } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { IndividualCustomerDetailGeneralComponent } from './individual-customer-detail-general/individual-customer-detail-general.component';
+import { MenuItem } from 'primeng/api';
+import { IndividualCustomerConst } from '../../../service/individual-customer.const';
+import { IndividualCustomerService } from '../../../service/individual-customer.service';
 import { IndividualCustomerDetailBankComponent } from './individual-customer-detail-bank/individual-customer-detail-bank.component';
 import { IndividualCustomerDetailContactComponent } from './individual-customer-detail-contact/individual-customer-detail-contact.component';
-import { IndividualCustomerDetailVerifyComponent } from './individual-customer-detail-verify/individual-customer-detail-verify.component';
+import { IndividualCustomerDetailGeneralComponent } from './individual-customer-detail-general/individual-customer-detail-general.component';
 import { IndividualCustomerDetailSaleComponent } from './individual-customer-detail-sale/individual-customer-detail-sale.component';
-import { IndividualCustomerService } from '../../../service/individual-customer.service';
-import { IndividualCustomerConst } from '../../../service/individual-customer.const';
-import { MenuItem } from 'primeng/api';
+import { IndividualCustomerDetailVerifyComponent } from './individual-customer-detail-verify/individual-customer-detail-verify.component';
 
 @Component({
   selector: 'ecore-individual-customer-detail',
@@ -96,6 +96,16 @@ export class IndividualCustomerDetailComponent
   public onClickSave(event: any) {
     if (event) {
       this.individualCustomerService._handleEventSave.next(true);
+    }
+  }
+
+  public onClickBack(event: any) {
+    if (event) {
+      this.routerService.getRouterInclude('/customer')
+        ? this.routerService.routerNavigate(['/customer/individual-customer'])
+        : this.routerService.routerNavigate([
+            '/approve/approve-individual-customer',
+          ]);
     }
   }
 }

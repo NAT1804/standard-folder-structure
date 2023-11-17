@@ -5,7 +5,7 @@ import {
 } from '@app/data/interfaces/interface';
 import { CrudBusiCusDetailFileModel } from '@app/modules/customer/business-customer/model/CrudBusiCusDetailFile.model';
 import { BusinessCustomerService } from '@app/modules/customer/business-customer/service/business-customer.service';
-import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import { SEVERITY, STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 
@@ -30,10 +30,13 @@ export class CrudBusiCusDetailFileDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

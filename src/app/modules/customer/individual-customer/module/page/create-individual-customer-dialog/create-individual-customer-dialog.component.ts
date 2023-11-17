@@ -1,18 +1,19 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
-import { CreateIndividualCustomerModel } from '../../../model/CreateIndividualCustomer.model';
 import {
   IActionButtonDialog,
   ICloseDialog,
   IDropdown,
   IImage,
 } from '@app/data/interfaces/interface';
-import { scrollToError } from '@app/shared/function-common';
 import {
   I_ADD_IMAGE_BG,
+  SEVERITY,
   STATUS_RESPONSE,
   TYPE_INPUT,
 } from '@app/shared/constants/app.const';
+import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
+import { scrollToError } from '@app/shared/function-common';
+import { CreateIndividualCustomerModel } from '../../../model/CreateIndividualCustomer.model';
 import { IndividualCustomerConst } from '../../../service/individual-customer.const';
 import { IndividualCustomerService } from '../../../service/individual-customer.service';
 
@@ -52,10 +53,13 @@ export class CreateIndividualCustomerDialogComponent
     this.listAction = [
       {
         label: 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
         label: 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

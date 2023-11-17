@@ -3,6 +3,7 @@ import {
   IActionButtonDialog,
   ICloseDialog,
 } from '@app/data/interfaces/interface';
+import { SEVERITY } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '../base-dialog.component';
 
 @Component({
@@ -28,6 +29,8 @@ export class ConfirmNoteDialogComponent
           this.labelAction && this.labelAction.length
             ? this.labelAction[0]
             : 'Đóng',
+        icon: 'pi pi-times',
+        typeClassButton: SEVERITY.DANGER,
         callBack: this.onClickCloseDialog,
       },
       {
@@ -35,6 +38,7 @@ export class ConfirmNoteDialogComponent
           this.labelAction && this.labelAction.length
             ? this.labelAction[1]
             : 'Lưu',
+        icon: 'pi pi-save',
         callBack: this.onClickSaveDialog,
       },
     ];

@@ -14,18 +14,22 @@
                     *ngIf="isEdit"
                     class="ml-2"
                     [label]="'Lưu lại'"
+                    [icon]="'pi pi-save'"
                     (_onClick)="onClickSave($event)"
                   ></emir-form-button>
                   <emir-form-button
                     *ngIf="!isEdit"
                     class="ml-2"
                     [label]="'Chỉnh sửa'"
+                    [icon]="'pi pi-pencil'"
                     (_onClick)="onClickEdit($event)"
                   ></emir-form-button>
                 </ng-container>
                 <emir-form-button
                   class="ml-2"
                   [label]="'Quay lại'"
+                  [icon]="'pi pi-chevron-left'"
+                  (_onClick)="onClickBack($event)"
                 ></emir-form-button>
               </div>
             </div>

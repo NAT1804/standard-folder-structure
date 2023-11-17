@@ -175,6 +175,7 @@
             [options]="listNation"
             [(ngModelValue)]="dataSource.nation"
             [isSubmit]="isSubmit"
+            [isFilter]="true"
             [isValidData]="isValidData('nation')"
             [messageError]="
               dataSource.dataValidator['nation'].toMessageString()
