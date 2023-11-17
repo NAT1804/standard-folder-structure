@@ -1,4 +1,11 @@
 import {
+  animate,
+  keyframes,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   AfterViewInit,
   Component,
   EventEmitter,
@@ -7,21 +14,14 @@ import {
   Output,
 } from '@angular/core';
 import { BehaviorSubject, Observable, distinctUntilChanged } from 'rxjs';
-import {
-  style,
-  transition,
-  trigger,
-  animate,
-  keyframes,
-} from '@angular/animations';
 
-import { navData } from '@shared/constants/nav/nav-data';
 import {
   INavData,
   SideNavToggle,
 } from '@app/data/interfaces/nav-data.interface';
-import { fadeInOut } from '@shared/constants/nav/nav-animation';
 import { RouterService } from '@app/shared/services/router.service';
+import { fadeInOut } from '@shared/constants/nav/nav-animation';
+import { navData } from '@shared/constants/nav/nav-data';
 
 @Component({
   selector: 'app-side-nav',

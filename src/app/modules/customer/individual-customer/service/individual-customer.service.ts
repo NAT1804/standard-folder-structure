@@ -146,8 +146,7 @@ export class IndividualCustomerService extends BaseService {
       url += this.convertSortParamUrl(sort);
     }
     if (filter) {
-      filter.keyword &&
-        (url += this.convertParamUrl('keyword', filter.keyword));
+      filter.keyword && (url += this.convertParamUrl('filter', filter.keyword));
       filter.type && (url += this.convertParamUrl('filterType', filter.type));
       filter.check &&
         (url += this.convertParamUrl('is_check', filter.check === '0'));

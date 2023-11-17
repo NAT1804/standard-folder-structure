@@ -45,6 +45,28 @@ export class BaseService {
       );
   }
 
+  public requestPut(body: any, url: string) {
+    let url_ = this.BASE_URL + url;
+    url_ = url_.replace(/[?&]$/, '');
+    const content = JSON.stringify(body);
+    const options = {
+      headers: this.createDefaultHeaders(),
+    };
+
+    return this.http
+      .put(url_, content, options)
+      .pipe(
+        mergeMap((response: any) => {
+          return of(response);
+        })
+      )
+      .pipe(
+        catchError((error: any) => {
+          return throwError(() => new Error(error.message));
+        })
+      );
+  }
+
   public requestPostFile(file: File, folder: string, url: string) {
     let url_ = this.BASE_URL + url;
     url_ = url_.replace(/[?&]$/, '');

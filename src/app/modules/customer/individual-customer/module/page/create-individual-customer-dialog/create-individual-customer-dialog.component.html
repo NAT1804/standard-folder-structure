@@ -114,6 +114,7 @@
               [label]="'Quốc tịch'"
               [options]="listNation"
               [(ngModelValue)]="dataSource.nation"
+              [isFilter]="true"
               [isSubmit]="isSubmit"
               [isValidData]="isValidData('nation')"
               [messageError]="
@@ -188,7 +189,6 @@
             <emir-form-label
               [classLabel]="'inline-block mb-2'"
               [label]="'Ảnh chữ ký'"
-              [isRequired]="true"
             ></emir-form-label>
             <emir-form-image
               [imageSource]="signatureImageIImage"

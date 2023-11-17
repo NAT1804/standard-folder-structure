@@ -1,0 +1,19 @@
+<emir-form-dialog [header]="header" [listAction]="listAction">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12">
+            <span>{{ content }}</span>
+          </div>
+          <div class="col-12">
+            <emir-form-input
+              [label]="'Ghi chú'"
+              [(ngModelValue)]="note"
+            ></emir-form-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

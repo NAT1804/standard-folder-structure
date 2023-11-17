@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   IActionTable,
+  IConfigDataConfirmNoteDialog,
   IDropdown,
   IHeaderColumn,
-  IValueFormatter,
+  ISortTable,
 } from '@app/data/interfaces/interface';
+import { Page } from '@app/data/model/page';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { ApproveIndividualCustomerModel } from '../../model/ApproveIndividualCustomer.model';
-import { ApproveIndividualCustomerConst } from '../../service/approve-individual-customer.const';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
-  ETypeStatus,
+  STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
+import { ConfirmNoteDialogComponent } from '@app/shared/dialogs/confirm-note-dialog/confirm-note-dialog.component';
 import { MenuItem } from 'primeng/api';
+import { ApproveIndividualCustomerModel } from '../../model/ApproveIndividualCustomer.model';
+import { ApproveIndividualCustomerConst } from '../../service/approve-individual-customer.const';
+import { ApproveIndividualCustomerService } from '../../service/approve-individual-customer.service';
 
 @Component({
   selector: 'emir-approve-individual-customer',
@@ -23,30 +27,32 @@ import { MenuItem } from 'primeng/api';
 })
 export class ApproveIndividualCustomerComponent
   extends BaseComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: ApproveIndividualCustomerModel[] = [];
   public isLoading: boolean;
   public listAction: IActionTable[][] = [];
+  public page: Page = new Page();
+  public sort: ISortTable;
+  public filter: {
+    keyword: string;
+    type: string;
+    action: number | undefined;
+    status: number | undefined;
+  } = {
+    keyword: '',
+    type: 'cif_no',
+    action: undefined,
+    status: undefined,
+  };
+  public listFilterType: IDropdown[] = [];
+  public listActionFilter: IDropdown[] = [];
+  public listStatus: IDropdown[] = [];
 
-  public get listActionConst() {
-    return ApproveIndividualCustomerConst.listAction;
-  }
-
-  public get listStatus() {
-    return ApproveIndividualCustomerConst.listStatus;
-  }
-
-  public getStatusSeverity(code: number) {
-    return ApproveIndividualCustomerConst.getStatus(code, ETypeStatus.SEVERITY);
-  }
-
-  public getStatusName(code: number) {
-    return ApproveIndividualCustomerConst.getStatus(code, ETypeStatus.LABEL);
-  }
-
-  constructor() {
+  constructor(
+    private approveIndividualCustomerService: ApproveIndividualCustomerService // private dynamicDialogConfig: DynamicDialogConfig
+  ) {
     super();
   }
 
@@ -59,7 +65,7 @@ export class ApproveIndividualCustomerComponent
 
     this.headerColumns = [
       {
-        field: 'id',
+        field: 'no',
         header: '#ID',
         width: '3rem',
         type: ETypeDataTable.INDEX,
@@ -72,26 +78,23 @@ export class ApproveIndividualCustomerComponent
       {
         field: 'action',
         header: 'Thao tác',
-        minWidth: '10rem',
-        type: ETypeDataTable.TEXT,
-        isSort: true,
-        fieldSort: 'action',
-        isResize: true,
-        valueFormatter: (param: IValueFormatter) =>
-          param.data
-            ? this.listActionConst.find(
-                (e: IDropdown) => e.value === param.data
-              )?.label
-            : '',
+        width: '8rem',
+        type: ETypeDataTable.STATUS,
+        fieldStatus: {
+          fieldLabel: 'action',
+          fieldSeverity: 'actionSeverity',
+        },
+        posTextCell: EPositionTextCell.LEFT,
+        isFrozen: true,
+        posFrozen: EPositionFrozenCell.RIGHT,
       },
-
       {
         field: 'customer',
         header: 'Thông tin khách hàng',
         minWidth: '20rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'customer',
+        fieldSort: 'full_name',
         isResize: true,
       },
       {
@@ -100,7 +103,7 @@ export class ApproveIndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'actionTime',
+        fieldSort: 'action_dt',
         isResize: true,
       },
       {
@@ -109,25 +112,25 @@ export class ApproveIndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'actionUser',
+        fieldSort: 'action_by',
         isResize: true,
       },
       {
-        field: 'publicTime',
+        field: 'approveTime',
         header: 'Thời gian trình duyệt',
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'publicTime',
+        fieldSort: 'approve_dt',
         isResize: true,
       },
       {
-        field: 'publicUser',
+        field: 'approveUser',
         header: 'Người trình duyệt',
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'publicUser',
+        fieldSort: 'approve_by',
         isResize: true,
       },
       {
@@ -136,7 +139,7 @@ export class ApproveIndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'handleTime',
+        fieldSort: 'handle_dt',
         isResize: true,
       },
       {
@@ -145,7 +148,7 @@ export class ApproveIndividualCustomerComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'handleUser',
+        fieldSort: 'handle_by',
         isResize: true,
       },
       {
@@ -153,8 +156,10 @@ export class ApproveIndividualCustomerComponent
         header: 'Trạng thái',
         width: '8rem',
         type: ETypeDataTable.STATUS,
-        funcStyleClassStatus: this.funcStyleClassStatus,
-        funcLabelStatus: this.funcLabelStatus,
+        fieldStatus: {
+          fieldLabel: 'status',
+          fieldSeverity: 'statusSeverity',
+        },
         posTextCell: EPositionTextCell.LEFT,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.RIGHT,
@@ -170,83 +175,64 @@ export class ApproveIndividualCustomerComponent
       },
     ] as IHeaderColumn[];
 
-    this.dataSource = [
-      {
-        id: 1,
-        action: 1,
-        customer: '1111',
-        actionTime: '1111',
-        actionUser: '1111',
-        publicTime: '1111',
-        publicUser: '1111',
-        handleTime: '1111',
-        handleUser: '1111',
-        status: 1,
-      },
-      {
-        id: 2,
-        action: 2,
-        customer: '2222',
-        actionTime: '2222',
-        actionUser: '2222',
-        publicTime: '2222',
-        publicUser: '2222',
-        handleTime: '2222',
-        handleUser: '2222',
-        status: 2,
-      },
-      {
-        id: 3,
-        action: 1,
-        customer: '3333',
-        actionTime: '3333',
-        actionUser: '3333',
-        publicTime: '3333',
-        publicUser: '3333',
-        handleTime: '3333',
-        handleUser: '3333',
-        status: 3,
-      },
-      {
-        id: 4,
-        action: 1,
-        customer: '4444',
-        actionTime: '4444',
-        actionUser: '4444',
-        publicTime: '4444',
-        publicUser: '4444',
-        handleTime: '4444',
-        handleUser: '4444',
-        status: 4,
-      },
-    ];
-    this.genListAction();
+    this.initData();
+    this.setPage();
   }
 
-  public funcStyleClassStatus = (status: number) => {
-    return this.getStatusSeverity(status);
-  };
+  ngAfterViewInit(): void {
+    this.approveIndividualCustomerService._listFilterIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listFilterType = res;
+        }
+      }
+    );
+    this.approveIndividualCustomerService._listActionIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listActionFilter = res;
+        }
+      }
+    );
+    this.approveIndividualCustomerService._listStatusIndividualCustomer$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listStatus = res;
+        }
+      }
+    );
+  }
 
-  public funcLabelStatus = (status: number) => {
-    return this.getStatusName(status);
-  };
+  private initData() {
+    this.approveIndividualCustomerService.getListFilterIndividualCustomer();
+    this.approveIndividualCustomerService.getListActionIndividualCustomer();
+    this.approveIndividualCustomerService.getListStatusIndividualCustomer();
+  }
 
   private genListAction() {
     this.listAction = this.dataSource.map(
       (data: ApproveIndividualCustomerModel) => {
         const actions: IActionTable[] = [];
+        actions.push({
+          data: data,
+          label: 'Xem chi tiết',
+          icon: 'pi pi-eye',
+          command: ($event) => {
+            this.detail($event.item.data);
+          },
+        });
 
-        if (data.status === ApproveIndividualCustomerConst.KHOI_TAO) {
+        if (data.statusId === ApproveIndividualCustomerConst.KHOI_TAO) {
           actions.push({
             data: data,
             label: 'Trình duyệt',
             icon: 'pi pi-eye',
             command: ($event) => {
-              this.public($event.item.data);
+              this.approve($event.item.data);
             },
           });
         }
-        if (data.status === ApproveIndividualCustomerConst.TRINH_DUYET) {
+        if (data.statusId === ApproveIndividualCustomerConst.TRINH_DUYET) {
           actions.push({
             data: data,
             label: 'Xử lý yêu cầu',
@@ -257,8 +243,8 @@ export class ApproveIndividualCustomerComponent
           });
         }
         if (
-          data.status === ApproveIndividualCustomerConst.DA_DUYET ||
-          data.status === ApproveIndividualCustomerConst.HUY_DUYET
+          data.statusId === ApproveIndividualCustomerConst.DA_DUYET ||
+          data.statusId === ApproveIndividualCustomerConst.HUY_DUYET
         ) {
           actions.push({
             data: data,
@@ -269,27 +255,157 @@ export class ApproveIndividualCustomerComponent
             },
           });
         }
-
         return actions;
       }
     );
   }
 
-  public public(data: ApproveIndividualCustomerModel) {
+  public approve(data: ApproveIndividualCustomerModel) {
     if (data) {
-      console.log('public');
+      this.dialogCommonService.createDialog(
+        ConfirmNoteDialogComponent,
+        'auto',
+        'auto',
+        true,
+        {
+          header: 'Trình duyệt khách hàng',
+          content: 'Trình duyệt khách hàng',
+          apiClickSaveDialog: (note: string, funcClose: () => void) => {
+            this.approveIndividualCustomerService
+              .approveIndividualCustomer(data.id, data.customerId, note || '')
+              .subscribe((response) => {
+                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                  this.toastService.showToastSucess(
+                    'Trình duyệt khách hàng thành công!'
+                  );
+                  this.setPage();
+                  funcClose();
+                }
+              });
+          },
+        } as IConfigDataConfirmNoteDialog
+      );
     }
   }
 
   public request(data: ApproveIndividualCustomerModel) {
     if (data) {
-      console.log('request');
+      this.dialogCommonService.createDialog(
+        ConfirmNoteDialogComponent,
+        'auto',
+        'auto',
+        true,
+        {
+          labelAction: ['Từ chối', 'Chấp nhận'],
+          header: 'Xử lý yêu cầu khách hàng',
+          content: 'Xử lý yêu cầu khách hàng',
+          apiClickSaveDialog: (note: string, funcClose: () => void) => {
+            this.approveIndividualCustomerService
+              .requestIndividualCustomer(
+                'approved',
+                data.id,
+                data.customerId,
+                note || ''
+              )
+              .subscribe((response) => {
+                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                  this.toastService.showToastSucess(
+                    'Xử lý yêu cầu khách hàng thành công!'
+                  );
+                  this.setPage();
+                  funcClose();
+                }
+              });
+          },
+          apiClickCloseDialog: (note: string, funcClose: () => void) => {
+            this.approveIndividualCustomerService
+              .requestIndividualCustomer(
+                'reject',
+                data.id,
+                data.customerId,
+                note || ''
+              )
+              .subscribe((response) => {
+                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                  this.toastService.showToastSucess(
+                    'Xử lý yêu cầu khách hàng thành công!'
+                  );
+                  this.setPage();
+                  funcClose();
+                }
+              });
+          },
+        } as IConfigDataConfirmNoteDialog
+      );
+    }
+  }
+
+  public detail(data: ApproveIndividualCustomerModel) {
+    if (data) {
+      this.routerService.routerNavigate([
+        '/approve/approve-individual-customer/' + data.customerId,
+      ]);
     }
   }
 
   public history(data: ApproveIndividualCustomerModel) {
     if (data) {
       console.log('history');
+    }
+  }
+
+  public changePage(event: any) {
+    if (event) {
+      this.setPage();
+    }
+  }
+
+  public changeFilter(event: any) {
+    this.setPage();
+  }
+
+  private setPage() {
+    this.spinnerService.showSpinner();
+    this.approveIndividualCustomerService
+      .getListApproveIndividualCustomer(this.page, this.filter, this.sort)
+      .subscribe(
+        (res) => {
+          this.spinnerService.removeSpinner();
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            this.page.totalItems = res.recordsTotal;
+            this.dataSource = res.data.map(
+              (data: any) =>
+                ({
+                  no: data.stt,
+                  id: data.id,
+                  action: data.action,
+                  actionSeverity: data.action_label,
+                  customerId: data.custId,
+                  customer: data.full_name,
+                  actionTime: data.action_dt,
+                  actionUser: data.action_by,
+                  approveTime: data.approve_dt,
+                  approveUser: data.approve_by,
+                  handleTime: data.handle_dt,
+                  handleUser: data.handle_by,
+                  statusId: data.int_approve_st,
+                  status: data.approve_st,
+                  statusSeverity: data.approve_st_label,
+                }) as ApproveIndividualCustomerModel
+            );
+            this.genListAction();
+          }
+        },
+        (err) => {
+          this.spinnerService.removeSpinner();
+        }
+      );
+  }
+
+  public onSort(event: ISortTable) {
+    if (event) {
+      this.sort = event;
+      this.setPage();
     }
   }
 }

@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseDialogComponent } from '../base-dialog.component';
 import {
   IActionButtonDialog,
   ICloseDialog,
   IImage,
 } from '@app/data/interfaces/interface';
-import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
-import { ToastService } from '@app/shared/services/toast.service';
-import { ApiConstantService } from '@app/shared/services/api-constant.service';
+import { FileUploadHandlerEvent } from 'primeng/fileupload';
+import { BaseDialogComponent } from '../base-dialog.component';
 
 export const DEFAULT_MAX_FILE_SIZE = 100000000;
 

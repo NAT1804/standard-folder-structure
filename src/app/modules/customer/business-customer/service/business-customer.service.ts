@@ -71,8 +71,7 @@ export class BusinessCustomerService extends BaseService {
       url += this.convertSortParamUrl(sort);
     }
     if (filter) {
-      filter.keyword &&
-        (url += this.convertParamUrl('keyword', filter.keyword));
+      filter.keyword && (url += this.convertParamUrl('filter', filter.keyword));
       filter.type && (url += this.convertParamUrl('filterType', filter.type));
       filter.status && (url += this.convertParamUrl('custSt', filter.status));
     }

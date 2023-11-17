@@ -100,3 +100,11 @@ export interface ICloseDialog {
   message?: string;
   data?: any;
 }
+
+export interface IConfigDataConfirmNoteDialog {
+  header: string;
+  content: string;
+  apiClickSaveDialog?: (...params: any[]) => void;
+  apiClickCloseDialog?: (...params: any[]) => void;
+  labelAction?: string[];
+}
