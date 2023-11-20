@@ -29,7 +29,8 @@
           *ngFor="let col of columns; index as i"
           [ngStyle]="{
             'min-width': getWidth('min', col),
-            width: getWidth('width', col)
+            width: getWidth('width', col),
+            right: getRightColCss(i)
           }"
           [ngClass]="col.class"
           pResizableColumn
@@ -77,7 +78,8 @@
           [ngStyle]="{
             'min-width': getWidth('min', col),
             width: getWidth('width', col),
-            'text-align': col.posTextCell || EPositionTextCell.LEFT
+            'text-align': col.posTextCell || EPositionTextCell.LEFT,
+            right: getRightColCss(i)
           }"
           [ngClass]="col.class"
           pFrozenColumn
