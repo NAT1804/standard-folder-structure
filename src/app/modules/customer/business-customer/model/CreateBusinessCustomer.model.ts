@@ -116,7 +116,7 @@ export class CreateBusinessCustomerModel {
 
   public toObjectSendToAPI() {
     return {
-      avatar_url: this.avatar,
+      com_logo: this.avatar,
       com_tax_code: this.taxCode,
       com_tax_code_by: this.taxCodePlace,
       com_tax_code_dt: this.taxCodeDate
@@ -124,7 +124,7 @@ export class CreateBusinessCustomerModel {
         : undefined,
       com_name: this.name,
       com_name_short: this.abbreviation,
-      address: this.address,
+      com_address: this.address,
       com_rep_name: this.representative,
       com_rep_position: this.representativePosition,
     };

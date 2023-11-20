@@ -6,7 +6,11 @@ import {
 } from '@app/data/interfaces/interface';
 import { CrudIndiCusDetailBankModel } from '@app/modules/customer/individual-customer/model/CrudIndiCusDetailBank.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
-import { SEVERITY, STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import {
+  SEVERITY,
+  STATUS_RESPONSE,
+  TYPE_INPUT,
+} from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 
 @Component({
@@ -22,6 +26,10 @@ export class CrudIndiCusDetailBankDialogComponent
   public dataSource: CrudIndiCusDetailBankModel =
     new CrudIndiCusDetailBankModel();
   public listBank: IDropdown[] = [];
+
+  public get TYPE_INPUT() {
+    return TYPE_INPUT;
+  }
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();

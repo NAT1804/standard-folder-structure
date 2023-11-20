@@ -9,6 +9,7 @@ import {
   I_ADD_IMAGE_BG,
   SEVERITY,
   STATUS_RESPONSE,
+  TYPE_INPUT,
 } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 import { scrollToError } from '@app/shared/function-common';
@@ -29,6 +30,10 @@ export class CreateBusinessCustomerDialogComponent
     new CreateBusinessCustomerModel();
   public avatarIImage: IImage = I_ADD_IMAGE_BG;
   public listBank: IDropdown[] = [];
+
+  public get TYPE_INPUT() {
+    return TYPE_INPUT;
+  }
 
   constructor(private businessCustomerService: BusinessCustomerService) {
     super();

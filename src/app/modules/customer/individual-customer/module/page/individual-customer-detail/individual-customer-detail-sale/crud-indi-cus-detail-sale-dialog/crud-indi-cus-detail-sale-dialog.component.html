@@ -23,6 +23,8 @@
       </div>
       <div class="col-12">
         <emir-form-input
+          [type]="TYPE_INPUT.NUMBER"
+          [isHideArrows]="true"
           [label]="'Số điện thoại'"
           [(ngModelValue)]="dataSource.phone"
           [isSubmit]="isSubmit"

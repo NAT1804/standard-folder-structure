@@ -7,7 +7,7 @@ export class BusinessCustomerDetailGeneralModel extends CreateBusinessCustomerMo
   public mapDTO(dto: any) {
     if (dto) {
       this.id = dto.custId;
-      this.avatar = dto.avatar_url;
+      this.avatar = dto.com_logo;
       this.taxCode = dto.com_tax_code;
       this.taxCodeDate = dto.com_tax_code_dt
         ? new Date(dto.com_tax_code_dt)

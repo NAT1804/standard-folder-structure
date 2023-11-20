@@ -3,7 +3,6 @@ import {
   Validator,
   ValidatorItem,
 } from '@app/data/model/validation';
-import { IndividualCustomerConst } from '../service/individual-customer.const';
 import { formatDateToAPI } from '@app/shared/function-common';
 
 export const mess_typeOfDocument = 'Vui lòng chọn Loại giấy tờ';
@@ -319,11 +318,13 @@ export class CreateIndividualCustomerModel {
 
   public toObjectSendToAPI() {
     return {
-      cust_type: IndividualCustomerConst.TYPE_INDIVIDUAL_CUSTOMER,
       custId: undefined,
-      cif_no: this.idNo,
+      idcard_type: this.typeOfDocument,
+      idcard_font_url: this.frontImage,
+      idcard_back_url: this.backImage,
+      idcard_no: this.idNo,
       full_name: this.fullname,
-      // sex: !!(this.gender === IndividualCustomerConst.NAM),
+      sex: !!this.gender,
       birthday: this.birthday ? formatDateToAPI(this.birthday) : undefined,
       cntry_reg: this.nation,
       origin_add: this.country,
@@ -334,10 +335,16 @@ export class CreateIndividualCustomerModel {
       idcard_expire_dt: this.expiredDate
         ? formatDateToAPI(this.expiredDate)
         : undefined,
-      idcard_issue_plc: this.taxCodePlace,
-      bank_name: this.bank,
+      idcard_issue_by: this.taxCodePlace,
+      sign_image_url: this.signatureImage,
+      referral_cd: this.referralCode,
+      referral_name: this.referralUser,
+      bank_code: this.bank,
       bank_acc_no: this.accountNumber,
       bank_acc_name: this.accountOwner,
+      phone: this.numberPhone,
+      email: this.email,
+      pass_word: this.password,
     };
   }
 }

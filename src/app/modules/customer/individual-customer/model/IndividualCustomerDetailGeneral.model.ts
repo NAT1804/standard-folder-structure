@@ -68,7 +68,6 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
       avatar_url: this.avatar,
       idcard_font_url: this.frontImage,
       idcard_back_url: this.backImage,
-      cif_no: this.idNo,
       full_name: this.fullname,
       birthday: this.birthday ? formatDateToAPI(this.birthday) : undefined,
       sex: !!this.gender,
@@ -81,12 +80,13 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
       idcard_expire_dt: this.expiredDate
         ? formatDateToAPI(this.expiredDate)
         : undefined,
-      idcard_issue_plc: this.taxCodePlace,
+      idcard_issue_by: this.taxCodePlace,
       cntry_reg: this.nation,
       origin_add: this.country,
       phone: this.numberPhone,
       email: this.email,
       res_add: this.permanentAddress,
+      contact_address: this.contactAddress,
     };
   }
 }

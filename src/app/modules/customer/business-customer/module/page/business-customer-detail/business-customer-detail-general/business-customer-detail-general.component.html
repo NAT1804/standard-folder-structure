@@ -82,6 +82,8 @@
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
+              [type]="TYPE_INPUT.NUMBER"
+              [isHideArrows]="true"
               [label]="'Số điện thoại'"
               [(ngModelValue)]="dataSource.phone"
               [isDisabled]="isDisabled"

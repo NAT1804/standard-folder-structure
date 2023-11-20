@@ -8,6 +8,7 @@ import {
   HEIGHT_DEFAULT_IMAGE,
   I_ADD_IMAGE_BG,
   STATUS_RESPONSE,
+  TYPE_INPUT,
   WIDTH_DEFAULT_IMAGE,
 } from '@app/shared/constants/app.const';
 import { scrollToError } from '@app/shared/function-common';
@@ -31,6 +32,10 @@ export class IndividualCustomerDetailGeneralComponent
   public avatarImageIImage: IImage = I_ADD_IMAGE_BG;
   public frontImageIImage: IImage = I_ADD_IMAGE_BG;
   public backImageIImage: IImage = I_ADD_IMAGE_BG;
+
+  public get TYPE_INPUT() {
+    return TYPE_INPUT;
+  }
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
