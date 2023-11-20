@@ -220,16 +220,18 @@
         <h5>Thông tin tài khoản ngân hàng</h5>
         <div class="p-fluid p-formgrid grid">
           <div class="col-12 lg:col-4 xl:col-3">
-            <emir-form-input
+            <emir-form-dropdown
               [label]="'Ngân hàng'"
+              [options]="listBank"
               [(ngModelValue)]="dataSource.bank"
+              [isFilter]="true"
               [isSubmit]="isSubmit"
               [isValidData]="isValidData('bank')"
               [messageError]="
                 dataSource.dataValidator['bank'].toMessageString()
               "
               [isRequired]="true"
-            ></emir-form-input>
+            ></emir-form-dropdown>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   IActionButtonDialog,
   ICloseDialog,
+  IDropdown,
   IImage,
 } from '@app/data/interfaces/interface';
 import {
@@ -21,12 +22,13 @@ import { BusinessCustomerService } from '../../../service/business-customer.serv
 })
 export class CreateBusinessCustomerDialogComponent
   extends BaseDialogComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public listAction: IActionButtonDialog[] = [];
   public dataSource: CreateBusinessCustomerModel =
     new CreateBusinessCustomerModel();
   public avatarIImage: IImage = I_ADD_IMAGE_BG;
+  public listBank: IDropdown[] = [];
 
   constructor(private businessCustomerService: BusinessCustomerService) {
     super();
@@ -46,6 +48,18 @@ export class CreateBusinessCustomerDialogComponent
         callBack: this.onClickSaveDialog,
       },
     ];
+
+    this.apiConstantService.getListBank();
+  }
+
+  ngAfterViewInit(): void {
+    this.apiConstantService._listBank$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listBank = res;
+        }
+      }
+    );
   }
 
   public onClickCloseDialog = () => {

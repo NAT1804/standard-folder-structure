@@ -2,14 +2,16 @@
   <div class="card">
     <div class="p-fluid p-formgrid grid">
       <div class="col-12">
-        <emir-form-input
+        <emir-form-dropdown
           [label]="'Ngân hàng'"
+          [options]="listBank"
           [(ngModelValue)]="dataSource.bank"
+          [isFilter]="true"
           [isSubmit]="isSubmit"
           [isValidData]="isValidData('bank')"
           [messageError]="dataSource.dataValidator['bank'].toMessageString()"
           [isRequired]="true"
-        ></emir-form-input>
+        ></emir-form-dropdown>
       </div>
       <div class="col-12">
         <emir-form-input

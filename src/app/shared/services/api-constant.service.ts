@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { IDropdown } from '@app/data/interfaces/interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { STATUS_RESPONSE, folder } from '../constants/app.const';
 import { mapDropdownDTOToIDropdown } from '../function-common';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +13,16 @@ export class ApiConstantService extends BaseService {
 
   public _listNation: BehaviorSubject<IDropdown[] | undefined>;
   public _listNation$: Observable<IDropdown[] | undefined>;
+  public _listBank: BehaviorSubject<IDropdown[] | undefined>;
+  public _listBank$: Observable<IDropdown[] | undefined>;
 
   constructor() {
     super();
 
     this._listNation = new BehaviorSubject<IDropdown[] | undefined>(undefined);
     this._listNation$ = this._listNation.asObservable();
+    this._listBank = new BehaviorSubject<IDropdown[] | undefined>(undefined);
+    this._listBank$ = this._listBank.asObservable();
   }
 
   public getListNation() {
@@ -26,6 +30,16 @@ export class ApiConstantService extends BaseService {
       (res: any) => {
         if (res.status === STATUS_RESPONSE.SUCCESS) {
           this._listNation.next(mapDropdownDTOToIDropdown(res.data));
+        }
+      }
+    );
+  }
+
+  public getListBank() {
+    this.requestGet(String(this.baseAPI + '/GetBankCodes')).subscribe(
+      (res: any) => {
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this._listBank.next(mapDropdownDTOToIDropdown(res.data));
         }
       }
     );

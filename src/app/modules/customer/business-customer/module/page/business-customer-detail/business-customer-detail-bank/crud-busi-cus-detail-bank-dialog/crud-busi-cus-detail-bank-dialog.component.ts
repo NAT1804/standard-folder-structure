@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   IActionButtonDialog,
   ICloseDialog,
+  IDropdown,
 } from '@app/data/interfaces/interface';
 import { CrudBusiCusDetailBankModel } from '@app/modules/customer/business-customer/model/CrudBusiCusDetailBank.model';
 import { BusinessCustomerService } from '@app/modules/customer/business-customer/service/business-customer.service';
@@ -15,11 +16,12 @@ import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 })
 export class CrudBusiCusDetailBankDialogComponent
   extends BaseDialogComponent
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   public listAction: IActionButtonDialog[] = [];
   public dataSource: CrudBusiCusDetailBankModel =
     new CrudBusiCusDetailBankModel();
+  public listBank: IDropdown[] = [];
 
   constructor(private businessCustomerService: BusinessCustomerService) {
     super();
@@ -39,6 +41,7 @@ export class CrudBusiCusDetailBankDialogComponent
         callBack: this.onClickSaveDialog,
       },
     ];
+    this.apiConstantService.getListBank();
 
     if (this.dynamicDialogConfig.data) {
       if (this.dynamicDialogConfig.data.customerId) {
@@ -48,6 +51,16 @@ export class CrudBusiCusDetailBankDialogComponent
         this.dataSource.mapDTO(this.dynamicDialogConfig.data.dataSource);
       }
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.apiConstantService._listBank$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listBank = res;
+        }
+      }
+    );
   }
 
   public onClickCloseDialog = () => {
