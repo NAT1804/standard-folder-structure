@@ -16,8 +16,8 @@ import {
   SEVERITY,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
-import { CrudIndiCusDetailVerifyDialogComponent } from './crud-indi-cus-detail-verify-dialog/crud-indi-cus-detail-verify-dialog.component';
 import { formatDate } from '@app/shared/function-common';
+import { CrudIndiCusDetailVerifyDialogComponent } from './crud-indi-cus-detail-verify-dialog/crud-indi-cus-detail-verify-dialog.component';
 
 @Component({
   selector: 'ecore-individual-customer-detail-verify',
@@ -134,7 +134,7 @@ export class IndividualCustomerDetailVerifyComponent
   }
 
   public funcStyleClassStatus = (status: boolean) => {
-    return status ? SEVERITY.INFO : '';
+    return status ? SEVERITY.PRIMARY : '';
   };
 
   public funcLabelStatus = (status: boolean) => {

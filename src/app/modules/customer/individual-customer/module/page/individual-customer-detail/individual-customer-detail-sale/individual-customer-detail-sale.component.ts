@@ -16,8 +16,8 @@ import {
   SEVERITY,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
-import { CrudIndiCusDetailSaleDialogComponent } from './crud-indi-cus-detail-sale-dialog/crud-indi-cus-detail-sale-dialog.component';
 import { formatDate } from '@app/shared/function-common';
+import { CrudIndiCusDetailSaleDialogComponent } from './crud-indi-cus-detail-sale-dialog/crud-indi-cus-detail-sale-dialog.component';
 
 @Component({
   selector: 'ecore-individual-customer-detail-sale',
@@ -124,7 +124,7 @@ export class IndividualCustomerDetailSaleComponent
   }
 
   public funcStyleClassStatus = (status: boolean) => {
-    return status ? SEVERITY.INFO : '';
+    return status ? SEVERITY.PRIMARY : '';
   };
 
   public funcLabelStatus = (status: boolean) => {

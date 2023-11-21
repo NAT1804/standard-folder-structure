@@ -36,7 +36,7 @@ export const SEVERITY = {
   WARNING: 'warning',
   SUCCESS: 'success',
   DANGER: 'danger',
-  INFO: 'info',
+  HELP: 'help',
   ERROR: 'error',
 };
 export enum ETypeStatus {

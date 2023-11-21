@@ -82,7 +82,7 @@ export class IndividualCustomerDetailContactComponent
   }
 
   public funcStyleClassStatus = (status: boolean) => {
-    return status ? SEVERITY.INFO : '';
+    return status ? SEVERITY.PRIMARY : '';
   };
 
   public funcLabelStatus = (status: boolean) => {

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SEVERITY } from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
@@ -19,6 +20,8 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
   public iconPos: any = 'left';
   @Input()
   public isDisabled = Boolean(false);
+  @Input()
+  public severityButton = String(SEVERITY.PRIMARY);
   @Output()
   public _onClick: EventEmitter<any> = new EventEmitter<any>();
 
@@ -42,5 +45,9 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
       return this.styleClassButton;
     }
     return 'p-button-' + this.styleClassButton;
+  }
+
+  public get severityClass() {
+    return `p-button-${this.severityButton}`;
   }
 }

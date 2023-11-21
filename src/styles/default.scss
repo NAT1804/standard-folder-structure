@@ -1,0 +1,50 @@
+$purple-600: #551a52;
+$green-500: #43a048;
+$orange-600: #fb8a00;
+$red-600: #e53935;
+$red-500: #f44336;
+$yellow-600: #d7aa46;
+$violet-600: #7f56d9;
+$border-radius: 0.75rem;
+$font-weight-600: 600;
+$font-size-sm: 0.875rem;
+$line-height-2: 1.25rem;
+
+$primary: $purple-600 !default;
+$success: $green-500 !default;
+$warning: $orange-600 !default;
+$danger: $red-600 !default;
+$secondary: $yellow-600 !default;
+$help: $violet-600 !default;
+$required: $red-500 !default;
+
+@mixin background-color($background-color) {
+  background-color: $background-color;
+}
+
+@mixin border-color($border-color) {
+  border-color: $border-color;
+}
+
+@mixin border-radius() {
+  border-radius: $border-radius;
+}
+
+@mixin box-shadow($box-shadow-color) {
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px $box-shadow-color,
+    0 1px 2px 0 black;
+}
+
+@mixin font-weight($font-weight: $font-weight-600) {
+  font-weight: $font-weight;
+}
+
+@mixin font-size($font-size: $font-size-sm) {
+  font-size: $font-size;
+}
+
+@mixin line-height($line-height) {
+  line-height: $line-height;
+}

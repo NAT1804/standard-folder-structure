@@ -1,7 +1,7 @@
 <p-button
   (click)="handleClick($event)"
   [ngClass]="classButton"
-  [styleClass]="styleClass"
+  [styleClass]="severityClass + ' ' + styleClass"
   [label]="label"
   [icon]="icon"
   [iconPos]="iconPos"

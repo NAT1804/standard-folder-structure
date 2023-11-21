@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import 'primeicons/primeicons.css';
 @import '@angular/cdk/overlay-prebuilt.css';
+@import 'styles/layout.scss';
 @import 'styles/themes/theme.scss';
 
 * {
@@ -29,56 +30,4 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #556268;
   border-radius: 1.25rem;
-}
-
-div.layout-content {
-  height: calc(100% - 4.75rem - 2.3125rem);
-  & > *:not(:nth-child(1), :nth-child(2)) {
-    display: block;
-    height: 100%;
-  }
-}
-
-emir-form-table.auto-height-form-table {
-  p-table {
-    height: calc(100% - 56px) !important;
-    div.p-datatable {
-      height: 100% !important;
-    }
-  }
-}
-
-.p-datatable-scrollable td.p-frozen-column {
-  z-index: unset;
-}
-
-span.p-float-label > label {
-  top: -0.75rem;
-  font-size: 0.75rem;
-}
-
-span.p-float-label-input {
-  display: block;
-  position: relative;
-  & > label {
-    position: absolute;
-    pointer-events: none;
-    margin-top: -0.5rem;
-    transition-property: all;
-    transition-timing-function: ease;
-    line-height: 1;
-    top: -0.75rem;
-    font-size: 0.75rem;
-    left: 0.75rem;
-    color: #6c757d;
-    transition-duration: 0.2s;
-  }
-}
-
-span.p-float-label {
-  div.p-dropdown-clearable {
-    span.p-dropdown-label {
-      opacity: 1;
-    }
-  }
 }

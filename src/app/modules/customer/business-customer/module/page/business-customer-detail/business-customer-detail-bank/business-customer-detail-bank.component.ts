@@ -95,7 +95,7 @@ export class BusinessCustomerDetailBankComponent
   }
 
   public funcStyleClassStatus = (status: boolean) => {
-    return status ? SEVERITY.INFO : '';
+    return status ? SEVERITY.PRIMARY : '';
   };
 
   public funcLabelStatus = (status: boolean) => {
