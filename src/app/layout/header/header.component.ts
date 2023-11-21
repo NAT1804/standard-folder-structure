@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 
-import { StorageService } from '@core/services/storage/storage.service';
-import { AuthService } from '@core/services/auth/auth.service';
-import { LoggerService } from '@core/logger.service';
-import { Subscription } from 'rxjs';
 import { EventBusService } from '@app/core/services/event-bus/event-bus.service';
+import { LoggerService } from '@core/logger.service';
+import { AuthService } from '@core/services/auth/auth.service';
+import { StorageService } from '@core/services/storage/storage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -46,6 +46,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.storageService.clean();
+    window.location.reload();
 
     // this.authService.logout().subscribe({
     //   next: (_) => {

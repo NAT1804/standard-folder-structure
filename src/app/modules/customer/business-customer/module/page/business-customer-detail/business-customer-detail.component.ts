@@ -27,8 +27,17 @@ export class BusinessCustomerDetailComponent
   ngOnInit() {
     this.breadcrumbService.setItems([
       { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Khách hàng' },
-      { label: 'Khách hàng doanh nghiệp' },
+      {
+        label: this.routerIncludeCustomer
+          ? 'Khách hàng'
+          : 'Phê duyệt khách hàng',
+      },
+      {
+        label: 'Khách hàng doanh nghiệp',
+        routerLink: this.routerIncludeCustomer
+          ? ['/customer/business-customer']
+          : ['/approve/approve-individual-customer'],
+      },
       { label: 'Chi tiết khách hàng doanh nghiệp' },
     ] as MenuItem[]);
     this.businessCustomerService.businessCustomerId =
@@ -85,11 +94,15 @@ export class BusinessCustomerDetailComponent
 
   public onClickBack(event: any) {
     if (event) {
-      this.routerService.getRouterInclude('/customer')
+      this.routerIncludeCustomer
         ? this.routerService.routerNavigate(['/customer/business-customer'])
         : this.routerService.routerNavigate([
             '/approve/approve-business-customer',
           ]);
     }
+  }
+
+  public get routerIncludeCustomer() {
+    return this.routerService.getRouterInclude('/customer');
   }
 }
