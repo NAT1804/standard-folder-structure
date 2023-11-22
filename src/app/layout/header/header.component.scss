@@ -1,25 +1,26 @@
+@import 'styles/constant.scss';
+@import 'styles/default.scss';
+
 .layout-topbar {
-  width: calc(100% - 15rem);
-  height: 4.75rem;
-  margin-left: 15rem;
+  width: calc(100% - $widthSideNav);
+  height: $heightHeader;
+  margin-left: $widthSideNav;
   z-index: 1;
   transition: all 0.5s ease;
-  // background: #f4f7fa;
-  background: #fff;
-  box-shadow: 0 0 0.625rem 0 rgb(34 41 47 / 10%);
-  padding: 0 1.75rem 0 1.75rem;
+  padding: $paddingLayoutPage;
   position: fixed;
   top: 0;
   left: 0;
 
   .head-content {
-    background-color: #fff;
     // border-radius: 0.625rem;
-    padding: 0.8125rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    .head-content-left {
+      color: #fff;
+    }
     .head-content-right {
       display: flex;
       align-items: center;

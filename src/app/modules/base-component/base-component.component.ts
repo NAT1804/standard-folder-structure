@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbService } from '@app/layout/breadcrumb/breadcrumb.service';
+import { HeaderService } from '@app/layout/header/header.service';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { ApiConstantService } from '@app/shared/services/api-constant.service';
 import { RouterService } from '@app/shared/services/router.service';
@@ -13,7 +13,8 @@ import { ToastService } from '@app/shared/services/toast.service';
   styleUrls: ['./base-component.component.scss'],
 })
 export abstract class BaseComponent {
-  protected breadcrumbService = inject(BreadcrumbService);
+  // protected breadcrumbService = inject(BreadcrumbService);
+  protected headerService = inject(HeaderService);
   protected routerService = inject(RouterService);
   protected spinnerService = inject(SpinnerService);
   protected toastService = inject(ToastService);

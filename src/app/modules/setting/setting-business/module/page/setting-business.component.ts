@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { SettingBusinessModel } from '../../model/SettingBusiness.model';
-import { SettingBusinessConst } from '../../service/setting-business.const';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
   ETypeStatus,
 } from '@app/shared/constants/app.const';
-import { MenuItem } from 'primeng/api';
+import { SettingBusinessModel } from '../../model/SettingBusiness.model';
+import { SettingBusinessConst } from '../../service/setting-business.const';
 
 @Component({
   selector: 'emir-setting-business',
@@ -39,11 +38,11 @@ export class SettingBusinessComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Cài đặt chung' },
-      { label: 'Thông tin doanh nghiệp' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Cài đặt chung' },
+    //   { label: 'Thông tin doanh nghiệp' },
+    // ] as MenuItem[]);
 
     this.headerColumns = [
       {

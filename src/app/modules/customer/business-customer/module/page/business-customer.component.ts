@@ -6,18 +6,17 @@ import {
   IHeaderColumn,
   ISortTable,
 } from '@app/data/interfaces/interface';
+import { Page } from '@app/data/model/page';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { BusinessCustomerModel } from '../../model/BusinessCustomer.model';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
-import { MenuItem } from 'primeng/api';
-import { CreateBusinessCustomerDialogComponent } from './create-business-customer-dialog/create-business-customer-dialog.component';
-import { Page } from '@app/data/model/page';
+import { BusinessCustomerModel } from '../../model/BusinessCustomer.model';
 import { BusinessCustomerService } from '../../service/business-customer.service';
+import { CreateBusinessCustomerDialogComponent } from './create-business-customer-dialog/create-business-customer-dialog.component';
 
 @Component({
   selector: 'ecore-business-customer',
@@ -51,12 +50,12 @@ export class BusinessCustomerComponent
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Khách hàng' },
-      { label: 'Khách hàng doanh nghiệp' },
-    ] as MenuItem[]);
-
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Khách hàng' },
+    //   { label: 'Khách hàng doanh nghiệp' },
+    // ] as MenuItem[]);
+    this.headerService.setHeader('Khách hàng doanh nghiệp');
     this.headerColumns = [
       {
         field: 'no',

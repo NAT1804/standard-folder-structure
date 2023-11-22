@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { FlexNotificationModel } from '../../model/FlexNotification.model';
-import { FlexNotificationConst } from '../../service/flex-notification.const';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
   ETypeStatus,
 } from '@app/shared/constants/app.const';
-import { MenuItem } from 'primeng/api';
+import { FlexNotificationModel } from '../../model/FlexNotification.model';
+import { FlexNotificationConst } from '../../service/flex-notification.const';
 
 @Component({
   selector: 'ecore-flex-notification',
@@ -39,11 +38,11 @@ export class FlexNotificationComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Thông báo' },
-      { label: 'Thông báo linh động' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Thông báo' },
+    //   { label: 'Thông báo linh động' },
+    // ] as MenuItem[]);
 
     this.headerColumns = [
       {

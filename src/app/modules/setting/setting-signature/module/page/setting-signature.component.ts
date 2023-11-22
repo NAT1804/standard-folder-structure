@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { MenuItem } from 'primeng/api';
-import { SettingSignatureModel } from '../../model/SettingSignature.model';
 import { IImage } from '@app/data/interfaces/interface';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
+import { SettingSignatureModel } from '../../model/SettingSignature.model';
 
 @Component({
   selector: 'emir-setting-signature',
@@ -17,11 +16,12 @@ export class SettingSignatureComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Cài đặt chung' },
-      { label: 'Chữ ký số' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Cài đặt chung' },
+    //   { label: 'Chữ ký số' },
+    // ] as MenuItem[]);
+    this.headerService.setHeader('Chữ ký số');
   }
 
   public get image() {

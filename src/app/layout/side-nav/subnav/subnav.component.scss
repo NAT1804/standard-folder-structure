@@ -1,43 +1,60 @@
+@import 'styles/default.scss';
+
 .sublevel-nav {
   list-style: none;
-  padding-left: 0.9375rem;
-  padding-right: 0.75rem;
-  margin: 0;
+  padding: 0rem;
+  margin: 0rem;
   display: flex;
   flex-direction: column;
   align-items: start;
   cursor: pointer;
 
   .sublevel-nav-item {
+    width: 100%;
+
     .sublevel-nav-link {
       display: flex;
       align-items: center;
       height: 3rem;
-      color: #898989;
+      color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      border-radius: 0.625rem;
       transition: all 0.3s ease;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
 
       .sublevel-link-icon {
-        font-size: 1rem;
-        width: 2rem;
-        min-width: 2rem;
-        margin: 0 0.5rem;
+        min-width: 1.25rem;
+        min-width: 1.25rem;
         text-align: center;
       }
 
+      .sublevel-link-icon-default {
+        width: 0.25rem;
+        height: 0.25rem;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+
       .sublevel-link-text {
-        margin-left: 0.8rem;
+        margin-left: 0.75rem;
       }
 
       &:hover {
-        color: #f3f3f3;
+        // color: #f3f3f3;
       }
     }
   }
 }
 
-.active-sublevel {
-  color: #f3f3f3 !important;
-  opacity: 1;
+li.active-sublevel {
+  // border-left: 1px solid #FFF8FF;
+
+  .sublevel-nav-link {
+    color: #fff !important;
+    // opacity: 1;
+    background-color: #5f2c5e;
+    // .sublevel-link-icon-default {
+    //   background-color: $primary !important;
+    // }
+  }
 }

@@ -1,4 +1,4 @@
-<ng-container>
+<div class="div-table-container">
   <p-table
     class="block"
     [columns]="columns"
@@ -188,7 +188,7 @@
   <p-paginator
     *ngIf="showPaginator"
     class="block"
-    [style.height.px]="56"
+    [style.height.px]="40"
     [rows]="page.pageSize"
     [totalRecords]="page.totalItems"
     [rowsPerPageOptions]="page.perPageOptions"
@@ -197,4 +197,4 @@
     [showFirstLastIcon]="false"
     (onPageChange)="handleChangePage($event)"
   ></p-paginator>
-</ng-container>
+</div>

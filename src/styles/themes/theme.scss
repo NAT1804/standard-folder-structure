@@ -1,9 +1,57 @@
 @import 'styles/default.scss';
 
+$padding-cell: 0.5rem 0.75rem;
+
+/* #region Table */
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    padding: $padding-cell;
+  }
+  .p-datatable-tbody > tr > td {
+    padding: $padding-cell;
+  }
+}
+/* #endregion Table */
+
 /* #region Paginator */
 .p-paginator {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+
   .p-paginator-current {
+    margin: 0;
     margin-left: auto;
+    background-color: #ffffff;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  .p-paginator-prev,
+  .p-paginator-next {
+    min-width: 1.5rem;
+    height: 1.5rem;
+    font-size: $font-size-xs;
+    margin: 0;
+  }
+  .p-paginator-pages {
+    .p-paginator-page {
+      min-width: 1.5rem;
+      font-size: $font-size-xs;
+      height: 1.5rem;
+      border-radius: 0.25rem;
+      margin: 0;
+    }
+  }
+  .p-dropdown {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: 1.5rem;
+    .p-dropdown-label {
+      padding: 0.25rem 0 0.25rem 0.75rem;
+    }
+    .p-dropdown-trigger {
+      width: 2rem;
+    }
   }
 }
 /* #endregion Paginator */
@@ -13,6 +61,12 @@
   display: flex;
 }
 /* #endregion MultiSelect */
+
+/* #region Input */
+.p-inputtext {
+  height: 2.5rem;
+}
+/* #endregion Input */
 
 /* #region Tag */
 .p-tag.p-tag-warning {

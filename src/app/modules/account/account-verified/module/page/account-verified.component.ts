@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  EPositionFrozenCell,
-  EPositionTextCell,
-  ETypeDataTable,
-  ETypeStatus,
-} from '@app/shared/constants/app.const';
-import {
   IActionTable,
   IDropdown,
   IHeaderColumn,
   IValueFormatter,
 } from '@app/data/interfaces/interface';
-import { MenuItem } from 'primeng/api';
+import { BaseComponent } from '@app/modules/base-component/base-component.component';
+import {
+  EPositionFrozenCell,
+  EPositionTextCell,
+  ETypeDataTable,
+  ETypeStatus,
+} from '@app/shared/constants/app.const';
 import { AccountVerifiedModel } from '../../model/AccountVerified.model';
 import { AccountVerifiedConst } from '../../service/account-verified.const';
-import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
   selector: 'app-account-verified',
@@ -48,11 +47,11 @@ export class AccountVerifiedComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Tài khoản' },
-      { label: 'Tài khoản xác minh' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Tài khoản' },
+    //   { label: 'Tài khoản xác minh' },
+    // ] as MenuItem[]);
 
     this.headerColumns = [
       {

@@ -1,24 +1,28 @@
+@import 'styles/constant.scss';
+@import 'styles/default.scss';
+
 .layout-main {
-  width: calc(100% - 15rem);
+  width: calc(100% - $widthSideNav);
   height: 100vh;
   min-height: 100vh;
-  margin-left: 15rem;
+  margin-left: $widthSideNav;
   z-index: 0;
   position: relative;
   top: 0;
   transition: all 0.5s ease;
-  background: #f4f7fa;
-  padding-top: 4.75rem;
+  background: $primary;
+  padding-top: $heightHeader;
   display: flex;
   flex-direction: column;
 
   .layout-content {
-    padding: 0.5rem 1.5rem 0 1.5rem;
+    padding: 0rem $paddingLayoutPage $paddingBottomLayoutPage 0rem;
     flex: 1 0 auto;
   }
 }
 
 .layout-main-collapsed {
-  width: calc(100% - 5rem);
-  margin-left: 5rem;
+  width: calc(100% - $widthSideNavCollapsed);
+  margin-left: $widthSideNavCollapsed;
+  background: $primary;
 }

@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { MediaImageModel } from '../../model/MediaImage.model';
-import { MediaImageConst } from '../../service/media-image.const';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
   ETypeStatus,
 } from '@app/shared/constants/app.const';
-import { MenuItem } from 'primeng/api';
+import { MediaImageModel } from '../../model/MediaImage.model';
+import { MediaImageConst } from '../../service/media-image.const';
 import { CrudMediaImageDialogComponent } from './crud-media-image-dialog/crud-media-image-dialog.component';
 
 @Component({
@@ -40,11 +39,11 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Truyền thông' },
-      { label: 'Hình ảnh' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Truyền thông' },
+    //   { label: 'Hình ảnh' },
+    // ] as MenuItem[]);
 
     this.headerColumns = [
       {

@@ -149,11 +149,28 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     }
   }
 
+  public onClickBtnCollapsed(event: any) {
+    if (event) {
+      if (!this.clickedSideNav) {
+        this.closeSidenav();
+      } else {
+        this.clickOpenSideNav();
+      }
+    }
+  }
+
   private getAtiveMenu() {
     this.navData.forEach((navItem: INavData) => {
       if (this.routerService.getRouterInclude('/' + navItem.routerLink)) {
         navItem.expanded = true;
       }
     });
+  }
+
+  public get clickedSideNav() {
+    if (this.hoverOnsideNav) {
+      return true;
+    }
+    return this.collapsed;
   }
 }

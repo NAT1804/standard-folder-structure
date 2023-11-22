@@ -3,5 +3,5 @@
   "production": false,
   "baseAPIUrl": "https://api-core-dev.emirgroup.vn",
   "authAPIUrl": "https://api-authen-dev.emirgroup.vn/connect/token",
-  "userAPIUrl": "https://express-jwt-0c61.onrender.com/api/test/"
+  "userAPIUrl": "https://api-core-dev.emirgroup.vn"
 }

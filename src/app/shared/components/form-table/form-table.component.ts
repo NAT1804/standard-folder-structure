@@ -9,14 +9,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
-  EColumnResizeMode,
-  EPositionFrozenCell,
-  EPositionTextCell,
-  ETypeDataTable,
-  ETypeSortTable,
-  I_ADD_IMAGE_BG,
-} from '@app/shared/constants/app.const';
-import {
   IActionButtonTable,
   IActionTable,
   IHeaderColumn,
@@ -24,6 +16,13 @@ import {
   ISortTable,
 } from '@app/data/interfaces/interface';
 import { Page } from '@app/data/model/page';
+import {
+  EColumnResizeMode,
+  EPositionFrozenCell,
+  EPositionTextCell,
+  ETypeDataTable,
+  ETypeSortTable,
+} from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
@@ -72,7 +71,7 @@ export class FormTableComponent
   @Input()
   public selectedData: any[] = [];
   @Input()
-  public hideDivHeader = Boolean(false);
+  public hideDivHeader = Boolean(true);
   @Output()
   public _setColumn: EventEmitter<any> = new EventEmitter<any>();
   @Output()

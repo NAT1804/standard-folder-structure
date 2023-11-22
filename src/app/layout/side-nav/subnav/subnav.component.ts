@@ -8,8 +8,8 @@ import {
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { fadeInOut } from '@shared/constants/nav/nav-animation';
 import { INavData } from '@app/data/interfaces/nav-data.interface';
+import { fadeInOut } from '@shared/constants/nav/nav-animation';
 
 @Component({
   selector: 'app-subnav',

@@ -16,7 +16,6 @@ import {
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { compareValueToUpperCase } from '@app/shared/function-common';
-import { MenuItem } from 'primeng/api';
 import { IndividualCustomerModel } from '../../model/IndividualCustomer.model';
 import { IndividualCustomerConst } from '../../service/individual-customer.const';
 import { IndividualCustomerService } from '../../service/individual-customer.service';
@@ -60,11 +59,12 @@ export class IndividualCustomerComponent
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Khách hàng' },
-      { label: 'Khách hàng cá nhân' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Khách hàng' },
+    //   { label: 'Khách hàng cá nhân' },
+    // ] as MenuItem[]);
+    this.headerService.setHeader('Khách hàng cá nhân');
 
     this.headerColumns = [
       {
@@ -273,6 +273,7 @@ export class IndividualCustomerComponent
           this.spinnerService.removeSpinner();
           if (res.status === STATUS_RESPONSE.SUCCESS) {
             this.page.totalItems = res.recordsTotal;
+            res.data = [...res.data, ...res.data, ...res.data, ...res.data];
             this.dataSource = res.data.map(
               (data: any) =>
                 ({

@@ -15,7 +15,6 @@ import {
   STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
 import { ConfirmNoteDialogComponent } from '@app/shared/dialogs/confirm-note-dialog/confirm-note-dialog.component';
-import { MenuItem } from 'primeng/api';
 import { ApproveIndividualCustomerModel } from '../../model/ApproveIndividualCustomer.model';
 import { ApproveIndividualCustomerConst } from '../../service/approve-individual-customer.const';
 import { ApproveIndividualCustomerService } from '../../service/approve-individual-customer.service';
@@ -57,11 +56,12 @@ export class ApproveIndividualCustomerComponent
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      { label: 'Quản lý phê duyệt' },
-      { label: 'Khách hàng cá nhân' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   { label: 'Quản lý phê duyệt' },
+    //   { label: 'Khách hàng cá nhân' },
+    // ] as MenuItem[]);
+    this.headerService.setHeader('Phê duyệt khách hàng cá nhân');
 
     this.headerColumns = [
       {

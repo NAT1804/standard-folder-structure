@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITabView } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
-import { MenuItem } from 'primeng/api';
 import { BusinessCustomerConst } from '../../../service/business-customer.const';
 import { BusinessCustomerService } from '../../../service/business-customer.service';
 import { BusinessCustomerDetailBankComponent } from './business-customer-detail-bank/business-customer-detail-bank.component';
@@ -25,21 +24,21 @@ export class BusinessCustomerDetailComponent
   }
 
   ngOnInit() {
-    this.breadcrumbService.setItems([
-      { label: 'Trang chủ', routerLink: ['/home'] },
-      {
-        label: this.routerIncludeCustomer
-          ? 'Khách hàng'
-          : 'Phê duyệt khách hàng',
-      },
-      {
-        label: 'Khách hàng doanh nghiệp',
-        routerLink: this.routerIncludeCustomer
-          ? ['/customer/business-customer']
-          : ['/approve/approve-individual-customer'],
-      },
-      { label: 'Chi tiết khách hàng doanh nghiệp' },
-    ] as MenuItem[]);
+    // this.breadcrumbService.setItems([
+    //   { label: 'Trang chủ', routerLink: ['/home'] },
+    //   {
+    //     label: this.routerIncludeCustomer
+    //       ? 'Khách hàng'
+    //       : 'Phê duyệt khách hàng',
+    //   },
+    //   {
+    //     label: 'Khách hàng doanh nghiệp',
+    //     routerLink: this.routerIncludeCustomer
+    //       ? ['/customer/business-customer']
+    //       : ['/approve/approve-individual-customer'],
+    //   },
+    //   { label: 'Chi tiết khách hàng doanh nghiệp' },
+    // ] as MenuItem[]);
     this.businessCustomerService.businessCustomerId =
       this.routeActive.snapshot.paramMap.get('id') || undefined;
     this.getListTabPanel();

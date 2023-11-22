@@ -2,68 +2,69 @@
   <div class="col-12 h-full">
     <div class="card h-full">
       <div
-        #divHeader
-        class="flex flex-column lg:flex-row xl:flex-row justify-content-between align-items-center"
+        #divFilter
+        class="flex flex-column lg:flex-row xl:flex-row w-full div-filter-page"
       >
-        <h4>Khách hàng doanh nghiệp</h4>
-        <emir-form-button
-          [label]="'Thêm mới'"
-          [icon]="'pi pi-plus'"
-          (_onClick)="create($event)"
-        ></emir-form-button>
+        <emir-form-input
+          class="col-12 lg:col-2 xl:col-2"
+          [floatLabel]="true"
+          [placeholder]="'Tìm kiếm'"
+          [label]="'Tìm kiếm'"
+          [(ngModelValue)]="filter.keyword"
+          (_onChange)="changeFilter($event)"
+        ></emir-form-input>
+        <emir-form-dropdown
+          class="col-12 lg:col-2 xl:col-2"
+          [label]="'Tìm kiếm theo'"
+          [floatLabel]="true"
+          [options]="listFilterType"
+          [showClearFloatLabel]="false"
+          [(ngModelValue)]="filter.type"
+          (_onChange)="changeFilter($event)"
+        ></emir-form-dropdown>
+        <emir-form-dropdown
+          class="col-12 lg:col-2 xl:col-2"
+          [label]="'Trạng thái'"
+          [floatLabel]="true"
+          [options]="listStatus"
+          [(ngModelValue)]="filter.status"
+          (_onChange)="changeFilter($event)"
+        ></emir-form-dropdown>
       </div>
-      <emir-form-table
+      <div
         [style.height]="
-          'calc(100% - ' + divHeader.getBoundingClientRect().height + 'px)'
+          'calc(100% - ' + divFilter.getBoundingClientRect().height + 'px)'
         "
-        class="block auto-height-form-table"
-        [scrollHeight]="
-          'calc(100% - 2rem - ' +
-          divFilter.getBoundingClientRect().height +
-          'px)'
-        "
-        [columns]="headerColumns"
-        [dataSource]="dataSource"
-        [isLoading]="isLoading"
-        [resizableColumns]="true"
-        [listAction]="listAction"
-        [(page)]="page"
-        (_changePage)="changePage($event)"
-        (_onSort)="onSort($event)"
+        class="div-main-page"
       >
-        <ng-container filter>
-          <div
-            #divFilter
-            class="flex flex-column lg:flex-row xl:flex-row w-full"
-          >
-            <emir-form-input
-              class="col-12 lg:col-2 xl:col-2"
-              [floatLabel]="true"
-              [placeholder]="'Tìm kiếm'"
-              [label]="'Tìm kiếm'"
-              [(ngModelValue)]="filter.keyword"
-              (_onChange)="changeFilter($event)"
-            ></emir-form-input>
-            <emir-form-dropdown
-              class="col-12 lg:col-2 xl:col-2"
-              [label]="'Tìm kiếm theo'"
-              [floatLabel]="true"
-              [options]="listFilterType"
-              [showClearFloatLabel]="false"
-              [(ngModelValue)]="filter.type"
-              (_onChange)="changeFilter($event)"
-            ></emir-form-dropdown>
-            <emir-form-dropdown
-              class="col-12 lg:col-2 xl:col-2"
-              [label]="'Trạng thái'"
-              [floatLabel]="true"
-              [options]="listStatus"
-              [(ngModelValue)]="filter.status"
-              (_onChange)="changeFilter($event)"
-            ></emir-form-dropdown>
-          </div>
-        </ng-container>
-      </emir-form-table>
+        <div
+          #divButton
+          class="flex flex-column lg:flex-row xl:flex-row justify-content-end align-items-center mb-3"
+        >
+          <emir-form-button
+            [label]="'Thêm mới'"
+            [icon]="'pi pi-plus'"
+            (_onClick)="create($event)"
+          ></emir-form-button>
+        </div>
+        <emir-form-table
+          [style.height]="
+            'calc(100% - ' +
+            divButton.getBoundingClientRect().height +
+            'px - 1rem)'
+          "
+          class="block auto-height-form-table"
+          [scrollHeight]="'100%'"
+          [columns]="headerColumns"
+          [dataSource]="dataSource"
+          [isLoading]="isLoading"
+          [resizableColumns]="true"
+          [listAction]="listAction"
+          [(page)]="page"
+          (_changePage)="changePage($event)"
+          (_onSort)="onSort($event)"
+        ></emir-form-table>
+      </div>
     </div>
   </div>
 </div>

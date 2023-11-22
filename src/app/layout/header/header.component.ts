@@ -5,6 +5,7 @@ import { LoggerService } from '@core/logger.service';
 import { AuthService } from '@core/services/auth/auth.service';
 import { StorageService } from '@core/services/storage/storage.service';
 import { Subscription } from 'rxjs';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,9 @@ export class HeaderComponent implements OnInit {
   private storageService = inject(StorageService);
   private loggerService = inject(LoggerService);
   private eventBusService = inject(EventBusService);
+  private headerService = inject(HeaderService);
+  subscription: Subscription;
+  headerTitle = String('');
 
   eventBusSub?: Subscription;
 
@@ -29,6 +33,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
+    });
+    this.subscription = this.headerService._header$.subscribe((res) => {
+      this.headerTitle = res || '';
     });
   }
 

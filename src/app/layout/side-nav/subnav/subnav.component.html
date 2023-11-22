@@ -19,8 +19,12 @@
         }
   "
 >
-  <li *ngFor="let item of data.children" class="sublevel-nav-item">
-    <a
+  <li
+    *ngFor="let item of data.children"
+    [ngClass]="getActiveClass(item)"
+    class="sublevel-nav-item"
+  >
+    <!-- <a
       href=""
       class="sublevel-nav-link"
       *ngIf="item.children && item.children.length > 0"
@@ -29,15 +33,16 @@
       [title]="data.label"
     >
       <i class="sublevel-link-icon" [class]="item.icon"></i>
+      <div class="sublevel-link-icon-default"></div>
       <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">
         {{ item.label }}
       </span>
       <i
         *ngIf="item.children && !collapsed"
         class="menu-collapsed-icon"
-        [ngClass]="!item.expanded ? 'pi pi-angle-right' : 'pi pi-angle-down'"
+        [ngClass]="!item.expanded ? 'pi pi-chevron-right' : 'pi pi-chevron-down'"
       ></i>
-    </a>
+    </a> -->
     <a
       href=""
       class="sublevel-nav-link"
@@ -47,17 +52,18 @@
       [title]="data.label"
     >
       <i class="sublevel-link-icon" [class]="item.icon"></i>
+      <!-- <div class="sublevel-link-icon-default"></div> -->
       <span class="sublevel-link-text" @fadeInOut *ngIf="!collapsed">
         {{ item.label }}
       </span>
     </a>
-    <div *ngIf="item.children && item.children.length > 0">
+    <!-- <div *ngIf="item.children && item.children.length > 0">
       <app-subnav
         [data]="item"
         [collapsed]="collapsed"
         [multiple]="multiple"
         [expanded]="item.expanded"
       ></app-subnav>
-    </div>
+    </div> -->
   </li>
 </ul>
