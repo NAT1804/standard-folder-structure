@@ -273,7 +273,6 @@ export class IndividualCustomerComponent
           this.spinnerService.removeSpinner();
           if (res.status === STATUS_RESPONSE.SUCCESS) {
             this.page.totalItems = res.recordsTotal;
-            res.data = [...res.data, ...res.data, ...res.data, ...res.data];
             this.dataSource = res.data.map(
               (data: any) =>
                 ({
