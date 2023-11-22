@@ -5,11 +5,12 @@ $red-600: #e53935;
 $red-500: #f44336;
 $yellow-600: #d7aa46;
 $violet-600: #7f56d9;
-$border-radius: 0.75rem;
 $font-weight-400: 400;
 $font-weight-600: 600;
+$font-weight-700: 700;
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
+$font-size-xl: 1.25rem;
 $line-height-2: 1.25rem;
 
 $primary: $purple-600 !default;
@@ -28,7 +29,7 @@ $required: $red-500 !default;
   border-color: $border-color;
 }
 
-@mixin border-radius() {
+@mixin border-radius($border-radius) {
   border-radius: $border-radius;
 }
 

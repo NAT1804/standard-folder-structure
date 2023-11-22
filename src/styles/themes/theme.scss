@@ -65,12 +65,14 @@ $padding-cell: 0.5rem 0.75rem;
 /* #region Dropdown */
 .p-dropdown {
   height: 2.5rem;
+  @include border-radius(0.625rem);
 }
 /* #endregion Dropdown */
 
 /* #region Input */
 .p-inputtext {
   height: 2.5rem;
+  @include border-radius(0.625rem);
 }
 /* #endregion Input */
 
@@ -82,7 +84,7 @@ $padding-cell: 0.5rem 0.75rem;
 
 /* #region Button */
 .p-button {
-  @include border-radius();
+  @include border-radius(0.75rem);
   padding: 0.5rem 1.5rem;
   & > .p-button-icon {
     @include line-height($line-height-2);
@@ -108,6 +110,43 @@ $padding-cell: 0.5rem 0.75rem;
   }
 }
 /* #endregion Button */
+
+/* #region Calendar */
+.p-calendar {
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  button {
+    border-radius: 0.625rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+/* #endregion Calendar */
+
+/* #region Dialog */
+.p-dialog {
+  .p-dialog-header {
+    height: 4.5rem;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid rgba(208, 213, 221, 1);
+    span {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-700;
+      @include line-height(2rem);
+    }
+  }
+  .p-dialog-content {
+    padding: 1.25rem 2.5rem;
+  }
+  .p-dialog-footer {
+    height: 4.5rem;
+    padding: 1.25rem 2.5rem;
+    border-top: 1px solid rgba(208, 213, 221, 1);
+  }
+}
+/* #endregion Dialog */
 
 /* #region constant */
 .mt-40vh {
