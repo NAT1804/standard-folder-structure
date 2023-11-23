@@ -148,6 +148,40 @@ $padding-cell: 0.5rem 0.75rem;
 }
 /* #endregion Dialog */
 
+/* #region TabView */
+.tab-view-detail {
+  display: block;
+  height: 100%;
+  p-tabview {
+    display: block;
+    height: 100%;
+    div.p-tabview {
+      height: 100%;
+      .p-tabview-nav-content {
+        .p-tabview-nav-link {
+          padding: 0.5rem 1rem;
+        }
+      }
+      .p-tabview-panels {
+        height: calc(100% - 2.1875rem);
+        padding: 1rem 1rem 0rem 1rem;
+        p-tabpanel.active {
+          display: block;
+          height: 100%;
+          .p-tabview-panel {
+            height: 100%;
+            & > *:not(:first-child) {
+              display: block;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* #endregion TabView */
+
 /* #region constant */
 .mt-40vh {
   margin-top: 40vh !important;

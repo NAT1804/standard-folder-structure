@@ -1,23 +1,24 @@
-<p-tabView
-  styleClass="custom-tabview"
-  [(activeIndex)]="activeIndex"
-  (onChange)="handleChangeTab($event)"
->
-  <ng-container *ngFor="let tabPanel of listTabPanel; let i = index">
-    <p-tabPanel
-      *ngIf="!tabPanel.isHide"
-      [header]="tabPanel.key"
-      [disabled]="tabPanel.isDisabled"
-      [ngClass]="!tabPanel.component ? 'hidden-tabpanel' : ''"
-    >
-      <ng-template pTemplate="header">
-        <span>{{ tabPanel.title }}</span>
-      </ng-template>
-      <div
-        emirGenerateComponent
-        *ngIf="i === activeIndex"
-        [component]="tabPanel.component"
-      ></div>
-    </p-tabPanel>
-  </ng-container>
-</p-tabView>
+<div class="div-tab-view-container">
+  <p-tabView [(activeIndex)]="activeIndex" (onChange)="handleChangeTab($event)">
+    <ng-container *ngFor="let tabPanel of listTabPanel; let i = index">
+      <p-tabPanel
+        *ngIf="!tabPanel.isHide"
+        [header]="tabPanel.key"
+        [disabled]="tabPanel.isDisabled"
+        [ngClass]="{
+          'hidden-tabpanel': !tabPanel.component,
+          active: activeIndex === i
+        }"
+      >
+        <ng-template pTemplate="header">
+          <span>{{ tabPanel.title }}</span>
+        </ng-template>
+        <div
+          emirGenerateComponent
+          *ngIf="i === activeIndex"
+          [component]="tabPanel.component"
+        ></div>
+      </p-tabPanel>
+    </ng-container>
+  </p-tabView>
+</div>
