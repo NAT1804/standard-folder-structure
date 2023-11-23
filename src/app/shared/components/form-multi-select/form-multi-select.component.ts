@@ -7,7 +7,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { IDropdown } from '@app/data/interfaces/interface';
-import { AccountVerifiedConst } from '@app/modules/account/account-verified/service/account-verified.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 export const LABEL = 'label';
@@ -92,9 +91,5 @@ export class FormMultiSelectComponent
       this.ngModelValueChange.emit(undefined);
       this._onChange.emit(event);
     }
-  }
-
-  public get listStatus() {
-    return AccountVerifiedConst.listStatus;
   }
 }
