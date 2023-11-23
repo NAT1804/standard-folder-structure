@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { IImage } from '@app/data/interfaces/interface';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { BusinessCustomerDetailGeneralModel } from '@app/modules/customer/business-customer/model/BusinessCustomerDetailGeneral.model';
@@ -6,11 +6,11 @@ import { BusinessCustomerService } from '@app/modules/customer/business-customer
 import {
   HEIGHT_DEFAULT_IMAGE,
   I_ADD_IMAGE_BG,
-  STATUS_RESPONSE,
   TYPE_INPUT,
   WIDTH_DEFAULT_IMAGE,
 } from '@app/shared/constants/app.const';
 import { scrollToError } from '@app/shared/function-common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ecore-business-customer-detail-general',
@@ -19,7 +19,7 @@ import { scrollToError } from '@app/shared/function-common';
 })
 export class BusinessCustomerDetailGeneralComponent
   extends BaseComponent
-  implements OnInit, AfterViewInit
+  implements OnInit, AfterViewInit, OnDestroy
 {
   public dataSource: BusinessCustomerDetailGeneralModel =
     new BusinessCustomerDetailGeneralModel();
@@ -40,12 +40,14 @@ export class BusinessCustomerDetailGeneralComponent
   }
 
   ngAfterViewInit(): void {
-    this.businessCustomerService._handleEventSave$.subscribe(
-      (res: boolean | undefined) => {
-        if (res) {
-          this.saveData();
+    this.subscriptions.push(
+      this.businessCustomerService._handleEventSave$.subscribe(
+        (res: boolean | undefined) => {
+          if (res) {
+            this.saveData();
+          }
         }
-      }
+      )
     );
   }
 
@@ -87,7 +89,7 @@ export class BusinessCustomerDetailGeneralComponent
           (response) => {
             this.isSubmit = false;
             this.spinnerService.removeSpinner();
-            if (response.status === STATUS_RESPONSE.SUCCESS) {
+            if (this.handleResponse(response)) {
               this.toastService.showToastSucess(
                 'Cập nhật dữ liệu khách hàng thành công!'
               );
@@ -125,5 +127,9 @@ export class BusinessCustomerDetailGeneralComponent
       this.avatarIImage = I_ADD_IMAGE_BG;
       this.dataSource.avatar = '';
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
   }
 }

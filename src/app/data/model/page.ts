@@ -17,6 +17,10 @@ export class Page {
     return this.pageNumber + 1;
   }
 
+  getPageOffSet() {
+    return `${this.pageNumber * this.pageSize}`;
+  }
+
   public readonly MAX_PAGE_SIZE = 1000;
   public readonly OFFSET_DEFAULT = 1;
 }

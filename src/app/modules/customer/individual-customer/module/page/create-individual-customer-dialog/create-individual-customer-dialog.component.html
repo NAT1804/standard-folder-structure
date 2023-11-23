@@ -27,6 +27,7 @@
               [isDisabled]="false"
               (_onChange)="onChangeImage($event, 'frontImage')"
               (_onRemove)="onRemoveImage($event, 'frontImage')"
+              [widthLimit]="'auto'"
               [isSubmit]="isSubmit"
               [isValidData]="isValidData('frontImage')"
               [messageError]="
@@ -45,6 +46,7 @@
               [isDisabled]="false"
               (_onChange)="onChangeImage($event, 'backImage')"
               (_onRemove)="onRemoveImage($event, 'backImage')"
+              [widthLimit]="'auto'"
               [isSubmit]="isSubmit"
               [isValidData]="isValidData('backImage')"
               [messageError]="
@@ -195,6 +197,7 @@
               [isDisabled]="false"
               (_onChange)="onChangeImage($event, 'signatureImage')"
               (_onRemove)="onRemoveImage($event, 'signatureImage')"
+              [widthLimit]="'auto'"
             ></emir-form-image>
           </div>
         </div>

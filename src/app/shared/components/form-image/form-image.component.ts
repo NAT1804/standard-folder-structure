@@ -12,9 +12,9 @@ import {
   DEFAULT_HEIGHT,
   DEFAULT_WIDTH,
 } from '@app/shared/constants/app.const';
-import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { UploadImageDialogComponent } from '@app/shared/dialogs/upload-image-dialog/upload-image-dialog.component';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-image',
@@ -27,9 +27,9 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public imageSource: IImage;
   @Input()
-  public widthLimit: number = DEFAULT_WIDTH;
+  public widthLimit: number | string = DEFAULT_WIDTH;
   @Input()
-  public heightLimit: number = DEFAULT_HEIGHT;
+  public heightLimit: number | string = DEFAULT_HEIGHT;
   public src = String('');
   public width: number | string;
   public height: number | string;

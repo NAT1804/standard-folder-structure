@@ -205,7 +205,7 @@ export class BaseService {
 
   protected convertPageParamUrl(page: Page) {
     let name = String('');
-    name += this.convertParamUrl('offSet', page.getPageNumber());
+    name += this.convertParamUrl('offSet', page.getPageOffSet());
     name += this.convertParamUrl('pageSize', page.pageSize);
     return name;
   }

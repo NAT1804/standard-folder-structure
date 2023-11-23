@@ -12,6 +12,7 @@
             [isDisabled]="isDisabled"
             (_onChange)="onChangeImage($event, 'avatarImage')"
             (_onRemove)="onRemoveImage($event, 'avatarImage')"
+            [widthLimit]="'auto'"
           ></emir-form-image>
         </div>
         <div class="col-12 lg:col-4 xl:col-3">
@@ -25,6 +26,7 @@
             [isDisabled]="isDisabled"
             (_onChange)="onChangeImage($event, 'frontImage')"
             (_onRemove)="onRemoveImage($event, 'frontImage')"
+            [widthLimit]="'auto'"
             [isSubmit]="isSubmit"
             [isValidData]="isValidData('frontImage')"
             [messageError]="
@@ -43,6 +45,7 @@
             [isDisabled]="isDisabled"
             (_onChange)="onChangeImage($event, 'backImage')"
             (_onRemove)="onRemoveImage($event, 'backImage')"
+            [widthLimit]="'auto'"
             [isSubmit]="isSubmit"
             [isValidData]="isValidData('backImage')"
             [messageError]="

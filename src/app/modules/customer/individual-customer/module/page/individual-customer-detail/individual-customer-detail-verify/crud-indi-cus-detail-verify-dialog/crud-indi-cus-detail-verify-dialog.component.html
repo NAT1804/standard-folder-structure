@@ -57,6 +57,7 @@
           [isDisabled]="false"
           (_onChange)="onChangeImage($event, 'frontImage')"
           (_onRemove)="onRemoveImage($event, 'frontImage')"
+          [widthLimit]="'auto'"
         ></emir-form-image>
       </div>
       <div class="col-12 lg:col-6 xl:col-6">
@@ -70,6 +71,7 @@
           [isDisabled]="false"
           (_onChange)="onChangeImage($event, 'backImage')"
           (_onRemove)="onRemoveImage($event, 'backImage')"
+          [widthLimit]="'auto'"
         ></emir-form-image>
       </div>
       <div class="col-12 lg:col-6 xl:col-6">
