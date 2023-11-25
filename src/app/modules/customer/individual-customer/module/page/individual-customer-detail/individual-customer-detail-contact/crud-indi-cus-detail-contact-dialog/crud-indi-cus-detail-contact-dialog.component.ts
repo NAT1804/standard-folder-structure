@@ -5,7 +5,7 @@ import {
 } from '@app/data/interfaces/interface';
 import { CrudIndiCusDetailContactModel } from '@app/modules/customer/individual-customer/model/CrudIndiCusDetailContact.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
-import { SEVERITY, STATUS_RESPONSE } from '@app/shared/constants/app.const';
+import { SEVERITY } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 
 @Component({
@@ -60,7 +60,7 @@ export class CrudIndiCusDetailContactDialogComponent
       this.individualCustomerService
         .createOrEditIndiCusDetailContact(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
-          if (response.status === STATUS_RESPONSE.SUCCESS) {
+          if (this.handleResponse(response)) {
             this.dynamicDialogRef.close({
               status: true,
             } as ICloseDialog);

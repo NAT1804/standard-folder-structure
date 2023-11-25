@@ -9,7 +9,6 @@ import { UploadFileNameModel } from '@app/shared/components/form-upload-file-nam
 import {
   I_ADD_IMAGE_BG,
   SEVERITY,
-  STATUS_RESPONSE,
   TYPE_INPUT,
 } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
@@ -79,7 +78,7 @@ export class CreateBusinessCustomerDialogComponent
       this.businessCustomerService
         .createOrEditBusinessCustomer(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
-          if (response.status === STATUS_RESPONSE.SUCCESS) {
+          if (this.handleResponse(response)) {
             this.dynamicDialogRef.close({
               status: true,
             } as ICloseDialog);

@@ -6,11 +6,7 @@ import {
 } from '@app/data/interfaces/interface';
 import { CrudIndiCusDetailBankModel } from '@app/modules/customer/individual-customer/model/CrudIndiCusDetailBank.model';
 import { IndividualCustomerService } from '@app/modules/customer/individual-customer/service/individual-customer.service';
-import {
-  SEVERITY,
-  STATUS_RESPONSE,
-  TYPE_INPUT,
-} from '@app/shared/constants/app.const';
+import { SEVERITY, TYPE_INPUT } from '@app/shared/constants/app.const';
 import { BaseDialogComponent } from '@app/shared/dialogs/base-dialog.component';
 
 @Component({
@@ -81,7 +77,7 @@ export class CrudIndiCusDetailBankDialogComponent
       this.individualCustomerService
         .createOrEditIndiCusDetailBank(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
-          if (response.status === STATUS_RESPONSE.SUCCESS) {
+          if (this.handleResponse(response)) {
             this.dynamicDialogRef.close({
               status: true,
             } as ICloseDialog);

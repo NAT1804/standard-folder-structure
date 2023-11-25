@@ -61,7 +61,7 @@ export class CrudBusiCusDetailFileDialogComponent
       this.businessCustomerService
         .createOrEditBusiCusDetailFile(this.dataSource.toObjectSendToAPI())
         .subscribe((response) => {
-          if (response.status === STATUS_RESPONSE.SUCCESS) {
+          if (this.handleResponse(response)) {
             this.dynamicDialogRef.close({
               status: true,
             } as ICloseDialog);

@@ -40,6 +40,7 @@ export class BaseService {
       )
       .pipe(
         catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi tải dữ liệu!');
           return throwError(() => new Error(error.message));
         })
       );
@@ -62,6 +63,7 @@ export class BaseService {
       )
       .pipe(
         catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi tải dữ liệu!');
           return throwError(() => new Error(error.message));
         })
       );
@@ -106,6 +108,7 @@ export class BaseService {
       )
       .pipe(
         catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi tải dữ liệu!');
           return throwError(() => new Error(error.message));
         })
       );
@@ -149,6 +152,7 @@ export class BaseService {
       )
       .pipe(
         catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi tải dữ liệu!');
           return throwError(() => new Error(error.message));
         })
       );

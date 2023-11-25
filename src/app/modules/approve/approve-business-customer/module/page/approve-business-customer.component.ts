@@ -274,7 +274,7 @@ export class ApproveBusinessCustomerComponent
             this.approveBusinessCustomerService
               .approveBusinessCustomer(data.id, data.customerId, note || '')
               .subscribe((response) => {
-                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                if (this.handleResponse(response)) {
                   this.toastService.showToastSucess(
                     'Trình duyệt khách hàng thành công!'
                   );
@@ -308,7 +308,7 @@ export class ApproveBusinessCustomerComponent
                 note || ''
               )
               .subscribe((response) => {
-                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                if (this.handleResponse(response)) {
                   this.toastService.showToastSucess(
                     'Xử lý yêu cầu khách hàng thành công!'
                   );
@@ -326,7 +326,7 @@ export class ApproveBusinessCustomerComponent
                 note || ''
               )
               .subscribe((response) => {
-                if (response.status === STATUS_RESPONSE.SUCCESS) {
+                if (this.handleResponse(response)) {
                   this.toastService.showToastSucess(
                     'Xử lý yêu cầu khách hàng thành công!'
                   );

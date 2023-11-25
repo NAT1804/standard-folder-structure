@@ -1,6 +1,10 @@
-import moment from 'moment';
-import { COMPARE_TYPE, ETypeFormatDate } from './constants/app.const';
 import { DropdownDTO, IDropdown } from '@app/data/interfaces/interface';
+import moment from 'moment';
+import {
+  COMPARE_TYPE,
+  ETypeFormatDate,
+  STATUS_RESPONSE,
+} from './constants/app.const';
 
 export function compareDate(firstDate: Date, secondDate: Date, type: number) {
   if (
@@ -59,4 +63,27 @@ export function compareValueToString(value1: any, value2: any) {
 
 export function compareValueToUpperCase(value1: any, value2: any) {
   return (value1 + '').toUpperCase() === (value2 + '').toUpperCase();
+}
+
+export function handleResponse(
+  response: any,
+  toastService?: any,
+  message?: string
+): boolean {
+  if (response) {
+    if (response?.status === STATUS_RESPONSE.SUCCESS) {
+      if (message) toastService.showToastSucess(message);
+      return true;
+    } else {
+      let message = '';
+      if (response?.message) {
+        message = response?.message;
+      } else {
+        message = 'Có lỗi xảy ra vui lòng thử lại sau!';
+      }
+      toastService.showToastError(message);
+      return false;
+    }
+  }
+  return false;
 }

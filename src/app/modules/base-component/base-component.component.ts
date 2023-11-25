@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderService } from '@app/layout/header/header.service';
-import { STATUS_RESPONSE } from '@app/shared/constants/app.const';
 import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
+import { handleResponse } from '@app/shared/function-common';
 import { ApiConstantService } from '@app/shared/services/api-constant.service';
 import { RouterService } from '@app/shared/services/router.service';
 import { SpinnerService } from '@app/shared/services/spinner.service';
@@ -28,21 +28,6 @@ export abstract class BaseComponent {
   public subscriptions: Subscription[] = [];
 
   protected handleResponse(response: any, message?: string): boolean {
-    if (response) {
-      if (response?.status === STATUS_RESPONSE.SUCCESS) {
-        if (message) this.toastService.showToastSucess(message);
-        return true;
-      } else {
-        let message = '';
-        if (response?.message) {
-          message = response?.message;
-        } else {
-          message = 'Có lỗi xảy ra vui lòng thử lại sau!';
-        }
-        this.toastService.showToastError(message);
-        return false;
-      }
-    }
-    return false;
+    return handleResponse(response, this.toastService, message);
   }
 }
