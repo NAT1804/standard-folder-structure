@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
+import { SEVERITY } from '@app/shared/constants/app.const';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-upload-file',
@@ -21,6 +22,10 @@ export class FormUploadFileComponent
   public label = String('');
   @Input()
   public isDisabled = Boolean(false);
+  @Input()
+  public severityButton = String(SEVERITY.PRIMARY);
+  @Input()
+  public styleClass = String('');
   @Output()
   public _onChange: EventEmitter<FileUploadHandlerEvent | undefined> =
     new EventEmitter<FileUploadHandlerEvent | undefined>();
@@ -37,5 +42,9 @@ export class FormUploadFileComponent
     if (event && event.files && event.files.length && event.files[0]) {
       this._onChange.emit(event);
     }
+  }
+
+  public get severityClass() {
+    return `p-button-${this.severityButton}`;
   }
 }

@@ -12,7 +12,6 @@ import {
   DEFAULT_HEIGHT,
   DEFAULT_WIDTH,
 } from '@app/shared/constants/app.const';
-import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
 import { UploadImageDialogComponent } from '@app/shared/dialogs/upload-image-dialog/upload-image-dialog.component';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
@@ -55,7 +54,7 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
   @Output()
   public _onRemove: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private dialogCommonService: DialogCommonService) {
+  constructor() {
     super();
   }
 

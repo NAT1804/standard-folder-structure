@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { DialogCommonService } from '@app/shared/dialogs/dialog-common.service';
+import { ApiConstantService } from '@app/shared/services/api-constant.service';
+import { ToastService } from '@app/shared/services/toast.service';
 
 @Component({
   selector: 'emir-base-common-component',
@@ -12,6 +15,9 @@ export class BaseCommonComponent {
   public isSubmit = Boolean(false);
   @Input()
   public messageError = String('');
+  public apiConstantService = inject(ApiConstantService);
+  public toastService = inject(ToastService);
+  public dialogCommonService = inject(DialogCommonService);
 
   constructor() {
     console.log('constructor');

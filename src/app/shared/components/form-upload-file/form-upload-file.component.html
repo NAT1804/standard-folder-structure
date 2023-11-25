@@ -2,6 +2,7 @@
   <p-fileUpload
     [customUpload]="true"
     [ngClass]="'custom-upload-file ' + classFileUpload"
+    [chooseStyleClass]="severityClass + ' ' + styleClass"
     name="demo[]"
     [accept]="type"
     [chooseIcon]="icon"

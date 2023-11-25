@@ -33,6 +33,7 @@ import { FormMultiSelectComponent } from './components/form-multi-select/form-mu
 import { FormSpinnerLoadingComponent } from './components/form-spinner-loading/form-spinner-loading.component';
 import { FormTabViewComponent } from './components/form-tab-view/form-tab-view.component';
 import { FormTableComponent } from './components/form-table/form-table.component';
+import { FormUploadFileNameComponent } from './components/form-upload-file-name/form-upload-file-name.component';
 
 import { GenerateComponentDirective } from './directives/generate-component.directive';
 
@@ -84,6 +85,7 @@ export const commonComponents: any[] = [
   FormInputSwitchComponent,
   FormLabelComponent,
   FormUploadFileComponent,
+  FormUploadFileNameComponent,
 ];
 
 export const commonDialogs: any[] = [

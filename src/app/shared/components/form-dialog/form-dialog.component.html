@@ -17,7 +17,7 @@
       *ngFor="let action of listAction"
       [label]="action.label"
       [icon]="action.icon || ''"
-      [styleClassButton]="action.styleClassButton || ''"
+      [styleClass]="'p-button-' + action.styleClassButton || ''"
       (_onClick)="handleClick($event, action)"
     ></emir-form-button>
   </div>

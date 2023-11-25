@@ -3,6 +3,7 @@ import {
   Validator,
   ValidatorItem,
 } from '@app/data/model/validation';
+import { UploadFileNameModel } from '@app/shared/components/form-upload-file-name/form-upload-file-name.component';
 import { formatDateToAPI } from '@app/shared/function-common';
 
 export const mess_taxCode = 'Vui lòng nhập Mã số thuế';
@@ -27,6 +28,7 @@ export class CreateBusinessCustomerModel {
   public accountNumber = String('');
   public bankBranch = String('');
   public accountName = String('');
+  public files: UploadFileNameModel[] = [];
   protected _dataValidator: DataValidator = new DataValidator();
 
   public get dataValidator() {
@@ -127,6 +129,27 @@ export class CreateBusinessCustomerModel {
       com_address: this.address,
       com_rep_name: this.representative,
       com_rep_position: this.representativePosition,
+      bank_code: this.bank,
+      bank_acc_no: this.accountNumber,
+      bank_acc_name: this.accountName,
+      bank_branch: this.bankBranch,
+      meta_attachs: this.getFilesToAPI(),
     };
+  }
+
+  private getFilesToAPI() {
+    if (this.files && this.files.length) {
+      const res: any[] = [];
+      this.files.forEach((file: UploadFileNameModel) => {
+        if (file.src && file.src.length) {
+          res.push({
+            meta_name: file.name,
+            meta_url: file.src,
+          });
+        }
+      });
+      return res.length ? res : undefined;
+    }
+    return undefined;
   }
 }

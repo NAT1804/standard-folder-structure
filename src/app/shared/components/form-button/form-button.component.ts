@@ -11,7 +11,7 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
   @Input()
   public classButton = String('');
   @Input()
-  public styleClassButton = String('');
+  public styleClass = String('');
   @Input()
   public label = String('');
   @Input()
@@ -38,13 +38,6 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
     if (event && !this.isDisabled) {
       this._onClick.emit(event);
     }
-  }
-
-  public get styleClass() {
-    if (this.styleClassButton.includes('p-button-')) {
-      return this.styleClassButton;
-    }
-    return 'p-button-' + this.styleClassButton;
   }
 
   public get severityClass() {

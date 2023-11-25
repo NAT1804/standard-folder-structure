@@ -5,6 +5,7 @@ import {
   IDropdown,
   IImage,
 } from '@app/data/interfaces/interface';
+import { UploadFileNameModel } from '@app/shared/components/form-upload-file-name/form-upload-file-name.component';
 import {
   I_ADD_IMAGE_BG,
   SEVERITY,
@@ -53,6 +54,7 @@ export class CreateBusinessCustomerDialogComponent
         callBack: this.onClickSaveDialog,
       },
     ];
+    this.dataSource.files = [new UploadFileNameModel()];
 
     this.apiConstantService.getListBank();
   }

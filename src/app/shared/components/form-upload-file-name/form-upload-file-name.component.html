@@ -1,0 +1,47 @@
+<div [ngClass]="classContainer">
+  <div
+    *ngFor="let value of ngModelValue; index as i"
+    class="p-fluid p-formgrid grid"
+  >
+    <div class="col-12 lg:col-3">
+      <emir-form-input
+        [label]="labelName"
+        [(ngModelValue)]="value.name"
+        (_onChange)="onChangeName($event, i)"
+      ></emir-form-input>
+    </div>
+    <div class="col-12 lg:col-3">
+      <emir-form-input
+        [label]="labelSrc"
+        [(ngModelValue)]="value.src"
+        [isDisabled]="true"
+      ></emir-form-input>
+    </div>
+    <div
+      class="col-12 lg:col-3 flex align-items-end justify-content-between field"
+    >
+      <div class="flex">
+        <emir-form-upload-file
+          [type]="'.docx, .pdf'"
+          [label]="'Chọn tệp tin'"
+          (_onChange)="uploadFile($event, i)"
+        ></emir-form-upload-file>
+        <emir-form-button
+          class="ml-2"
+          [styleClass]="'w-fit'"
+          [severityButton]="SEVERITY.DANGER"
+          [label]="'Xóa file'"
+          (_onClick)="onClickRemove($event, i)"
+        ></emir-form-button>
+      </div>
+      <div>
+        <emir-form-button
+          *ngIf="i === 0"
+          [styleClass]="'w-fit'"
+          [label]="'Thêm file'"
+          (_onClick)="onClickAdd($event)"
+        ></emir-form-button>
+      </div>
+    </div>
+  </div>
+</div>
