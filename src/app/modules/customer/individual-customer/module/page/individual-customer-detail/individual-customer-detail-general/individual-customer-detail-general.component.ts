@@ -89,6 +89,7 @@ export class IndividualCustomerDetailGeneralComponent
         )
         .subscribe((res) => {
           this.dataSource.mapDTO(res.data);
+          this.individualCustomerService.showBtnCheck = !this.dataSource.check;
           if (this.dataSource.frontImage && this.dataSource.frontImage.length) {
             this.frontImageIImage = {
               src: this.dataSource.frontImage,

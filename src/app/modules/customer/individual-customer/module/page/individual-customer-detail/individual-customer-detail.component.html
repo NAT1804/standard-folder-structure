@@ -22,9 +22,11 @@
         ></emir-form-button>
       </ng-container>
       <emir-form-button
+        *ngIf="showBtnCheck"
         class="ml-2"
         [label]="'Vận hành kiểm tra'"
         [icon]="'pi pi-check'"
+        (_onClick)="onClickCheck($event)"
       ></emir-form-button>
       <emir-form-button
         class="ml-2"

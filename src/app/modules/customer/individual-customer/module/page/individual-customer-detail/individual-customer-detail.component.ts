@@ -120,4 +120,36 @@ export class IndividualCustomerDetailComponent
   public get routerIncludeCustomer() {
     return this.routerService.getRouterInclude('/customer');
   }
+
+  public get showBtnCheck() {
+    return this.individualCustomerService.showBtnCheck;
+  }
+
+  public onClickCheck(event: any) {
+    if (event) {
+      this.dialogCommonService.createConfirmDialog(
+        'Vận hành kiểm tra',
+        'Xác nhận vận hành kiểm tra khách hàng',
+        () => {
+          if (this.individualCustomerService.individualCustomerId) {
+            this.individualCustomerService
+              .checkCustomer(
+                this.individualCustomerService.individualCustomerId
+              )
+              .subscribe((response) => {
+                if (this.handleResponse(response)) {
+                  this.toastService.showToastSucess(
+                    'Vận hành kiểm tra thành công!'
+                  );
+                  this.individualCustomerService.showBtnCheck = false;
+                }
+              });
+          }
+        },
+        () => {
+          console.log('reject');
+        }
+      );
+    }
+  }
 }

@@ -41,6 +41,7 @@ export class IndividualCustomerService extends BaseService {
   public isEdit = Boolean(false);
   public _handleEventSave: BehaviorSubject<boolean | undefined>;
   public _handleEventSave$: Observable<boolean | undefined>;
+  public showBtnCheck = Boolean(true);
 
   constructor() {
     super();
@@ -165,6 +166,13 @@ export class IndividualCustomerService extends BaseService {
 
   public createOrEditIndividualCustomer(body: any) {
     return this.requestPost(body, `${this.baseAPI}/SetCustInfo`);
+  }
+
+  public checkCustomer(customerId: string) {
+    return this.requestPut(
+      { custId: customerId },
+      `${this.baseAPI}/CustInfoCheck`
+    );
   }
 
   public getIndiCusDetailBank(id: string) {
