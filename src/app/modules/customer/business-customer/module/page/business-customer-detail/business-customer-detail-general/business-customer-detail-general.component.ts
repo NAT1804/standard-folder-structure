@@ -52,8 +52,8 @@ export class BusinessCustomerDetailGeneralComponent
   }
 
   private getData() {
-    this.spinnerService.showSpinner();
     if (this.businessCustomerService.businessCustomerId) {
+      this.spinnerService.showSpinner();
       this.businessCustomerService
         .getBusinessCustomerDetail(
           this.businessCustomerService.businessCustomerId

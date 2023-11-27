@@ -91,25 +91,31 @@ export class IndividualCustomerDetailContactComponent
 
   private getData() {
     if (this.individualCustomerService.individualCustomerId) {
+      this.spinnerService.showSpinner();
       this.individualCustomerService
         .getIndiCusDetailContact(
           this.individualCustomerService.individualCustomerId
         )
-        .subscribe((res: any) => {
-          this.spinnerService.removeSpinner();
-          if (res.status === STATUS_RESPONSE.SUCCESS) {
-            this.dataSource = res.data.map(
-              (data: any, index: number) =>
-                ({
-                  no: index,
-                  id: data.id,
-                  contactName: data.contact_address,
-                  status: data.is_default,
-                }) as IndividualCustomerDetailContactModel
-            );
-            this.genListAction();
+        .subscribe(
+          (res: any) => {
+            this.spinnerService.removeSpinner();
+            if (res.status === STATUS_RESPONSE.SUCCESS) {
+              this.dataSource = res.data.map(
+                (data: any, index: number) =>
+                  ({
+                    no: index,
+                    id: data.id,
+                    contactName: data.contact_address,
+                    status: data.is_default,
+                  }) as IndividualCustomerDetailContactModel
+              );
+              this.genListAction();
+            }
+          },
+          (error) => {
+            this.spinnerService.removeSpinner();
           }
-        });
+        );
     }
   }
 

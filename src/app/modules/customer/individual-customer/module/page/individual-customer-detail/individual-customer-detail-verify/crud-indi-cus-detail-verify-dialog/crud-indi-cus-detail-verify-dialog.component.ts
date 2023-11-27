@@ -92,15 +92,22 @@ export class CrudIndiCusDetailVerifyDialogComponent
   public onClickSaveDialog = () => {
     this.isSubmit = true;
     if (this.dataSource.isValidData()) {
+      this.spinnerService.showSpinner();
       this.individualCustomerService
         .createOrEditIndiCusDetailVerify(this.dataSource.toObjectSendToAPI())
-        .subscribe((response) => {
-          if (this.handleResponse(response)) {
-            this.dynamicDialogRef.close({
-              status: true,
-            } as ICloseDialog);
+        .subscribe(
+          (response) => {
+            this.spinnerService.removeSpinner();
+            if (this.handleResponse(response)) {
+              this.dynamicDialogRef.close({
+                status: true,
+              } as ICloseDialog);
+            }
+          },
+          (error) => {
+            this.spinnerService.removeSpinner();
           }
-        });
+        );
     }
   };
 

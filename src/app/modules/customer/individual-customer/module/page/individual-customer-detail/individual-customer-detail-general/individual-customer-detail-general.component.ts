@@ -83,32 +83,43 @@ export class IndividualCustomerDetailGeneralComponent
 
   private getData() {
     if (this.individualCustomerService.individualCustomerId) {
+      this.spinnerService.showSpinner();
       this.individualCustomerService
         .getIndividualCustomerDetail(
           this.individualCustomerService.individualCustomerId
         )
-        .subscribe((res) => {
-          this.dataSource.mapDTO(res.data);
-          this.individualCustomerService.showBtnCheck = !this.dataSource.check;
-          if (this.dataSource.frontImage && this.dataSource.frontImage.length) {
-            this.frontImageIImage = {
-              src: this.dataSource.frontImage,
-              width: WIDTH_DEFAULT_IMAGE,
-              height: HEIGHT_DEFAULT_IMAGE,
-            };
-          } else {
-            this.frontImageIImage = I_ADD_IMAGE_BG;
+        .subscribe(
+          (res) => {
+            this.spinnerService.removeSpinner();
+            this.dataSource.mapDTO(res.data);
+            this.individualCustomerService.showBtnCheck =
+              !this.dataSource.check;
+            if (
+              this.dataSource.frontImage &&
+              this.dataSource.frontImage.length
+            ) {
+              this.frontImageIImage = {
+                src: this.dataSource.frontImage,
+                width: WIDTH_DEFAULT_IMAGE,
+                height: HEIGHT_DEFAULT_IMAGE,
+              };
+            } else {
+              this.frontImageIImage = I_ADD_IMAGE_BG;
+            }
+            if (this.dataSource.backImage && this.dataSource.backImage.length) {
+              this.backImageIImage = {
+                src: this.dataSource.backImage,
+                width: WIDTH_DEFAULT_IMAGE,
+                height: HEIGHT_DEFAULT_IMAGE,
+              };
+            } else {
+              this.backImageIImage = I_ADD_IMAGE_BG;
+            }
+          },
+          () => {
+            this.spinnerService.removeSpinner();
           }
-          if (this.dataSource.backImage && this.dataSource.backImage.length) {
-            this.backImageIImage = {
-              src: this.dataSource.backImage,
-              width: WIDTH_DEFAULT_IMAGE,
-              height: HEIGHT_DEFAULT_IMAGE,
-            };
-          } else {
-            this.backImageIImage = I_ADD_IMAGE_BG;
-          }
-        });
+        );
     }
   }
 

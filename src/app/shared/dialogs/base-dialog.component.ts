@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { handleResponse } from '../function-common';
 import { ApiConstantService } from '../services/api-constant.service';
+import { SpinnerService } from '../services/spinner.service';
 import { ToastService } from '../services/toast.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class BaseDialogComponent {
   public dynamicDialogConfig = inject(DynamicDialogConfig);
   public apiConstantService = inject(ApiConstantService);
   public toastService = inject(ToastService);
+  public spinnerService = inject(SpinnerService);
   public isSubmit = Boolean(false);
 
   protected handleResponse(response: any, message?: string): boolean {
