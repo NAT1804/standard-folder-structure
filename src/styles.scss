@@ -4,6 +4,7 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 @import 'styles/layout.scss';
 @import 'styles/themes/theme.scss';
+@import './font';
 
 * {
   // padding: 0;
@@ -13,8 +14,7 @@
 body {
   margin: 0;
   position: relative;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f4f7fa;
+  font-family: SF-PRO-TEXT-REGULAR, sans-serif;
 }
 
 ::-webkit-scrollbar {
