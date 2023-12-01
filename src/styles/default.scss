@@ -19,7 +19,7 @@ $warning: $orange-600 !default;
 $danger: $red-600 !default;
 $secondary: $yellow-600 !default;
 $help: $violet-600 !default;
-$required: $red-500 !default;
+$required: #e53935 !default;
 
 @mixin background-color($background-color) {
   background-color: $background-color;
@@ -50,4 +50,8 @@ $required: $red-500 !default;
 
 @mixin line-height($line-height) {
   line-height: $line-height;
+}
+
+.mt-40vh {
+  margin-top: 40vh;
 }

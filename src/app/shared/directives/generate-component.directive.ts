@@ -12,6 +12,8 @@ import {
 export class GenerateComponentDirective implements AfterViewInit {
   @Input()
   public component: any;
+  @Input()
+  public data: any;
   constructor(
     private viewContainerRef: ViewContainerRef,
     private changeDetectorRef: ChangeDetectorRef
@@ -20,7 +22,12 @@ export class GenerateComponentDirective implements AfterViewInit {
     if (this.component) {
       const viewContainerRef = this.viewContainerRef;
       viewContainerRef.clear();
-      viewContainerRef.createComponent(this.component);
+      const componentRef: any = viewContainerRef.createComponent(
+        this.component
+      );
+      if (this.data) {
+        componentRef.instance.data = this.data;
+      }
       this.changeDetectorRef.detectChanges();
     }
   }

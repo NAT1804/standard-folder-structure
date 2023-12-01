@@ -4,7 +4,8 @@
 p,
 span,
 input,
-label {
+label,
+li {
   font-size: $font-size-sm;
   font-weight: $font-weight-400;
 }
@@ -96,4 +97,24 @@ span.p-float-label {
       opacity: 1;
     }
   }
+}
+
+.p-component:disabled,
+.p-disabled {
+  background-color: $colorDisabled;
+  border-color: $colorDisabled;
+  opacity: 1;
+  color: $colorTextDisabled;
+  & > span,
+  .p-icon {
+    color: $colorTextDisabled;
+  }
+}
+
+.p-error {
+  color: $colorTextError;
+}
+
+.required-field {
+  color: $required !important;
 }

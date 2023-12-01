@@ -7,8 +7,9 @@
   <p-menu
     #menu
     [popup]="true"
-    [ngClass]="'button-actions ' + classMenu"
+    [ngClass]="classMenu"
     [model]="actions"
     appendTo="body"
+    [style]="inlineStyle"
   ></p-menu>
 </div>

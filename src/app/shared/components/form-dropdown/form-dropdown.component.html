@@ -44,6 +44,7 @@
       [filter]="isFilter"
       [resetFilterOnHide]="true"
       [filterBy]="filterBy"
+      [appendTo]="'body'"
     ></p-dropdown>
     <small id="" *ngIf="isValidData && isSubmit" class="p-error">
       {{ messageError }}

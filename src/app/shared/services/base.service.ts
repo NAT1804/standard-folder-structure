@@ -158,6 +158,28 @@ export class BaseService {
       );
   }
 
+  public requestDelete(url: string) {
+    let url_ = this.BASE_URL + url;
+    url_ = url_.replace(/[?&]$/, '');
+    const options = {
+      headers: this.createDefaultHeaders(),
+    };
+
+    return this.http
+      .delete(url_, options)
+      .pipe(
+        mergeMap((response: any) => {
+          return of(response);
+        })
+      )
+      .pipe(
+        catchError((error: any) => {
+          this.toastService.showToastError('Có lỗi xảy ra khi xóa dữ liệu!');
+          return throwError(() => new Error(error.message));
+        })
+      );
+  }
+
   private blobToText(blob: any) {
     return new Observable<string>((observer: any) => {
       if (!blob) {

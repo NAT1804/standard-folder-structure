@@ -26,7 +26,7 @@ export class AppConfigService {
       version: '1.0.0',
       production: false,
       baseAPIUrl: 'https://api-core-dev.emirgroup.vn',
-      authAPIUrl: 'https://api-authen-dev.emirgroup.vn/connect/token',
+      authAPIUrl: 'https://api-auth-dev.emirgroup.vn/connect/token',
       userAPIUrl: 'https://api-core-dev.emirgroup.vn',
     };
 

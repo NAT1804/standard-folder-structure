@@ -16,6 +16,8 @@ export class FormMenuComponent extends BaseCommonComponent implements OnInit {
   public classMenu = String('');
   @Input()
   public actions: IActionTable[] = [];
+  @Input()
+  public inlineStyle: any;
 
   constructor() {
     super();
