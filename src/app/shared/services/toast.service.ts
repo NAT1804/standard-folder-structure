@@ -21,4 +21,12 @@ export class ToastService {
       summary: message,
     });
   }
+
+  public showToastWarning(message: string) {
+    this.messageService.add({
+      key: 'tst',
+      severity: 'warn',
+      summary: message,
+    });
+  }
 }

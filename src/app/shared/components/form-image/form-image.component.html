@@ -1,4 +1,8 @@
-<div [ngClass]="'w-fit h-fit ' + classContainer">
+<div
+  [ngClass]="'w-fit h-fit ' + classContainer"
+  (click)="onClickDiv($event)"
+  aria-hidden="true"
+>
   <p-image
     [src]="src"
     alt="Image"
@@ -8,7 +12,11 @@
     [ngClass]="'cursor-pointer' + classImage"
     [preview]="_preview"
   ></p-image>
-  <div class="flex justify-content-center" *ngIf="!isDisabled">
+  <div
+    class="flex justify-content-center"
+    *ngIf="!isDisabled"
+    (click)="$event.stopPropagation()"
+  >
     <i
       *ngIf="showBtnInsert"
       class="pi pi-pencil text-xs mr-2 cursor-pointer"

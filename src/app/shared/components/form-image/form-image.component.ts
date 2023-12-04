@@ -111,4 +111,12 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
     }
     return this.preview;
   }
+
+  public onClickDiv(event: any) {
+    if (event && !this.isDisabled) {
+      if (this.src === ADD_IMAGE_BG) {
+        this.insertImage(event);
+      }
+    }
+  }
 }

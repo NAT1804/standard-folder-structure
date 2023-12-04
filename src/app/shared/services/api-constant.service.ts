@@ -39,7 +39,14 @@ export class ApiConstantService extends BaseService {
     this.requestGet(String(this.baseAPI + '/GetBankCodes')).subscribe(
       (res: any) => {
         if (res.status === STATUS_RESPONSE.SUCCESS) {
-          this._listBank.next(mapDropdownDTOToIDropdown(res.data));
+          const listBank = res.data.map(
+            (e: any) =>
+              ({
+                value: e.bank_code,
+                label: `${e.short_name} - ${e.bank_name}`,
+              }) as IDropdown
+          );
+          this._listBank.next(listBank);
         }
       }
     );
