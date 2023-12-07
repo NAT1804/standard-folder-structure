@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
+import { Component, Input } from '@angular/core';
 import { IActionButtonDialog } from '@app/data/interfaces/interface';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.scss'],
 })
-export class FormDialogComponent extends BaseCommonComponent implements OnInit {
+export class FormDialogComponent extends BaseCommonComponent {
   @Input()
   public classDialogHeader = String('');
   @Input()
@@ -22,10 +22,6 @@ export class FormDialogComponent extends BaseCommonComponent implements OnInit {
 
   constructor(private dynamicDialogRef: DynamicDialogRef) {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public handleClick(event: any, action: IActionButtonDialog) {

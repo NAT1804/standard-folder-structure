@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SEVERITY } from '@app/shared/constants/app.const';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
@@ -7,7 +7,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-button.component.html',
   styleUrls: ['./form-button.component.scss'],
 })
-export class FormButtonComponent extends BaseCommonComponent implements OnInit {
+export class FormButtonComponent extends BaseCommonComponent {
   @Input()
   public classButton = String('');
   @Input()
@@ -27,11 +27,6 @@ export class FormButtonComponent extends BaseCommonComponent implements OnInit {
 
   constructor() {
     super();
-    console.log('constructor');
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public handleClick(event: any) {

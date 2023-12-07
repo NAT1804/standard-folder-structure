@@ -4,19 +4,18 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 import {
   COMPARE_TYPE,
   ESelectionModeCalendar,
 } from '@app/shared/constants/app.const';
-import moment from 'moment';
 import { compareDate } from '@app/shared/function-common';
+import moment from 'moment';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
   selector: 'emir-form-input-calendar',
@@ -25,7 +24,7 @@ import { compareDate } from '@app/shared/function-common';
 })
 export class FormInputCalendarComponent
   extends BaseCommonComponent
-  implements OnInit, AfterViewInit, OnChanges
+  implements AfterViewInit, OnChanges
 {
   @Input()
   public floatLabel = Boolean(false);
@@ -74,10 +73,6 @@ export class FormInputCalendarComponent
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   ngOnChanges(changes: SimpleChanges) {

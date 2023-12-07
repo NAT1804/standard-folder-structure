@@ -3,13 +3,12 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
+import { TYPE_INPUT } from '@app/shared/constants/app.const';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
-import { TYPE_INPUT } from '@app/shared/constants/app.const';
 
 @Component({
   selector: 'emir-form-input',
@@ -18,7 +17,7 @@ import { TYPE_INPUT } from '@app/shared/constants/app.const';
 })
 export class FormInputComponent
   extends BaseCommonComponent
-  implements OnInit, AfterViewInit
+  implements AfterViewInit
 {
   @Input()
   public floatLabel = Boolean(false);
@@ -60,10 +59,6 @@ export class FormInputComponent
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   ngAfterViewInit() {

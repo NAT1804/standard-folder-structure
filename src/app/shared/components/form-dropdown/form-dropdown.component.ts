@@ -2,7 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
+  OnChanges,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -18,7 +18,7 @@ export const LABEL = 'label';
 })
 export class FormDropdownComponent
   extends BaseCommonComponent
-  implements OnInit
+  implements OnChanges
 {
   @Input()
   public floatLabel = Boolean(false);
@@ -64,9 +64,6 @@ export class FormDropdownComponent
     super();
   }
 
-  ngOnInit() {
-    console.log('ngOnInit');
-  }
   ngOnChanges(changes: SimpleChanges) {
     this.placeholder = this.floatLabel
       ? this.placeholder || 'Tất cả'

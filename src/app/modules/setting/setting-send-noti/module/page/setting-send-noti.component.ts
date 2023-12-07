@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import { SettingSendNotiModel } from '../../model/SettingSendNoti.model';
 
@@ -7,15 +7,11 @@ import { SettingSendNotiModel } from '../../model/SettingSendNoti.model';
   templateUrl: './setting-send-noti.component.html',
   styleUrls: ['./setting-send-noti.component.scss'],
 })
-export class SettingSendNotiComponent extends BaseComponent implements OnInit {
+export class SettingSendNotiComponent extends BaseComponent {
   public dataSource: SettingSendNotiModel = new SettingSendNotiModel();
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public isValidData(key: string) {

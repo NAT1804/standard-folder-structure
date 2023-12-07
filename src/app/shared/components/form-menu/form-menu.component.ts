@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IActionTable } from '@app/data/interfaces/interface';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
@@ -7,7 +7,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-menu.component.html',
   styleUrls: ['./form-menu.component.scss'],
 })
-export class FormMenuComponent extends BaseCommonComponent implements OnInit {
+export class FormMenuComponent extends BaseCommonComponent {
   @Input()
   public classContainer = String('');
   @Input()
@@ -21,10 +21,5 @@ export class FormMenuComponent extends BaseCommonComponent implements OnInit {
 
   constructor() {
     super();
-    console.log('constructor');
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 }

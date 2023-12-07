@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SEVERITY } from '@app/shared/constants/app.const';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
@@ -8,10 +8,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-upload-file.component.html',
   styleUrls: ['./form-upload-file.component.scss'],
 })
-export class FormUploadFileComponent
-  extends BaseCommonComponent
-  implements OnInit
-{
+export class FormUploadFileComponent extends BaseCommonComponent {
   @Input()
   public classFileUpload = String('');
   @Input()
@@ -32,10 +29,6 @@ export class FormUploadFileComponent
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public handleUpload(event: FileUploadHandlerEvent) {

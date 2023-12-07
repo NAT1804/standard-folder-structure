@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -32,7 +31,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
 })
 export class FormTableComponent
   extends BaseCommonComponent
-  implements OnInit, OnChanges
+  implements OnChanges
 {
   @Input()
   public columns: IHeaderColumn[] = [];
@@ -93,10 +92,6 @@ export class FormTableComponent
 
   public get EPositionTextCell() {
     return EPositionTextCell;
-  }
-
-  ngOnInit(): void {
-    console.log('ngOnInit');
   }
 
   ngOnChanges(changes: SimpleChanges) {

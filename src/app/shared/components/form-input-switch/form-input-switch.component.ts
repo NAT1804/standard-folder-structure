@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
@@ -6,10 +6,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-input-switch.component.html',
   styleUrls: ['./form-input-switch.component.scss'],
 })
-export class FormInputSwitchComponent
-  extends BaseCommonComponent
-  implements OnInit
-{
+export class FormInputSwitchComponent extends BaseCommonComponent {
   @Input()
   public classContainer = String('flex align-items-end');
   @Input()
@@ -33,10 +30,6 @@ export class FormInputSwitchComponent
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public onChange(event: any) {

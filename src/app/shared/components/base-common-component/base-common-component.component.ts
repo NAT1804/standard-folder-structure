@@ -18,8 +18,4 @@ export class BaseCommonComponent {
   public apiConstantService = inject(ApiConstantService);
   public toastService = inject(ToastService);
   public dialogCommonService = inject(DialogCommonService);
-
-  constructor() {
-    console.log('constructor');
-  }
 }

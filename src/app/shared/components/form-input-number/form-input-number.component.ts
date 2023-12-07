@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
@@ -6,10 +6,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-input-number.component.html',
   styleUrls: ['./form-input-number.component.scss'],
 })
-export class FormInputNumberComponent
-  extends BaseCommonComponent
-  implements OnInit
-{
+export class FormInputNumberComponent extends BaseCommonComponent {
   @Input()
   public classContainer = String('');
   @Input()
@@ -44,10 +41,6 @@ export class FormInputNumberComponent
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public handleInput(event: any) {

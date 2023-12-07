@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 
 @Component({
@@ -6,15 +6,8 @@ import { BaseComponent } from '@app/modules/base-component/base-component.compon
   templateUrl: './default-notification.component.html',
   styleUrls: ['./default-notification.component.scss'],
 })
-export class DefaultNotificationComponent
-  extends BaseComponent
-  implements OnInit
-{
+export class DefaultNotificationComponent extends BaseComponent {
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 }

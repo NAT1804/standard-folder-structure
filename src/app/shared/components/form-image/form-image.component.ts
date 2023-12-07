@@ -2,7 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
+  OnChanges,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -20,7 +20,10 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-image.component.html',
   styleUrls: ['./form-image.component.scss'],
 })
-export class FormImageComponent extends BaseCommonComponent implements OnInit {
+export class FormImageComponent
+  extends BaseCommonComponent
+  implements OnChanges
+{
   @Input()
   public classContainer = String('');
   @Input()
@@ -56,10 +59,6 @@ export class FormImageComponent extends BaseCommonComponent implements OnInit {
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   ngOnChanges(changes: SimpleChanges) {

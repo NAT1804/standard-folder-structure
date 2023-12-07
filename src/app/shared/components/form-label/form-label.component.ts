@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-label.component.html',
   styleUrls: ['./form-label.component.scss'],
 })
-export class FormLabelComponent extends BaseCommonComponent implements OnInit {
+export class FormLabelComponent extends BaseCommonComponent {
   @Input()
   public showLabel = Boolean(true);
   @Input()
@@ -18,9 +18,5 @@ export class FormLabelComponent extends BaseCommonComponent implements OnInit {
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 }

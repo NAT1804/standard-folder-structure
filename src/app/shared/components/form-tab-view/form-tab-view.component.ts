@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITabView } from '@app/data/interfaces/interface';
 import { BaseCommonComponent } from '../base-common-component/base-common-component.component';
 
@@ -7,10 +7,7 @@ import { BaseCommonComponent } from '../base-common-component/base-common-compon
   templateUrl: './form-tab-view.component.html',
   styleUrls: ['./form-tab-view.component.scss'],
 })
-export class FormTabViewComponent
-  extends BaseCommonComponent
-  implements OnInit
-{
+export class FormTabViewComponent extends BaseCommonComponent {
   @Input()
   public activeIndex = Number(0);
   @Input()
@@ -22,11 +19,6 @@ export class FormTabViewComponent
 
   constructor() {
     super();
-    console.log('constructor');
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
   }
 
   public handleChangeTab(event: any) {
