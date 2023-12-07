@@ -11,6 +11,7 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
   public createdUser = String('');
   public createdTime: Date | undefined = undefined;
   public check = Boolean(true);
+  public customerStatus: number;
 
   public mapDTO(dto: any) {
     if (dto) {
@@ -42,6 +43,7 @@ export class IndividualCustomerDetailGeneralModel extends CreateIndividualCustom
       this.createdUser = dto.created_by;
       this.createdTime = dto.created ? new Date(dto.created) : undefined;
       this.check = !!dto.is_check;
+      this.customerStatus = dto.cust_st;
     }
   }
 

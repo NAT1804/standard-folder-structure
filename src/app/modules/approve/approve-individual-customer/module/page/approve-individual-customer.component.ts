@@ -56,11 +56,6 @@ export class ApproveIndividualCustomerComponent
   }
 
   ngOnInit() {
-    // this.breadcrumbService.setItems([
-    //   { label: 'Trang chủ', routerLink: ['/home'] },
-    //   { label: 'Quản lý phê duyệt' },
-    //   { label: 'Khách hàng cá nhân' },
-    // ] as MenuItem[]);
     this.headerService.setHeader('Phê duyệt khách hàng cá nhân');
 
     this.headerColumns = [
@@ -343,7 +338,7 @@ export class ApproveIndividualCustomerComponent
   public detail(data: ApproveIndividualCustomerModel) {
     if (data) {
       this.routerService.routerNavigate([
-        '/approve/approve-individual-customer/' + data.customerId,
+        `/approve/approve-individual-customer/${data.customerId}/${data.id}`,
       ]);
     }
   }

@@ -93,6 +93,8 @@ export class IndividualCustomerDetailGeneralComponent
             this.spinnerService.removeSpinner();
             this.dataSource.mapDTO(res.data);
             this.individualCustomerService.showBtnCheck =
+              this.dataSource.customerStatus ===
+                IndividualCustomerConst.customerStatus.HOAT_DONG &&
               !this.dataSource.check;
             if (
               this.dataSource.frontImage &&

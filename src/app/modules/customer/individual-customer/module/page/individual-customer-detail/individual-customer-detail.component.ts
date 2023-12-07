@@ -26,23 +26,12 @@ export class IndividualCustomerDetailComponent
   }
 
   ngOnInit() {
-    // this.breadcrumbService.setItems([
-    //   { label: 'Trang chủ', routerLink: ['/home'] },
-    //   {
-    //     label: this.routerIncludeCustomer
-    //       ? 'Khách hàng'
-    //       : 'Phê duyệt khách hàng',
-    //   },
-    //   {
-    //     label: 'Khách hàng cá nhân',
-    //     routerLink: this.routerIncludeCustomer
-    //       ? ['/customer/individual-customer']
-    //       : ['/approve/approve-individual-customer'],
-    //   },
-    //   { label: 'Chi tiết khách hàng cá nhân' },
-    // ] as MenuItem[]);
     this.individualCustomerService.individualCustomerId =
       this.routeActive.snapshot.paramMap.get('id') || undefined;
+    this.individualCustomerService.individualCustomerApproveId =
+      this.routeActive.snapshot.paramMap.get('approveId') || undefined;
+    this.individualCustomerService.isApprove =
+      this.routerService.getRouterInclude('/approve');
     this.getListTabPanel();
   }
 
@@ -122,7 +111,10 @@ export class IndividualCustomerDetailComponent
   }
 
   public get showBtnCheck() {
-    return this.individualCustomerService.showBtnCheck;
+    return (
+      this.individualCustomerService.isApprove &&
+      this.individualCustomerService.showBtnCheck
+    );
   }
 
   public onClickCheck(event: any) {

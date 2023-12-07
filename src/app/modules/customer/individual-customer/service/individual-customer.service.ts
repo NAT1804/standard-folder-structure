@@ -38,6 +38,8 @@ export class IndividualCustomerService extends BaseService {
   >;
   public _listIdTypeIndividualCustomer$: Observable<IDropdown[] | undefined>;
   public individualCustomerId: string | undefined;
+  public individualCustomerApproveId: string | undefined;
+  public isApprove = Boolean(false);
   public isEdit = Boolean(false);
   public _handleEventSave: BehaviorSubject<boolean | undefined>;
   public _handleEventSave$: Observable<boolean | undefined>;
@@ -159,8 +161,10 @@ export class IndividualCustomerService extends BaseService {
     return this.requestGet(url);
   }
 
-  public getIndividualCustomerDetail(id: string) {
-    const url = String(this.baseAPI + '/GetCustInfoById?custId=' + id);
+  public getIndividualCustomerDetail(id: string, approveId?: string) {
+    let url = String(this.baseAPI + '/GetCustInfoById?');
+    url += this.convertParamUrl('custId', id);
+    approveId && (url += this.convertParamUrl('id', approveId));
     return this.requestGet(url);
   }
 

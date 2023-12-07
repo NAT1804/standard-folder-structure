@@ -13,6 +13,9 @@ export class IndividualCustomerConst {
       label: 'Nữ',
     },
   ];
+  public static customerStatus = {
+    HOAT_DONG: 1,
+  };
 
   public static tabDetailGeneral = Number(0);
 }

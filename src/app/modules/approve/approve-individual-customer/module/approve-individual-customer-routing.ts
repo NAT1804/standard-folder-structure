@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApproveIndividualCustomerComponent } from './page/approve-individual-customer.component';
 import { IndividualCustomerDetailComponent } from '@app/modules/customer/individual-customer/module/page/individual-customer-detail/individual-customer-detail.component';
+import { ApproveIndividualCustomerComponent } from './page/approve-individual-customer.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: ':id',
+    path: ':id/:approveId',
     component: IndividualCustomerDetailComponent,
   },
 ];
