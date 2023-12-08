@@ -1,0 +1,19 @@
+<div [ngClass]="'field ' + classContainer">
+  <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+    {{ label }}
+    <span class="required-field" *ngIf="isRequired">*</span>
+  </label>
+  <textarea
+    [style.resize]="resizeTextareaType"
+    [style.minHeight.px]="MIN_HEIGHT_RESIZE_TEXTAREA"
+    (click)="handleClick($event)"
+    (keyup)="handleKeyup($event)"
+    (input)="handleInput($event)"
+    pInputTextarea
+    [rows]="rows"
+    [(ngModel)]="ngModelValue"
+    [placeholder]="placeholder"
+    [ngClass]="classTextarea"
+    [disabled]="isDisabled"
+  ></textarea>
+</div>

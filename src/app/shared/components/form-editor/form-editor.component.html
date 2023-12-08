@@ -1,0 +1,14 @@
+<div [ngClass]="'field' + classContainer">
+  <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+    {{ label }}
+    <span class="required-field" *ngIf="isRequired">*</span>
+  </label>
+  <angular-editor
+    [(ngModel)]="ngModelValue"
+    [ngClass]="'custom-input' + classEditor"
+    [placeholder]="placeholder"
+    [config]="config"
+    [disabled]="isDisabled"
+    (ngModelChange)="handleChange($event)"
+  ></angular-editor>
+</div>

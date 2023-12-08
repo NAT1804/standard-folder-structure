@@ -110,3 +110,19 @@ export interface IConfigDataConfirmNoteDialog {
   apiClickCloseDialog?: (...params: any[]) => void;
   labelAction?: string[];
 }
+
+export interface ISelectButton {
+  label: string;
+  value: any;
+}
+
+export interface IDescriptionContent {
+  contentType: string;
+  content: string;
+}
+
+export interface IListBox {
+  label: string;
+  value: number | string | boolean;
+  rawData?: any;
+}

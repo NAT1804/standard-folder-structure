@@ -1,0 +1,7 @@
+<div [ngClass]="'field' + classContainer">
+  <label for="" [ngClass]="classLabel" *ngIf="showLabel">
+    {{ label }}
+    <span class="required-field" *ngIf="isRequired">*</span>
+  </label>
+  <markdown [ngClass]="'border-box ' + classMarkdown" [data]="data"></markdown>
+</div>

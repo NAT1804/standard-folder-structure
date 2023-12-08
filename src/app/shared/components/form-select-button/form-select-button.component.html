@@ -1,0 +1,9 @@
+<div [ngClass]="classContainer">
+  <p-selectButton
+    [ngClass]="classSelectButton"
+    [options]="options"
+    [(ngModel)]="ngModelValue"
+    [disabled]="isDisabled"
+    (onChange)="handleChange($event)"
+  ></p-selectButton>
+</div>

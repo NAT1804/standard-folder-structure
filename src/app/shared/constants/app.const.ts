@@ -1,4 +1,4 @@
-import { IImage } from '@app/data/interfaces/interface';
+import { IImage, ISelectButton } from '@app/data/interfaces/interface';
 
 export const DEFAULT_WIDTH = 100;
 export const DEFAULT_HEIGHT = 100;
@@ -82,3 +82,22 @@ export const I_ADD_IMAGE_BG = {
   width: WIDTH_DEFAULT_IMAGE,
   height: HEIGHT_DEFAULT_IMAGE,
 } as IImage;
+export const RESIZE_TEXTAREA_TYPE = {
+  HORIZONTAL: 'horizontal',
+  VERTICAL: 'vertical',
+};
+export const MIN_HEIGHT_RESIZE_TEXTAREA = 50;
+export const MARKDOWN_OPTIONS = {
+  MARKDOWN: 'MARKDOWN',
+  HTML: 'HTML',
+};
+export const HTML_MARKDOWN_OPTIONS: ISelectButton[] = [
+  {
+    label: 'MARKDOWN',
+    value: MARKDOWN_OPTIONS.MARKDOWN,
+  },
+  {
+    label: 'HTML',
+    value: MARKDOWN_OPTIONS.HTML,
+  },
+];

@@ -1,0 +1,56 @@
+<div>
+  <div>
+    <span [ngClass]="classTitle">{{ title }}</span>
+  </div>
+  <div class="p-fluid p-formgrid grid">
+    <div class="col-12">
+      <emir-form-select-button
+        [options]="htmlMarkdownOptions"
+        [(ngModelValue)]="contentType"
+        [isDisabled]="isDisabled"
+        (_onChange)="onChangeContentType($event)"
+      ></emir-form-select-button>
+    </div>
+    <ng-container *ngIf="contentType === MARKDOWN_OPTIONS.MARKDOWN">
+      <div class="col-12 lg:col-6">
+        <emir-form-textarea
+          [label]="'Nhập thông tin'"
+          [rows]="rowsTextarea"
+          [(ngModelValue)]="content"
+          [placeholder]="'Nhập nội dung mô tả'"
+          [isDisabled]="isDisabled"
+          (_onClick)="getCaretPos($event)"
+          (_onChangeKeyup)="getCaretPos($event)"
+          (_onChangeInput)="handleInput($event)"
+        ></emir-form-textarea>
+        <emir-form-button
+          *ngIf="showBtnInsertImage"
+          [classButton]="'p-button-outlined p-button-info w-150px'"
+          [label]="'Chèn ảnh'"
+          [icon]="'pi pi-image'"
+          [isDisabled]="isDisabled"
+          (_onClick)="insertImageContent($event)"
+        ></emir-form-button>
+      </div>
+      <div class="col-12 lg:col-6">
+        <emir-form-markdown
+          [label]="'Hiển thị'"
+          [data]="displayContent"
+          [classMarkdown]="classMarkdown"
+        ></emir-form-markdown>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="contentType === MARKDOWN_OPTIONS.HTML">
+      <div class="col-12">
+        <emir-form-editor
+          [(ngModelValue)]="content"
+          [placeholder]="'Nhập nội dung'"
+          [isDisabled]="isDisabled"
+          [label]="'Nhập thông tin'"
+          [height]="heightEditor"
+          (_onChange)="handleInput($event)"
+        ></emir-form-editor>
+      </div>
+    </ng-container>
+  </div>
+</div>

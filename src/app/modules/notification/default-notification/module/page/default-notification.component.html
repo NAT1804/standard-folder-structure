@@ -1,1 +1,29 @@
-<p>default-notification works!</p>
+<div class="h-full div-main-page">
+  <div class="card">
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12 lg:col-4 xl:col-3">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12">
+            <emir-form-list-box
+              class="col-12"
+              [ngModelValue]="test"
+              [options]="options"
+            ></emir-form-list-box>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 lg:col-8 xl:col-9">
+        <div
+          class="flex flex-column lg:flex-row xl:flex-row justify-content-end align-items-center"
+        >
+          <emir-form-button
+            [label]="'Lưu lại'"
+            [icon]="'pi pi-save'"
+            (_onClick)="onClickSave($event)"
+          ></emir-form-button>
+        </div>
+        <div class="p-fluid p-formgrid grid"></div>
+      </div>
+    </div>
+  </div>
+</div>

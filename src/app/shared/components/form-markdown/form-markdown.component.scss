@@ -1,0 +1,14 @@
+:host ::ng-deep {
+  .border-box {
+    border: 1px solid #eee;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+  }
+
+  .border-box img {
+    width: 100%;
+  }
+}

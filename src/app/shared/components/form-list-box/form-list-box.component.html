@@ -1,0 +1,8 @@
+<div [ngClass]="classContainer">
+  <p-listbox
+    [ngClass]="classListBox"
+    [options]="options"
+    [(ngModel)]="ngModelValue"
+    (onChange)="onChange($event)"
+  ></p-listbox>
+</div>
