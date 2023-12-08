@@ -10,6 +10,7 @@ import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ListboxModule } from 'primeng/listbox';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -80,6 +81,7 @@ export const commonModules: any[] = [
   MarkdownModule.forRoot(),
   AngularEditorModule,
   ListboxModule,
+  InputTextareaModule,
   //
 ];
 

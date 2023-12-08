@@ -1,4 +1,155 @@
-<emir-form-dialog
-  [header]="'Thêm mới'"
-  [listAction]="listAction"
-></emir-form-dialog>
+<emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-dropdown
+              [label]="'Trang hình ảnh'"
+              [(ngModelValue)]="dataSource.page"
+              [options]="listPage"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('page')"
+              [messageError]="
+                dataSource.dataValidator['page'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-dropdown>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-dropdown
+              [label]="'Vị trí hình ảnh'"
+              [(ngModelValue)]="dataSource.position"
+              [options]="listPosition"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('position')"
+              [messageError]="
+                dataSource.dataValidator['position'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-dropdown>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-dropdown
+              *ngIf="dataSource.position === position.SAN_PHAM_NOI_BAT"
+              [label]="'Tiêu chí nổi bật'"
+              [(ngModelValue)]="dataSource.outstanding"
+              [options]="listOutstanding"
+            ></emir-form-dropdown>
+          </div>
+        </div>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Tiêu đề'"
+              [(ngModelValue)]="dataSource.title"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('title')"
+              [messageError]="
+                dataSource.dataValidator['title'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input
+              [label]="'Nội dung tóm tắt'"
+              [(ngModelValue)]="dataSource.shortContent"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('shortContent')"
+              [messageError]="
+                dataSource.dataValidator['shortContent'].toMessageString()
+              "
+              [isRequired]="true"
+            ></emir-form-input>
+          </div>
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-label
+              [classLabel]="'inline-block mb-2'"
+              [label]="'Hình ảnh'"
+              [isRequired]="true"
+            ></emir-form-label>
+            <emir-form-image
+              [imageSource]="imageIImage"
+              [isDisabled]="false"
+              (_onChange)="onChangeImage($event)"
+              (_onRemove)="onRemoveImage($event)"
+              [widthLimit]="'auto'"
+              [isSubmit]="isSubmit"
+              [isValidData]="isValidData('image')"
+              [messageError]="
+                dataSource.dataValidator['image'].toMessageString()
+              "
+            ></emir-form-image>
+          </div>
+        </div>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12">
+            <emir-form-description-content
+              [showTitle]="false"
+              [labelTextArea]="'Nội dung chính'"
+              [contentType]="MARKDOWN_OPTIONS.MARKDOWN"
+              [content]="dataSource.content"
+              [rowsTextarea]="11"
+              [heightEditor]="'30rem'"
+              [showSelectButton]="false"
+              (_onChangeData)="onChangeContent($event)"
+            ></emir-form-description-content>
+          </div>
+        </div>
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12 lg:col-4 xl:col-3">
+            <emir-form-input-switch
+              [label]="'Điều hướng'"
+              [(ngModelValue)]="dataSource.isRedirect"
+              [classLabel]="'ml-2'"
+            ></emir-form-input-switch>
+          </div>
+          <ng-container *ngIf="!!dataSource.isRedirect">
+            <div class="col-12 lg:col-4 xl:col-3">
+              <emir-form-dropdown
+                [label]="'Loại điều hướng'"
+                [(ngModelValue)]="dataSource.redirectType"
+                [options]="listRedirectType"
+                (_onChange)="onChangeRedirectType($event)"
+              ></emir-form-dropdown>
+            </div>
+            <div class="col-12 lg:col-4 xl:col-3">
+              <emir-form-input
+                [label]="'Button điều hướng'"
+                [(ngModelValue)]="redirectButton"
+                [isDisabled]="true"
+              ></emir-form-input>
+            </div>
+            <ng-container
+              *ngIf="dataSource.redirectType === redirectType.TRONG_APP"
+            >
+              <div class="col-12 lg:col-4 xl:col-3">
+                <emir-form-dropdown
+                  [label]="'Điều hướng cấp 1'"
+                  [(ngModelValue)]="dataSource.redirectLevel1"
+                  [options]="listRedirectLevel1"
+                ></emir-form-dropdown>
+              </div>
+              <div class="col-12 lg:col-4 xl:col-3">
+                <emir-form-dropdown
+                  [label]="'Điều hướng cấp 2'"
+                  [(ngModelValue)]="dataSource.redirectLevel2"
+                  [options]="listRedirectLevel2"
+                ></emir-form-dropdown>
+              </div>
+            </ng-container>
+            <ng-container
+              *ngIf="dataSource.redirectType === redirectType.LIEN_KET_KHAC"
+            >
+              <emir-form-input
+                [label]="'Liên khết khác'"
+                [(ngModelValue)]="dataSource.redirectLink"
+              ></emir-form-input>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</emir-form-dialog>

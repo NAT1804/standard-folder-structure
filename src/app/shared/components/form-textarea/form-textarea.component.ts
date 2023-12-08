@@ -69,4 +69,8 @@ export class FormTextareaComponent extends BaseCommonComponent {
   public get MIN_HEIGHT_RESIZE_TEXTAREA() {
     return MIN_HEIGHT_RESIZE_TEXTAREA;
   }
+
+  public get test() {
+    return this.rows;
+  }
 }

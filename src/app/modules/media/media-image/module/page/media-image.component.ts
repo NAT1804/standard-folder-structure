@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { IActionTable, IHeaderColumn } from '@app/data/interfaces/interface';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  IActionTable,
+  IDropdown,
+  IHeaderColumn,
+  ISortTable,
+  IValueFormatter,
+} from '@app/data/interfaces/interface';
+import { Page } from '@app/data/model/page';
 import { BaseComponent } from '@app/modules/base-component/base-component.component';
 import {
   EPositionFrozenCell,
   EPositionTextCell,
   ETypeDataTable,
-  ETypeStatus,
+  ETypeFormatDate,
+  STATUS_RESPONSE,
 } from '@app/shared/constants/app.const';
+import { formatDate } from '@app/shared/function-common';
 import { MediaImageModel } from '../../model/MediaImage.model';
-import { MediaImageConst } from '../../service/media-image.const';
+import { MediaImageService } from '../../service/media.service';
 import { CrudMediaImageDialogComponent } from './crud-media-image-dialog/crud-media-image-dialog.component';
 
 @Component({
@@ -16,34 +25,38 @@ import { CrudMediaImageDialogComponent } from './crud-media-image-dialog/crud-me
   templateUrl: './media-image.component.html',
   styleUrls: ['./media-image.component.scss'],
 })
-export class MediaImageComponent extends BaseComponent implements OnInit {
+export class MediaImageComponent
+  extends BaseComponent
+  implements OnInit, AfterViewInit
+{
   public headerColumns: IHeaderColumn[] = [];
   public dataSource: MediaImageModel[] = [];
   public isLoading: boolean;
   public listAction: IActionTable[][] = [];
+  public page: Page = new Page();
+  public sort: ISortTable;
+  public filter: {
+    keyword: string;
+    page: string | undefined;
+    position: string | undefined;
+    status: string | undefined;
+  } = {
+    keyword: '',
+    page: undefined,
+    position: undefined,
+    status: undefined,
+  };
+  public listPage: IDropdown[] = [];
+  public listPosition: IDropdown[] = [];
+  public listStatus: IDropdown[] = [];
+  public listOutstanding: IDropdown[] = [];
 
-  public get listStatus() {
-    return MediaImageConst.listStatus;
-  }
-
-  public getStatusSeverity(code: number) {
-    return MediaImageConst.getStatus(code, ETypeStatus.SEVERITY);
-  }
-
-  public getStatusName(code: number) {
-    return MediaImageConst.getStatus(code, ETypeStatus.LABEL);
-  }
-
-  constructor() {
+  constructor(private mediaImageService: MediaImageService) {
     super();
   }
 
   ngOnInit() {
-    // this.breadcrumbService.setItems([
-    //   { label: 'Trang chủ', routerLink: ['/home'] },
-    //   { label: 'Truyền thông' },
-    //   { label: 'Hình ảnh' },
-    // ] as MenuItem[]);
+    this.headerService.setHeader('Danh sách hình ảnh');
 
     this.headerColumns = [
       {
@@ -69,7 +82,7 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       {
         field: 'page',
         header: 'Trang',
-        minWidth: '20rem',
+        minWidth: '8rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'page',
@@ -78,7 +91,7 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       {
         field: 'position',
         header: 'Vị trí',
-        minWidth: '20rem',
+        minWidth: '8rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'position',
@@ -87,7 +100,7 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       {
         field: 'postUser',
         header: 'Người đăng',
-        minWidth: '20rem',
+        minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'postUser',
@@ -96,16 +109,18 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       {
         field: 'postTime',
         header: 'Thời gian đăng',
-        minWidth: '20rem',
+        minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'postTime',
         isResize: true,
+        valueFormatter: (param: IValueFormatter) =>
+          param.data ? formatDate(param.data, ETypeFormatDate.DATE_TIME) : '',
       },
       {
         field: 'approveUser',
         header: 'Người duyệt',
-        minWidth: '20rem',
+        minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'approveUser',
@@ -114,19 +129,23 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       {
         field: 'approveTime',
         header: 'Thời gian duyệt',
-        minWidth: '20rem',
+        minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
         fieldSort: 'approveTime',
         isResize: true,
+        valueFormatter: (param: IValueFormatter) =>
+          param.data ? formatDate(param.data, ETypeFormatDate.DATE_TIME) : '',
       },
       {
         field: 'status',
         header: 'Trạng thái',
         width: '8rem',
         type: ETypeDataTable.STATUS,
-        funcStyleClassStatus: this.funcStyleClassStatus,
-        funcLabelStatus: this.funcLabelStatus,
+        fieldStatus: {
+          fieldLabel: 'status',
+          fieldSeverity: 'statusSeverity',
+        },
         posTextCell: EPositionTextCell.LEFT,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.RIGHT,
@@ -142,40 +161,53 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       },
     ] as IHeaderColumn[];
 
-    this.dataSource = [
-      {
-        id: 1,
-        title: '1',
-        page: '1',
-        position: '1',
-        postUser: '1',
-        postTime: '1',
-        approveUser: '1',
-        approveTime: '1',
-        status: 1,
-      },
-      {
-        id: 2,
-        title: '2',
-        page: '2',
-        position: '2',
-        postUser: '2',
-        postTime: '2',
-        approveUser: '2',
-        approveTime: '2',
-        status: 2,
-      },
-    ];
-    this.genListAction();
+    this.initData();
+    this.setPage();
   }
 
-  public funcStyleClassStatus = (status: number) => {
-    return this.getStatusSeverity(status);
-  };
+  ngAfterViewInit(): void {
+    this.mediaImageService._listPageMediaImage$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listPage = res;
+        }
+      }
+    );
+    this.mediaImageService._listPositionMediaImage$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listPosition = res;
+        }
+      }
+    );
+    this.mediaImageService._listStatusMediaImage$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listStatus = res;
+        }
+      }
+    );
+    this.mediaImageService._listStatusMediaImage$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listStatus = res;
+        }
+      }
+    );
+    this.mediaImageService._listOutstandingMediaImage$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listOutstanding = res;
+        }
+      }
+    );
+  }
 
-  public funcLabelStatus = (status: number) => {
-    return this.getStatusName(status);
-  };
+  private initData() {
+    this.mediaImageService.getListPageMediaImage();
+    this.mediaImageService.getListStatusMediaImage();
+    this.mediaImageService.getListOutstandingMediaImage();
+  }
 
   private genListAction() {
     // this.listAction = this.dataSource.map((data: BusinessCustomerModel) => {
@@ -205,13 +237,75 @@ export class MediaImageComponent extends BaseComponent implements OnInit {
       const modalRef = this.dialogCommonService.createDialog(
         CrudMediaImageDialogComponent,
         '100%',
-        '100%'
+        '100%',
+        true
+        // {
+
+        // }
       );
       modalRef.onClose.subscribe((res) => {
         if (res?.accept) {
           console.log(1111);
         }
       });
+    }
+  }
+
+  public changeFilter(event: any, key?: string) {
+    if (key === 'page') {
+      this.listPosition = [];
+      this.filter.position = undefined;
+      if (this.filter.page) {
+        this.mediaImageService.getListPositionMediaImage(this.filter.page);
+      }
+    }
+    this.setPage();
+  }
+
+  private setPage() {
+    this.spinnerService.showSpinner();
+    this.mediaImageService
+      .getListMediaImage(this.page, this.filter, this.sort)
+      .subscribe(
+        (res) => {
+          this.spinnerService.removeSpinner();
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            this.page.totalItems = res.recordsTotal;
+            this.dataSource = res.data.map(
+              (data: any) =>
+                ({
+                  no: data.stt,
+                  id: data.id,
+                  title: data.title,
+                  page: data.app_page,
+                  position: data.position_page,
+                  postUser: data.created_by,
+                  postTime: data.created,
+                  approveUser: data.approved_by,
+                  approveTime: data.approved,
+                  status: data.media_st,
+                  statusSeverity: data.media_st_label,
+                }) as MediaImageModel
+            );
+            this.genListAction();
+          }
+        },
+        (err) => {
+          this.spinnerService.removeSpinner();
+        }
+      );
+  }
+
+  public changePage(event: any) {
+    if (event) {
+      this.setPage();
+    }
+  }
+
+  public onSort(event: ISortTable) {
+    if (event) {
+      this.sort = event;
+      this.setPage();
     }
   }
 }

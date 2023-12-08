@@ -1,9 +1,9 @@
 <div>
-  <div>
+  <div *ngIf="showTitle">
     <span [ngClass]="classTitle">{{ title }}</span>
   </div>
   <div class="p-fluid p-formgrid grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="showSelectButton">
       <emir-form-select-button
         [options]="htmlMarkdownOptions"
         [(ngModelValue)]="contentType"
@@ -14,7 +14,7 @@
     <ng-container *ngIf="contentType === MARKDOWN_OPTIONS.MARKDOWN">
       <div class="col-12 lg:col-6">
         <emir-form-textarea
-          [label]="'Nhập thông tin'"
+          [label]="labelTextArea"
           [rows]="rowsTextarea"
           [(ngModelValue)]="content"
           [placeholder]="'Nhập nội dung mô tả'"

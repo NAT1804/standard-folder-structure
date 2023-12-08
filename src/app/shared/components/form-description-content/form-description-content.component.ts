@@ -29,7 +29,11 @@ export class FormDescriptionContentComponent
   implements AfterViewInit
 {
   @Input()
+  public showTitle = Boolean(true);
+  @Input()
   public title = String('');
+  @Input()
+  public labelTextArea = String('Nhập thông tin');
   @Input()
   public classTitle = String('');
   public htmlMarkdownOptions: ISelectButton[] = HTML_MARKDOWN_OPTIONS;
@@ -49,6 +53,8 @@ export class FormDescriptionContentComponent
   public heightEditor = String('');
   private caretPos = Number(0);
   public baseUrl = String('');
+  @Input()
+  public showSelectButton = Boolean(true);
   @Output()
   public _onChangeData: EventEmitter<IDescriptionContent | undefined> =
     new EventEmitter<IDescriptionContent | undefined>();
@@ -85,9 +91,11 @@ export class FormDescriptionContentComponent
       modalRef.onClose.subscribe((res: ICloseDialog) => {
         if (res?.status) {
           const oldContentValue = this.content || '';
-          this.content =
-            oldContentValue.slice(0, this.caretPos) + res.data.urlImage ||
+          const a =
+            oldContentValue.slice(0, this.caretPos) +
+              `![](${res.data.urlImage}) \n` ||
             '' + oldContentValue.slice(this.caretPos);
+          this.content = a;
           this.emitData();
         }
       });

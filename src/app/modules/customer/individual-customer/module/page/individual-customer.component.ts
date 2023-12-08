@@ -59,11 +59,6 @@ export class IndividualCustomerComponent
   }
 
   ngOnInit() {
-    // this.breadcrumbService.setItems([
-    //   { label: 'Trang chủ', routerLink: ['/home'] },
-    //   { label: 'Khách hàng' },
-    //   { label: 'Khách hàng cá nhân' },
-    // ] as MenuItem[]);
     this.headerService.setHeader('Khách hàng cá nhân');
 
     this.headerColumns = [

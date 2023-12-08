@@ -4,10 +4,11 @@
     <span class="required-field" *ngIf="isRequired">*</span>
   </label>
   <textarea
+    #textarea
     [style.resize]="resizeTextareaType"
     [style.minHeight.px]="MIN_HEIGHT_RESIZE_TEXTAREA"
-    (click)="handleClick($event)"
-    (keyup)="handleKeyup($event)"
+    (click)="handleClick(textarea)"
+    (keyup)="handleKeyup(textarea)"
     (input)="handleInput($event)"
     pInputTextarea
     [rows]="rows"
@@ -15,5 +16,6 @@
     [placeholder]="placeholder"
     [ngClass]="classTextarea"
     [disabled]="isDisabled"
+    [autoResize]="true"
   ></textarea>
 </div>

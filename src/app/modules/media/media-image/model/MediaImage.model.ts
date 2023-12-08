@@ -1,5 +1,6 @@
 export class MediaImageModel {
   public id: number;
+  public no: number;
   public title: string;
   public page: string;
   public position: string;
@@ -8,4 +9,5 @@ export class MediaImageModel {
   public approveUser: string;
   public approveTime: string;
   public status: number;
+  public statusSeverity: string;
 }
