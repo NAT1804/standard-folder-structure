@@ -125,4 +125,40 @@ export class CreateOrEditMediaImageModel {
     }
     return false;
   }
+
+  public toObjectSendToAPI() {
+    return {
+      id: this.id,
+      appPageId: this.page,
+      appPositionId: this.position,
+      priorityOutstandingId: this.outstanding,
+      title: this.title,
+      summary_content: this.shortContent,
+      main_image: this.image,
+      main_content: this.content,
+      is_direct: this.isRedirect,
+      direct_type: this.redirectType,
+      direct_lv1: this.redirectLevel1,
+      direct_lv2: this.redirectLevel2,
+      direct_link: this.redirectLink,
+    };
+  }
+
+  public mapDTO(dto: any) {
+    if (dto) {
+      this.id = dto.id;
+      this.page = dto.appPageId;
+      this.position = dto.appPositionId;
+      this.outstanding = dto.priorityOutstandingId;
+      this.title = dto.title;
+      this.shortContent = dto.summary_content;
+      this.content = dto.main_content;
+      this.image = dto.main_image;
+      this.isRedirect = !!dto.is_direct;
+      this.redirectType = this.isRedirect ? dto.direct_type + '' : '';
+      this.redirectLevel1 = dto.direct_lv1;
+      this.redirectLevel2 = dto.direct_lv2;
+      this.redirectLink = dto.direct_link;
+    }
+  }
 }

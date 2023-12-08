@@ -46,11 +46,19 @@ export function formatDate(value: Date | string, type: ETypeFormatDate) {
   return moment(value).isValid() && value ? moment(value).format(type) : '';
 }
 
-export function mapDropdownDTOToIDropdown(dtos: DropdownDTO[]) {
+export function mapDropdownDTOToIDropdown(
+  dtos: DropdownDTO[],
+  isConvertToLowerCase = Boolean(false)
+) {
   const result: IDropdown[] = dtos.map(
     (item: DropdownDTO) =>
       ({
-        value: item.value,
+        value:
+          typeof item.value === 'string'
+            ? isConvertToLowerCase
+              ? item.value.toLowerCase()
+              : item.value
+            : item.value,
         label: item.name,
       }) as IDropdown
   );

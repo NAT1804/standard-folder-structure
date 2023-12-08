@@ -3,7 +3,7 @@ export class MediaImageConst {
     SAN_PHAM_NOI_BAT: '',
   };
   public static redirectType = {
-    TRONG_APP: '1',
-    LIEN_KET_KHAC: '2',
+    TRONG_APP: '0',
+    LIEN_KET_KHAC: '1',
   };
 }

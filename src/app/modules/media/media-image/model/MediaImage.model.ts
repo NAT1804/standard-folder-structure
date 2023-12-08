@@ -1,5 +1,5 @@
 export class MediaImageModel {
-  public id: number;
+  public id: string;
   public no: number;
   public title: string;
   public page: string;

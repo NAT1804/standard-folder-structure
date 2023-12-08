@@ -19,6 +19,12 @@ export class MediaImageService extends BaseService {
   public _listStatusMediaImage: BehaviorSubject<IDropdown[] | undefined>;
   public _listOutstandingMediaImage$: Observable<IDropdown[] | undefined>;
   public _listOutstandingMediaImage: BehaviorSubject<IDropdown[] | undefined>;
+  public _listRedirectType$: Observable<IDropdown[] | undefined>;
+  public _listRedirectType: BehaviorSubject<IDropdown[] | undefined>;
+  public _listRedirectLevel1$: Observable<IDropdown[] | undefined>;
+  public _listRedirectLevel1: BehaviorSubject<IDropdown[] | undefined>;
+  public _listRedirectLevel2$: Observable<IDropdown[] | undefined>;
+  public _listRedirectLevel2: BehaviorSubject<IDropdown[] | undefined>;
 
   constructor() {
     super();
@@ -40,13 +46,27 @@ export class MediaImageService extends BaseService {
     >(undefined);
     this._listOutstandingMediaImage$ =
       this._listOutstandingMediaImage.asObservable();
+    this._listRedirectType = new BehaviorSubject<IDropdown[] | undefined>(
+      undefined
+    );
+    this._listRedirectType$ = this._listRedirectType.asObservable();
+    this._listRedirectLevel1 = new BehaviorSubject<IDropdown[] | undefined>(
+      undefined
+    );
+    this._listRedirectLevel1$ = this._listRedirectLevel1.asObservable();
+    this._listRedirectLevel2 = new BehaviorSubject<IDropdown[] | undefined>(
+      undefined
+    );
+    this._listRedirectLevel2$ = this._listRedirectLevel2.asObservable();
   }
 
   public getListPageMediaImage() {
     this.requestGet(String(this.baseAPI + '/GetMediaAppPage')).subscribe(
       (res: any) => {
         if (res.status === STATUS_RESPONSE.SUCCESS) {
-          this._listPageMediaImage.next(mapDropdownDTOToIDropdown(res.data));
+          this._listPageMediaImage.next(
+            mapDropdownDTOToIDropdown(res.data, true)
+          );
         }
       }
     );
@@ -57,7 +77,9 @@ export class MediaImageService extends BaseService {
       String(this.baseAPI + '/GetMediaAppPage?page_id=' + pageId)
     ).subscribe((res: any) => {
       if (res.status === STATUS_RESPONSE.SUCCESS) {
-        this._listPositionMediaImage.next(mapDropdownDTOToIDropdown(res.data));
+        this._listPositionMediaImage.next(
+          mapDropdownDTOToIDropdown(res.data, true)
+        );
       }
     });
   }
@@ -77,11 +99,45 @@ export class MediaImageService extends BaseService {
       (res: any) => {
         if (res.status === STATUS_RESPONSE.SUCCESS) {
           this._listOutstandingMediaImage.next(
-            mapDropdownDTOToIDropdown(res.data)
+            mapDropdownDTOToIDropdown(res.data, true)
           );
         }
       }
     );
+  }
+
+  public getListRedirectType() {
+    this.requestGet(String(this.baseAPI + '/GetDirectType')).subscribe(
+      (res: any) => {
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this._listRedirectType.next(mapDropdownDTOToIDropdown(res.data));
+        }
+      }
+    );
+  }
+
+  public getListRedirectLevel1() {
+    this.requestGet(String(this.baseAPI + '/GetLevel1')).subscribe(
+      (res: any) => {
+        if (res.status === STATUS_RESPONSE.SUCCESS) {
+          this._listRedirectLevel1.next(
+            mapDropdownDTOToIDropdown(res.data, true)
+          );
+        }
+      }
+    );
+  }
+
+  public getListRedirectLevel2(redirectLevel2: string) {
+    this.requestGet(
+      String(this.baseAPI + '/GetLevel2?level1_id=' + redirectLevel2)
+    ).subscribe((res: any) => {
+      if (res.status === STATUS_RESPONSE.SUCCESS) {
+        this._listRedirectLevel2.next(
+          mapDropdownDTOToIDropdown(res.data, true)
+        );
+      }
+    });
   }
 
   public getListMediaImage(page: Page, filter: any, sort?: ISortTable) {
@@ -99,5 +155,13 @@ export class MediaImageService extends BaseService {
     }
 
     return this.requestGet(url);
+  }
+
+  public getMediaImageDetail(id: string) {
+    return this.requestGet(`${this.baseAPI}/GetMediaById?id=${id}`);
+  }
+
+  public createOrEditMediaImage(body: any) {
+    return this.requestPost(body, `${this.baseAPI}/SetMedia`);
   }
 }

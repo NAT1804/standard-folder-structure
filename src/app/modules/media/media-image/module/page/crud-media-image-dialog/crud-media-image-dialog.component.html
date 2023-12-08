@@ -14,6 +14,7 @@
                 dataSource.dataValidator['page'].toMessageString()
               "
               [isRequired]="true"
+              (_onChange)="onChangePage($event)"
             ></emir-form-dropdown>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
@@ -103,8 +104,11 @@
               [label]="'Điều hướng'"
               [(ngModelValue)]="dataSource.isRedirect"
               [classLabel]="'ml-2'"
+              (_onChange)="onChangeIsRedirect($event)"
             ></emir-form-input-switch>
           </div>
+        </div>
+        <div class="p-fluid p-formgrid grid">
           <ng-container *ngIf="!!dataSource.isRedirect">
             <div class="col-12 lg:col-4 xl:col-3">
               <emir-form-dropdown
@@ -129,6 +133,7 @@
                   [label]="'Điều hướng cấp 1'"
                   [(ngModelValue)]="dataSource.redirectLevel1"
                   [options]="listRedirectLevel1"
+                  (_onChange)="onChangeRedirectLevel1($event)"
                 ></emir-form-dropdown>
               </div>
               <div class="col-12 lg:col-4 xl:col-3">
@@ -142,10 +147,12 @@
             <ng-container
               *ngIf="dataSource.redirectType === redirectType.LIEN_KET_KHAC"
             >
-              <emir-form-input
-                [label]="'Liên khết khác'"
-                [(ngModelValue)]="dataSource.redirectLink"
-              ></emir-form-input>
+              <div class="col-12 lg:col-4 xl:col-3">
+                <emir-form-input
+                  [label]="'Liên kết khác'"
+                  [(ngModelValue)]="dataSource.redirectLink"
+                ></emir-form-input>
+              </div>
             </ng-container>
           </ng-container>
         </div>

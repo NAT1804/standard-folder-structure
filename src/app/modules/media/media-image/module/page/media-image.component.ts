@@ -50,6 +50,8 @@ export class MediaImageComponent
   public listPosition: IDropdown[] = [];
   public listStatus: IDropdown[] = [];
   public listOutstanding: IDropdown[] = [];
+  public listRedirectType: IDropdown[] = [];
+  public listRedirectLevel1: IDropdown[] = [];
 
   constructor(private mediaImageService: MediaImageService) {
     super();
@@ -60,15 +62,15 @@ export class MediaImageComponent
 
     this.headerColumns = [
       {
-        field: 'id',
-        header: '#ID',
+        field: 'no',
+        header: 'STT',
         width: '3rem',
         type: ETypeDataTable.INDEX,
         posTextCell: EPositionTextCell.CENTER,
         isFrozen: true,
         posFrozen: EPositionFrozenCell.LEFT,
         isSort: true,
-        fieldSort: 'id',
+        fieldSort: 'no',
       },
       {
         field: 'title',
@@ -85,7 +87,7 @@ export class MediaImageComponent
         minWidth: '8rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'page',
+        fieldSort: 'app_page',
         isResize: true,
       },
       {
@@ -94,7 +96,7 @@ export class MediaImageComponent
         minWidth: '8rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'position',
+        fieldSort: 'position_page',
         isResize: true,
       },
       {
@@ -103,7 +105,7 @@ export class MediaImageComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'postUser',
+        fieldSort: 'created_by',
         isResize: true,
       },
       {
@@ -112,7 +114,7 @@ export class MediaImageComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'postTime',
+        fieldSort: 'created',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data ? formatDate(param.data, ETypeFormatDate.DATE_TIME) : '',
@@ -123,7 +125,7 @@ export class MediaImageComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'approveUser',
+        fieldSort: 'approved_by',
         isResize: true,
       },
       {
@@ -132,7 +134,7 @@ export class MediaImageComponent
         minWidth: '10rem',
         type: ETypeDataTable.TEXT,
         isSort: true,
-        fieldSort: 'approveTime',
+        fieldSort: 'approved',
         isResize: true,
         valueFormatter: (param: IValueFormatter) =>
           param.data ? formatDate(param.data, ETypeFormatDate.DATE_TIME) : '',
@@ -201,36 +203,73 @@ export class MediaImageComponent
         }
       }
     );
+    this.mediaImageService._listRedirectType$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listRedirectType = res;
+        }
+      }
+    );
+    this.mediaImageService._listRedirectLevel1$.subscribe(
+      (res: IDropdown[] | undefined) => {
+        if (res) {
+          this.listRedirectLevel1 = res;
+        }
+      }
+    );
   }
 
   private initData() {
     this.mediaImageService.getListPageMediaImage();
     this.mediaImageService.getListStatusMediaImage();
     this.mediaImageService.getListOutstandingMediaImage();
+    this.mediaImageService.getListRedirectType();
+    this.mediaImageService.getListRedirectLevel1();
   }
 
   private genListAction() {
-    // this.listAction = this.dataSource.map((data: BusinessCustomerModel) => {
-    //   const actions: IActionTable[] = [];
-    //   actions.push({
-    //     data: data,
-    //     label: 'Xem chi tiết',
-    //     icon: 'pi pi-eye',
-    //     command: ($event) => {
-    //       this.detail($event.item.data);
-    //     },
-    //   });
-    //   return actions;
-    // });
+    this.listAction = this.dataSource.map((data: MediaImageModel) => {
+      const actions: IActionTable[] = [];
+      actions.push({
+        data: data,
+        label: 'Xem chi tiết',
+        icon: 'pi pi-eye',
+        command: ($event) => {
+          this.detail($event.item.data);
+        },
+      });
+      return actions;
+    });
   }
 
-  // public detail(data: BusinessCustomerModel) {
-  //   if (data) {
-  //     this.routerService.routerNavigate([
-  //       'customer/business-customer/' + data.id,
-  //     ]);
-  //   }
-  // }
+  public detail(data: MediaImageModel) {
+    if (data) {
+      this.mediaImageService
+        .getMediaImageDetail(data.id)
+        .subscribe((res: any) => {
+          if (res.status === STATUS_RESPONSE.SUCCESS) {
+            const modalRef = this.dialogCommonService.createDialog(
+              CrudMediaImageDialogComponent,
+              '100%',
+              '100%',
+              true,
+              {
+                listPage: this.listPage,
+                listOutstanding: this.listOutstanding,
+                listRedirectType: this.listRedirectType,
+                listRedirectLevel1: this.listRedirectLevel1,
+                dataSource: res.data,
+              }
+            );
+            modalRef.onClose.subscribe((res) => {
+              if (res?.status) {
+                this.setPage();
+              }
+            });
+          }
+        });
+    }
+  }
 
   public create(event: any) {
     if (event) {
@@ -238,14 +277,17 @@ export class MediaImageComponent
         CrudMediaImageDialogComponent,
         '100%',
         '100%',
-        true
-        // {
-
-        // }
+        true,
+        {
+          listPage: this.listPage,
+          listOutstanding: this.listOutstanding,
+          listRedirectType: this.listRedirectType,
+          listRedirectLevel1: this.listRedirectLevel1,
+        }
       );
       modalRef.onClose.subscribe((res) => {
-        if (res?.accept) {
-          console.log(1111);
+        if (res?.status) {
+          this.setPage();
         }
       });
     }
