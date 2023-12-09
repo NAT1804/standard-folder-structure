@@ -1,6 +1,21 @@
 <emir-form-dialog [header]="'Thêm mới'" [listAction]="listAction">
   <div class="card">
     <div class="p-fluid p-formgrid grid">
+      <div class="flex col-12">
+        <div class="w-full">
+          <emir-form-input
+            [(ngModelValue)]="referralCode"
+            [placeholder]="'Tìm kiếm tư vấn viên'"
+          ></emir-form-input>
+        </div>
+        <div class="ml-2 mt-4">
+          <emir-form-button
+            [label]="'Tìm kiếm'"
+            [styleClass]="'w-max'"
+            (_onClick)="onClickSearch($event)"
+          ></emir-form-button>
+        </div>
+      </div>
       <div class="col-12">
         <emir-form-input
           [label]="'Mã tư vấn viên'"
@@ -9,6 +24,7 @@
           [isValidData]="isValidData('code')"
           [messageError]="dataSource.dataValidator['code'].toMessageString()"
           [isRequired]="true"
+          [isDisabled]="true"
         ></emir-form-input>
       </div>
       <div class="col-12">
@@ -19,18 +35,18 @@
           [isValidData]="isValidData('name')"
           [messageError]="dataSource.dataValidator['name'].toMessageString()"
           [isRequired]="true"
+          [isDisabled]="true"
         ></emir-form-input>
       </div>
       <div class="col-12">
         <emir-form-input
-          [type]="TYPE_INPUT.NUMBER"
-          [isHideArrows]="true"
           [label]="'Số điện thoại'"
           [(ngModelValue)]="dataSource.phone"
           [isSubmit]="isSubmit"
           [isValidData]="isValidData('phone')"
           [messageError]="dataSource.dataValidator['phone'].toMessageString()"
           [isRequired]="true"
+          [isDisabled]="true"
         ></emir-form-input>
       </div>
       <div class="col-12">
@@ -43,6 +59,7 @@
             dataSource.dataValidator['organization'].toMessageString()
           "
           [isRequired]="true"
+          [isDisabled]="true"
         ></emir-form-input>
       </div>
       <div class="col-12">

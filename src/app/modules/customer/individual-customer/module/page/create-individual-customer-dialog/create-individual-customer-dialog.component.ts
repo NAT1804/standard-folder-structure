@@ -42,6 +42,7 @@ export class CreateIndividualCustomerDialogComponent
   public frontImageIImage: IImage = I_ADD_IMAGE_BG;
   public backImageIImage: IImage = I_ADD_IMAGE_BG;
   public signatureImageIImage: IImage = I_ADD_IMAGE_BG;
+  public referralCode = String('');
 
   constructor(private individualCustomerService: IndividualCustomerService) {
     super();
@@ -147,5 +148,38 @@ export class CreateIndividualCustomerDialogComponent
         this.dataSource.signatureImage = '';
       }
     }
+  }
+
+  public onClickSearchReferral(event: any) {
+    if (event) {
+      if (this.referralCode && this.referralCode.length) {
+        this.individualCustomerService
+          .verifySale(this.referralCode)
+          .subscribe((response: any) => {
+            if (this.handleResponse(response)) {
+              this.toastService.showToastSucess(response.message);
+              this.dataSource.referralCode = response.data.saler_code;
+              this.dataSource.referralUser = response.data.saler_name;
+            } else {
+              this.dataSource.referralCode = '';
+              this.dataSource.referralUser = '';
+            }
+          });
+      } else {
+        this.toastService.showToastWarning('Vui lòng nhập tìm kiếm!');
+      }
+    }
+  }
+
+  public onClickRemoveReferral(event: any) {
+    if (event) {
+      this.referralCode = '';
+      this.dataSource.referralCode = '';
+      this.dataSource.referralUser = '';
+    }
+  }
+
+  public get SEVERITY() {
+    return SEVERITY;
   }
 }

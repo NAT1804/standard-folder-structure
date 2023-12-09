@@ -205,16 +205,41 @@
       <div class="card">
         <h4>Thông tin người giới thiệu</h4>
         <div class="p-fluid p-formgrid grid">
+          <div class="flex col-12 lg:col-4 xl:col-3">
+            <div class="w-full">
+              <emir-form-input
+                [(ngModelValue)]="referralCode"
+                [placeholder]="'Tìm kiếm tư vấn viên'"
+              ></emir-form-input>
+            </div>
+            <div class="ml-2 mt-4">
+              <emir-form-button
+                [label]="'Tìm kiếm'"
+                [styleClass]="'w-max'"
+                (_onClick)="onClickSearchReferral($event)"
+              ></emir-form-button>
+            </div>
+            <div class="ml-2 mt-4">
+              <emir-form-button
+                [label]="'Xóa'"
+                [styleClass]="'w-max'"
+                [severityButton]="SEVERITY.DANGER"
+                (_onClick)="onClickRemoveReferral($event)"
+              ></emir-form-button>
+            </div>
+          </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Mã giới thiệu'"
               [(ngModelValue)]="dataSource.referralCode"
+              [isDisabled]="true"
             ></emir-form-input>
           </div>
           <div class="col-12 lg:col-4 xl:col-3">
             <emir-form-input
               [label]="'Tên người giới thiệu'"
               [(ngModelValue)]="dataSource.referralUser"
+              [isDisabled]="true"
             ></emir-form-input>
           </div>
         </div>

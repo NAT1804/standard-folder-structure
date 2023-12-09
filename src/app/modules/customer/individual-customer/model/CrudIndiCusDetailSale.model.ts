@@ -18,7 +18,7 @@ export class CrudIndiCusDetailSaleModel {
   public name = String('');
   public phone = String('');
   public organization = String('');
-  public date: Date | undefined = undefined;
+  public date: Date | undefined = new Date();
   protected _dataValidator: DataValidator = new DataValidator();
 
   public get dataValidator() {

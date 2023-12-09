@@ -20,6 +20,7 @@ export class CrudIndiCusDetailSaleDialogComponent
   public listAction: IActionButtonDialog[] = [];
   public dataSource: CrudIndiCusDetailSaleModel =
     new CrudIndiCusDetailSaleModel();
+  public referralCode = String('');
 
   public get TYPE_INPUT() {
     return TYPE_INPUT;
@@ -82,5 +83,25 @@ export class CrudIndiCusDetailSaleDialogComponent
 
   public isValidData(key: string) {
     return this.dataSource.showValidateData(key);
+  }
+
+  public onClickSearch(event: any) {
+    if (event) {
+      if (this.referralCode && this.referralCode.length) {
+        this.individualCustomerService
+          .verifySale(this.referralCode)
+          .subscribe((response: any) => {
+            if (this.handleResponse(response)) {
+              this.toastService.showToastSucess(response.message);
+              this.dataSource.code = response.data.saler_code;
+              this.dataSource.name = response.data.saler_name;
+              this.dataSource.phone = response.data.saler_phone;
+              this.dataSource.organization = response.data.saler_department;
+            }
+          });
+      } else {
+        this.toastService.showToastWarning('Vui lòng nhập tìm kiếm!');
+      }
+    }
   }
 }

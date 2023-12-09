@@ -227,6 +227,15 @@ export class IndividualCustomerService extends BaseService {
     return this.requestPost(body, `${this.baseAPISale}/SetCustSalerInfo`);
   }
 
+  public verifySale(referralCode: string) {
+    return this.requestPost(
+      {
+        referral_saler_code: referralCode,
+      },
+      `${this.baseAPI}/CheckRefferalCode`
+    );
+  }
+
   public getIndiCusDetailVerify(id: string) {
     let url = String(this.baseAPIVerify + '/GetCustIdCardByCustId?');
     url += this.convertParamUrl('custId', id);
