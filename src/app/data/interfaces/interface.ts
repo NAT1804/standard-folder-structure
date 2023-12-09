@@ -126,3 +126,9 @@ export interface IListBox {
   value: number | string | boolean;
   rawData?: any;
 }
+
+export interface IConstant {
+  id: any;
+  name: string;
+  rawData?: any;
+}

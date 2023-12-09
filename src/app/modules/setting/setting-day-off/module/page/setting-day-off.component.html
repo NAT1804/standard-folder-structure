@@ -1,0 +1,23 @@
+<div class="h-full div-main-page">
+  <div class="card">
+    <div
+      class="flex flex-column lg:flex-row xl:flex-row w-full justify-content-between align-items-center"
+    >
+      <h4>Cấu hình ngày nghỉ lễ</h4>
+      <emir-form-dropdown
+        [options]="listYear"
+        [showLabel]="false"
+        [ngModelValue]="selectYear"
+      ></emir-form-dropdown>
+    </div>
+    <div class="p-fluid p-formgrid grid">
+      <div class="col-12 lg:col-4 xl:col-3">
+        <div class="p-fluid p-formgrid grid">
+          <div class="col-12">
+            <table></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

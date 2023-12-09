@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContentLayoutComponent } from '@layout/content-layout/content-layout.component';
-import { AuthLayoutComponent } from '@layout/auth-layout/auth-layout.component';
 import { AuthGuard } from '@core/guards/auth.guard';
+import { AuthLayoutComponent } from '@layout/auth-layout/auth-layout.component';
+import { ContentLayoutComponent } from '@layout/content-layout/content-layout.component';
 import { NotfoundComponent } from './layout/not-found/not-found.component';
 
 const routes: Routes = [
@@ -95,6 +95,13 @@ const routes: Routes = [
               import(
                 '@app/modules/setting/setting-send-noti/module/setting-send-noti.module'
               ).then((m) => m.SettingSendNotiModule),
+          },
+          {
+            path: 'setting-day-off',
+            loadChildren: () =>
+              import(
+                '@app/modules/setting/setting-day-off/module/setting-day-off.module'
+              ).then((m) => m.SettingDayOffModule),
           },
         ],
       },

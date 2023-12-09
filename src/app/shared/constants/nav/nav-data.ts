@@ -72,6 +72,11 @@ export const navData: INavData[] = [
         icon: 'pi pi-users',
         label: 'Thông số gửi báo cáo',
       },
+      {
+        routerLink: 'setting/setting-day-off',
+        icon: 'pi pi-users',
+        label: 'Cấu hình ngày nghỉ lễ',
+      },
     ],
   },
   {
