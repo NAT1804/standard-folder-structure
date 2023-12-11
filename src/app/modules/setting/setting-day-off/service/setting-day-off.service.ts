@@ -10,4 +10,8 @@ export class SettingDayOffService extends BaseService {
   public getListDayOff(year: number) {
     return this.requestGet(`${this.baseAPI}/GetCalendarByYear?year=${year}`);
   }
+
+  public changeDayOff(body: any) {
+    return this.requestPut(body, `${this.baseAPI}/SetCalendar`);
+  }
 }

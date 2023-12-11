@@ -4,19 +4,50 @@
       class="flex flex-column lg:flex-row xl:flex-row w-full justify-content-between align-items-center"
     >
       <h4>Cấu hình ngày nghỉ lễ</h4>
-      <emir-form-dropdown
-        [options]="listYear"
-        [showLabel]="false"
-        [ngModelValue]="selectYear"
-      ></emir-form-dropdown>
+      <div class="flex">
+        <emir-form-button
+          classButton="mr-2"
+          [label]="'Lưu'"
+          (_onClick)="onClickSave($event)"
+        ></emir-form-button>
+        <emir-form-dropdown
+          [options]="listYear"
+          [showLabel]="false"
+          [(ngModelValue)]="selectYear"
+          (_onChange)="onChange($event)"
+        ></emir-form-dropdown>
+      </div>
     </div>
+
     <div class="p-fluid p-formgrid grid">
-      <div class="col-12 lg:col-4 xl:col-3">
-        <div class="p-fluid p-formgrid grid">
-          <div class="col-12">
-            <table></table>
-          </div>
-        </div>
+      <div class="col-12">
+        <table class="max-w-full block overflow-x-auto table_day_off">
+          <tr *ngFor="let data of dataSource; let index = index">
+            <ng-container *ngIf="index === 0">
+              <th></th>
+              <th *ngFor="let data of dataSource[index]">
+                <span>{{ data.dayOfWeek }}</span>
+              </th>
+            </ng-container>
+            <ng-container *ngIf="index !== 0">
+              <td class="month">
+                <span>{{ getMonth(index) }}</span>
+              </td>
+              <td
+                *ngFor="let data of dataSource[index]"
+                [ngClass]="{
+                  day_of: data.isDayOff,
+                  selected: data.isSelected,
+                  empty: !data.date
+                }"
+                (click)="onClickTd($event, data)"
+              >
+                <span>{{ data?.dayOfMonth || '' }}</span>
+              </td>
+            </ng-container>
+          </tr>
+          <tr></tr>
+        </table>
       </div>
     </div>
   </div>

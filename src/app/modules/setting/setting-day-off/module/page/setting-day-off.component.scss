@@ -1,0 +1,33 @@
+@import 'styles/default.scss';
+
+table.table_day_off {
+  th,
+  td {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+  }
+  th {
+    background-color: $green-500;
+    color: #fff;
+  }
+  td {
+    color: $primary;
+    &.day_of {
+      color: $red-500;
+    }
+    &.month {
+      background-color: #f8f0fb;
+    }
+    &:hover,
+    &.selected {
+      &:not(.month, .empty) {
+        background-color: $primary;
+        &:not(.day_of) {
+          color: #fff;
+        }
+        cursor: pointer;
+      }
+    }
+  }
+}
